@@ -2,7 +2,7 @@
   "name": "gluon",
   "version": "0.0.1",
   "description": "A Threejs game framework in Electron.",
-  "main": "./src/gluon.ts",
+  "main": "src/gluon.ts",
   "bin": {
     "gluon": "./bin/gluon.js"
   },
