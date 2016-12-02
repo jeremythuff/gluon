@@ -1,12 +1,12 @@
 import './polyfills.browser';
 
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { AppModule } from './app/app.module';
+import { GluonEngine } from './app/gluon-engine';
 
 export const platformRef = platformBrowserDynamic();
 
 export function main() {
-  return platformRef.bootstrapModule(AppModule)
+  return platformRef.bootstrapModule(GluonEngine)
     .catch(err => console.error(err));
 }
 

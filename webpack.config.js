@@ -1,7 +1,7 @@
 var webpack = require('webpack');
 var path = require('path');
 var webpackMerge = require('webpack-merge');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
+// var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 // Webpack Config
 var webpackConfig = {
@@ -22,12 +22,7 @@ var webpackConfig = {
       {
         // your Angular Async Route paths relative to this root directory
       }
-    ),
-     new CopyWebpackPlugin([{
-        from: path.join(__dirname, 'src', 'index.html'),
-        to: path.join(__dirname, 'dist', 'index.html')
-      }
-    ])
+    )
   ],
 
   module: {
