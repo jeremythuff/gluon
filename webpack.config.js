@@ -6,7 +6,7 @@ var webpackMerge = require('webpack-merge');
 // Webpack Config
 var webpackConfig = {
   entry: {
-    'main': './src/app/gluon-engine.ts',
+    'main': './src/gluon.ts',
   },
 
    output: {
