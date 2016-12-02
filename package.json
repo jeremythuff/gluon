@@ -10,7 +10,7 @@
     "build": "webpack --progress",
     "watch": "npm run build -- --watch",
     "app": "electron electron-start.js",
-    "prepublish": "npm run build",
+    "prepublish": "",
     "start:watch": " npm run build && (npm run watch & npm run app)",
     "start": "npm run build && npm run app"
   },
