@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 import { GluonRendererComponent } from "./gluon-renderer.component";
 

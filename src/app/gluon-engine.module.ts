@@ -3,8 +3,8 @@ import { NgModule } from "@angular/core";
 import { GluonRendererModule } from "./renderer/gluon-renderer.module";
 
 @NgModule({
-	imports: [GluonRendererModule]
+	imports: [
+		GluonRendererModule,
+    ]
 })
-export class GluonEngineModule {
-	constructor() {}
-}
+export class GluonEngineModule {}

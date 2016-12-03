@@ -21,5 +21,5 @@ switch (document.readyState) {
     document.addEventListener('DOMContentLoaded', () => main());
 }
 
-// export { NgModule as GluonGame } from "@angular/core";
-// export * from "./app/gluon-engine.module"; 
+export { NgModule as GluonGame } from "@angular/core";
+export * from "./app/gluon-engine.module"; 
