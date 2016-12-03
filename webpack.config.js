@@ -44,6 +44,7 @@ var webpackConfig = {
           'angular2-router-loader'
         ]
       },
+      { test: /\.css$/, loaders: ['to-string-loader', 'css-loader'] },
       { test: /\.scss$/, loaders: ['raw-loader', 'sass-loader'] },
       { test: /\.html$/, loader: 'raw-loader' }
     ]
