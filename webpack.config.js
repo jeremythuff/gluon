@@ -5,6 +5,7 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 // Webpack Config
 var webpackConfig = {
+  context: __dirname,
   entry: {
     'main': './src/gluon.ts',
   },

@@ -14,7 +14,7 @@ if(process.argv.indexOf("build") != -1) {
 
 	console.log("\n\nGluon building...".bold.underline.green);
 
-	var buildCmd = "--progress " + pwd+fileSeparator+config.entry.join(fileSeparator) + " -o " + pwd+fileSeparator+config.outPut.join(fileSeparator) + " --config "+ engineDir  +"webpack.config.js";
+	var buildCmd = "--progress " + pwd+fileSeparator+config.entry.join(fileSeparator) + " " + pwd+fileSeparator+config.outPut.join(fileSeparator) + " --config "+ engineDir  +"webpack.config.js";
 
 	console.log(buildCmd);
 

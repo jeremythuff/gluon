@@ -40,9 +40,7 @@
     "rxjs": "5.0.0-rc.4",
     "shelljs-nodecli": "^0.1.1",
     "three": "^0.82.1",
-    "zone.js": "~0.7.2"
-  },
-  "devDependencies": {
+    "zone.js": "~0.7.2",
     "@types/node": "^6.0.48",
     "@types/three": "0.0.27",
     "angular2-router-loader": "^0.3.4",
