@@ -7,7 +7,7 @@
     "gluon": "./bin/gluon.js"
   },
   "scripts": {
-    "build": "webpack --progress ./src/gluon.ts ./dist/main.bundle.js --config ./webpack.config.js",
+    "build": "webpack --progress ./src/gluon.ts --config ./webpack.config.js",
     "watch": "npm run build -- --watch",
     "app": "electron electron-start.js",
     "prepublish": "",

@@ -6,7 +6,7 @@ var colors = require("colors");
 var pwd = shell.pwd();
 var fileSeparator = pwd.indexOf("/") != -1 ? "/" : "\\";
 
-var engineDir = pwd+fileSeparator+"node_modules"+fileSeparator+"gluon"+fileSeparator;
+var engineDir = pwd+fileSeparator+"node_modules"+fileSeparator+"gluon";
 
 var config = JSON.parse(shell.cat(pwd+fileSeparator+"gluonconfig.json"));
 
@@ -14,14 +14,12 @@ if(process.argv.indexOf("build") != -1) {
 
 	console.log("\n\nGluon building...".bold.underline.green);
 
-	var buildCmd = "--progress " + pwd+fileSeparator+config.entry.join(fileSeparator) + " " + pwd+fileSeparator+config.outPut.join(fileSeparator) + " --config "+ engineDir  +"webpack.config.js";
+	//var buildCmd = "--progress " + pwd+fileSeparator+config.entry.join(fileSeparator) + " " + pwd+fileSeparator+config.outPut.join(fileSeparator) + " --config "+ engineDir  +"webpack.config.js";
+	var buildCmd = "--progress "+config.entry.join(fileSeparator) + " "+config.outPut.join(fileSeparator) + " --config "+ engineDir+fileSeparator  +"webpack.config.js";
 
 	console.log(buildCmd);
 
-	var webpackProc = nodeCLI.exec("webpack", buildCmd, function(code, output) {
-	    console.log('Exit code:', code);
-	    console.log('Program output:', output);
-	});
+	var webpackProc = nodeCLI.exec("webpack", buildCmd, {async: true});
 
 	webpackProc.stdout.on('data', function(data) {
 	    console.log(data);

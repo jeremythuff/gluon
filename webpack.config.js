@@ -6,9 +6,6 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 // Webpack Config
 var webpackConfig = {
   context: __dirname,
-  entry: {
-    'main': './src/gluon.ts',
-  },
 
    output: {
     publicPath: '',
@@ -19,7 +16,7 @@ var webpackConfig = {
     new webpack.ContextReplacementPlugin(
       // The (\\|\/) piece accounts for path separators in *nix and Windows
       /angular(\\|\/)core(\\|\/)src(\\|\/)linker/,
-      path.resolve(__dirname, './src'),
+      path.resolve(__dirname, 'src'),
       {
         // your Angular Async Route paths relative to this root directory
       }
