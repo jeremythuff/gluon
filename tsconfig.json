@@ -2,11 +2,12 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
-    "target": "es5",
     "outDir": "dist",
     "sourceMap": true,
+    "declaration": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "outDir": "./lib",
     "moduleResolution": "node",
     "typeRoots": [
       "node_modules/@types"
@@ -20,7 +21,7 @@
     "useWebpackText": true
   },
   "angularCompilerOptions": {
-    "debug": false
+    "debug": true
   },
   "compileOnSave": false,
   "buildOnSave": false,

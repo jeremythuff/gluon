@@ -5,11 +5,7 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 // Webpack Config
 var webpackConfig = {
-  context: __dirname,
-   output: {
-    publicPath: '',
-    path: path.resolve(__dirname, './dist'),
-  },
+   context: __dirname,
 
   plugins: [
     new webpack.ContextReplacementPlugin(
