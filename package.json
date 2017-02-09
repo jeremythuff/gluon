@@ -5,7 +5,7 @@
   "main": "lib/main.js",
   "typings": "lib/main",
   "files": [
-      "lib/"
+    "lib/"
   ],
   "scripts": {
     "build": "tsc -p tsconfig.lib.json && tsc -p tsconfig.gluon.json && tsc -p tsconfig.launcher.json",
@@ -28,7 +28,15 @@
   },
   "homepage": "https://github.com/jeremythuff/Gluon#readme",
   "devDependencies": {
+    "concurrently": "^2.2.0",
+    "node-sass": "^3.8.0",
+    "onchange": "^3.0.0",
+    "shelljs": "^0.7.4",
+    "shx": "^0.1.4",
     "@types/three": "^0.83.2",
     "typescript": "^2.1.6"
+  },
+  "dependencies": {
+    "electron": "^1.4.15"
   }
 }
