@@ -2,8 +2,8 @@
   "name": "gluon",
   "version": "0.0.1",
   "description": "A WebGL game framework deployed in Electron",
-  "main": "lib/main.js",
-  "typings": "lib/main",
+  "main": "dist/lib/main.js",
+  "typings": "dist/lib/main",
   "scripts": {
     "build:html": "node bld/html.js",
     "build:typescript:lib": "tsc -p tsconfig.lib.json",
