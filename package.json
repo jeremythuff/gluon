@@ -8,7 +8,7 @@
       "lib/"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.lib.json && tsc -p tsconfig.gluon.json"
+    "build": "tsc -p tsconfig.lib.json && tsc -p tsconfig.gluon.json && tsc -p tsconfig.launcher.json"
   },
   "repository": {
     "type": "git",
