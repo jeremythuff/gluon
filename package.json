@@ -8,7 +8,8 @@
       "lib/"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.lib.json && tsc -p tsconfig.gluon.json && tsc -p tsconfig.launcher.json"
+    "build": "tsc -p tsconfig.lib.json && tsc -p tsconfig.gluon.json && tsc -p tsconfig.launcher.json",
+    "launch": "electron launcher/electronMain.js"
   },
   "repository": {
     "type": "git",

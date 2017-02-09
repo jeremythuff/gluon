@@ -1,3 +1,6 @@
+/// <reference path="./../../../typings/globals/github-electron/index.d.ts" />
+/// <reference path="./../../../typings/globals/node/index.d.ts" />
+
 import * as Electron from 'electron';
 
 export default class ElectronLauncher {
@@ -13,15 +16,11 @@ export default class ElectronLauncher {
         ElectronLauncher.mainWindow = null;
     }
     private static onReady(){
-        ElectronLauncher.mainWindow = 
-            new ElectronLauncher.BrowserWindow({width: 800, height: 600})
-        ElectronLauncher.mainWindow
-            .loadURL('file://' + __dirname + '/../src/resources/html/main.html');
+        ElectronLauncher.mainWindow = new ElectronLauncher.BrowserWindow({width: 800, height: 600})
+        ElectronLauncher.mainWindow.loadURL('file://' + __dirname + '/../src/resources/html/main.html');
         ElectronLauncher.mainWindow.on('closed', ElectronLauncher.onClose);
     }
-    static main(
-        app: Electron.App,
-        browserWindow: typeof Electron.BrowserWindow){
+    static main( app: Electron.App, browserWindow: typeof Electron.BrowserWindow){
         // we pass the Electron.App object and the 
         // Electron.BrowserWindow into this function
         // so this class has no dependencies.  This
@@ -29,9 +28,8 @@ export default class ElectronLauncher {
 
         ElectronLauncher.BrowserWindow = browserWindow;
         ElectronLauncher.application = app;
-        ElectronLauncher.application.on('window-all-closed',
-            ElectronLauncher.onWindowAllClosed);
-        ElectronLauncher.application.on('ready', 
-            ElectronLauncher.onReady);
+        ElectronLauncher.application.on('window-all-closed', ElectronLauncher.onWindowAllClosed);
+        ElectronLauncher.application.on('ready', ElectronLauncher.onReady);
+
     }
 }
