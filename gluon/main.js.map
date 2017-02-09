@@ -1,0 +1,1 @@
+{"version":3,"file":"main.js","sourceRoot":"","sources":["../src/framework/model/MyModel.ts","../src/framework/main.ts"],"names":[],"mappings":";;;;;;QAKC,CAAC;;;;;;;;;;;;;;YCMI,SAAS,GAAG,IAAI,OAAO,CAAC,cAAc,CAAC,CAAC;YAC9C,SAAS,CAAC,QAAQ,GAAG,OAAO,CAAC;YAC7B,SAAS,CAAC,OAAO,GAAG,IAAI,iBAAO,CAAC,OAAO,CAAC,CAAC;YACzC,SAAS,CAAC,YAAY,EAAE,CAAC;QAAA,CAAC"}

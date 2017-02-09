@@ -1,0 +1,33 @@
+{
+  "name": "gluon",
+  "version": "0.0.1",
+  "description": "A WebGL game framework deployed in Electron",
+  "main": "lib/main.js",
+  "typings": "lib/main",
+  "files": [
+      "lib/"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.lib.json && tsc -p tsconfig.gluon.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeremythuff/Gluon.git"
+  },
+  "keywords": [
+    "WebGl",
+    "Electron",
+    "Game",
+    "Framework"
+  ],
+  "author": "Jeremy Huff",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jeremythuff/Gluon/issues"
+  },
+  "homepage": "https://github.com/jeremythuff/Gluon#readme",
+  "devDependencies": {
+    "@types/three": "^0.83.2",
+    "typescript": "^2.1.6"
+  }
+}
