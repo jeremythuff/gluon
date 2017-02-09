@@ -1,5 +1,5 @@
-/// <reference path="./../../../typings/globals/github-electron/index.d.ts" />
-/// <reference path="./../../../typings/globals/node/index.d.ts" />
+/// <reference path="./../../../dist/typings/globals/github-electron/index.d.ts" />
+/// <reference path="./../../../dist/typings/globals/node/index.d.ts" />
 
 import * as Electron from 'electron';
 
@@ -17,7 +17,7 @@ export default class ElectronLauncher {
     }
     private static onReady(){
         ElectronLauncher.mainWindow = new ElectronLauncher.BrowserWindow({width: 800, height: 600})
-        ElectronLauncher.mainWindow.loadURL('file://' + __dirname + '/../src/resources/html/main.html');
+        ElectronLauncher.mainWindow.loadURL('file://' + __dirname + '/html/main.html');
         ElectronLauncher.mainWindow.on('closed', ElectronLauncher.onClose);
     }
     static main( app: Electron.App, browserWindow: typeof Electron.BrowserWindow){
