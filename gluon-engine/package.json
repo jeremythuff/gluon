@@ -1,0 +1,32 @@
+{
+  "name": "gluon-engine",
+  "version": "0.0.1",
+  "description": "WebGl in an Electron wrapper",
+  "main": "dist/main.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jeremythuff/Gluon/"
+  },
+  "keywords": [
+    "WebGl",
+    "Electron",
+    "Game",
+    "Engine"
+  ],
+  "author": "Jeremy Huff",
+  "license": "MIT",
+  "dependencies": {
+    "@types/electron": "^1.4.32",
+    "@types/node": "^7.0.5",
+    "@types/three": "^0.83.3",
+    "concurrently": "^3.2.0",
+    "node-sass": "^4.5.0",
+    "onchange": "^3.2.1",
+    "shelljs": "^0.7.6",
+    "shx": "^0.2.2",
+    "typescript": "^2.1.6"
+  }
+}
