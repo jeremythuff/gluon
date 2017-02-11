@@ -1,8 +1,0 @@
-{
-  "extends": "./tsconfig",
-  "compilerOptions": {
-  	"module": "system",
-    "outFile": "dist/gluon/main.js",
-    "sourceMap": true
-  }
-}
