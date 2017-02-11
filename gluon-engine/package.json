@@ -2,7 +2,11 @@
   "name": "gluon-engine",
   "version": "0.0.1",
   "description": "WebGl in an Electron wrapper",
-  "main": "dist/main.js",
+  "main": "./dist/main.js",
+  "types": "./dist/main.d.ts",
+  "files": [
+    "dist/"
+  ]
   "scripts": {
     "test": "test"
   },

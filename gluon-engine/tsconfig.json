@@ -1,0 +1,32 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es5",
+        "noImplicitAny": false,
+        "sourceMap": true,
+        "compilerOptions": {
+        	"module": "commonjs",
+        	"outDir": "lib/",
+        	"declaration": true,
+	        "noImplicitAny": true,
+	        "removeComments": true,
+	        "preserveConstEnums": true,
+	        "listEmittedFiles": true,
+	        "listFiles": true,
+	        "forceConsistentCasingInFileNames": true,
+	        "experimentalDecorators": true,
+	        "pretty": true,
+	        "target":"ES5",
+	        "lib": ["es2015", "dom"],
+	        "typeRoots": ["node_modules/@types"],
+	        "baseUrl": "./src/typescript/"
+        },
+        "files": [
+	        "src/typescript/main.ts"
+	    ],
+        "exclude": [
+	        "node_modules",
+	        "**/*.spec.ts"
+	    ]
+    }
+}
