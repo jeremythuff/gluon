@@ -4,8 +4,7 @@
         "target": "es5",
         "noImplicitAny": false,
         "sourceMap": true,
-        "module": "commonjs",
-    	"outDir": "dist/",
+    	"outDir": "dist",
     	"declaration": true,
         "noImplicitAny": true,
         "removeComments": true,
@@ -17,13 +16,14 @@
         "pretty": true,
         "target":"ES5",
         "lib": ["es2015", "dom"],
-        "typeRoots": ["node_modules/@types"],
+        "moduleResolution": "node",
         "baseUrl": "./src/typescript/"
     },
     "files": [
-	        "src/typescript/main.ts"
+        "src/typescript/main.ts"
     ],
     "exclude": [
+        "src/typescript/util/launcher/**/*",
         "node_modules",
         "**/*.spec.ts"
     ]

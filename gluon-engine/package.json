@@ -9,7 +9,12 @@
   ],
   "scripts": {
     "test": "test",
-    "build": "tsc"
+    "build:lib": "node bld/lib.js",
+    "build:typescript:main": "tsc -p ./tsconfig.json",
+    "build:typescript": "npm run build:typescript:main",
+    "build:html": "node bld/html.js",
+    "build": "npm run build:typescript && npm run build:html && npm run build:lib",
+    "gluon": "electron dist/electronMain.js main.html"
   },
   "repository": {
     "type": "git",
@@ -33,5 +38,6 @@
     "shelljs": "^0.7.6",
     "shx": "^0.2.2",
     "typescript": "^2.1.6"
-  }
+  },
+  "devDependencies": {}
 }
