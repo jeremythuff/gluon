@@ -9,12 +9,11 @@
   ],
   "scripts": {
     "test": "test",
-    "build:lib": "node bld/lib.js",
     "build:typescript:main": "tsc -p ./tsconfig.json",
     "build:typescript": "npm run build:typescript:main",
     "build:html": "node bld/html.js",
-    "build": "npm run build:typescript && npm run build:html && npm run build:lib",
-    "gluon": "electron dist/electronMain.js main.html"
+    "build": "npm run build:typescript && npm run build:html",
+    "gluon": "electron dist/util/launcher.js"
   },
   "repository": {
     "type": "git",

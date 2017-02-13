@@ -20,7 +20,8 @@
         "baseUrl": "./src/typescript/"
     },
     "files": [
-        "src/typescript/main.ts"
+        "src/typescript/main.ts",
+        "src/typescript/util/Launcher.ts"
     ],
     "exclude": [
         "src/typescript/util/launcher/**/*",
