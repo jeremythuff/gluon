@@ -1,5 +1,9 @@
 "use strict";
 var electron = require("electron");
+var process = require("process");
+var nodeModule = require('module');
+nodeModule.globalPaths.push(__dirname + "/dist");
+console.log(nodeModule);
 var app = electron.app;
 var mainWindow;
 function createWindow() {

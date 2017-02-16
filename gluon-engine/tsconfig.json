@@ -24,7 +24,6 @@
         "src/typescript/util/Launcher.ts"
     ],
     "exclude": [
-        "src/typescript/util/launcher/**/*",
         "node_modules",
         "**/*.spec.ts"
     ]

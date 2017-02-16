@@ -1,5 +1,9 @@
 import * as electron from 'electron';
-
+import * as process from 'process';
+import * as path from 'path';
+let nodeModule = require('module');
+nodeModule.globalPaths.push(__dirname + "/dist");
+console.log(nodeModule);
 // Module to control application life.
 const app = electron.app;
 
