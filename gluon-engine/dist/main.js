@@ -1,5 +1,6 @@
 "use strict";
 var Engine_1 = require("./model/Engine");
-var engine = new Engine_1.default("My Game");
-console.log(engine.getGame().getName());
+exports.Engine = Engine_1.default;
+var Game_1 = require("./model/Game");
+exports.Game = Game_1.default;
 //# sourceMappingURL=main.js.map
