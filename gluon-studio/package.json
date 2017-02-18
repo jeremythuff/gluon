@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "description": "A game maker studio for the Gluon Engine",
   "main": "main.js",
-  "dependencies": {},
+  "dependencies": {
+    "gluon-engine": "file:///Users/huff/development/javascript/apps/Gluon/gluon-engine"
+  },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
