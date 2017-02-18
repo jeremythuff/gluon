@@ -4,4 +4,6 @@ export default class Engine {
     constructor(gameName: string);
     getGame(): Game;
     setGame(game: Game): void;
+    start(): Game;
+    stop(): void;
 }

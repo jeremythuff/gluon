@@ -1,9 +1,9 @@
+#!/usr/bin/env node
+
 import * as electron from 'electron';
 import * as process from 'process';
 import * as path from 'path';
-let nodeModule = require('module');
-nodeModule.globalPaths.push(__dirname + "/dist");
-console.log(nodeModule);
+
 // Module to control application life.
 const app = electron.app;
 
@@ -14,7 +14,7 @@ let mainWindow: Electron.BrowserWindow;
 function createWindow () {
   mainWindow = new electron.BrowserWindow({ width: 800, height: 600 });
 
-  mainWindow.loadURL(`file://${__dirname}/../main.html`)
+  mainWindow.loadURL(`file://${process.argv[2]}`)
 
   mainWindow.on('closed', function () {
     // Dereference the window object, usually you would store windows

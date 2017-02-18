@@ -21,7 +21,8 @@
     },
     "files": [
         "src/typescript/main.ts",
-        "src/typescript/util/Launcher.ts"
+        "src/typescript/util/Launcher.ts",
+        "src/typescript/util/GluonCli.ts"
     ],
     "exclude": [
         "node_modules",
