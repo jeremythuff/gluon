@@ -8,7 +8,7 @@
     "dist/"
   ],
   "bin": {
-    "gluon-cli": "./dist/util/GluonCli.js"
+    "gluon-cli": "./dist/util/cli/GluonCli.js"
   },
   "scripts": {
     "test": "test",
