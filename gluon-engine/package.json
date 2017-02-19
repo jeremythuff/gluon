@@ -35,12 +35,14 @@
     "@types/node": "^7.0.5",
     "@types/shelljs": "^0.7.0",
     "@types/three": "^0.83.3",
+    "colors": "^1.1.2",
     "concurrently": "^3.2.0",
     "node-sass": "^4.5.0",
     "onchange": "^3.2.1",
     "shelljs": "^0.7.6",
     "shelljs-nodecli": "^0.1.1",
     "shx": "^0.2.2",
+    "text-table": "^0.2.0",
     "typescript": "^2.1.6"
   },
   "devDependencies": {}
