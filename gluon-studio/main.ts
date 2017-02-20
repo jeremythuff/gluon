@@ -1,5 +1,9 @@
 
 import * as Gluon from "gluon-engine";
-const engine = new Gluon.Engine("Gluon Studio");
-const game = engine.start();
-console.log(game);
+
+@Gluon.MakeGame({})
+class GluonStudio extends Gluon.Game {
+	constructor(name: string) {
+		super(name);
+	}
+}

@@ -5,9 +5,9 @@ export default class Game implements RenderCycle {
 	private running : boolean;
 	private name : string;
 	
-	constructor(name:string) {
-		this.setName(name);
-	};
+    constructor(name?: string) {
+    	if(name) this.setName(name);
+    }
 
 	getName() : string {
 		return this.name;

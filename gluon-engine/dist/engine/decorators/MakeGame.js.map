@@ -1,0 +1,1 @@
+{"version":3,"file":"MakeGame.js","sourceRoot":"","sources":["../../../src/typescript/engine/decorators/MakeGame.ts"],"names":[],"mappings":";AAAA,0CAAoC;AAGpC,kBAAiC,OAAY;IAC5C,MAAM,CAAC,UAAS,UAAe;QAC9B,IAAM,IAAI,GAAU,IAAI,UAAU,CAAC,UAAU,CAAC,IAAI,CAAC,CAAC;QACpD,IAAM,MAAM,GAAG,IAAI,gBAAM,CAAC,IAAI,CAAC,CAAC;QAChC,MAAM,CAAC,KAAK,EAAE,CAAC;IAChB,CAAC,CAAA;AACF,CAAC;;AAND,2BAMC"}

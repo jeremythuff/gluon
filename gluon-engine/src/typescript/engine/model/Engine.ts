@@ -4,8 +4,8 @@ export default class Engine {
 
 	private game: Game;
 
-	constructor(gameName:string) {
-		this.game = new Game(gameName);
+	constructor(game: Game) {
+		this.game = game;
 	}
 
 	getGame() : Game {

@@ -1,8 +1,7 @@
 "use strict";
-var Game_1 = require("./Game");
 var Engine = (function () {
-    function Engine(gameName) {
-        this.game = new Game_1.default(gameName);
+    function Engine(game) {
+        this.game = game;
     }
     Engine.prototype.getGame = function () {
         return this.game;

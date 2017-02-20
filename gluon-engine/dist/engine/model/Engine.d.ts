@@ -1,7 +1,7 @@
 import Game from "./Game";
 export default class Engine {
     private game;
-    constructor(gameName: string);
+    constructor(game: Game);
     getGame(): Game;
     setGame(game: Game): void;
     start(): Game;

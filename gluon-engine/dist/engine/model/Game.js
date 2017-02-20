@@ -1,9 +1,9 @@
 "use strict";
 var Game = (function () {
     function Game(name) {
-        this.setName(name);
+        if (name)
+            this.setName(name);
     }
-    ;
     Game.prototype.getName = function () {
         return this.name;
     };
