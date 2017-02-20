@@ -20,9 +20,9 @@
         "baseUrl": "./src/typescript/"
     },
     "files": [
-        "src/typescript/main.ts",
-        "src/typescript/util/Launcher.ts",
-        "src/typescript/util/cli/GluonCli.ts"
+        "src/typescript/engine/main.ts",
+        "src/typescript/launcher/Launcher.ts",
+        "src/typescript/cli/GluonCli.ts"
     ],
     "exclude": [
         "node_modules",
