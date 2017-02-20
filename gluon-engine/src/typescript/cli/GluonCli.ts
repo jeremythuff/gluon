@@ -6,6 +6,8 @@ import {CliCommand} from './CliCommand';
 import Start from "./Start";
 import Help from "./Help";
 
+const colors = require('colors/safe');
+
 class GluonCli {
 	private args :Array<string>;
 	constructor(args : Array<string>) {
@@ -15,20 +17,23 @@ class GluonCli {
 	provessCommand(arg:string) : void {
 		let command : CliCommand;
 		switch(arg) { 
-		    case "--start": 
-		    case "-s": { 
+		    case "start": 
+		    case "s": { 
 		    	command = new Start();
 		    	break; 
 		    }
-		    case "--help": 
-		    case "-h":
+		    case "help": 
+		    case "h":
 		   	default: { 
-		      command = new Help();
-		      break; 
+
+		   		console.log(colors.red(`\n *ERROR* command not found: "${arg}"`));
+
+		      	command = new Help();
+		      	break; 
 		   } 
 		}
 
-		command.run(this.args); 
+		command.execute(this.args); 
 
 	}
 

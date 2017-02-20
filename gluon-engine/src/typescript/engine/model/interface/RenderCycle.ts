@@ -1,4 +1,4 @@
-export interface Renderable {
+export interface RenderCycle {
 
 	init() :Promise<any>;
 	load() :Promise<any>;

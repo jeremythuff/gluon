@@ -8,7 +8,7 @@ var nodecli = require("shelljs-nodecli");
 var Start = (function () {
     function Start() {
     }
-    Start.prototype.run = function (args) {
+    Start.prototype.execute = function (args) {
         console.log(colors.green.underline("Starting Gluon..."));
         var execustionPath = path.resolve("node_modules", "gluon-engine", "dist", "launcher", "Launcher.js");
         var mainJsPath = path.resolve(process.cwd(), args[0]);

@@ -1,4 +1,4 @@
 
 export interface CliCommand {
-	run(args :Array<string>) : void;
+	execute(args :Array<string>) : void;
 }

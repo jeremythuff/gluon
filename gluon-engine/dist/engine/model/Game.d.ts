@@ -1,5 +1,5 @@
-import { Renderable } from "./interface/Renderable";
-export default class Game implements Renderable {
+import { RenderCycle } from "./interface/RenderCycle";
+export default class Game implements RenderCycle {
     private running;
     private name;
     constructor(name: string);

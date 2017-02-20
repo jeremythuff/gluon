@@ -6,7 +6,7 @@ import State from "./model/State";
 import Mode from "./model/Mode";
 
 //Interface
-import {Renderable} from "./model/interface/Renderable";
+import {RenderCycle} from "./model/interface/RenderCycle";
 
 export {
 
@@ -17,6 +17,6 @@ export {
 	Mode,
 
 	//Interface
-	Renderable
+	RenderCycle
 
 };

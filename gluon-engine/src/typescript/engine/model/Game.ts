@@ -1,6 +1,6 @@
-import {Renderable} from "./interface/Renderable";
+import {RenderCycle} from "./interface/RenderCycle";
 
-export default class Game implements Renderable {
+export default class Game implements RenderCycle {
 
 	private running : boolean;
 	private name : string;
