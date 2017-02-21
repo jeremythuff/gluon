@@ -1,1 +1,1 @@
-export default function MakeGame(options: {}): (decoreaded: any) => void;
+export default function MakeGame(options: {}): (decorated: any) => void;

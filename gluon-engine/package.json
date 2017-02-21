@@ -31,6 +31,7 @@
   "author": "Jeremy Huff",
   "license": "MIT",
   "dependencies": {
+    "@reactivex/rxjs": "^5.1.1",
     "@types/electron": "^1.4.32",
     "@types/node": "^7.0.5",
     "@types/shelljs": "^0.7.0",

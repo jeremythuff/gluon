@@ -11,8 +11,8 @@ var Engine = (function () {
     };
     Engine.prototype.start = function () {
         var game = this.getGame();
-        game.init().then(function () {
-            game.load().then(function () {
+        game.init().subscribe(function () {
+            game.load().subscribe(function () {
                 game.isRunning(true);
             });
         });

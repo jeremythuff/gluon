@@ -1,4 +1,5 @@
 import {RenderCycle} from "./interface/RenderCycle";
+import {Observable} from "@reactivex/rxjs/dist/cjs/Rx";
 
 export default class Game implements RenderCycle {
 
@@ -22,18 +23,12 @@ export default class Game implements RenderCycle {
 		return this.running;
 	}
 
-	init() :Promise<any> {
-		const promise = new Promise((resolve, reject) => {
-			resolve();
-		});
-		return promise;
+	init() :Observable<any> {
+		return Observable.of(() => {});
 	}
 
-	load() :Promise<any> {
-		const promise = new Promise((resolve, reject) => {
-			resolve();
-		});
-		return promise;
+	load() :Observable<any> {
+		return Observable.of(() => {});
 	}
 
 	update() :void {}

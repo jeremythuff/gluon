@@ -15,7 +15,7 @@ var GluonStudio = (function (_super) {
     __extends(GluonStudio, _super);
     function GluonStudio(name) {
         var _this = _super.call(this, name) || this;
-        console.log(_this.getName(), _this);
+        console.log("Constructed: ", _this);
         return _this;
     }
     return GluonStudio;

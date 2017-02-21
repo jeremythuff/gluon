@@ -1,4 +1,5 @@
 "use strict";
+var Rx_1 = require("@reactivex/rxjs/dist/cjs/Rx");
 var Game = (function () {
     function Game(name) {
         if (name)
@@ -16,16 +17,10 @@ var Game = (function () {
         return this.running;
     };
     Game.prototype.init = function () {
-        var promise = new Promise(function (resolve, reject) {
-            resolve();
-        });
-        return promise;
+        return Rx_1.Observable.of(function () { });
     };
     Game.prototype.load = function () {
-        var promise = new Promise(function (resolve, reject) {
-            resolve();
-        });
-        return promise;
+        return Rx_1.Observable.of(function () { });
     };
     Game.prototype.update = function () { };
     Game.prototype.render = function () { };

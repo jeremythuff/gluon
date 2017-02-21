@@ -18,8 +18,8 @@ export default class Engine {
 
 	start() :Game {
 		let game = this.getGame();
-		game.init().then(()=>{
-			game.load().then(()=>{
+		game.init().subscribe(()=>{
+			game.load().subscribe(()=>{
 				game.isRunning(true);
 			});
 		});

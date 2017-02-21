@@ -1,8 +1,8 @@
 "use strict";
 var Engine_1 = require("../model/Engine");
 function MakeGame(options) {
-    return function (decoreaded) {
-        var game = new decoreaded(decoreaded.name);
+    return function (decorated) {
+        var game = new decorated(decorated.name);
         var engine = new Engine_1.default(game);
         engine.start();
     };
