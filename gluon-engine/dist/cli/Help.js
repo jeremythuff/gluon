@@ -8,8 +8,10 @@ var Help = (function () {
     Help.prototype.execute = function (args) {
         console.log("\n" + colors.yellow.underline("Gluon CLI Usage:") + "\n");
         var helpTable = table([
-            ["start, s [main.js]", colors.green("Luanch the gluon game.")],
-            ["help, h: ", colors.green("Display this dialog.")]
+            ["init, i [name]", colors.green("Creates the starting file and folder structure for a Gluon project.")],
+            ["build, b", colors.green("Transpiles the projects typescript into the distribution folder.")],
+            ["start, s [main.js]", colors.green("Launches the Gluon project.")],
+            ["help, h: ", colors.green("Displays this dialog.")]
         ]);
         console.log(helpTable);
     };

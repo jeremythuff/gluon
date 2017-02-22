@@ -2,7 +2,6 @@
 
 import * as electron from 'electron';
 import * as process from 'process';
-import * as path from 'path';
 
 // Module to control application life.
 const app = electron.app;

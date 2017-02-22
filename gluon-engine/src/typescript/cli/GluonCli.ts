@@ -3,13 +3,17 @@
 import * as electron from 'electron';
 import * as process from 'process';
 import {CliCommand} from './CliCommand';
+import Build from "./Build";
+import Init from "./Init";
 import Start from "./Start";
 import Help from "./Help";
 
 const colors = require('colors/safe');
 
 class GluonCli {
+	
 	private args :Array<string>;
+	
 	constructor(args : Array<string>) {
 		this.args = args.slice(3, args.length);
 	}
@@ -17,6 +21,16 @@ class GluonCli {
 	provessCommand(arg:string) : void {
 		let command : CliCommand;
 		switch(arg) { 
+		    case "init": 
+		    case "i": { 
+		    	command = new Init();
+		    	break; 
+		    }
+		    case "build": 
+		    case "b": { 
+		    	command = new Build();
+		    	break; 
+		    }
 		    case "start": 
 		    case "s": { 
 		    	command = new Start();
@@ -26,7 +40,7 @@ class GluonCli {
 		    case "h":
 		   	default: { 
 
-		   		console.log(colors.red(`\n *ERROR* command not found: "${arg}"`));
+		   		console.log(colors.red(`\n *ERROR* command not found: ${arg}`));
 
 		      	command = new Help();
 		      	break; 
