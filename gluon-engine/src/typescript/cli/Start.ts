@@ -17,7 +17,7 @@ export default class Start implements CliCommand {
 
 		const execustionPath = path.resolve("node_modules", "gluon-engine", "dist", "launcher", "Launcher.js");
 		const mainJsPath = path.resolve(process.cwd(), args[0]);
-		const mainHtmlPath = `${__dirname}/../engine/main.html`;
+		const mainHtmlPath = `${__dirname}/../engine/resources/html/main.html`;
 
 		shelljs.sed("-i", "{MAIN_JS}", mainJsPath, mainHtmlPath);
 

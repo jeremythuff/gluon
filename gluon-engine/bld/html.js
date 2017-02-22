@@ -1,7 +1,7 @@
 require('shelljs/global');
  
-if (!test('-d', "dist")) mkdir("dist");
+if (!test('-d', "dist/engine/resources")) mkdir("dist/engine/resources");
 
-cp("src/resources/html/main.html", "dist/engine");
+cp("-R", "src/resources/html/", "dist/engine/resources/html");
 
 exit(0);

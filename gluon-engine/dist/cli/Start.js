@@ -12,7 +12,7 @@ var Start = (function () {
         console.log(colors.green.underline("Starting Gluon..."));
         var execustionPath = path.resolve("node_modules", "gluon-engine", "dist", "launcher", "Launcher.js");
         var mainJsPath = path.resolve(process.cwd(), args[0]);
-        var mainHtmlPath = __dirname + "/../engine/main.html";
+        var mainHtmlPath = __dirname + "/../engine/resources/html/main.html";
         shelljs.sed("-i", "{MAIN_JS}", mainJsPath, mainHtmlPath);
         nodecli.exec("electron", execustionPath + " " + mainHtmlPath);
     };
