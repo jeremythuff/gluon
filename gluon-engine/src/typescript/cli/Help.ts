@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 
 import {CliCommand} from "./CliCommand"
+import AbstractCliCommand from "./AbstractCliCommand"
+
 const colors = require('colors/safe');
 var table = require('text-table');
 
-export default class Help implements CliCommand {
+export default class Help extends AbstractCliCommand implements CliCommand {
 	execute(args :Array<string>) {
 
 		console.log("\n"+colors.yellow.underline("Gluon CLI Usage:")+"\n");

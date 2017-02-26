@@ -1,4 +1,5 @@
 import { CliCommand } from "./CliCommand";
-export default class Init implements CliCommand {
+import AbstractCliCommand from "./AbstractCliCommand";
+export default class Init extends AbstractCliCommand implements CliCommand {
     execute(args: Array<string>): void;
 }

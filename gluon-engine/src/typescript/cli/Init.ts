@@ -1,16 +1,16 @@
 import * as path from 'path';
-const nodecli = require("shelljs-nodecli");
-
-import {CliCommand} from "./CliCommand";
 import * as shell from "shelljs";
 
-export default class Init implements CliCommand {
-	execute(args :Array<string>) {
-		
-		nodecli.exec("npm", "install ../gluon-engine");
+import {CliCommand} from "./CliCommand";
+import AbstractCliCommand from "./AbstractCliCommand"
 
-		const gameName = args[0];
-		const engineDir = "node_modules/gluon-engine";
+const nodecli = require("shelljs-nodecli");
+
+export default class Init extends AbstractCliCommand implements CliCommand {
+	execute(args :Array<string>) {
+
+		const gameName = args[0]?args[0]:"game";
+		const engineDir = this.getGlobalModuleRoot();
 		const resourcesDir = `${engineDir}/dist/engine/resources`;
 		const cliDir = `${resourcesDir}/cli`;
 		const tmpDir = shell.tempdir();
@@ -22,8 +22,6 @@ export default class Init implements CliCommand {
 		if (!shell.test('-d', "src/typescript/tests")) shell.mkdir("src/typescript/tests");
 
 		shell.cp(`${cliDir}/project.package.json`, `${shell.pwd()}/package.json`);
-
-		console.log(gameName, engineDir, tmpDir);
 
 	}
 }

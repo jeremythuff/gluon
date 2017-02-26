@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 
-import * as electron from 'electron';
 import * as process from 'process';
+import * as npm from 'npm';
+import * as path from 'path';
+
 import {CliCommand} from './CliCommand';
 import Build from "./Build";
 import Init from "./Init";
@@ -13,41 +15,49 @@ const colors = require('colors/safe');
 class GluonCli {
 	
 	private args :Array<string>;
-	
+	private engineRoot :string
+
 	constructor(args : Array<string>) {
+		this.engineRoot = path.resolve(process.argv[0], "gluon-engine");
 		this.args = args.slice(3, args.length);
 	}
 
-	provessCommand(arg:string) : void {
+	processCommand(arg:string) : void {
 		let command : CliCommand;
-		switch(arg) { 
-		    case "init": 
-		    case "i": { 
-		    	command = new Init();
-		    	break; 
-		    }
-		    case "build": 
-		    case "b": { 
-		    	command = new Build();
-		    	break; 
-		    }
-		    case "start": 
-		    case "s": { 
-		    	command = new Start();
-		    	break; 
-		    }
-		    case "help": 
-		    case "h":
-		   	default: { 
 
-		   		console.log(colors.red(`\n *ERROR* command not found: ${arg}`));
+		npm.load({}, function () {
+			const globalModuleRoot = path.resolve(npm.globalDir, "gluon-engine");
 
-		      	command = new Help();
-		      	break; 
-		   } 
-		}
+			switch(arg) { 
+			    case "init": 
+			    case "i": { 
+			    	command = new Init(this.engineRoot, globalModuleRoot);
+			    	break; 
+			    }
+			    case "build": 
+			    case "b": { 
+			    	command = new Build(this.engineRoot, globalModuleRoot);
+			    	break; 
+			    }
+			    case "start": 
+			    case "s": { 
+			    	command = new Start(this.engineRoot, globalModuleRoot);
+			    	break; 
+			    }
+			    case "help": 
+			    case "h":
+			   	default: { 
 
-		command.execute(this.args); 
+			   		console.log(colors.red(`\n *ERROR* command not found: ${arg}`));
+
+			      	command = new Help(this.engineRoot, globalModuleRoot);
+			      	break; 
+			   } 
+			}
+			
+			command.execute(this.args);
+
+		}.bind(this)); 
 
 	}
 
@@ -55,4 +65,4 @@ class GluonCli {
 
 const glionCli = new GluonCli(process.argv);
 
-glionCli.provessCommand(process.argv[2]);
+glionCli.processCommand(process.argv[2]);
