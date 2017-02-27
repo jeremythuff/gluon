@@ -48,7 +48,9 @@ class GluonCli {
 			    case "h":
 			   	default: { 
 
-			   		console.log(colors.red(`\n *ERROR* command not found: ${arg}`));
+			   		if(arg !== <string>"help" || arg !== <string>"h")  {
+			   			console.log(colors.red(`\n *ERROR* command not found: ${arg}`));
+			   		}
 
 			      	command = new Help(this.engineRoot, globalModuleRoot);
 			      	break; 

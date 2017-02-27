@@ -1,9 +1,12 @@
 import {CliCommand} from "./CliCommand";
+const colors = require('colors/safe');
 
 export default class AbstractCliCommand {
 
 	private rootPath :string;
 	private globalModuleRoot :string;
+	
+	static help: [string, string];
 
 	constructor(rootPath :string, globalModuleRoot :string) {
 		this.rootPath = rootPath;

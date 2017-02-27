@@ -5,6 +5,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var AbstractCliCommand_1 = require("./AbstractCliCommand");
+var colors = require('colors/safe');
 var Build = (function (_super) {
     __extends(Build, _super);
     function Build() {
@@ -15,6 +16,7 @@ var Build = (function (_super) {
     };
     return Build;
 }(AbstractCliCommand_1.default));
+Build.help = ["build, b", colors.green("Transpiles the projects typescript into the distribution folder.")];
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Build;
 //# sourceMappingURL=Build.js.map

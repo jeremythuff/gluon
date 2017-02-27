@@ -26,6 +26,7 @@ var Start = (function (_super) {
     };
     return Start;
 }(AbstractCliCommand_1.default));
+Start.help = ["start, s [main.js]", colors.green("Launches the Gluon project.")];
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Start;
 //# sourceMappingURL=Start.js.map

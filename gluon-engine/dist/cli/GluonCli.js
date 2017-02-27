@@ -36,7 +36,9 @@ var GluonCli = (function () {
                 case "help":
                 case "h":
                 default: {
-                    console.log(colors.red("\n *ERROR* command not found: " + arg));
+                    if (arg !== "help" || arg !== "h") {
+                        console.log(colors.red("\n *ERROR* command not found: " + arg));
+                    }
                     command = new Help_1.default(this.engineRoot, globalModuleRoot);
                     break;
                 }

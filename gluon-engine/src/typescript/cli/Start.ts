@@ -12,6 +12,9 @@ const colors = require('colors/safe');
 const nodecli = require("shelljs-nodecli");
 
 export default class Start extends AbstractCliCommand implements CliCommand {
+
+	static help : [string, string] = ["start, s [main.js]", colors.green("Launches the Gluon project.")];
+
 	execute(args :Array<string>) {
 
 		console.log(colors.green.underline("Starting Gluon..."));

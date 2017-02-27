@@ -6,6 +6,9 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var AbstractCliCommand_1 = require("./AbstractCliCommand");
+var Start_1 = require("./Start");
+var Init_1 = require("./Init");
+var Build_1 = require("./Build");
 var colors = require('colors/safe');
 var table = require('text-table');
 var Help = (function (_super) {
@@ -16,15 +19,16 @@ var Help = (function (_super) {
     Help.prototype.execute = function (args) {
         console.log("\n" + colors.yellow.underline("Gluon CLI Usage:") + "\n");
         var helpTable = table([
-            ["init, i [name]", colors.green("Creates the starting file and folder structure for a Gluon project.")],
-            ["build, b", colors.green("Transpiles the projects typescript into the distribution folder.")],
-            ["start, s [main.js]", colors.green("Launches the Gluon project.")],
-            ["help, h: ", colors.green("Displays this dialog.")]
+            Init_1.default.help,
+            Build_1.default.help,
+            Start_1.default.help,
+            Help.help
         ]);
         console.log(helpTable);
     };
     return Help;
 }(AbstractCliCommand_1.default));
+Help.help = ["help, h: ", colors.green("Displays this dialog.")];
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Help;
 //# sourceMappingURL=Help.js.map
