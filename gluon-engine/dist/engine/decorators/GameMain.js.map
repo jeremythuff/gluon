@@ -1,0 +1,1 @@
+{"version":3,"file":"GameMain.js","sourceRoot":"","sources":["../../../src/typescript/engine/decorators/GameMain.ts"],"names":[],"mappings":";AAAA,0CAAoC;AAGpC,kBAAiC,OAAY;IAC5C,MAAM,CAAC,UAAS,SAAc;QAC7B,IAAM,IAAI,GAAU,IAAI,SAAS,CAAC,SAAS,CAAC,IAAI,CAAC,CAAC;QAClD,IAAM,MAAM,GAAG,IAAI,gBAAM,CAAC,IAAI,CAAC,CAAC;QAChC,MAAM,CAAC,KAAK,EAAE,CAAC;IAChB,CAAC,CAAA;AACF,CAAC;;AAND,2BAMC"}
