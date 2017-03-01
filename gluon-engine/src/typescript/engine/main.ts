@@ -9,7 +9,7 @@ import Mode from "./model/Mode";
 import {RenderCycle} from "./model/interface/RenderCycle";
 
 //Decorators
-import MakeGame from "./decorators/MakeGame";
+import GameMain from "./decorators/GameMain";
 
 export {
 
@@ -23,6 +23,6 @@ export {
 	RenderCycle,
 
 	//Decorators
-	MakeGame
+	GameMain
 
 };

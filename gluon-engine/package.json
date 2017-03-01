@@ -48,9 +48,7 @@
     "shelljs-nodecli": "^0.1.1",
     "shx": "^0.2.2",
     "text-table": "^0.2.0",
-    "typescript": "^2.1.6"
-  },
-  "devDependencies": {
+    "typescript": "^2.1.6",
     "node-sass": "^4.5.0"
   }
 }

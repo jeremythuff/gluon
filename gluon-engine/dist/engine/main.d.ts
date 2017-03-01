@@ -3,5 +3,5 @@ import Game from "./model/Game";
 import State from "./model/State";
 import Mode from "./model/Mode";
 import { RenderCycle } from "./model/interface/RenderCycle";
-import MakeGame from "./decorators/MakeGame";
-export { Engine, Game, State, Mode, RenderCycle, MakeGame };
+import GameMain from "./decorators/GameMain";
+export { Engine, Game, State, Mode, RenderCycle, GameMain };
