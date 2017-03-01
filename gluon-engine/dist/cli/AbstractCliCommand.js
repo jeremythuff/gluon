@@ -1,6 +1,5 @@
 "use strict";
 var colors = require('colors/safe');
-var table = require('text-table');
 var AbstractCliCommand = (function () {
     function AbstractCliCommand(rootPath, globalModuleRoot) {
         this.rootPath = rootPath;
@@ -18,11 +17,6 @@ var AbstractCliCommand = (function () {
     AbstractCliCommand.prototype.getGlobalModuleRoot = function () {
         return this.globalModuleRoot;
     };
-    AbstractCliCommand.prototype.printHelp = function () {
-        var t = table(AbstractCliCommand.help);
-        console.log(t);
-    };
-    ;
     return AbstractCliCommand;
 }());
 Object.defineProperty(exports, "__esModule", { value: true });

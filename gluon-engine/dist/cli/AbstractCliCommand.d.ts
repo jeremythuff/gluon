@@ -7,5 +7,4 @@ export default class AbstractCliCommand {
     getRootPath(): string;
     setGlobalModuleRoot(globalModuleRoot: string): void;
     getGlobalModuleRoot(): string;
-    printHelp(): void;
 }
