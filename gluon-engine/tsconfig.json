@@ -6,7 +6,6 @@
         "sourceMap": true,
     	"outDir": "dist",
     	"declaration": true,
-        "noImplicitAny": true,
         "removeComments": true,
         "preserveConstEnums": true,
         "listEmittedFiles": true,

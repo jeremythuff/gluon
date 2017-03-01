@@ -6,13 +6,14 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var AbstractCliCommand_1 = require("./AbstractCliCommand");
 var colors = require('colors/safe');
+var nodecli = require("shelljs-nodecli");
 var Build = (function (_super) {
     __extends(Build, _super);
     function Build() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Build.prototype.execute = function (args) {
-        console.log("Build");
+        nodecli.exec("tsc");
     };
     return Build;
 }(AbstractCliCommand_1.default));
