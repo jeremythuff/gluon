@@ -1,7 +1,6 @@
 import Engine from "../model/Engine"
 import Game from "../model/Game"
 
-
 import * as RunningGame from "../registries/RunningGame";
 
 export default function GameMain(options ?: Map<string, any>) {

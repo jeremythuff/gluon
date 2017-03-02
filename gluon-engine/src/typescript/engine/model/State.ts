@@ -2,7 +2,9 @@ export default class State {
 
 	private name : string;
 
-	constructor() {}
+	 constructor(name ?:string) {
+    	if(name) this.setName(name);
+    }
 
 	getName() : string {
 		return this.name;

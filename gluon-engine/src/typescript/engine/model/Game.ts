@@ -12,7 +12,7 @@ export default class Game implements RenderCycle {
 
 	private states : Array<State>;
 	
-    constructor(name?: string) {
+    constructor(name ?:string) {
     	if(name) this.setName(name);
     }
 
