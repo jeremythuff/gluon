@@ -17,14 +17,13 @@ export default class Start extends AbstractCliCommand implements CliCommand {
 
 	execute(args :Array<string>) {
 
-		console.log(colors.green.underline("Starting Gluon..."));
-
-		const execustionPath = path.resolve(this.getGlobalModuleRoot(), "dist", "launcher", "Launcher.js");
-		const mainJsPath = path.resolve(process.cwd(), args[0]);
-		const mainHtmlPath = `${__dirname}/../engine/resources/html/main.html`;
-
-		shelljs.sed("-i", "{MAIN_JS}", mainJsPath, mainHtmlPath);
+		const engineDir = this.getGlobalModuleRoot();
+		const resourcesDir = `${engineDir}/dist/engine/resources`;
+		const mainHtmlPath = `${shelljs.pwd()}/dist/main.html`;
+		const execustionPath = `${engineDir}/dist/launcher/Launcher.js`;
 
 		nodecli.exec("electron", execustionPath + " " + mainHtmlPath);
+
+		shelljs.exit(0);
 	}
 }

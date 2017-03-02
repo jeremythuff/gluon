@@ -17,18 +17,31 @@ var Build = (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Build.prototype.execute = function (args) {
+        var engineDir = this.getGlobalModuleRoot();
+        var globalResourcesDir = engineDir + "/dist/engine/resources";
+        var mainHtmlTemplatePath = globalResourcesDir + "/html/main.html";
+        var localResourceDir = "src/resources";
+        var mainHtmlPath = "dist/main.html";
+        var mainCssPath = "resources/css/main.css";
+        var mainJsPath = "main.js";
         console.log(table([[new Date().toString(), "Transpiling typescript."]]));
         nodecli.exec("tsc");
+        console.log(table([[new Date().toString(), "Building html."]]));
+        if (!shell.test('-d', "dist/resources"))
+            shell.mkdir("dist/resources");
+        if (!shell.test('-d', localResourceDir + "/html"))
+            shell.cp("-R", localResourceDir + "/html", "dist/resources/html/");
+        shell.cp(mainHtmlTemplatePath, mainHtmlPath);
+        shell.sed("-i", "{GAME_MAIN_JS}", mainJsPath, mainHtmlPath);
+        shell.sed("-i", "{GAME_MAIN_CSS}", mainCssPath, mainHtmlPath);
         console.log(table([[new Date().toString(), "Compiling styles."]]));
         NodeSass.render({
             file: "src/resources/sass/main.scss"
         }, function (err, res) {
             if (!err) {
-                if (!shell.test('-d', "dist/resources"))
-                    shell.mkdir("dist/resources");
-                if (!shell.test('-d', "dist/resources/sass"))
-                    shell.mkdir("dist/resources/sass");
-                fs.writeFile("dist/resources/sass/main.css", res.css, function (e) {
+                if (!shell.test('-d', "dist/resources/css"))
+                    shell.mkdir("dist/resources/css");
+                fs.writeFile("dist/" + mainCssPath, res.css, function (e) {
                     if (!e) {
                         console.log(table([[new Date().toString(), "Styles written to disk."]]));
                     }

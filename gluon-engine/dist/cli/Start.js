@@ -7,8 +7,6 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var AbstractCliCommand_1 = require("./AbstractCliCommand");
 var shelljs = require("shelljs");
-var path = require("path");
-var process = require("process");
 var colors = require('colors/safe');
 var nodecli = require("shelljs-nodecli");
 var Start = (function (_super) {
@@ -17,12 +15,12 @@ var Start = (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Start.prototype.execute = function (args) {
-        console.log(colors.green.underline("Starting Gluon..."));
-        var execustionPath = path.resolve(this.getGlobalModuleRoot(), "dist", "launcher", "Launcher.js");
-        var mainJsPath = path.resolve(process.cwd(), args[0]);
-        var mainHtmlPath = __dirname + "/../engine/resources/html/main.html";
-        shelljs.sed("-i", "{MAIN_JS}", mainJsPath, mainHtmlPath);
+        var engineDir = this.getGlobalModuleRoot();
+        var resourcesDir = engineDir + "/dist/engine/resources";
+        var mainHtmlPath = shelljs.pwd() + "/dist/main.html";
+        var execustionPath = engineDir + "/dist/launcher/Launcher.js";
         nodecli.exec("electron", execustionPath + " " + mainHtmlPath);
+        shelljs.exit(0);
     };
     return Start;
 }(AbstractCliCommand_1.default));
