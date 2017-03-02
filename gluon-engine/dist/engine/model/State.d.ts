@@ -1,3 +1,6 @@
 export default class State {
-    constructor();
+    private name;
+    constructor(name?: string);
+    getName(): string;
+    setName(name: string): void;
 }

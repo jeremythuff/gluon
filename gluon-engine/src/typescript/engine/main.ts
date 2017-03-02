@@ -10,6 +10,7 @@ import {RenderCycle} from "./model/interface/RenderCycle";
 
 //Decorators
 import GameMain from "./decorators/GameMain";
+import GameState from "./decorators/GameMain";
 
 export {
 
@@ -23,6 +24,7 @@ export {
 	RenderCycle,
 
 	//Decorators
-	GameMain
+	GameMain,
+	GameState
 
 };
