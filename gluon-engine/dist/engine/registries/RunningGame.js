@@ -1,4 +1,5 @@
 "use strict";
+var Rx_1 = require("@reactivex/rxjs/dist/cjs/Rx");
 var RunningGameRegistry;
 (function (RunningGameRegistry) {
     var runningGame;
@@ -7,7 +8,7 @@ var RunningGameRegistry;
     }
     RunningGameRegistry.setRunningGame = setRunningGame;
     function getRunningGame() {
-        return runningGame;
+        return Rx_1.Observable.of(runningGame);
     }
     RunningGameRegistry.getRunningGame = getRunningGame;
 })(RunningGameRegistry || (RunningGameRegistry = {}));

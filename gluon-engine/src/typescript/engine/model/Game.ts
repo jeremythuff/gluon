@@ -14,6 +14,7 @@ export default class Game implements RenderCycle {
 	
     constructor(name ?:string) {
     	if(name) this.setName(name);
+    	this.states = new Array<State>();
     }
 
     init() :Observable<any> {

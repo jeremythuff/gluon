@@ -3,8 +3,8 @@
         "module": "commonjs",
         "noImplicitAny": false,
         "sourceMap": true,
-    	"outDir": "dist",
-    	"declaration": true,
+        "outDir": "dist",
+        "declaration": true,
         "removeComments": true,
         "preserveConstEnums": true,
         "listEmittedFiles": true,
@@ -15,11 +15,9 @@
         "target":"ES5",
         "lib": ["es2015", "dom"],
         "moduleResolution": "node",
-        "baseUrl": "./src/typescript/"
+        "baseUrl": "./src/typescript/",
+        "rootDir": "./src/typescript/game/"
     },
-    "files": [
-        "src/typescript/game/main.ts"
-    ],
     "exclude": [
         "node_modules",
         "**/*.spec.ts"

@@ -4,6 +4,7 @@ var Game = (function () {
     function Game(name) {
         if (name)
             this.setName(name);
+        this.states = new Array();
     }
     Game.prototype.init = function () {
         return Rx_1.Observable.of(function () { });
