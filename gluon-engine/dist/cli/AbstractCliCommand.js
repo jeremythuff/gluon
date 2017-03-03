@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var colors = require('colors/safe');
 var AbstractCliCommand = (function () {
     function AbstractCliCommand(rootPath, globalModuleRoot) {
@@ -19,6 +20,5 @@ var AbstractCliCommand = (function () {
     };
     return AbstractCliCommand;
 }());
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = AbstractCliCommand;
 //# sourceMappingURL=AbstractCliCommand.js.map

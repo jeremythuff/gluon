@@ -1,17 +1,16 @@
 import Game from "../model/Game";
-import {Observable} from "@reactivex/rxjs/dist/cjs/Rx";
+import {Subject, Observable} from "@reactivex/rxjs/dist/cjs/Rx";
 
 namespace RunningGameRegistry {
-	
-	let runningGame : Game;
-	let resolve : any;
 
+	let gameSubject: Subject<Game> = new Subject<Game>();
 	
 	export function setRunningGame(game :Game) :void {
-		runningGame = game;
+		gameSubject.next(game);
 	}
-	export function getRunningGame() : Promise<Game> {
-		return 
+
+	export function getRunningGame() : Observable<Game> {
+		return gameSubject.asObservable();
 	}
 
 };

@@ -2,13 +2,13 @@
 var Rx_1 = require("@reactivex/rxjs/dist/cjs/Rx");
 var RunningGameRegistry;
 (function (RunningGameRegistry) {
-    var runningGame;
+    var gameSubject = new Rx_1.Subject();
     function setRunningGame(game) {
-        runningGame = game;
+        gameSubject.next(game);
     }
     RunningGameRegistry.setRunningGame = setRunningGame;
     function getRunningGame() {
-        return Rx_1.Observable.of(runningGame);
+        return gameSubject.asObservable();
     }
     RunningGameRegistry.getRunningGame = getRunningGame;
 })(RunningGameRegistry || (RunningGameRegistry = {}));
