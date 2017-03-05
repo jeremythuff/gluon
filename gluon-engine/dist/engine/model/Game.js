@@ -1,5 +1,4 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 var Rx_1 = require("@reactivex/rxjs/dist/cjs/Rx");
 var Game = (function () {
     function Game(name) {
@@ -49,5 +48,6 @@ var Game = (function () {
     };
     return Game;
 }());
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Game;
 //# sourceMappingURL=Game.js.map

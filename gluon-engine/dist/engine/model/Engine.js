@@ -1,5 +1,4 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 var Engine = (function () {
     function Engine(game) {
         this.game = game;
@@ -25,5 +24,6 @@ var Engine = (function () {
     };
     return Engine;
 }());
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Engine;
 //# sourceMappingURL=Engine.js.map

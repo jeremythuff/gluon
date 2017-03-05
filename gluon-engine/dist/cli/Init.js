@@ -1,15 +1,9 @@
 "use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var shell = require("shelljs");
 var AbstractCliCommand_1 = require("./AbstractCliCommand");
 var nodecli = require("shelljs-nodecli");
@@ -71,5 +65,6 @@ var Init = (function (_super) {
     return Init;
 }(AbstractCliCommand_1.default));
 Init.help = ["init, i [name]", colors.green("Creates the starting file and folder structure for a Gluon project.")];
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Init;
 //# sourceMappingURL=Init.js.map

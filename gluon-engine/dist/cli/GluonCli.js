@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 var process = require("process");
 var npm = require("npm");
 var path = require("path");

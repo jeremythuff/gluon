@@ -1,5 +1,4 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 var State = (function () {
     function State(name) {
         if (name)
@@ -13,5 +12,6 @@ var State = (function () {
     };
     return State;
 }());
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = State;
 //# sourceMappingURL=State.js.map

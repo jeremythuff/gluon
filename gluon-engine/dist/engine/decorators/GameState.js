@@ -1,5 +1,4 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 var RunningGame = require("../registries/RunningGame");
 function GameState(options) {
     return function (decorated) {
@@ -12,5 +11,6 @@ function GameState(options) {
         });
     };
 }
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = GameState;
 //# sourceMappingURL=GameState.js.map

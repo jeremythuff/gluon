@@ -11,7 +11,7 @@ const app = electron.app;
 let mainWindow: Electron.BrowserWindow;
 
 function createWindow () {
-  mainWindow = new electron.BrowserWindow({ width: 800, height: 600 });
+  mainWindow = new electron.BrowserWindow({ width: 800, height: 600, webPreferences: { nodeIntegration: true } });
 
   mainWindow.loadURL(`file://${process.argv[2]}`)
 
@@ -34,6 +34,7 @@ app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') {
     app.quit();
   }
+  
 });
 
 app.on('activate', function () {
