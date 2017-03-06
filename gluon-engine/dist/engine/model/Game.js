@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var Rx_1 = require("@reactivex/rxjs/dist/cjs/Rx");
 var Game = (function () {
     function Game(name) {
@@ -20,6 +21,12 @@ var Game = (function () {
     };
     Game.prototype.setName = function (name) {
         this.name = name;
+    };
+    Game.prototype.getInitialStateName = function () {
+        return this.initialStateName;
+    };
+    Game.prototype.setInitialStateName = function (stateName) {
+        this.initialStateName = stateName;
     };
     Game.prototype.getActiveState = function () {
         return this.activeState;
@@ -48,6 +55,5 @@ var Game = (function () {
     };
     return Game;
 }());
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Game;
 //# sourceMappingURL=Game.js.map

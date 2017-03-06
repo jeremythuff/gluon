@@ -7,8 +7,13 @@ export default function GameState(options ?: Map<string, any>) {
 		console.log("Registering State.");
 		const state = new decorated(decorated.name);
 		if(!state.getName()) state.setName(decorated.name);
-		RunningGame.getRunningGame().subscribe(game=>{ 
-			game.addState(state);
+		RunningGame.getRunningGameSubject().subscribe(game=>{
+			if(game) {
+				game.addState(state);
+				if(game.getInitialStateName()===state.getName()) {
+					game.setActiveState(state);
+				}
+			}
 		});		
 	}
 }

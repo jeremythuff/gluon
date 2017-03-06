@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var Engine_1 = require("../model/Engine");
 var RunningGame = require("../registries/RunningGame");
 function GameMain(options) {
@@ -12,6 +13,5 @@ function GameMain(options) {
         engine.start();
     };
 }
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = GameMain;
 //# sourceMappingURL=GameMain.js.map

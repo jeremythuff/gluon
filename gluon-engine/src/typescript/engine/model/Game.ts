@@ -8,6 +8,8 @@ export default class Game implements RenderCycle {
 	private running : boolean;
 	private name : string;
 
+	private initialStateName :string;
+
 	private activeState :State;
 
 	private states : Array<State>;
@@ -37,6 +39,14 @@ export default class Game implements RenderCycle {
 
 	setName(name:string) : void {
 		this.name = name;
+	}
+
+	getInitialStateName() : string {
+		return this.initialStateName;
+	}
+
+	setInitialStateName(stateName :string) : void {
+		this.initialStateName = stateName;
 	}
 
 	getActiveState() :State {

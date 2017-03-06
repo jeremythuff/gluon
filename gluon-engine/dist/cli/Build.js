@@ -1,9 +1,15 @@
 "use strict";
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
 var AbstractCliCommand_1 = require("./AbstractCliCommand");
 var shell = require("shelljs");
 var NodeSass = require("node-sass");
@@ -23,41 +29,51 @@ var Build = (function (_super) {
         var localResourceDir = "src/resources";
         var mainHtmlPath = "dist/main.html";
         var mainCssPath = "resources/css/main.css";
-        var mainJsPath = "main.js";
+        var mainJsPath = "Main.js";
         console.log(table([[new Date().toString(), "Transpiling typescript."]]));
-        nodecli.exec("tsc");
-        console.log(table([[new Date().toString(), "Building html."]]));
-        if (!shell.test('-d', "dist/resources"))
-            shell.mkdir("dist/resources");
-        if (!shell.test('-d', localResourceDir + "/html"))
-            shell.cp("-R", localResourceDir + "/html", "dist/resources/html/");
-        shell.cp(mainHtmlTemplatePath, mainHtmlPath);
-        shell.sed("-i", "{GAME_MAIN_JS}", mainJsPath, mainHtmlPath);
-        shell.sed("-i", "{GAME_MAIN_CSS}", mainCssPath, mainHtmlPath);
-        console.log(table([[new Date().toString(), "Compiling styles."]]));
-        NodeSass.render({
-            file: "src/resources/sass/main.scss"
-        }, function (err, res) {
-            if (!err) {
-                if (!shell.test('-d', "dist/resources/css"))
-                    shell.mkdir("dist/resources/css");
-                fs.writeFile("dist/" + mainCssPath, res.css, function (e) {
-                    if (!e) {
-                        console.log(table([[new Date().toString(), "Styles written to disk."]]));
-                    }
-                    else {
-                        console.log(e);
-                    }
-                });
-            }
-            else {
-                console.log(err);
-            }
+        nodecli.exec("tsc", function (code, out) {
+            var paths = new Array();
+            out.split(/\r?\n/).forEach(function (outLine) {
+                if (outLine.includes("TSFILE") && !outLine.includes(".d.ts") && !outLine.includes(".js.map")) {
+                    var path = outLine.substring(outLine.indexOf("dist/") + 5, outLine.length);
+                    paths.push(path);
+                }
+            });
+            console.log(table([[new Date().toString(), "Building html."]]));
+            if (!shell.test('-d', "dist/resources"))
+                shell.mkdir("dist/resources");
+            if (shell.test('-d', localResourceDir + "/html"))
+                shell.cp("-R", localResourceDir + "/html", "dist/resources/html/");
+            shell.cp(mainHtmlTemplatePath, mainHtmlPath);
+            paths.forEach(function (path) {
+                shell.sed("-i", "{SCRIPTS}", "<script src='" + path + "'></script>\n\t\t{SCRIPTS}", mainHtmlPath);
+            });
+            shell.sed("-i", "{SCRIPTS}", "", mainHtmlPath);
+            shell.sed("-i", "{GAME_MAIN_CSS}", mainCssPath, mainHtmlPath);
+            console.log(table([[new Date().toString(), "Compiling styles."]]));
+            NodeSass.render({
+                file: "src/resources/sass/main.scss"
+            }, function (err, res) {
+                if (!err) {
+                    if (!shell.test('-d', "dist/resources/css"))
+                        shell.mkdir("dist/resources/css");
+                    fs.writeFile("dist/" + mainCssPath, res.css, function (e) {
+                        if (!e) {
+                            console.log(table([[new Date().toString(), "Styles written to disk."]]));
+                        }
+                        else {
+                            console.log(e);
+                        }
+                    });
+                }
+                else {
+                    console.log(err);
+                }
+            });
         });
     };
     return Build;
 }(AbstractCliCommand_1.default));
 Build.help = ["build, b", colors.green("Transpiles the projects typescript into the distribution folder.")];
-Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = Build;
 //# sourceMappingURL=Build.js.map

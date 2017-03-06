@@ -12,13 +12,18 @@
   },
   "scripts": {
     "test": "test",
-    "build:typescript:main": "tsc -p ./tsconfig.json",
+    "clean:sass": "echo 'TODO'",
+    "clean:html": "echo 'TODO'",
+    "clean:cli": "echo 'TODO'",
+    "clean:typescript": "echo 'TODO'",
+    "clean": "rm -rf dist",
+    "build:typescript:main": "tsc -p tsconfig.json",
     "build:typescript": "npm run build:typescript:main",
     "build:sass": "node bld/sass.js",
     "build:html": "node bld/html.js",
     "build:cli": "node bld/cli.js",
     "build:resources": "concurrently --prefix \"{time}-{pid}\" \"npm run build:html\" \"npm run build:sass\" \"npm run build:cli\"",
-    "build": "concurrently --prefix \"{time}-{pid}\" \"npm run build:typescript\" \"npm run build:resources\"",
+    "build": "npm run clean && concurrently --prefix \"{time}-{pid}\" \"npm run build:typescript\" \"npm run build:resources\"",
     "gluon": "electron dist/util/launcher.js"
   },
   "repository": {
@@ -49,7 +54,6 @@
     "shelljs-nodecli": "^0.1.1",
     "shx": "^0.2.2",
     "text-table": "^0.2.0",
-    "tsc": "^1.20150623.0",
-    "typescript": "^2.1.6"
+    "typescript": "*"
   }
 }

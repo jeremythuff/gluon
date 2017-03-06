@@ -1,16 +1,16 @@
 import Game from "../model/Game";
-import {Subject, Observable} from "@reactivex/rxjs/dist/cjs/Rx";
+import {ReplaySubject, Observable} from "@reactivex/rxjs/dist/cjs/Rx";
 
 namespace RunningGameRegistry {
 
-	let gameSubject: Subject<Game> = new Subject<Game>();
+	let gameSubject: ReplaySubject<Game> = new ReplaySubject<Game>(1);
 	
 	export function setRunningGame(game :Game) :void {
 		gameSubject.next(game);
 	}
 
-	export function getRunningGame() : Observable<Game> {
-		return gameSubject.asObservable();
+	export function getRunningGameSubject() : ReplaySubject<Game> {
+		return gameSubject;
 	}
 
 };

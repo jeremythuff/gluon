@@ -4,6 +4,7 @@ import State from "./State";
 export default class Game implements RenderCycle {
     private running;
     private name;
+    private initialStateName;
     private activeState;
     private states;
     constructor(name?: string);
@@ -14,6 +15,8 @@ export default class Game implements RenderCycle {
     destroy(): void;
     getName(): string;
     setName(name: string): void;
+    getInitialStateName(): string;
+    setInitialStateName(stateName: string): void;
     getActiveState(): State;
     setActiveState(state: State): void;
     getState(name: string): State;

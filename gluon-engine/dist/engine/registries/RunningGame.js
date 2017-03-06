@@ -2,15 +2,15 @@
 var Rx_1 = require("@reactivex/rxjs/dist/cjs/Rx");
 var RunningGameRegistry;
 (function (RunningGameRegistry) {
-    var gameSubject = new Rx_1.Subject();
+    var gameSubject = new Rx_1.ReplaySubject(1);
     function setRunningGame(game) {
         gameSubject.next(game);
     }
     RunningGameRegistry.setRunningGame = setRunningGame;
-    function getRunningGame() {
-        return gameSubject.asObservable();
+    function getRunningGameSubject() {
+        return gameSubject;
     }
-    RunningGameRegistry.getRunningGame = getRunningGame;
+    RunningGameRegistry.getRunningGameSubject = getRunningGameSubject;
 })(RunningGameRegistry || (RunningGameRegistry = {}));
 ;
 module.exports = RunningGameRegistry;

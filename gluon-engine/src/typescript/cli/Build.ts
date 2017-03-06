@@ -22,39 +22,53 @@ export default class Build extends AbstractCliCommand implements CliCommand {
 		const localResourceDir = "src/resources";
 		const mainHtmlPath = "dist/main.html";
 		const mainCssPath = "resources/css/main.css";
-		const mainJsPath = "main.js";
+		const mainJsPath = "Main.js";
 
 		console.log(table([[new Date().toString(), "Transpiling typescript."]]));
-		nodecli.exec("tsc");
+		nodecli.exec("tsc", (code : any, out : string) => {
 
-		console.log(table([[new Date().toString(), "Building html."]]));
-		if (!shell.test('-d', "dist/resources")) shell.mkdir("dist/resources");  
-		if (!shell.test('-d', `${localResourceDir}/html`)) shell.cp("-R", `${localResourceDir}/html`, "dist/resources/html/");
-		shell.cp(mainHtmlTemplatePath, mainHtmlPath);
+			const paths : Array<string> = new Array<string>();
 
-		shell.sed("-i", "{GAME_MAIN_JS}", mainJsPath, mainHtmlPath);
-		shell.sed("-i", "{GAME_MAIN_CSS}", mainCssPath, mainHtmlPath);
-
-		console.log(table([[new Date().toString(), "Compiling styles."]]));
-		NodeSass.render(
-			{
-				file: "src/resources/sass/main.scss"
-			},
-			function(err, res) {
-				if(!err) {
-					if (!shell.test('-d', "dist/resources/css")) shell.mkdir("dist/resources/css");
-					fs.writeFile("dist/"+mainCssPath, res.css, function(e){
-				        if(!e){
-				          console.log(table([[new Date().toString(), "Styles written to disk."]]));
-				        } else {
-				        	console.log(e);
-				        }
-				    });
-				} else {
-					console.log(err);
+			out.split(/\r?\n/).forEach(outLine => {
+				if(outLine.includes("TSFILE")&&!outLine.includes(".d.ts")&&!outLine.includes(".js.map")) {
+					const path = outLine.substring(outLine.indexOf("dist/")+5, outLine.length);
+					paths.push(path);
 				}
-			}
-		); 
+			});
+
+			console.log(table([[new Date().toString(), "Building html."]]));
+			if (!shell.test('-d', "dist/resources")) shell.mkdir("dist/resources");  
+			if (shell.test('-d', `${localResourceDir}/html`)) shell.cp("-R", `${localResourceDir}/html`, "dist/resources/html/");
+			shell.cp(mainHtmlTemplatePath, mainHtmlPath);
+
+			paths.forEach(path => {
+				shell.sed("-i", "{SCRIPTS}", `<script src='${path}'></script>\n\t\t{SCRIPTS}`, mainHtmlPath);
+			});
+			shell.sed("-i", "{SCRIPTS}", "", mainHtmlPath);
+			
+			shell.sed("-i", "{GAME_MAIN_CSS}", mainCssPath, mainHtmlPath);
+
+			console.log(table([[new Date().toString(), "Compiling styles."]]));
+			NodeSass.render(
+				{
+					file: "src/resources/sass/main.scss"
+				},
+				function(err, res) {
+					if(!err) {
+						if (!shell.test('-d', "dist/resources/css")) shell.mkdir("dist/resources/css");
+						fs.writeFile("dist/"+mainCssPath, res.css, function(e){
+					        if(!e){
+					          console.log(table([[new Date().toString(), "Styles written to disk."]]));
+					        } else {
+					        	console.log(e);
+					        }
+					    });
+					} else {
+						console.log(err);
+					}
+				}
+			);
+		}); 
 
 	}
 }

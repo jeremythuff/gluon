@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var electron = require("electron");
 var process = require("process");
 var app = electron.app;
 var mainWindow;
 function createWindow() {
-    mainWindow = new electron.BrowserWindow({ width: 800, height: 600 });
+    mainWindow = new electron.BrowserWindow({ width: 800, height: 600, webPreferences: { nodeIntegration: true } });
     mainWindow.loadURL("file://" + process.argv[2]);
     mainWindow.on('closed', function () {
         mainWindow = null;
