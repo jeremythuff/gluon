@@ -6,9 +6,10 @@ export default class Engine {
 	private clock : THREE.Clock;
 	private running: boolean;
 	private game: Game;
+	private lastFrameTime = 0;
 
 	constructor(game: Game) {
-		this.game = game;
+		this.setGame(game);
 		this.clock = new THREE.Clock();
 	}
 
@@ -16,8 +17,12 @@ export default class Engine {
 		if(this.running) {
 			window.requestAnimationFrame(this.animationLoop.bind(this));
 			const delta =  this.clock.getDelta();
+			const now = this.clock.getElapsedTime();
 			if(this.game && this.game.isRunning()) this.game.update(delta);
-			if(this.game && this.game.isRunning()) this.game.render(delta);	
+			if(this.game && this.game.isRunning() && (now - this.lastFrameTime)*1000 > (1000 / 30)) {
+				this.lastFrameTime = now;
+				this.game.render(delta);
+			}	
 		}
 	}
 
@@ -36,7 +41,7 @@ export default class Engine {
 		game.init().subscribe(()=>{
 			game.load().subscribe(()=>{
 				game.isRunning(true);
-				setTimeout(()=>{this.stop()}, 2500)
+				setTimeout(()=>{this.stop()}, 5000)
 			});
 		});
 		return game;

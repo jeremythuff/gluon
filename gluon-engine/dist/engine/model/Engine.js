@@ -3,18 +3,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var THREE = require("three");
 var Engine = (function () {
     function Engine(game) {
-        this.game = game;
+        this.lastFrameTime = 0;
+        this.setGame(game);
         this.clock = new THREE.Clock();
     }
     Engine.prototype.animationLoop = function () {
         if (this.running) {
             window.requestAnimationFrame(this.animationLoop.bind(this));
             var delta = this.clock.getDelta();
-            console.log(this.clock.getElapsedTime());
+            var now = this.clock.getElapsedTime();
             if (this.game && this.game.isRunning())
                 this.game.update(delta);
-            if (this.game && this.game.isRunning() && this.clock.getDelta() < 160)
+            if (this.game && this.game.isRunning() && (now - this.lastFrameTime) / 1000 > (1000 / 30)) {
+                this.lastFrameTime = now;
                 this.game.render(delta);
+            }
         }
     };
     Engine.prototype.getGame = function () {
@@ -31,7 +34,7 @@ var Engine = (function () {
         game.init().subscribe(function () {
             game.load().subscribe(function () {
                 game.isRunning(true);
-                setTimeout(function () { _this.stop(); }, 2500);
+                setTimeout(function () { _this.stop(); }, 5000);
             });
         });
         return game;

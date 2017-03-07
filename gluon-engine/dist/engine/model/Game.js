@@ -8,10 +8,16 @@ var Game = (function () {
         this.states = new Array();
     }
     Game.prototype.init = function () {
-        return Rx_1.Observable.of(function () { });
+        var _this = this;
+        return Rx_1.Observable.of(function () {
+            _this.activeState.init();
+        });
     };
     Game.prototype.load = function () {
-        return Rx_1.Observable.of(function () { });
+        var _this = this;
+        return Rx_1.Observable.of(function () {
+            _this.activeState.load();
+        });
     };
     Game.prototype.update = function (delta) { };
     Game.prototype.render = function (clock) { };

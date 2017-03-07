@@ -3,6 +3,7 @@ export default class Engine {
     private clock;
     private running;
     private game;
+    private lastFrameTime;
     constructor(game: Game);
     private animationLoop();
     getGame(): Game;

@@ -20,11 +20,15 @@ export default class Game implements RenderCycle {
     }
 
     init() :Observable<any> {
-		return Observable.of(() => {});
+		return Observable.of(() => {
+			this.activeState.init();
+		});
 	}
 
 	load() :Observable<any> {
-		return Observable.of(() => {});
+		return Observable.of(() => {
+				this.activeState.load();
+		});
 	}
 
 	update(delta :number) :void {}
