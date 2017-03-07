@@ -7,6 +7,7 @@ export interface RenderCycle {
 	load() :Observable<any>;
 	update(clock ?:number) :void;
 	render(clock ?:number) :void;
+	pause() :void;
 	destroy() :void;
 
 }

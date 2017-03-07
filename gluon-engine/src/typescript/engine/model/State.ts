@@ -5,6 +5,7 @@ import {RenderCycle} from "./interface/RenderCycle";
 export default class State implements RenderCycle {
 
 	private name : string;
+	private framesPerSecond: number;
 
 	constructor(name ?:string) {
     	if(name) this.setName(name);
@@ -18,9 +19,11 @@ export default class State implements RenderCycle {
 		return Observable.of(() => {});
 	}
 
-	update() :void {}
+	update() :void {};
 
-	render() :void {}
+	render() :void {};
+
+	pause() :void {};
 
 	destroy() :void {}
 
@@ -30,6 +33,14 @@ export default class State implements RenderCycle {
 
 	setName(name :string) : void {
 		this.name = name;
+	}
+
+	getFramesPerSecond() : number {
+		return this.framesPerSecond;
+	}
+
+	setFramesPerSecond(framesPerSecond :number) : void {
+		this.framesPerSecond = framesPerSecond;
 	}
 
 }

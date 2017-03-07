@@ -8,6 +8,8 @@ export default class Game implements RenderCycle {
 	private running : boolean;
 	private name : string;
 
+	private framesPerSecond :number;
+
 	private initialStateName :string;
 
 	private activeState :State;
@@ -35,6 +37,8 @@ export default class Game implements RenderCycle {
 
 	render(clock :number) :void {}
 
+	pause() :void {};
+
 	destroy() :void {}
 
 	getName() : string {
@@ -59,6 +63,16 @@ export default class Game implements RenderCycle {
 
 	setActiveState(state :State) :void {
 		this.activeState = state;
+	}
+
+	getFramesPerSecond() :number {
+		return this.getActiveState().getFramesPerSecond()
+				?this.getActiveState().getFramesPerSecond()
+				:this.framesPerSecond;
+	}
+
+	setFramesPerSecond(framesPerSecond :number) :void {
+		this.framesPerSecond = framesPerSecond;
 	}
 
 	getState(name :string) : State {
