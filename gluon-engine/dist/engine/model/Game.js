@@ -13,8 +13,8 @@ var Game = (function () {
     Game.prototype.load = function () {
         return Rx_1.Observable.of(function () { });
     };
-    Game.prototype.update = function () { };
-    Game.prototype.render = function () { };
+    Game.prototype.update = function (delta) { };
+    Game.prototype.render = function (clock) { };
     Game.prototype.destroy = function () { };
     Game.prototype.getName = function () {
         return this.name;

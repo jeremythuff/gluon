@@ -27,9 +27,9 @@ export default class Game implements RenderCycle {
 		return Observable.of(() => {});
 	}
 
-	update() :void {}
+	update(delta :number) :void {}
 
-	render() :void {}
+	render(clock :number) :void {}
 
 	destroy() :void {}
 

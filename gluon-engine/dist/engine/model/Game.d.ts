@@ -10,8 +10,8 @@ export default class Game implements RenderCycle {
     constructor(name?: string);
     init(): Observable<any>;
     load(): Observable<any>;
-    update(): void;
-    render(): void;
+    update(delta: number): void;
+    render(clock: number): void;
     destroy(): void;
     getName(): string;
     setName(name: string): void;
