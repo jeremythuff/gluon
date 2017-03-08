@@ -2,10 +2,12 @@ import {RenderCycle} from "./interface/RenderCycle";
 import {Observable} from "@reactivex/rxjs/dist/cjs/Rx";
 
 import State from "./State";
+import {RenderPhase} from "../enum/RenderPhase";
 
 export default class Game implements RenderCycle {
 
-	private running : boolean;
+	phase : RenderPhase = RenderPhase.OFF;
+
 	private name : string;
 
 	private framesPerSecond :number;
@@ -22,14 +24,18 @@ export default class Game implements RenderCycle {
     }
 
     init() :Observable<any> {
+    	this.phase = RenderPhase.INITIALIZING;
 		return Observable.of(() => {
 			this.activeState.init();
 		});
 	}
 
 	load() :Observable<any> {
+		this.phase = RenderPhase.LOADING;
 		return Observable.of(() => {
-				this.activeState.load();
+				this.activeState.load().subscribe(() => {
+					this.phase = RenderPhase.RUNNING;
+				});
 		});
 	}
 
@@ -37,9 +43,18 @@ export default class Game implements RenderCycle {
 
 	render(clock :number) :void {}
 
-	pause() :void {};
+	pause() :void {
+		this.phase = RenderPhase.PAUSED;
+	};
 
-	destroy() :void {}
+	unPause() :void {
+		this.phase = RenderPhase.RUNNING;
+	};
+
+	destroy() :void {
+		this.phase = RenderPhase.DESTROYING;
+		this.activeState.destroy()
+	}
 
 	getName() : string {
 		return this.name;
@@ -66,9 +81,13 @@ export default class Game implements RenderCycle {
 	}
 
 	getFramesPerSecond() :number {
-		return this.getActiveState().getFramesPerSecond()
+		let frameRate = this.framesPerSecond;
+		if(this.getActiveState()) {
+			frameRate = this.getActiveState().getFramesPerSecond()
 				?this.getActiveState().getFramesPerSecond()
 				:this.framesPerSecond;
+		}
+		return frameRate;
 	}
 
 	setFramesPerSecond(framesPerSecond :number) :void {
@@ -92,9 +111,16 @@ export default class Game implements RenderCycle {
 		return state;
 	}
 
-	isRunning(running?:boolean) : boolean {
-		if(running != null) this.running = running;
-		return this.running;
+	phaseIs(phase:RenderPhase) :boolean {
+		return this.phase === phase;
+	}
+
+	getPhase() :RenderPhase {
+		return this.phase;
+	}
+
+	setPhase(phase :RenderPhase) :void {
+		this.phase = phase;
 	}
 
 }

@@ -1,6 +1,8 @@
 import * as THREE from "three";
 import Game from "./Game";
 
+import {RenderPhase} from "../enum/RenderPhase";
+
 export default class Engine {
 	
 	private clock : THREE.Clock;
@@ -22,12 +24,12 @@ export default class Engine {
 			const delta =  this.clock.getDelta();
 			const now = this.clock.getElapsedTime();
 			
-			if(this.game && this.game.isRunning()) this.game.update(delta);
+			if(this.game && this.game.phaseIs(RenderPhase.RUNNING)) this.game.update(delta);
 
 			const gameFramesPerSecond :number = this.getGame().getFramesPerSecond();
 			const currentFramesPerSecond :number = gameFramesPerSecond?gameFramesPerSecond:this.framesPerSecond;
 
-			if(this.game && this.game.isRunning() && (now - this.lastFrameTime)*1000 > (1000 / currentFramesPerSecond)) {
+			if(this.game && this.game.phaseIs(RenderPhase.RUNNING) && (now - this.lastFrameTime)*1000 > (1000 / currentFramesPerSecond)) {
 				this.lastFrameTime = now;
 				this.game.render(delta);
 			}	
@@ -46,16 +48,14 @@ export default class Engine {
 		this.running = true;
 		let game = this.getGame();
 
-		const engineFramesPerSecond :number = 30;
 		const gameFramesPerSecond :number = this.getGame().getFramesPerSecond();
-		
-		const famesPerSecond :number = gameFramesPerSecond?gameFramesPerSecond:this.defaultFramesPerSecond;
+		this.framesPerSecond = gameFramesPerSecond?gameFramesPerSecond:this.defaultFramesPerSecond;
 
 		this.animationLoop();
 		game.init().subscribe(()=>{
 			game.load().subscribe(()=>{
-				game.isRunning(true);
-				setTimeout(()=>{this.stop()}, 5000);
+				game.setPhase(RenderPhase.RUNNING);
+				setTimeout(()=>{this.stop();}, 5000);
 			});
 		});
 		return game;
@@ -63,7 +63,6 @@ export default class Engine {
 
 	stop() :void {
 		this.running=false;
-		this.getGame().isRunning(false);
 		this.getGame().destroy();
 	}
 

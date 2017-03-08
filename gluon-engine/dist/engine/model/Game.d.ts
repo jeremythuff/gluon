@@ -1,9 +1,11 @@
 import { RenderCycle } from "./interface/RenderCycle";
 import { Observable } from "@reactivex/rxjs/dist/cjs/Rx";
 import State from "./State";
+import { RenderPhase } from "../enum/RenderPhase";
 export default class Game implements RenderCycle {
-    private running;
+    phase: RenderPhase;
     private name;
+    private framesPerSecond;
     private initialStateName;
     private activeState;
     private states;
@@ -12,6 +14,8 @@ export default class Game implements RenderCycle {
     load(): Observable<any>;
     update(delta: number): void;
     render(clock: number): void;
+    pause(): void;
+    unPause(): void;
     destroy(): void;
     getName(): string;
     setName(name: string): void;
@@ -19,7 +23,11 @@ export default class Game implements RenderCycle {
     setInitialStateName(stateName: string): void;
     getActiveState(): State;
     setActiveState(state: State): void;
+    getFramesPerSecond(): number;
+    setFramesPerSecond(framesPerSecond: number): void;
     getState(name: string): State;
     addState(state: State): State;
-    isRunning(running?: boolean): boolean;
+    phaseIs(phase: RenderPhase): boolean;
+    getPhase(): RenderPhase;
+    setPhase(phase: RenderPhase): void;
 }

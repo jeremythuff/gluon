@@ -1,8 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var THREE = require("three");
+var RenderPhase_1 = require("../enum/RenderPhase");
 var Engine = (function () {
     function Engine(game) {
+        this.defaultFramesPerSecond = 30;
         this.lastFrameTime = 0;
         this.setGame(game);
         this.clock = new THREE.Clock();
@@ -12,9 +14,11 @@ var Engine = (function () {
             window.requestAnimationFrame(this.animationLoop.bind(this));
             var delta = this.clock.getDelta();
             var now = this.clock.getElapsedTime();
-            if (this.game && this.game.isRunning())
+            if (this.game && this.game.phaseIs(RenderPhase_1.RenderPhase.RUNNING))
                 this.game.update(delta);
-            if (this.game && this.game.isRunning() && (now - this.lastFrameTime) / 1000 > (1000 / 30)) {
+            var gameFramesPerSecond = this.getGame().getFramesPerSecond();
+            var currentFramesPerSecond = gameFramesPerSecond ? gameFramesPerSecond : this.framesPerSecond;
+            if (this.game && this.game.phaseIs(RenderPhase_1.RenderPhase.RUNNING) && (now - this.lastFrameTime) * 1000 > (1000 / currentFramesPerSecond)) {
                 this.lastFrameTime = now;
                 this.game.render(delta);
             }
@@ -30,10 +34,12 @@ var Engine = (function () {
         var _this = this;
         this.running = true;
         var game = this.getGame();
+        var gameFramesPerSecond = this.getGame().getFramesPerSecond();
+        this.framesPerSecond = gameFramesPerSecond ? gameFramesPerSecond : this.defaultFramesPerSecond;
         this.animationLoop();
         game.init().subscribe(function () {
             game.load().subscribe(function () {
-                game.isRunning(true);
+                game.setPhase(RenderPhase_1.RenderPhase.RUNNING);
                 setTimeout(function () { _this.stop(); }, 5000);
             });
         });
@@ -41,7 +47,6 @@ var Engine = (function () {
     };
     Engine.prototype.stop = function () {
         this.running = false;
-        this.getGame().isRunning(false);
         this.getGame().destroy();
     };
     return Engine;

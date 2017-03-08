@@ -13,13 +13,32 @@ var State = (function () {
         return Rx_1.Observable.of(function () { });
     };
     State.prototype.update = function () { };
+    ;
     State.prototype.render = function () { };
+    ;
+    State.prototype.pause = function () { };
+    ;
     State.prototype.destroy = function () { };
     State.prototype.getName = function () {
         return this.name;
     };
     State.prototype.setName = function (name) {
         this.name = name;
+    };
+    State.prototype.getFramesPerSecond = function () {
+        return this.framesPerSecond;
+    };
+    State.prototype.setFramesPerSecond = function (framesPerSecond) {
+        this.framesPerSecond = framesPerSecond;
+    };
+    State.prototype.phaseIs = function (phase) {
+        return this.phase === phase;
+    };
+    State.prototype.getPhase = function () {
+        return this.phase;
+    };
+    State.prototype.setPhase = function (phase) {
+        this.phase = phase;
     };
     return State;
 }());
