@@ -1,4 +1,3 @@
-import * as THREE from "three";
 import {Observable} from "@reactivex/rxjs/dist/cjs/Rx";
 
 export interface RenderCycle {
