@@ -16,20 +16,40 @@ export default class State implements RenderCycle {
     }
 
     init() :Observable<any> {
+    	this.setPhase(RenderPhase.INITIALIZING);
 		return Observable.of(() => {});
 	}
 
 	load() :Observable<any> {
+		this.setPhase(RenderPhase.LOADING);
 		return Observable.of(() => {});
 	}
 
-	update() :void {};
+	update() :void {
+		this.setPhase(RenderPhase.UPDATING);
+	};
 
-	render() :void {};
+	render() :void {
+		this.setPhase(RenderPhase.RENDERING);
+	};
 
-	pause() :void {};
+	pause() :void {
+		this.setPhase(RenderPhase.PAUSED);
+	};
 
-	destroy() :void {}
+	unPause() :void {
+		this.setPhase(RenderPhase.RENDERING);
+	};
+
+	unload() :Observable<any> {
+		this.setPhase(RenderPhase.UNLOADING);
+		return Observable.of(() => {});
+	}
+
+	destroy()  {
+		this.setPhase(RenderPhase.DESTROYING);
+		return Observable.of(() => {});
+	}
 
 	getName() : string {
 		return this.name;
@@ -48,7 +68,7 @@ export default class State implements RenderCycle {
 	}
 
 	phaseIs(phase:RenderPhase) :boolean {
-		return this.phase === phase;
+		return phase===this.phase || phase === Math.floor(this.phase);
 	}
 
 	getPhase() :RenderPhase {

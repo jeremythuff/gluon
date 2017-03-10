@@ -32,11 +32,12 @@ var Engine = (function () {
     };
     Engine.prototype.start = function () {
         var _this = this;
-        this.running = true;
         var game = this.getGame();
         var gameFramesPerSecond = this.getGame().getFramesPerSecond();
         this.framesPerSecond = gameFramesPerSecond ? gameFramesPerSecond : this.defaultFramesPerSecond;
+        this.running = true;
         this.animationLoop();
+        game.setPhase(RenderPhase_1.RenderPhase.START);
         game.init().subscribe(function () {
             game.load().subscribe(function () {
                 game.setPhase(RenderPhase_1.RenderPhase.RUNNING);
@@ -46,8 +47,14 @@ var Engine = (function () {
         return game;
     };
     Engine.prototype.stop = function () {
-        this.running = false;
-        this.getGame().destroy();
+        var _this = this;
+        var game = this.getGame();
+        game.setPhase(RenderPhase_1.RenderPhase.STOP);
+        game.unload().subscribe(function () {
+            game.destroy().subscribe(function () {
+                _this.running = false;
+            });
+        });
     };
     return Engine;
 }());

@@ -45,13 +45,15 @@ export default class Engine {
 	}
 
 	start() :Game {
-		this.running = true;
+		
 		let game = this.getGame();
-
 		const gameFramesPerSecond :number = this.getGame().getFramesPerSecond();
 		this.framesPerSecond = gameFramesPerSecond?gameFramesPerSecond:this.defaultFramesPerSecond;
 
+		this.running = true;
 		this.animationLoop();
+
+		game.setPhase(RenderPhase.START);
 		game.init().subscribe(()=>{
 			game.load().subscribe(()=>{
 				game.setPhase(RenderPhase.RUNNING);
@@ -62,8 +64,13 @@ export default class Engine {
 	}
 
 	stop() :void {
-		this.running=false;
-		this.getGame().destroy();
+		const game = this.getGame();
+		game.setPhase(RenderPhase.STOP);
+		game.unload().subscribe(()=>{
+			game.destroy().subscribe(()=>{
+				this.running=false;
+			});
+		});
 	}
 
 }

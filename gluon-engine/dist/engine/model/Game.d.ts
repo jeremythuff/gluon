@@ -16,7 +16,8 @@ export default class Game implements RenderCycle {
     render(clock: number): void;
     pause(): void;
     unPause(): void;
-    destroy(): void;
+    unload(): Observable<any>;
+    destroy(): Observable<() => void>;
     getName(): string;
     setName(name: string): void;
     getInitialStateName(): string;

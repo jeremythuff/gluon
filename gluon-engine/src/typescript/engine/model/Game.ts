@@ -24,36 +24,47 @@ export default class Game implements RenderCycle {
     }
 
     init() :Observable<any> {
-    	this.phase = RenderPhase.INITIALIZING;
+		this.setPhase(RenderPhase.INITIALIZING);
 		return Observable.of(() => {
 			this.activeState.init();
 		});
 	}
 
 	load() :Observable<any> {
-		this.phase = RenderPhase.LOADING;
+		this.setPhase(RenderPhase.LOADING);
 		return Observable.of(() => {
 				this.activeState.load().subscribe(() => {
-					this.phase = RenderPhase.RUNNING;
+					this.setPhase(RenderPhase.READY);
 				});
 		});
 	}
 
-	update(delta :number) :void {}
+	update(delta :number) :void {
+		this.setPhase(RenderPhase.UPDATING);
+	}
 
-	render(clock :number) :void {}
+	render(clock :number) :void {
+		this.setPhase(RenderPhase.RENDERING);
+	}
 
 	pause() :void {
-		this.phase = RenderPhase.PAUSED;
+		this.setPhase(RenderPhase.PAUSED);
 	};
 
 	unPause() :void {
-		this.phase = RenderPhase.RUNNING;
+		this.setPhase(RenderPhase.READY);
 	};
 
-	destroy() :void {
-		this.phase = RenderPhase.DESTROYING;
-		this.activeState.destroy()
+	unload() :Observable<any> {
+		this.setPhase(RenderPhase.UNLOADING);
+		return Observable.of(() => {});
+	}
+
+	destroy()  {
+		this.setPhase(RenderPhase.DESTROYING);
+		return Observable.of(() => {
+			this.setPhase(RenderPhase.OFF);
+		});
 	}
 
 	getName() : string {
@@ -112,7 +123,7 @@ export default class Game implements RenderCycle {
 	}
 
 	phaseIs(phase:RenderPhase) :boolean {
-		return this.phase === phase;
+		return phase===this.phase || phase === Math.floor(this.phase);
 	}
 
 	getPhase() :RenderPhase {
@@ -121,6 +132,7 @@ export default class Game implements RenderCycle {
 
 	setPhase(phase :RenderPhase) :void {
 		this.phase = phase;
+		console.log(RenderPhase[this.getPhase()]);
 	}
 
 }

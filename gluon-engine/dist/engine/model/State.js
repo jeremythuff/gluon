@@ -1,24 +1,44 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Rx_1 = require("@reactivex/rxjs/dist/cjs/Rx");
+var RenderPhase_1 = require("../enum/RenderPhase");
 var State = (function () {
     function State(name) {
         if (name)
             this.setName(name);
     }
     State.prototype.init = function () {
+        this.setPhase(RenderPhase_1.RenderPhase.INITIALIZING);
         return Rx_1.Observable.of(function () { });
     };
     State.prototype.load = function () {
+        this.setPhase(RenderPhase_1.RenderPhase.LOADING);
         return Rx_1.Observable.of(function () { });
     };
-    State.prototype.update = function () { };
+    State.prototype.update = function () {
+        this.setPhase(RenderPhase_1.RenderPhase.UPDATING);
+    };
     ;
-    State.prototype.render = function () { };
+    State.prototype.render = function () {
+        this.setPhase(RenderPhase_1.RenderPhase.RENDERING);
+    };
     ;
-    State.prototype.pause = function () { };
+    State.prototype.pause = function () {
+        this.setPhase(RenderPhase_1.RenderPhase.PAUSED);
+    };
     ;
-    State.prototype.destroy = function () { };
+    State.prototype.unPause = function () {
+        this.setPhase(RenderPhase_1.RenderPhase.RENDERING);
+    };
+    ;
+    State.prototype.unload = function () {
+        this.setPhase(RenderPhase_1.RenderPhase.UNLOADING);
+        return Rx_1.Observable.of(function () { });
+    };
+    State.prototype.destroy = function () {
+        this.setPhase(RenderPhase_1.RenderPhase.DESTROYING);
+        return Rx_1.Observable.of(function () { });
+    };
     State.prototype.getName = function () {
         return this.name;
     };
@@ -32,7 +52,7 @@ var State = (function () {
         this.framesPerSecond = framesPerSecond;
     };
     State.prototype.phaseIs = function (phase) {
-        return this.phase === phase;
+        return phase === this.phase || phase === Math.floor(this.phase);
     };
     State.prototype.getPhase = function () {
         return this.phase;

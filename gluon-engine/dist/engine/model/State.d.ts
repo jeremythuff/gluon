@@ -11,7 +11,9 @@ export default class State implements RenderCycle {
     update(): void;
     render(): void;
     pause(): void;
-    destroy(): void;
+    unPause(): void;
+    unload(): Observable<any>;
+    destroy(): Observable<() => void>;
     getName(): string;
     setName(name: string): void;
     getFramesPerSecond(): number;

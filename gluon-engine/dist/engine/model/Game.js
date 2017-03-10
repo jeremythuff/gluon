@@ -11,33 +11,44 @@ var Game = (function () {
     }
     Game.prototype.init = function () {
         var _this = this;
-        this.phase = RenderPhase_1.RenderPhase.INITIALIZING;
+        this.setPhase(RenderPhase_1.RenderPhase.INITIALIZING);
         return Rx_1.Observable.of(function () {
             _this.activeState.init();
         });
     };
     Game.prototype.load = function () {
         var _this = this;
-        this.phase = RenderPhase_1.RenderPhase.LOADING;
+        this.setPhase(RenderPhase_1.RenderPhase.LOADING);
         return Rx_1.Observable.of(function () {
             _this.activeState.load().subscribe(function () {
-                _this.phase = RenderPhase_1.RenderPhase.RUNNING;
+                _this.setPhase(RenderPhase_1.RenderPhase.READY);
             });
         });
     };
-    Game.prototype.update = function (delta) { };
-    Game.prototype.render = function (clock) { };
+    Game.prototype.update = function (delta) {
+        this.setPhase(RenderPhase_1.RenderPhase.UPDATING);
+    };
+    Game.prototype.render = function (clock) {
+        this.setPhase(RenderPhase_1.RenderPhase.RENDERING);
+    };
     Game.prototype.pause = function () {
-        this.phase = RenderPhase_1.RenderPhase.PAUSED;
+        this.setPhase(RenderPhase_1.RenderPhase.PAUSED);
     };
     ;
     Game.prototype.unPause = function () {
-        this.phase = RenderPhase_1.RenderPhase.RUNNING;
+        this.setPhase(RenderPhase_1.RenderPhase.READY);
     };
     ;
+    Game.prototype.unload = function () {
+        this.setPhase(RenderPhase_1.RenderPhase.UNLOADING);
+        return Rx_1.Observable.of(function () { });
+    };
     Game.prototype.destroy = function () {
-        this.phase = RenderPhase_1.RenderPhase.DESTROYING;
-        this.activeState.destroy();
+        var _this = this;
+        this.setPhase(RenderPhase_1.RenderPhase.DESTROYING);
+        return Rx_1.Observable.of(function () {
+            _this.setPhase(RenderPhase_1.RenderPhase.OFF);
+        });
     };
     Game.prototype.getName = function () {
         return this.name;
@@ -84,13 +95,14 @@ var Game = (function () {
         return state;
     };
     Game.prototype.phaseIs = function (phase) {
-        return this.phase === phase;
+        return phase === this.phase || phase === Math.floor(this.phase);
     };
     Game.prototype.getPhase = function () {
         return this.phase;
     };
     Game.prototype.setPhase = function (phase) {
         this.phase = phase;
+        console.log(RenderPhase_1.RenderPhase[this.getPhase()]);
     };
     return Game;
 }());
