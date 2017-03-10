@@ -7,10 +7,10 @@ function GameMain(options) {
         var game = new decorated(decorated.name);
         if (!game.getName())
             game.setName(decorated.name);
+        console.log("Registering Game: " + game.getName());
+        RunningGameRegistry.setRunningGame(game);
         var engine = new Engine_1.default(game);
         engine.start();
-        console.log("Registering State: " + game.getName());
-        RunningGameRegistry.setRunningGame(game);
     };
 }
 exports.default = GameMain;

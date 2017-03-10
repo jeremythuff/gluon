@@ -10,11 +10,13 @@ export default function GameMain(options ?: Map<string, any>) {
 				
 		if(!game.getName()) game.setName(decorated.name);		
 		
+		console.log(`Registering Game: ${game.getName()}`);
+		RunningGameRegistry.setRunningGame(game);
+		
 		const engine = new Engine(game);
 		engine.start();
 
-		console.log(`Registering State: ${game.getName()}`);
-		RunningGameRegistry.setRunningGame(game);
+		
 
 	}
 }
