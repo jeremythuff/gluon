@@ -6,6 +6,7 @@ import * as path from 'path';
 
 import {CliCommand} from './CliCommand';
 import Build from "./Build";
+import Docs from "./Docs";
 import Init from "./Init";
 import Start from "./Start";
 import Help from "./Help";
@@ -29,29 +30,32 @@ class GluonCli {
 			const globalModuleRoot = path.resolve(npm.globalDir, "gluon-engine");
 
 			switch(arg) { 
-			    case "init": 
-			    case "i": { 
-			    	command = new Init(this.engineRoot, globalModuleRoot);
-			    	break; 
-			    }
-			    case "build": 
-			    case "b": { 
+			    case Build.key: 
+			    case Build.shortKey: { 
 			    	command = new Build(this.engineRoot, globalModuleRoot);
 			    	break; 
 			    }
-			    case "start": 
-			    case "s": { 
+			    case Docs.key: 
+			    case Docs.shortKey: { 
+			    	command = new Docs(this.engineRoot, globalModuleRoot);
+			    	break; 
+			    }
+			    case Init.key: 
+			    case Init.shortKey: { 
+			    	command = new Init(this.engineRoot, globalModuleRoot);
+			    	break; 
+			    }
+			    case Start.key: 
+			    case Start.shortKey: { 
 			    	command = new Start(this.engineRoot, globalModuleRoot);
 			    	break; 
 			    }
-			    case "help": 
-			    case "h":
+			    case Help.key: 
+			    case Help.shortKey:
 			   	default: { 
-
-			   		if(arg !== <string>"help" || arg !== <string>"h")  {
+			   		if(arg !== Help.key || arg !== Help.shortKey)  {
 			   			console.log(colors.red(`\n *ERROR* command not found: ${arg}`));
 			   		}
-
 			      	command = new Help(this.engineRoot, globalModuleRoot);
 			      	break; 
 			   } 

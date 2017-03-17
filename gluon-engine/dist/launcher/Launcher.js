@@ -6,7 +6,8 @@ var process = require("process");
 var app = electron.app;
 var mainWindow;
 function createWindow() {
-    mainWindow = new electron.BrowserWindow({ width: 800, height: 600, webPreferences: { nodeIntegration: true } });
+    var nodeIntegration = process.argv[3] ? process.argv[3] === 'true' ? true : false : true;
+    mainWindow = new electron.BrowserWindow({ width: 800, height: 600, webPreferences: { nodeIntegration: nodeIntegration } });
     mainWindow.loadURL("file://" + process.argv[2]);
     mainWindow.on('closed', function () {
         mainWindow = null;

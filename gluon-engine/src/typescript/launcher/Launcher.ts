@@ -11,7 +11,10 @@ const app = electron.app;
 let mainWindow: Electron.BrowserWindow;
 
 function createWindow () {
-  mainWindow = new electron.BrowserWindow({ width: 800, height: 600, webPreferences: { nodeIntegration: true } });
+
+  const nodeIntegration : boolean = process.argv[3]?process.argv[3]==='true'?true:false:true;
+
+  mainWindow = new electron.BrowserWindow({ width: 800, height: 600, webPreferences: { nodeIntegration: nodeIntegration } });
 
   mainWindow.loadURL(`file://${process.argv[2]}`)
 

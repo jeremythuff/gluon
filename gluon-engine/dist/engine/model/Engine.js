@@ -35,11 +35,11 @@ var Engine = (function () {
         var game = this.getGame();
         var gameFramesPerSecond = this.getGame().getFramesPerSecond();
         this.framesPerSecond = gameFramesPerSecond ? gameFramesPerSecond : this.defaultFramesPerSecond;
-        this.running = true;
-        this.animationLoop();
         game.setPhase(RenderPhase_1.RenderPhase.START);
         game.init().subscribe(function () {
             game.load().subscribe(function () {
+                _this.running = true;
+                _this.animationLoop();
                 game.setPhase(RenderPhase_1.RenderPhase.RUNNING);
                 setTimeout(function () { _this.stop(); }, 5000);
             });
@@ -52,6 +52,7 @@ var Engine = (function () {
         game.setPhase(RenderPhase_1.RenderPhase.STOP);
         game.unload().subscribe(function () {
             game.destroy().subscribe(function () {
+                game.setPhase(RenderPhase_1.RenderPhase.OFF);
                 _this.running = false;
             });
         });

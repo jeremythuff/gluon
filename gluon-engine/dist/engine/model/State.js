@@ -59,6 +59,7 @@ var State = (function () {
     };
     State.prototype.setPhase = function (phase) {
         this.phase = phase;
+        console.log("State " + this.getName() + " is " + RenderPhase_1.RenderPhase[this.getPhase()]);
     };
     return State;
 }());

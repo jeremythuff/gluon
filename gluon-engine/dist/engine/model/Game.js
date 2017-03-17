@@ -44,11 +44,8 @@ var Game = (function () {
         return Rx_1.Observable.of(function () { });
     };
     Game.prototype.destroy = function () {
-        var _this = this;
         this.setPhase(RenderPhase_1.RenderPhase.DESTROYING);
-        return Rx_1.Observable.of(function () {
-            _this.setPhase(RenderPhase_1.RenderPhase.OFF);
-        });
+        return Rx_1.Observable.of(function () { });
     };
     Game.prototype.getName = function () {
         return this.name;
@@ -102,7 +99,7 @@ var Game = (function () {
     };
     Game.prototype.setPhase = function (phase) {
         this.phase = phase;
-        console.log(RenderPhase_1.RenderPhase[this.getPhase()]);
+        console.log("Game " + this.getName() + " is " + RenderPhase_1.RenderPhase[this.getPhase()]);
     };
     return Game;
 }());

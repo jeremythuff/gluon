@@ -19,11 +19,12 @@
     "clean": "rm -rf dist",
     "build:typescript:main": "tsc -p tsconfig.json",
     "build:typescript": "npm run build:typescript:main",
+    "build:docs": "typeDoc --exclude '**/+(cli|launcher)/**/*.ts' --theme minimal --mode file --module commonjs --hideGenerator --name Gluon --readme none  --target 'ES6' --out dist/docs src/typescript/engine",
     "build:sass": "node bld/sass.js",
     "build:html": "node bld/html.js",
     "build:cli": "node bld/cli.js",
     "build:resources": "concurrently --prefix \"{time}-{pid}\" \"npm run build:html\" \"npm run build:sass\" \"npm run build:cli\"",
-    "build": "npm run clean && concurrently --prefix \"{time}-{pid}\" \"npm run build:typescript\" \"npm run build:resources\"",
+    "build": "npm run clean && concurrently --prefix \"{time}-{pid}\" \"npm run build:typescript\" \"npm run build:resources\" \"npm run build:docs\"",
     "gluon": "electron dist/util/launcher.js"
   },
   "repository": {
@@ -57,5 +58,8 @@
     "text-table": "^0.2.0",
     "three": "^0.84.0",
     "typescript": "*"
+  },
+  "devDependencies": {
+    "typedoc": "^0.5.7"
   }
 }

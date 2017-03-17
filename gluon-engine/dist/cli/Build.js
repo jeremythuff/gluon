@@ -74,6 +74,8 @@ var Build = (function (_super) {
     };
     return Build;
 }(AbstractCliCommand_1.default));
+Build.key = "build";
+Build.shortKey = "b";
 Build.help = ["build, b", colors.green("Transpiles the projects typescript into the distribution folder.")];
 exports.default = Build;
 //# sourceMappingURL=Build.js.map

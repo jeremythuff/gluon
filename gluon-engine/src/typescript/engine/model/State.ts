@@ -77,6 +77,7 @@ export default class State implements RenderCycle {
 
 	setPhase(phase :RenderPhase) :void {
 		this.phase = phase;
+		console.log("State "+this.getName()+" is "+RenderPhase[this.getPhase()]);
 	}
 
 }

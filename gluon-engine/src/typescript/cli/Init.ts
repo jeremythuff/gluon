@@ -11,6 +11,8 @@ var table = require('text-table');
 
 export default class Init extends AbstractCliCommand implements CliCommand {
 
+	static key : string = "init";
+	static shortKey : string = "i";
 	static help : [string, string] = ["init, i [name]", colors.green("Creates the starting file and folder structure for a Gluon project.")];
 
 	execute(args :Array<string>) {

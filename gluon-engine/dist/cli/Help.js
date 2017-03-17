@@ -15,6 +15,7 @@ var AbstractCliCommand_1 = require("./AbstractCliCommand");
 var Start_1 = require("./Start");
 var Init_1 = require("./Init");
 var Build_1 = require("./Build");
+var Docs_1 = require("./Docs");
 var colors = require('colors/safe');
 var table = require('text-table');
 var Help = (function (_super) {
@@ -28,12 +29,15 @@ var Help = (function (_super) {
             Init_1.default.help,
             Build_1.default.help,
             Start_1.default.help,
+            Docs_1.default.help,
             Help.help
         ]);
         console.log(helpTable);
     };
     return Help;
 }(AbstractCliCommand_1.default));
+Help.key = "help";
+Help.shortKey = "h";
 Help.help = ["help, h: ", colors.green("Displays this dialog.")];
 exports.default = Help;
 //# sourceMappingURL=Help.js.map

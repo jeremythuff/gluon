@@ -12,6 +12,8 @@ var table = require('text-table');
 
 export default class Build extends AbstractCliCommand implements CliCommand {
 
+	static key : string = "build";
+	static shortKey : string = "b";
 	static help : [string, string] = ["build, b", colors.green("Transpiles the projects typescript into the distribution folder.")];
 
 	execute(args :Array<string>) {

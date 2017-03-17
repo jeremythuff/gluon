@@ -13,7 +13,9 @@ const nodecli = require("shelljs-nodecli");
 
 export default class Start extends AbstractCliCommand implements CliCommand {
 
-	static help : [string, string] = ["start, s [Main.js]", colors.green("Launches the Gluon project.")];
+	static key : string = "start";
+	static shortKey : string = "s";
+	static help : [string, string] = [`${Start.key}, ${Start.shortKey} [Main.js]`, colors.green("Launches the Gluon project.")];
 
 	execute(args :Array<string>) {
 

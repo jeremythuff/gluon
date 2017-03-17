@@ -30,6 +30,8 @@ var Start = (function (_super) {
     };
     return Start;
 }(AbstractCliCommand_1.default));
-Start.help = ["start, s [Main.js]", colors.green("Launches the Gluon project.")];
+Start.key = "start";
+Start.shortKey = "s";
+Start.help = [Start.key + ", " + Start.shortKey + " [Main.js]", colors.green("Launches the Gluon project.")];
 exports.default = Start;
 //# sourceMappingURL=Start.js.map

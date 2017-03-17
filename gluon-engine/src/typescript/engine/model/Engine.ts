@@ -3,6 +3,10 @@ import Game from "./Game";
 
 import {RenderPhase} from "../enum/RenderPhase";
 
+/**
+ * This class drives the animation loop
+ * and starts and stops the <Game>.
+ */
 export default class Engine {
 	
 	private clock : THREE.Clock;
@@ -50,16 +54,16 @@ export default class Engine {
 		const gameFramesPerSecond :number = this.getGame().getFramesPerSecond();
 		this.framesPerSecond = gameFramesPerSecond?gameFramesPerSecond:this.defaultFramesPerSecond;
 
-		this.running = true;
-		this.animationLoop();
-
 		game.setPhase(RenderPhase.START);
 		game.init().subscribe(()=>{
 			game.load().subscribe(()=>{
+				this.running = true;
+				this.animationLoop();
 				game.setPhase(RenderPhase.RUNNING);
 				setTimeout(()=>{this.stop();}, 5000);
 			});
 		});
+		
 		return game;
 	}
 
@@ -68,6 +72,7 @@ export default class Engine {
 		game.setPhase(RenderPhase.STOP);
 		game.unload().subscribe(()=>{
 			game.destroy().subscribe(()=>{
+				game.setPhase(RenderPhase.OFF);
 				this.running=false;
 			});
 		});

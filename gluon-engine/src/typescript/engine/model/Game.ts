@@ -1,5 +1,5 @@
 import {RenderCycle} from "./interface/RenderCycle";
-import {Observable} from "@reactivex/rxjs/dist/cjs/Rx";
+import {ReplaySubject, Observable} from "@reactivex/rxjs/dist/cjs/Rx";
 
 import State from "./State";
 import {RenderPhase} from "../enum/RenderPhase";
@@ -33,9 +33,9 @@ export default class Game implements RenderCycle {
 	load() :Observable<any> {
 		this.setPhase(RenderPhase.LOADING);
 		return Observable.of(() => {
-				this.activeState.load().subscribe(() => {
-					this.setPhase(RenderPhase.READY);
-				});
+			this.activeState.load().subscribe(() => {
+				this.setPhase(RenderPhase.READY);
+			});
 		});
 	}
 
@@ -62,9 +62,7 @@ export default class Game implements RenderCycle {
 
 	destroy()  {
 		this.setPhase(RenderPhase.DESTROYING);
-		return Observable.of(() => {
-			this.setPhase(RenderPhase.OFF);
-		});
+		return Observable.of(() => {});
 	}
 
 	getName() : string {
@@ -132,7 +130,7 @@ export default class Game implements RenderCycle {
 
 	setPhase(phase :RenderPhase) :void {
 		this.phase = phase;
-		console.log(RenderPhase[this.getPhase()]);
+		console.log("Game "+this.getName()+" is "+RenderPhase[this.getPhase()]);
 	}
 
 }

@@ -73,6 +73,8 @@ var Init = (function (_super) {
     };
     return Init;
 }(AbstractCliCommand_1.default));
+Init.key = "init";
+Init.shortKey = "i";
 Init.help = ["init, i [name]", colors.green("Creates the starting file and folder structure for a Gluon project.")];
 exports.default = Init;
 //# sourceMappingURL=Init.js.map
