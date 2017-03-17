@@ -22,7 +22,7 @@ var Docs = (function (_super) {
     Docs.prototype.execute = function (args) {
         var engineDir = this.getGlobalModuleRoot();
         var resourcesDir = engineDir + "/dist/engine/resources";
-        var docsHtmlPath = engineDir + "/dist/docs/index.html";
+        var docsHtmlPath = engineDir + "/docs/index.html";
         var execustionPath = engineDir + "/dist/launcher/Launcher.js";
         nodecli.exec("electron", execustionPath + " " + docsHtmlPath + " false");
         shelljs.exit(0);

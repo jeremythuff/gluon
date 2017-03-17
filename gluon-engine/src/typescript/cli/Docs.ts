@@ -19,7 +19,7 @@ export default class Docs extends AbstractCliCommand implements CliCommand {
 
 		const engineDir = this.getGlobalModuleRoot();
 		const resourcesDir = `${engineDir}/dist/engine/resources`;
-		const docsHtmlPath = `${engineDir}/dist/docs/index.html`;
+		const docsHtmlPath = `${engineDir}/docs/index.html`;
 		const execustionPath = `${engineDir}/dist/launcher/Launcher.js`;
 
 		nodecli.exec("electron", execustionPath + " " + docsHtmlPath + " false");

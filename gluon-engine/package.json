@@ -5,7 +5,8 @@
   "main": "./dist/engine/main.js",
   "types": "./dist/engine/main.d.ts",
   "files": [
-    "dist/"
+    "dist/",
+    "docs"
   ],
   "bin": {
     "gluon-cli": "./dist/cli/GluonCli.js"
@@ -19,7 +20,7 @@
     "clean": "rm -rf dist",
     "build:typescript:main": "tsc -p tsconfig.json",
     "build:typescript": "npm run build:typescript:main",
-    "build:docs": "typeDoc --exclude '**/+(cli|launcher)/**/*.ts' --theme minimal --mode file --module commonjs --hideGenerator --name Gluon --readme none  --target 'ES6' --out dist/docs src/typescript/engine",
+    "build:docs": "typeDoc --exclude '**/+(cli|launcher)/**/*.ts' --theme minimal --mode file --module commonjs --hideGenerator --name Gluon --readme none  --target 'ES6' --out docs src/typescript/engine",
     "build:sass": "node bld/sass.js",
     "build:html": "node bld/html.js",
     "build:cli": "node bld/cli.js",
