@@ -1,3 +1,8 @@
+/**
+ * This class ts document acts as barrel file
+ * for all of Gluons exported classes, interfaces and enums.
+ */
+
 
 //Models
 import Engine from "./model/Engine";

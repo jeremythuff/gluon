@@ -2,6 +2,12 @@ import State from "../model/State"
 
 import * as RunningGame from "../registries/RunningGame";
 
+/**
+ * This function is used to decorate classes which extend [[State]]. It registers and 
+ * instantiates such classes within your main game instance.
+ *
+ * @decorator Class<typeof State>
+ */
 export default function GameState(options ?: Map<string, any>) {
 	return function(decorated : typeof State) : void {
 		

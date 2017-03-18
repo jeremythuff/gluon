@@ -992,9 +992,22 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/8b80dc0/gluon-engine/src/typescript/engine/decorators/GameMain.ts#L6">decorators/GameMain.ts:6</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/249807a/src/typescript/engine/decorators/GameMain.ts#L14">decorators/GameMain.ts:14</a></li>
 							</ul>
 						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>This function is used to decorate classes which extend <a href="classes/game.html">Game</a>. It registers such
+									classes with the <a href="modules/runninggameregistry.html">RunningGameRegistry</a> namespace, denotes it as the main entry point for your game,
+									and will ensure that the game is instantiated at start up. It will derive the name of your game
+								from the class name of the decorated class.</p>
+							</div>
+							<dl class="tsd-comment-tags">
+								<dt>decorator</dt>
+								<dd><p>Class<typeof Game></p>
+								</dd>
+							</dl>
+						</div>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
@@ -1015,9 +1028,20 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/8b80dc0/gluon-engine/src/typescript/engine/decorators/GameState.ts#L5">decorators/GameState.ts:5</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/249807a/src/typescript/engine/decorators/GameState.ts#L11">decorators/GameState.ts:11</a></li>
 							</ul>
 						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>This function is used to decorate classes which extend <a href="classes/state.html">State</a>. It registers and
+								instantiates such classes within your main game instance.</p>
+							</div>
+							<dl class="tsd-comment-tags">
+								<dt>decorator</dt>
+								<dd><p>Class<typeof State></p>
+								</dd>
+							</dl>
+						</div>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>

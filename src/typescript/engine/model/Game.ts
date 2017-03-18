@@ -4,6 +4,11 @@ import {ReplaySubject, Observable} from "@reactivex/rxjs/dist/cjs/Rx";
 import State from "./State";
 import {RenderPhase} from "../enum/RenderPhase";
 
+/**
+ * The Game class is the central class to all Gluon games. By extending
+ * this class into you game main glass, and decorating it with the [[GameMain]]
+ * decorator, it will be the main entry point for your game.
+ */
 export default class Game implements RenderCycle {
 
 	phase : RenderPhase = RenderPhase.OFF;

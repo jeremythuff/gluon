@@ -4,6 +4,13 @@ import {RenderCycle} from "./interface/RenderCycle";
 
 import {RenderPhase} from "../enum/RenderPhase";
 
+
+/**
+ * The State class acts as the primary organizing entiry for your game. 
+ * States are registered and instantiated with the your game instance through the
+ * use of the [[GameState]] decorator. Any class which both extends State and is decorated
+ * with [[GameState]] will automatically be available for you in your game instance.
+ * */
 export default class State implements RenderCycle {
 
 	private name : string;

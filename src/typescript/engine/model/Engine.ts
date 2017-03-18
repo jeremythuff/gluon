@@ -4,8 +4,8 @@ import Game from "./Game";
 import {RenderPhase} from "../enum/RenderPhase";
 
 /**
- * This class drives the animation loop
- * and starts and stops the <Game>.
+ * This Engine class drives the animation loop and starts and stops your instance of the [[Game]]. 
+ * It gets connected to your game via the [[GameMain]] decorator.
  */
 export default class Engine {
 	

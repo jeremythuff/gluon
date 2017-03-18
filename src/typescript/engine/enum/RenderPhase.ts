@@ -1,4 +1,7 @@
-
+/**
+ * The Render Phase Enum denotes the phases which any class implementing 
+ * the [[RenderCycle]] interface will move through.
+ */
 export enum RenderPhase {
 	START = 0,
 	INITIALIZING = 0.1,
