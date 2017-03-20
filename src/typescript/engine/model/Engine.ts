@@ -61,10 +61,10 @@ export default class Engine {
 
 		game.runInit()
 			.take(1)
-			.subscribe(null,null,():any=>{
+			.subscribe(null,null,()=>{
 				game.runLoad()
 					.take(1)
-					.subscribe(null,null,():any=>{
+					.subscribe(null,null,()=>{
 						this.running = true;
 						this.animationLoop();
 						game.setPhase(RenderPhase.RUNNING);
@@ -80,10 +80,10 @@ export default class Engine {
 		game.setPhase(RenderPhase.STOP);
 		game.runUnload()
 			.take(1)
-			.subscribe(()=>{
+			.subscribe(null,null,()=>{
 				game.runDestroy()
 					.take(1)
-					.subscribe(()=>{
+					.subscribe(null,null,()=>{
 						game.setPhase(RenderPhase.OFF);
 						this.running=false;
 						electron.remote.getCurrentWindow().close();

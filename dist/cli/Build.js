@@ -31,6 +31,8 @@ var Build = (function (_super) {
         var mainCssPath = "resources/css/main.css";
         var mainJsPath = "Main.js";
         console.log(table([[new Date().toString(), "Transpiling typescript."]]));
+        if (shell.test('-d', "dist"))
+            shell.rm("-rf", "dist");
         nodecli.exec("tsc", function (code, out) {
             var paths = new Array();
             out.split(/\r?\n/).forEach(function (outLine) {

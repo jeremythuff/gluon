@@ -57,10 +57,10 @@ var Engine = (function () {
         game.setPhase(RenderPhase_1.RenderPhase.STOP);
         game.runUnload()
             .take(1)
-            .subscribe(function () {
+            .subscribe(null, null, function () {
             game.runDestroy()
                 .take(1)
-                .subscribe(function () {
+                .subscribe(null, null, function () {
                 game.setPhase(RenderPhase_1.RenderPhase.OFF);
                 _this.running = false;
                 electron.remote.getCurrentWindow().close();

@@ -27,6 +27,9 @@ export default class Build extends AbstractCliCommand implements CliCommand {
 		const mainJsPath = "Main.js";
 
 		console.log(table([[new Date().toString(), "Transpiling typescript."]]));
+
+		if (shell.test('-d', "dist")) shell.rm("-rf","dist");  
+
 		nodecli.exec("tsc", (code : any, out : string) => {
 
 			const paths : Array<string> = new Array<string>();

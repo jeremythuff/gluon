@@ -23,7 +23,7 @@ var Game = (function () {
         var initObservable = Rx_1.Observable.of("start");
         return initObservable.flatMap(function () {
             _this.initCBs.forEach(function (cb) {
-                cb(_this);
+                cb();
             });
             return initObservable;
         });
@@ -37,7 +37,7 @@ var Game = (function () {
         var loadObservable = Rx_1.Observable.of("start");
         return loadObservable.flatMap(function () {
             _this.loadCBs.forEach(function (cb) {
-                cb(_this);
+                cb();
             });
             return loadObservable;
         });
@@ -46,30 +46,27 @@ var Game = (function () {
         this.loadCBs.push(cb);
     };
     Game.prototype.runUpdate = function (delta) {
-        var _this = this;
         this.setPhase(RenderPhase_1.RenderPhase.UPDATING);
         this.updateCBs.forEach(function (cb) {
-            cb(delta, _this);
+            cb(delta);
         });
     };
     Game.prototype.update = function (cb) {
         this.updateCBs.push(cb);
     };
     Game.prototype.runRender = function (delta) {
-        var _this = this;
         this.setPhase(RenderPhase_1.RenderPhase.RENDERING);
         this.renderCBs.forEach(function (cb) {
-            cb(delta, _this);
+            cb(delta);
         });
     };
     Game.prototype.render = function (cb) {
         this.renderCBs.push(cb);
     };
     Game.prototype.runPause = function () {
-        var _this = this;
         this.setPhase(RenderPhase_1.RenderPhase.PAUSED);
         this.pauseCBs.forEach(function (cb) {
-            cb(_this);
+            cb();
         });
     };
     ;
@@ -77,10 +74,9 @@ var Game = (function () {
         this.pauseCBs.push(cb);
     };
     Game.prototype.runUnPause = function () {
-        var _this = this;
         this.setPhase(RenderPhase_1.RenderPhase.READY);
         this.unPauseCBs.forEach(function (cb) {
-            cb(_this);
+            cb();
         });
     };
     ;
@@ -93,7 +89,7 @@ var Game = (function () {
         var unLoadObservable = Rx_1.Observable.of("start");
         return unLoadObservable.flatMap(function () {
             _this.unloadCBs.forEach(function (cb) {
-                cb(_this);
+                cb();
             });
             return unLoadObservable;
         });
@@ -107,7 +103,7 @@ var Game = (function () {
         var unDestroyObservable = Rx_1.Observable.of("start");
         return unDestroyObservable.flatMap(function () {
             _this.destroyCBs.forEach(function (cb) {
-                cb(_this);
+                cb();
             });
             return unDestroyObservable;
         });

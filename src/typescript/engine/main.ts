@@ -11,14 +11,7 @@ import State from "./model/State";
 import Mode from "./model/Mode";
 
 //Interface
-import {GameInitCB} from "./model/interface/GameInitCB";
-import {GameLoadCB} from "./model/interface/GameLoadCB";
-import {GameUpdateCB} from "./model/interface/GameUpdateCB";
-import {GameRenderCB} from "./model/interface/GameRenderCB";
-import {GamePauseCB} from "./model/interface/GamePauseCB";
-import {GameUnPauseCB} from "./model/interface/GameUnPauseCB";
-import {GameUnloadCB} from "./model/interface/GameUnloadCB";
-import {GameDestroyCB} from "./model/interface/GameDestroyCB";
+import {GamePhaseCB} from "./model/interface/GamePhaseCB";
 import {RenderCycle} from "./model/interface/RenderCycle";
 
 //Decorators
@@ -35,14 +28,7 @@ export {
 
 	//Interface
 	RenderCycle,
-	GameInitCB,
-	GameLoadCB,
-	GameUpdateCB,
-	GameRenderCB,
-	GamePauseCB,
-	GameUnPauseCB,
-	GameUnloadCB,
-	GameDestroyCB,
+	GamePhaseCB,
 
 	//Decorators
 	GameMain,
