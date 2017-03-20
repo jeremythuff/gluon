@@ -19,9 +19,9 @@ export default class Game implements RenderCycle {
     private unloadCBs;
     private destroyCBs;
     constructor(name?: string);
-    runInit(): Observable<GamePhaseCB>;
+    runInit(): Observable<{}[]>;
     init(initCB: GamePhaseCB): void;
-    runLoad(): Observable<GamePhaseCB>;
+    runLoad(): Observable<{}[]>;
     load(cb: GamePhaseCB): void;
     runUpdate(delta: number): void;
     update(cb: GamePhaseCB): void;
@@ -31,9 +31,9 @@ export default class Game implements RenderCycle {
     pause(cb: GamePhaseCB): void;
     runUnPause(): void;
     unPause(cb: GamePhaseCB): void;
-    runUnload(): Observable<GamePhaseCB>;
+    runUnload(): Observable<{}[]>;
     unload(cb: GamePhaseCB): void;
-    runDestroy(): Observable<{}>;
+    runDestroy(): Observable<{}[]>;
     destroy(cb: GamePhaseCB): void;
     getName(): string;
     setName(name: string): void;

@@ -20,13 +20,15 @@ var Game = (function () {
     Game.prototype.runInit = function () {
         var _this = this;
         this.setPhase(RenderPhase_1.RenderPhase.INITIALIZING);
-        var initObservable = Rx_1.Observable.of("start");
-        return initObservable.flatMap(function () {
+        this.activeState = this.getState(this.initialStateName);
+        console.log(this.activeState);
+        var initObs = Rx_1.Observable.create(function (observer) {
             _this.initCBs.forEach(function (cb) {
                 cb();
             });
-            return initObservable;
+            observer.complete();
         });
+        return Rx_1.Observable.forkJoin(initObs, this.activeState.runInit());
     };
     Game.prototype.init = function (initCB) {
         this.initCBs.push(initCB);
@@ -34,13 +36,13 @@ var Game = (function () {
     Game.prototype.runLoad = function () {
         var _this = this;
         this.setPhase(RenderPhase_1.RenderPhase.LOADING);
-        var loadObservable = Rx_1.Observable.of("start");
-        return loadObservable.flatMap(function () {
+        var loadObs = Rx_1.Observable.create(function (observer) {
             _this.loadCBs.forEach(function (cb) {
                 cb();
             });
-            return loadObservable;
+            observer.complete();
         });
+        return Rx_1.Observable.forkJoin(loadObs, this.activeState.runLoad());
     };
     Game.prototype.load = function (cb) {
         this.loadCBs.push(cb);
@@ -88,13 +90,13 @@ var Game = (function () {
     Game.prototype.runUnload = function () {
         var _this = this;
         this.setPhase(RenderPhase_1.RenderPhase.UNLOADING);
-        var unLoadObservable = Rx_1.Observable.of("start");
-        return unLoadObservable.flatMap(function () {
+        var loadObs = Rx_1.Observable.create(function (observer) {
             _this.unloadCBs.forEach(function (cb) {
                 cb();
             });
-            return unLoadObservable;
+            observer.complete();
         });
+        return Rx_1.Observable.forkJoin(loadObs, this.activeState.runUnload());
     };
     Game.prototype.unload = function (cb) {
         this.unloadCBs.push(cb);
@@ -102,13 +104,13 @@ var Game = (function () {
     Game.prototype.runDestroy = function () {
         var _this = this;
         this.setPhase(RenderPhase_1.RenderPhase.DESTROYING);
-        var unDestroyObservable = Rx_1.Observable.of("start");
-        return unDestroyObservable.flatMap(function () {
+        var loadObs = Rx_1.Observable.create(function (observer) {
             _this.destroyCBs.forEach(function (cb) {
                 cb();
             });
-            return unDestroyObservable;
+            observer.complete();
         });
+        return Rx_1.Observable.forkJoin(loadObs, this.activeState.runDestroy());
     };
     Game.prototype.destroy = function (cb) {
         this.destroyCBs.push(cb);

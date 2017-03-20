@@ -928,6 +928,9 @@ img { max-width: 100%; }
 					<a href="state.html#constructor" class="tsd-kind-icon">constructor</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+					<a href="state.html#destroycbs" class="tsd-kind-icon">destroyCBs</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
 					<a href="state.html#framespersecond" class="tsd-kind-icon">frames<wbr>Per<wbr>Second</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
@@ -941,6 +944,9 @@ img { max-width: 100%; }
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
 					<a href="state.html#phase" class="tsd-kind-icon">phase</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+					<a href="state.html#unloadcbs" class="tsd-kind-icon">unloadCBs</a>
 				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
 					<a href="state.html#getframespersecond" class="tsd-kind-icon">get<wbr>Frames<wbr>Per<wbr>Second</a>
@@ -1056,11 +1062,13 @@ img { max-width: 100%; }
 					<section class="tsd-index-section tsd-is-external">
 						<h3>Properties</h3>
 						<ul class="tsd-index-list">
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="state.html#destroycbs" class="tsd-kind-icon">destroyCBs</a></li>
 							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="state.html#framespersecond" class="tsd-kind-icon">frames<wbr>Per<wbr>Second</a></li>
 							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="state.html#initcbs" class="tsd-kind-icon">initCBs</a></li>
 							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="state.html#loadcbs" class="tsd-kind-icon">loadCBs</a></li>
 							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="state.html#name" class="tsd-kind-icon">name</a></li>
 							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="state.html#phase" class="tsd-kind-icon">phase</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="state.html#unloadcbs" class="tsd-kind-icon">unloadCBs</a></li>
 						</ul>
 					</section>
 					<section class="tsd-index-section tsd-is-external">
@@ -1100,7 +1108,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/445116b/src/typescript/engine/model/State.ts#L22">model/State.ts:22</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/abe7bbf/src/typescript/engine/model/State.ts#L24">model/State.ts:24</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1117,12 +1125,22 @@ img { max-width: 100%; }
 		<section class="tsd-panel-group tsd-member-group tsd-is-external">
 			<h2>Properties</h2>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+				<a name="destroycbs" class="tsd-anchor"></a>
+				<h3>destroyCBs</h3>
+				<div class="tsd-signature tsd-kind-icon">destroyCBs<span class="tsd-signature-symbol">:</span> <a href="../interfaces/statephasecb.html" class="tsd-signature-type">StatePhaseCB</a><span class="tsd-signature-symbol">[]</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/abe7bbf/src/typescript/engine/model/State.ts#L22">model/State.ts:22</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
 				<a name="framespersecond" class="tsd-anchor"></a>
 				<h3>frames<wbr>Per<wbr>Second</h3>
 				<div class="tsd-signature tsd-kind-icon">frames<wbr>Per<wbr>Second<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/445116b/src/typescript/engine/model/State.ts#L17">model/State.ts:17</a></li>
+						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/abe7bbf/src/typescript/engine/model/State.ts#L17">model/State.ts:17</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1132,7 +1150,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">initCBs<span class="tsd-signature-symbol">:</span> <a href="../interfaces/statephasecb.html" class="tsd-signature-type">StatePhaseCB</a><span class="tsd-signature-symbol">[]</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/445116b/src/typescript/engine/model/State.ts#L19">model/State.ts:19</a></li>
+						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/abe7bbf/src/typescript/engine/model/State.ts#L19">model/State.ts:19</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1142,7 +1160,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">loadCBs<span class="tsd-signature-symbol">:</span> <a href="../interfaces/statephasecb.html" class="tsd-signature-type">StatePhaseCB</a><span class="tsd-signature-symbol">[]</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/445116b/src/typescript/engine/model/State.ts#L20">model/State.ts:20</a></li>
+						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/abe7bbf/src/typescript/engine/model/State.ts#L20">model/State.ts:20</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1152,7 +1170,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/445116b/src/typescript/engine/model/State.ts#L16">model/State.ts:16</a></li>
+						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/abe7bbf/src/typescript/engine/model/State.ts#L16">model/State.ts:16</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1163,7 +1181,17 @@ img { max-width: 100%; }
 				<aside class="tsd-sources">
 					<p>Implementation of <a href="../interfaces/rendercycle.html">RenderCycle</a>.<a href="../interfaces/rendercycle.html#phase">phase</a></p>
 					<ul>
-						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/445116b/src/typescript/engine/model/State.ts#L22">model/State.ts:22</a></li>
+						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/abe7bbf/src/typescript/engine/model/State.ts#L24">model/State.ts:24</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+				<a name="unloadcbs" class="tsd-anchor"></a>
+				<h3>unloadCBs</h3>
+				<div class="tsd-signature tsd-kind-icon">unloadCBs<span class="tsd-signature-symbol">:</span> <a href="../interfaces/statephasecb.html" class="tsd-signature-type">StatePhaseCB</a><span class="tsd-signature-symbol">[]</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/abe7bbf/src/typescript/engine/model/State.ts#L21">model/State.ts:21</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1180,7 +1208,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/445116b/src/typescript/engine/model/State.ts#L97">model/State.ts:97</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/abe7bbf/src/typescript/engine/model/State.ts#L114">model/State.ts:114</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -1197,7 +1225,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/445116b/src/typescript/engine/model/State.ts#L89">model/State.ts:89</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/abe7bbf/src/typescript/engine/model/State.ts#L106">model/State.ts:106</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -1215,7 +1243,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Implementation of <a href="../interfaces/rendercycle.html">RenderCycle</a>.<a href="../interfaces/rendercycle.html#getphase">getPhase</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/445116b/src/typescript/engine/model/State.ts#L109">model/State.ts:109</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/abe7bbf/src/typescript/engine/model/State.ts#L126">model/State.ts:126</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <a href="../enums/renderphase.html" class="tsd-signature-type">RenderPhase</a></h4>
@@ -1232,7 +1260,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/445116b/src/typescript/engine/model/State.ts#L44">model/State.ts:44</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/abe7bbf/src/typescript/engine/model/State.ts#L47">model/State.ts:47</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1255,7 +1283,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/445116b/src/typescript/engine/model/State.ts#L59">model/State.ts:59</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/abe7bbf/src/typescript/engine/model/State.ts#L63">model/State.ts:63</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1279,7 +1307,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Implementation of <a href="../interfaces/rendercycle.html">RenderCycle</a>.<a href="../interfaces/rendercycle.html#phaseis">phaseIs</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/445116b/src/typescript/engine/model/State.ts#L105">model/State.ts:105</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/abe7bbf/src/typescript/engine/model/State.ts#L122">model/State.ts:122</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1296,17 +1324,17 @@ img { max-width: 100%; }
 				<a name="rundestroy" class="tsd-anchor"></a>
 				<h3>run<wbr>Destroy</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
-					<li class="tsd-signature tsd-kind-icon">run<wbr>Destroy<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">(Anonymous function)</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<li class="tsd-signature tsd-kind-icon">run<wbr>Destroy<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">__type</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<p>Implementation of <a href="../interfaces/rendercycle.html">RenderCycle</a>.<a href="../interfaces/rendercycle.html#rundestroy">runDestroy</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/445116b/src/typescript/engine/model/State.ts#L84">model/State.ts:84</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/abe7bbf/src/typescript/engine/model/State.ts#L94">model/State.ts:94</a></li>
 							</ul>
 						</aside>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">(Anonymous function)</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">__type</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 					</li>
 				</ul>
 			</section>
@@ -1314,17 +1342,17 @@ img { max-width: 100%; }
 				<a name="runinit" class="tsd-anchor"></a>
 				<h3>run<wbr>Init</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
-					<li class="tsd-signature tsd-kind-icon">run<wbr>Init<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<li class="tsd-signature tsd-kind-icon">run<wbr>Init<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">__type</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<p>Implementation of <a href="../interfaces/rendercycle.html">RenderCycle</a>.<a href="../interfaces/rendercycle.html#runinit">runInit</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/445116b/src/typescript/engine/model/State.ts#L30">model/State.ts:30</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/abe7bbf/src/typescript/engine/model/State.ts#L34">model/State.ts:34</a></li>
 							</ul>
 						</aside>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">__type</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 					</li>
 				</ul>
 			</section>
@@ -1332,17 +1360,17 @@ img { max-width: 100%; }
 				<a name="runload" class="tsd-anchor"></a>
 				<h3>run<wbr>Load</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
-					<li class="tsd-signature tsd-kind-icon">run<wbr>Load<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<li class="tsd-signature tsd-kind-icon">run<wbr>Load<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">__type</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<p>Implementation of <a href="../interfaces/rendercycle.html">RenderCycle</a>.<a href="../interfaces/rendercycle.html#runload">runLoad</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/445116b/src/typescript/engine/model/State.ts#L48">model/State.ts:48</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/abe7bbf/src/typescript/engine/model/State.ts#L51">model/State.ts:51</a></li>
 							</ul>
 						</aside>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">__type</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 					</li>
 				</ul>
 			</section>
@@ -1357,7 +1385,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Implementation of <a href="../interfaces/rendercycle.html">RenderCycle</a>.<a href="../interfaces/rendercycle.html#runpause">runPause</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/445116b/src/typescript/engine/model/State.ts#L71">model/State.ts:71</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/abe7bbf/src/typescript/engine/model/State.ts#L75">model/State.ts:75</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1375,7 +1403,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Implementation of <a href="../interfaces/rendercycle.html">RenderCycle</a>.<a href="../interfaces/rendercycle.html#runrender">runRender</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/445116b/src/typescript/engine/model/State.ts#L67">model/State.ts:67</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/abe7bbf/src/typescript/engine/model/State.ts#L71">model/State.ts:71</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1399,7 +1427,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Implementation of <a href="../interfaces/rendercycle.html">RenderCycle</a>.<a href="../interfaces/rendercycle.html#rununpause">runUnPause</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/445116b/src/typescript/engine/model/State.ts#L75">model/State.ts:75</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/abe7bbf/src/typescript/engine/model/State.ts#L79">model/State.ts:79</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1410,17 +1438,17 @@ img { max-width: 100%; }
 				<a name="rununload" class="tsd-anchor"></a>
 				<h3>run<wbr>Unload</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
-					<li class="tsd-signature tsd-kind-icon">run<wbr>Unload<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<li class="tsd-signature tsd-kind-icon">run<wbr>Unload<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">__type</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<p>Implementation of <a href="../interfaces/rendercycle.html">RenderCycle</a>.<a href="../interfaces/rendercycle.html#rununload">runUnload</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/445116b/src/typescript/engine/model/State.ts#L79">model/State.ts:79</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/abe7bbf/src/typescript/engine/model/State.ts#L83">model/State.ts:83</a></li>
 							</ul>
 						</aside>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">__type</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 					</li>
 				</ul>
 			</section>
@@ -1435,7 +1463,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Implementation of <a href="../interfaces/rendercycle.html">RenderCycle</a>.<a href="../interfaces/rendercycle.html#runupdate">runUpdate</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/445116b/src/typescript/engine/model/State.ts#L63">model/State.ts:63</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/abe7bbf/src/typescript/engine/model/State.ts#L67">model/State.ts:67</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1458,7 +1486,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/445116b/src/typescript/engine/model/State.ts#L101">model/State.ts:101</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/abe7bbf/src/typescript/engine/model/State.ts#L118">model/State.ts:118</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1481,7 +1509,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/445116b/src/typescript/engine/model/State.ts#L93">model/State.ts:93</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/abe7bbf/src/typescript/engine/model/State.ts#L110">model/State.ts:110</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1505,7 +1533,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Implementation of <a href="../interfaces/rendercycle.html">RenderCycle</a>.<a href="../interfaces/rendercycle.html#setphase">setPhase</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/445116b/src/typescript/engine/model/State.ts#L113">model/State.ts:113</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/abe7bbf/src/typescript/engine/model/State.ts#L130">model/State.ts:130</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>

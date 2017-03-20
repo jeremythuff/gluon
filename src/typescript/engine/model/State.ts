@@ -18,6 +18,8 @@ export default class State implements RenderCycle {
 
 	private initCBs :StatePhaseCB[];
 	private loadCBs :StatePhaseCB[];
+	private unloadCBs :StatePhaseCB[];
+	private destroyCBs :StatePhaseCB[];
 
 	phase :RenderPhase;
 
@@ -25,19 +27,20 @@ export default class State implements RenderCycle {
     	if(name) this.setName(name);
     	this.initCBs = [];
     	this.loadCBs = [];
+    	this.unloadCBs = [];
+    	this.destroyCBs = [];
     }
 
-    runInit() :Observable<any> {
+    runInit() :Observable<{}[]> {
     	this.setPhase(RenderPhase.INITIALIZING);
-
-    	const initObservable = Observable.of("start").flatMap(():any=>{
-			this.initCBs.forEach(cb=>{
+    	const initObs = Observable.create(observer => {
+		    this.initCBs.forEach(cb=>{
 				cb();
 			});
-			return initObservable;
+		    observer.complete();
 		});
-		
-		return Observable.concat(initObservable, this.runLoad())
+
+		return Observable.forkJoin(initObs);
 
 	}
 
@@ -45,15 +48,16 @@ export default class State implements RenderCycle {
 		this.initCBs.push(cb);
 	}
 
-	runLoad() :Observable<any> {
+	runLoad() :Observable<{}[]> {
 		this.setPhase(RenderPhase.LOADING);
-		const loadObservable = Observable.of("start");
-		return loadObservable.flatMap(():any=>{
-			this.loadCBs.forEach(cb=>{
+		const loadObs = Observable.create(observer => {	
+		    this.loadCBs.forEach(cb=>{
 				cb();
 			});
-			return loadObservable;
+		    observer.complete();
 		});
+
+		return Observable.forkJoin(loadObs);
 	}
 
 	load(cb :StatePhaseCB) {
@@ -76,14 +80,27 @@ export default class State implements RenderCycle {
 		this.setPhase(RenderPhase.RENDERING);
 	};
 
-	runUnload() :Observable<any> {
-		this.setPhase(RenderPhase.UNLOADING);
-		return Observable.of(() => {});
+	runUnload() :Observable<{}[]> {
+		const unloadObs = Observable.create(observer => {	
+		    this.loadCBs.forEach(cb=>{
+				cb();
+			});
+		    observer.complete();
+		});
+
+		return Observable.forkJoin(unloadObs);
 	}
 
-	runDestroy()  {
+	runDestroy() : Observable<{}[]>  {
 		this.setPhase(RenderPhase.DESTROYING);
-		return Observable.of(() => {});
+		const destroyObs = Observable.create(observer => {	
+		    this.loadCBs.forEach(cb=>{
+				cb();
+			});
+		    observer.complete();
+		});
+
+		return Observable.forkJoin(destroyObs);
 	}
 
 	getName() : string {

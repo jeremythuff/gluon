@@ -46,31 +46,38 @@ export default class Game implements RenderCycle {
     	this.destroyCBs = [];
     }
 
-    runInit() :Observable<GamePhaseCB> {
+    runInit() :Observable<{}[]> {
 		this.setPhase(RenderPhase.INITIALIZING);
-		const initObservable = Observable.of("start");
-		return initObservable.flatMap(():any=>{
-			this.initCBs.forEach(cb=>{
+
+		this.activeState = this.getState(this.initialStateName);
+
+		console.log(this.activeState);
+
+		const initObs = Observable.create(observer => {
+			
+		    this.initCBs.forEach(cb=>{
 				cb();
 			});
-			return initObservable;
+		    observer.complete();
 		});
+
+		return Observable.forkJoin(initObs, this.activeState.runInit());
 	}
 
 	init(initCB :GamePhaseCB) :void {
 		this.initCBs.push(initCB);
 	}
 
-	runLoad() :Observable<GamePhaseCB> {
+	runLoad() :Observable<{}[]> {
 		this.setPhase(RenderPhase.LOADING);
-
-		const loadObservable = Observable.of("start");
-		return loadObservable.flatMap(():any=>{
-			this.loadCBs.forEach(cb=>{
+		const loadObs = Observable.create(observer => {
+		    this.loadCBs.forEach(cb=>{
 				cb();
 			});
-			return loadObservable;
+		    observer.complete();
 		});
+
+		return Observable.forkJoin(loadObs, this.activeState.runLoad());
 	}
 
 	load(cb :GamePhaseCB) :void {
@@ -123,31 +130,34 @@ export default class Game implements RenderCycle {
 		this.unPauseCBs.push(cb);
 	}
 
-	runUnload() :Observable<GamePhaseCB> {
+	runUnload() :Observable<{}[]> {
 		this.setPhase(RenderPhase.UNLOADING);
 
-		const unLoadObservable = Observable.of("start");
-		return unLoadObservable.flatMap(():any=>{
-			this.unloadCBs.forEach(cb=>{
+		const loadObs = Observable.create(observer => {
+		    this.unloadCBs.forEach(cb=>{
 				cb();
 			});
-			return unLoadObservable;
+		    observer.complete();
 		});
+
+		return Observable.forkJoin(loadObs, this.activeState.runUnload());
 	}
 
 	unload(cb :GamePhaseCB) :void {
 		this.unloadCBs.push(cb);
 	}
 
-	runDestroy()  {
+	runDestroy() :Observable<{}[]>  {
 		this.setPhase(RenderPhase.DESTROYING);
-		const unDestroyObservable = Observable.of("start");
-		return unDestroyObservable.flatMap(():any=>{
-			this.destroyCBs.forEach(cb=>{
+		
+		const loadObs = Observable.create(observer => {
+		    this.destroyCBs.forEach(cb=>{
 				cb();
 			});
-			return unDestroyObservable;
+		    observer.complete();
 		});
+
+		return Observable.forkJoin(loadObs, this.activeState.runDestroy());
 	}
 
 	destroy(cb :GamePhaseCB) :void {
@@ -218,6 +228,7 @@ export default class Game implements RenderCycle {
 
 	addState(state :State) : State {
 		this.states.push(state);
+		
 		return state;
 	}
 

@@ -8,17 +8,19 @@ var State = (function () {
             this.setName(name);
         this.initCBs = [];
         this.loadCBs = [];
+        this.unloadCBs = [];
+        this.destroyCBs = [];
     }
     State.prototype.runInit = function () {
         var _this = this;
         this.setPhase(RenderPhase_1.RenderPhase.INITIALIZING);
-        var initObservable = Rx_1.Observable.of("start").flatMap(function () {
+        var initObs = Rx_1.Observable.create(function (observer) {
             _this.initCBs.forEach(function (cb) {
                 cb();
             });
-            return initObservable;
+            observer.complete();
         });
-        return Rx_1.Observable.concat(initObservable, this.runLoad());
+        return Rx_1.Observable.forkJoin(initObs);
     };
     State.prototype.init = function (cb) {
         this.initCBs.push(cb);
@@ -26,13 +28,13 @@ var State = (function () {
     State.prototype.runLoad = function () {
         var _this = this;
         this.setPhase(RenderPhase_1.RenderPhase.LOADING);
-        var loadObservable = Rx_1.Observable.of("start");
-        return loadObservable.flatMap(function () {
+        var loadObs = Rx_1.Observable.create(function (observer) {
             _this.loadCBs.forEach(function (cb) {
                 cb();
             });
-            return loadObservable;
+            observer.complete();
         });
+        return Rx_1.Observable.forkJoin(loadObs);
     };
     State.prototype.load = function (cb) {
         this.loadCBs.push(cb);
@@ -54,12 +56,25 @@ var State = (function () {
     };
     ;
     State.prototype.runUnload = function () {
-        this.setPhase(RenderPhase_1.RenderPhase.UNLOADING);
-        return Rx_1.Observable.of(function () { });
+        var _this = this;
+        var unloadObs = Rx_1.Observable.create(function (observer) {
+            _this.loadCBs.forEach(function (cb) {
+                cb();
+            });
+            observer.complete();
+        });
+        return Rx_1.Observable.forkJoin(unloadObs);
     };
     State.prototype.runDestroy = function () {
+        var _this = this;
         this.setPhase(RenderPhase_1.RenderPhase.DESTROYING);
-        return Rx_1.Observable.of(function () { });
+        var destroyObs = Rx_1.Observable.create(function (observer) {
+            _this.loadCBs.forEach(function (cb) {
+                cb();
+            });
+            observer.complete();
+        });
+        return Rx_1.Observable.forkJoin(destroyObs);
     };
     State.prototype.getName = function () {
         return this.name;

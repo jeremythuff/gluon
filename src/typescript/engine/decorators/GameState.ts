@@ -12,7 +12,6 @@ let totalStates : number = 0;
  */
 export default function GameState(options ?: Map<string, any>) {
 
-	totalStates++;
 
 	return function(decorated : typeof State) : void {
 		
@@ -23,9 +22,6 @@ export default function GameState(options ?: Map<string, any>) {
 			if(game) {
 				console.log(`Registering State: ${state.getName()}`);
 				game.addState(state);
-				if(game.getInitialStateName()===state.getName()) {
-					game.setActiveState(state);
-				}
 			}
 		});		
 	}

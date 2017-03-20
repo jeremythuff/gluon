@@ -12,9 +12,6 @@ function GameState(options) {
             if (game) {
                 console.log("Registering State: " + state.getName());
                 game.addState(state);
-                if (game.getInitialStateName() === state.getName()) {
-                    game.setActiveState(state);
-                }
             }
         });
     };

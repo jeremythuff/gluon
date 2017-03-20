@@ -1,7 +1,7 @@
 import Engine from "../model/Engine"
 import Game from "../model/Game"
 
-import * as RunningGame from "../registries/RunningGame";
+import * as RunningGameRegistry from "../registries/RunningGame";
 
 /**
  * This function is used to decorate classes which extend [[Game]]. It registers such
@@ -20,11 +20,11 @@ export default function GameMain(options ?: Map<string, any>) {
 		
 		console.log(`Registering Game: ${game.getName()}`);
 		
-		RunningGame.setRunningGame(game);
+		RunningGameRegistry.setRunningGame(game);
 
 		const startGameInterval = window.setInterval(()=>{
-			RunningGame.getRunningGameSubject().subscribe(game=>{
-				if(game.getActiveState()) {
+			RunningGameRegistry.getRunningGameSubject().subscribe(game=>{
+				if(game.getState(game.getInitialStateName())) {
 					console.log("Starting engine");
 					const engine = new Engine(game);
 					engine.start();
