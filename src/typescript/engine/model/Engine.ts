@@ -1,4 +1,6 @@
 import * as THREE from "three";
+import * as electron from "electron";
+
 import Game from "./Game";
 
 import {RenderPhase} from "../enum/RenderPhase";
@@ -24,18 +26,19 @@ export default class Engine {
 
 	private animationLoop() {
 		if(this.running) {
+
 			window.requestAnimationFrame(this.animationLoop.bind(this));
 			const delta =  this.clock.getDelta();
 			const now = this.clock.getElapsedTime();
 			
-			if(this.game && this.game.phaseIs(RenderPhase.RUNNING)) this.game.update(delta);
+			if(this.game && this.game.phaseIs(RenderPhase.RUNNING)) this.game.runUpdate(delta);
 
 			const gameFramesPerSecond :number = this.getGame().getFramesPerSecond();
 			const currentFramesPerSecond :number = gameFramesPerSecond?gameFramesPerSecond:this.framesPerSecond;
 
 			if(this.game && this.game.phaseIs(RenderPhase.RUNNING) && (now - this.lastFrameTime)*1000 > (1000 / currentFramesPerSecond)) {
 				this.lastFrameTime = now;
-				this.game.render(delta);
+				this.game.runRender(delta);
 			}	
 		}
 	}
@@ -55,27 +58,37 @@ export default class Engine {
 		this.framesPerSecond = gameFramesPerSecond?gameFramesPerSecond:this.defaultFramesPerSecond;
 
 		game.setPhase(RenderPhase.START);
-		game.init().subscribe(()=>{
-			game.load().subscribe(()=>{
-				this.running = true;
-				this.animationLoop();
-				game.setPhase(RenderPhase.RUNNING);
-				setTimeout(()=>{this.stop();}, 5000);
-			});
-		});
-		
+
+		game.runInit()
+			.take(1)
+			.subscribe(null,null,():any=>{
+				game.runLoad()
+					.take(1)
+					.subscribe(null,null,():any=>{
+						this.running = true;
+						this.animationLoop();
+						game.setPhase(RenderPhase.RUNNING);
+						setTimeout(()=>{game.runPause();}, 5000);		
+					}).unsubscribe();
+		}).unsubscribe();		
+
 		return game;
 	}
 
 	stop() :void {
 		const game = this.getGame();
 		game.setPhase(RenderPhase.STOP);
-		game.unload().subscribe(()=>{
-			game.destroy().subscribe(()=>{
-				game.setPhase(RenderPhase.OFF);
-				this.running=false;
-			});
-		});
+		game.runUnload()
+			.take(1)
+			.subscribe(()=>{
+				game.runDestroy()
+					.take(1)
+					.subscribe(()=>{
+						game.setPhase(RenderPhase.OFF);
+						this.running=false;
+						electron.remote.getCurrentWindow().close();
+					}).unsubscribe();
+		}).unsubscribe();
 	}
 
 }

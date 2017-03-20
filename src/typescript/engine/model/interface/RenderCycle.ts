@@ -4,14 +4,14 @@ export interface RenderCycle {
 
 	phase :RenderPhase;
 
-	init() :Observable<any>;
-	load() :Observable<any>;
-	update(clock ?:number) :void;
-	render(clock ?:number) :void;
-	pause() :void;
-	unPause() :void;
-	unload() :Observable<any>;
-	destroy() :Observable<any>;
+	runInit() :Observable<any>;
+	runLoad() :Observable<any>;
+	runUpdate(clock ?:number) :void;
+	runRender(clock ?:number) :void;
+	runPause() :void;
+	runUnPause() :void;
+	runUnload() :Observable<any>;
+	runDestroy() :Observable<any>;
 	phaseIs(phase :RenderPhase) :boolean;
 	setPhase(phase :RenderPhase) :void;
 	getPhase() :RenderPhase;

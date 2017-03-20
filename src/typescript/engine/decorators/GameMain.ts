@@ -22,13 +22,15 @@ export default function GameMain(options ?: Map<string, any>) {
 		
 		RunningGame.setRunningGame(game);
 
-		// Figure out a better way to ensure that this happens after the states
-		// are all registered
-		RunningGame.getRunningGameSubject().delay(500).subscribe(game=>{
-			console.log("Starting engine");
-			const engine = new Engine(game);
-			engine.start();
-		});
-
+		const startGameInterval = window.setInterval(()=>{
+			RunningGame.getRunningGameSubject().subscribe(game=>{
+				if(game.getActiveState()) {
+					console.log("Starting engine");
+					const engine = new Engine(game);
+					engine.start();
+					window.clearInterval(startGameInterval);
+				}
+			});
+		}, 250);
 	}
 }

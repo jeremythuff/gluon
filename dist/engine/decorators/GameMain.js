@@ -9,11 +9,16 @@ function GameMain(options) {
             game.setName(decorated.name);
         console.log("Registering Game: " + game.getName());
         RunningGame.setRunningGame(game);
-        RunningGame.getRunningGameSubject().delay(500).subscribe(function (game) {
-            console.log("Starting engine");
-            var engine = new Engine_1.default(game);
-            engine.start();
-        });
+        var startGameInterval = window.setInterval(function () {
+            RunningGame.getRunningGameSubject().subscribe(function (game) {
+                if (game.getActiveState()) {
+                    console.log("Starting engine");
+                    var engine = new Engine_1.default(game);
+                    engine.start();
+                    window.clearInterval(startGameInterval);
+                }
+            });
+        }, 250);
     };
 }
 exports.default = GameMain;

@@ -7,35 +7,35 @@ var State = (function () {
         if (name)
             this.setName(name);
     }
-    State.prototype.init = function () {
+    State.prototype.runInit = function () {
         this.setPhase(RenderPhase_1.RenderPhase.INITIALIZING);
         return Rx_1.Observable.of(function () { });
     };
-    State.prototype.load = function () {
+    State.prototype.runLoad = function () {
         this.setPhase(RenderPhase_1.RenderPhase.LOADING);
         return Rx_1.Observable.of(function () { });
     };
-    State.prototype.update = function () {
+    State.prototype.runUpdate = function () {
         this.setPhase(RenderPhase_1.RenderPhase.UPDATING);
     };
     ;
-    State.prototype.render = function () {
+    State.prototype.runRender = function () {
         this.setPhase(RenderPhase_1.RenderPhase.RENDERING);
     };
     ;
-    State.prototype.pause = function () {
+    State.prototype.runPause = function () {
         this.setPhase(RenderPhase_1.RenderPhase.PAUSED);
     };
     ;
-    State.prototype.unPause = function () {
+    State.prototype.runUnPause = function () {
         this.setPhase(RenderPhase_1.RenderPhase.RENDERING);
     };
     ;
-    State.prototype.unload = function () {
+    State.prototype.runUnload = function () {
         this.setPhase(RenderPhase_1.RenderPhase.UNLOADING);
         return Rx_1.Observable.of(function () { });
     };
-    State.prototype.destroy = function () {
+    State.prototype.runDestroy = function () {
         this.setPhase(RenderPhase_1.RenderPhase.DESTROYING);
         return Rx_1.Observable.of(function () { });
     };

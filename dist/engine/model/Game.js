@@ -7,45 +7,113 @@ var Game = (function () {
         this.phase = RenderPhase_1.RenderPhase.OFF;
         if (name)
             this.setName(name);
-        this.states = new Array();
+        this.states = [];
+        this.initCBs = [];
+        this.loadCBs = [];
+        this.updateCBs = [];
+        this.renderCBs = [];
+        this.pauseCBs = [];
+        this.unPauseCBs = [];
+        this.unloadCBs = [];
+        this.destroyCBs = [];
     }
-    Game.prototype.init = function () {
+    Game.prototype.runInit = function () {
         var _this = this;
         this.setPhase(RenderPhase_1.RenderPhase.INITIALIZING);
-        return Rx_1.Observable.of(function () {
-            _this.activeState.init();
+        var initObservable = Rx_1.Observable.of("start");
+        return initObservable.flatMap(function () {
+            _this.initCBs.forEach(function (cb) {
+                cb(_this);
+            });
+            return initObservable;
         });
     };
-    Game.prototype.load = function () {
+    Game.prototype.init = function (initCB) {
+        this.initCBs.push(initCB);
+    };
+    Game.prototype.runLoad = function () {
         var _this = this;
         this.setPhase(RenderPhase_1.RenderPhase.LOADING);
-        return Rx_1.Observable.of(function () {
-            _this.activeState.load().subscribe(function () {
-                _this.setPhase(RenderPhase_1.RenderPhase.READY);
+        var loadObservable = Rx_1.Observable.of("start");
+        return loadObservable.flatMap(function () {
+            _this.loadCBs.forEach(function (cb) {
+                cb(_this);
             });
+            return loadObservable;
         });
     };
-    Game.prototype.update = function (delta) {
+    Game.prototype.load = function (cb) {
+        this.loadCBs.push(cb);
+    };
+    Game.prototype.runUpdate = function (delta) {
+        var _this = this;
         this.setPhase(RenderPhase_1.RenderPhase.UPDATING);
+        this.updateCBs.forEach(function (cb) {
+            cb(delta, _this);
+        });
     };
-    Game.prototype.render = function (clock) {
+    Game.prototype.update = function (cb) {
+        this.updateCBs.push(cb);
+    };
+    Game.prototype.runRender = function (delta) {
+        var _this = this;
         this.setPhase(RenderPhase_1.RenderPhase.RENDERING);
+        this.renderCBs.forEach(function (cb) {
+            cb(delta, _this);
+        });
     };
-    Game.prototype.pause = function () {
+    Game.prototype.render = function (cb) {
+        this.renderCBs.push(cb);
+    };
+    Game.prototype.runPause = function () {
+        var _this = this;
         this.setPhase(RenderPhase_1.RenderPhase.PAUSED);
+        this.pauseCBs.forEach(function (cb) {
+            cb(_this);
+        });
     };
     ;
-    Game.prototype.unPause = function () {
+    Game.prototype.pause = function (cb) {
+        this.pauseCBs.push(cb);
+    };
+    Game.prototype.runUnPause = function () {
+        var _this = this;
         this.setPhase(RenderPhase_1.RenderPhase.READY);
+        this.unPauseCBs.forEach(function (cb) {
+            cb(_this);
+        });
     };
     ;
-    Game.prototype.unload = function () {
-        this.setPhase(RenderPhase_1.RenderPhase.UNLOADING);
-        return Rx_1.Observable.of(function () { });
+    Game.prototype.unPause = function (cb) {
+        this.unPauseCBs.push(cb);
     };
-    Game.prototype.destroy = function () {
+    Game.prototype.runUnload = function () {
+        var _this = this;
+        this.setPhase(RenderPhase_1.RenderPhase.UNLOADING);
+        var unLoadObservable = Rx_1.Observable.of("start");
+        return unLoadObservable.flatMap(function () {
+            _this.unloadCBs.forEach(function (cb) {
+                cb(_this);
+            });
+            return unLoadObservable;
+        });
+    };
+    Game.prototype.unload = function (cb) {
+        this.unloadCBs.push(cb);
+    };
+    Game.prototype.runDestroy = function () {
+        var _this = this;
         this.setPhase(RenderPhase_1.RenderPhase.DESTROYING);
-        return Rx_1.Observable.of(function () { });
+        var unDestroyObservable = Rx_1.Observable.of("start");
+        return unDestroyObservable.flatMap(function () {
+            _this.destroyCBs.forEach(function (cb) {
+                cb(_this);
+            });
+            return unDestroyObservable;
+        });
+    };
+    Game.prototype.destroy = function (cb) {
+        this.destroyCBs.push(cb);
     };
     Game.prototype.getName = function () {
         return this.name;
@@ -99,7 +167,6 @@ var Game = (function () {
     };
     Game.prototype.setPhase = function (phase) {
         this.phase = phase;
-        console.log("Game " + this.getName() + " is " + RenderPhase_1.RenderPhase[this.getPhase()]);
     };
     return Game;
 }());

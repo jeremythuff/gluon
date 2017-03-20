@@ -22,38 +22,38 @@ export default class State implements RenderCycle {
     	if(name) this.setName(name);
     }
 
-    init() :Observable<any> {
+    runInit() :Observable<any> {
     	this.setPhase(RenderPhase.INITIALIZING);
 		return Observable.of(() => {});
 	}
 
-	load() :Observable<any> {
+	runLoad() :Observable<any> {
 		this.setPhase(RenderPhase.LOADING);
 		return Observable.of(() => {});
 	}
 
-	update() :void {
+	runUpdate() :void {
 		this.setPhase(RenderPhase.UPDATING);
 	};
 
-	render() :void {
+	runRender() :void {
 		this.setPhase(RenderPhase.RENDERING);
 	};
 
-	pause() :void {
+	runPause() :void {
 		this.setPhase(RenderPhase.PAUSED);
 	};
 
-	unPause() :void {
+	runUnPause() :void {
 		this.setPhase(RenderPhase.RENDERING);
 	};
 
-	unload() :Observable<any> {
+	runUnload() :Observable<any> {
 		this.setPhase(RenderPhase.UNLOADING);
 		return Observable.of(() => {});
 	}
 
-	destroy()  {
+	runDestroy()  {
 		this.setPhase(RenderPhase.DESTROYING);
 		return Observable.of(() => {});
 	}

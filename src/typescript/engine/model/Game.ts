@@ -4,6 +4,15 @@ import {ReplaySubject, Observable} from "@reactivex/rxjs/dist/cjs/Rx";
 import State from "./State";
 import {RenderPhase} from "../enum/RenderPhase";
 
+import {GameInitCB} from "./interface/GameInitCB";
+import {GameLoadCB} from "./interface/GameLoadCB";
+import {GameUpdateCB} from "./interface/GameUpdateCB";
+import {GameRenderCB} from "./interface/GameRenderCB";
+import {GamePauseCB} from "./interface/GamePauseCB";
+import {GameUnPauseCB} from "./interface/GameUnPauseCB";
+import {GameUnloadCB} from "./interface/GameUnloadCB";
+import {GameDestroyCB} from "./interface/GameDestroyCB";
+
 /**
  * The Game class is the central class to all Gluon games. By extending
  * this class into you game main glass, and decorating it with the [[GameMain]]
@@ -21,53 +30,134 @@ export default class Game implements RenderCycle {
 
 	private activeState :State;
 
-	private states : Array<State>;
+	private states :State[];
+
+	private initCBs :GameInitCB[];
+	private loadCBs :GameLoadCB[];
+	private updateCBs :GameUpdateCB[];
+	private renderCBs :GameRenderCB[];
+	private pauseCBs :GamePauseCB[];
+	private unPauseCBs :GameUnPauseCB[];
+	private unloadCBs :GameUnloadCB[];
+	private destroyCBs :GameDestroyCB[];
 	
     constructor(name ?:string) {
     	if(name) this.setName(name);
-    	this.states = new Array<State>();
+    	this.states = [];
+    	this.initCBs = [];
+    	this.loadCBs = [];
+    	this.updateCBs = [];
+    	this.renderCBs = [];
+    	this.pauseCBs = [];
+    	this.unPauseCBs = [];
+    	this.unloadCBs = [];
+    	this.destroyCBs = [];
     }
 
-    init() :Observable<any> {
+    runInit() :Observable<GameInitCB> {
 		this.setPhase(RenderPhase.INITIALIZING);
-		return Observable.of(() => {
-			this.activeState.init();
-		});
-	}
-
-	load() :Observable<any> {
-		this.setPhase(RenderPhase.LOADING);
-		return Observable.of(() => {
-			this.activeState.load().subscribe(() => {
-				this.setPhase(RenderPhase.READY);
+		const initObservable = Observable.of("start");
+		return initObservable.flatMap(():any=>{
+			this.initCBs.forEach(cb=>{
+				cb(this);
 			});
+			return initObservable;
 		});
 	}
 
-	update(delta :number) :void {
+	init(initCB :GameInitCB) :void {
+		this.initCBs.push(initCB);
+	}
+
+	runLoad() :Observable<GameLoadCB> {
+		this.setPhase(RenderPhase.LOADING);
+
+		const loadObservable = Observable.of("start");
+		return loadObservable.flatMap(():any=>{
+			this.loadCBs.forEach(cb=>{
+				cb(this);
+			});
+			return loadObservable;
+		});
+	}
+
+	load(cb :GameLoadCB) :void {
+		this.loadCBs.push(cb);
+	}
+
+	runUpdate(delta :number) :void {
 		this.setPhase(RenderPhase.UPDATING);
+		this.updateCBs.forEach(cb=>{
+			cb(delta,this);
+		});
 	}
 
-	render(clock :number) :void {
+	update(cb :GameUpdateCB) :void {
+		this.updateCBs.push(cb);
+	}
+
+	runRender(delta :number) :void {
 		this.setPhase(RenderPhase.RENDERING);
+		this.renderCBs.forEach(cb=>{
+			cb(delta, this);
+		});
 	}
 
-	pause() :void {
+	render(cb :GameRenderCB) :void {
+		this.renderCBs.push(cb);
+	}
+
+	runPause() :void {
 		this.setPhase(RenderPhase.PAUSED);
+		this.pauseCBs.forEach(cb=>{
+			cb(this);
+		});
 	};
 
-	unPause() :void {
-		this.setPhase(RenderPhase.READY);
-	};
-
-	unload() :Observable<any> {
-		this.setPhase(RenderPhase.UNLOADING);
-		return Observable.of(() => {});
+	pause(cb :GamePauseCB) {
+		this.pauseCBs.push(cb);
 	}
 
-	destroy()  {
+	runUnPause() :void {
+		this.setPhase(RenderPhase.READY);
+		this.unPauseCBs.forEach(cb=>{
+			cb(this);
+		});
+	};
+
+	unPause(cb :GameUnPauseCB) : void {
+		this.unPauseCBs.push(cb);
+	}
+
+	runUnload() :Observable<GameUnloadCB> {
+		this.setPhase(RenderPhase.UNLOADING);
+
+		const unLoadObservable = Observable.of("start");
+		return unLoadObservable.flatMap(():any=>{
+			this.unloadCBs.forEach(cb=>{
+				cb(this);
+			});
+			return unLoadObservable;
+		});
+	}
+
+	unload(cb :GameUnloadCB) :void {
+		this.unloadCBs.push(cb);
+	}
+
+	runDestroy()  {
 		this.setPhase(RenderPhase.DESTROYING);
-		return Observable.of(() => {});
+		const unDestroyObservable = Observable.of("start");
+		return unDestroyObservable.flatMap(():any=>{
+			this.destroyCBs.forEach(cb=>{
+				cb(this);
+			});
+			return unDestroyObservable;
+		});
+	}
+
+	destroy(cb :GameDestroyCB) :void {
+		this.destroyCBs.push(cb);
 	}
 
 	getName() : string {
@@ -135,7 +225,7 @@ export default class Game implements RenderCycle {
 
 	setPhase(phase :RenderPhase) :void {
 		this.phase = phase;
-		console.log("Game "+this.getName()+" is "+RenderPhase[this.getPhase()]);
+		//console.log("Game "+this.getName()+" is "+RenderPhase[this.getPhase()]);
 	}
 
 }
