@@ -13,6 +13,7 @@ import Mode from "./model/Mode";
 //Interface
 import {GamePhaseCB} from "./model/interface/GamePhaseCB";
 import {RenderCycle} from "./model/interface/RenderCycle";
+import {StatePhaseCB} from "./model/interface/StatePhaseCB";
 
 //Decorators
 import GameMain from "./decorators/GameMain";
@@ -27,8 +28,9 @@ export {
 	Mode,
 
 	//Interface
-	RenderCycle,
 	GamePhaseCB,
+	RenderCycle,
+	StatePhaseCB,
 
 	//Decorators
 	GameMain,

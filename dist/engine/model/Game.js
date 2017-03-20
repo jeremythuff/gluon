@@ -50,6 +50,7 @@ var Game = (function () {
         this.updateCBs.forEach(function (cb) {
             cb(delta);
         });
+        this.activeState.runUpdate(delta);
     };
     Game.prototype.update = function (cb) {
         this.updateCBs.push(cb);
@@ -59,6 +60,7 @@ var Game = (function () {
         this.renderCBs.forEach(function (cb) {
             cb(delta);
         });
+        this.activeState.runRender(delta);
     };
     Game.prototype.render = function (cb) {
         this.renderCBs.push(cb);
@@ -127,7 +129,19 @@ var Game = (function () {
         return this.activeState;
     };
     Game.prototype.setActiveState = function (state) {
-        this.activeState = state;
+        var _this = this;
+        if (this.activeState) {
+            this.activeState.runUnload()
+                .take(1)
+                .subscribe(null, null, function () {
+                _this.activeState = state;
+                _this.activeState.runInit();
+            });
+        }
+        else {
+            this.activeState = state;
+            this.activeState.runInit();
+        }
     };
     Game.prototype.getFramesPerSecond = function () {
         var frameRate = this.framesPerSecond;

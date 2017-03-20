@@ -82,6 +82,7 @@ export default class Game implements RenderCycle {
 		this.updateCBs.forEach(cb=>{
 			cb(delta);
 		});
+		this.activeState.runUpdate(delta);
 	}
 
 	update(cb :GamePhaseCB) :void {
@@ -93,6 +94,7 @@ export default class Game implements RenderCycle {
 		this.renderCBs.forEach(cb=>{
 			cb(delta);
 		});
+		this.activeState.runRender(delta);
 	}
 
 	render(cb :GamePhaseCB) :void {
@@ -173,7 +175,19 @@ export default class Game implements RenderCycle {
 	}
 
 	setActiveState(state :State) :void {
-		this.activeState = state;
+
+		if(this.activeState) {
+			this.activeState.runUnload()
+				.take(1)
+				.subscribe(null,null,()=>{
+					this.activeState = state;
+					this.activeState.runInit();
+				});
+		} else {
+			this.activeState = state;
+			this.activeState.runInit();
+		}
+
 	}
 
 	getFramesPerSecond() :number {

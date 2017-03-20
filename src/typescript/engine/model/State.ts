@@ -3,7 +3,7 @@ import {Observable} from "@reactivex/rxjs/dist/cjs/Rx";
 import {RenderCycle} from "./interface/RenderCycle";
 
 import {RenderPhase} from "../enum/RenderPhase";
-
+import {StatePhaseCB} from "./interface/StatePhaseCB";
 
 /**
  * The State class acts as the primary organizing entiry for your game. 
@@ -16,27 +16,55 @@ export default class State implements RenderCycle {
 	private name : string;
 	private framesPerSecond: number;
 
+	private initCBs :StatePhaseCB[];
+	private loadCBs :StatePhaseCB[];
+
 	phase :RenderPhase;
 
 	constructor(name ?:string) {
     	if(name) this.setName(name);
+    	this.initCBs = [];
+    	this.loadCBs = [];
     }
 
     runInit() :Observable<any> {
     	this.setPhase(RenderPhase.INITIALIZING);
-		return Observable.of(() => {});
+
+    	const initObservable = Observable.of("start").flatMap(():any=>{
+			this.initCBs.forEach(cb=>{
+				cb();
+			});
+			return initObservable;
+		});
+		
+		return Observable.concat(initObservable, this.runLoad())
+
+	}
+
+	init(cb :StatePhaseCB) {
+		this.initCBs.push(cb);
 	}
 
 	runLoad() :Observable<any> {
 		this.setPhase(RenderPhase.LOADING);
-		return Observable.of(() => {});
+		const loadObservable = Observable.of("start");
+		return loadObservable.flatMap(():any=>{
+			this.loadCBs.forEach(cb=>{
+				cb();
+			});
+			return loadObservable;
+		});
 	}
 
-	runUpdate() :void {
+	load(cb :StatePhaseCB) {
+		this.loadCBs.push(cb);
+	} 
+
+	runUpdate(delta :number) :void {
 		this.setPhase(RenderPhase.UPDATING);
 	};
 
-	runRender() :void {
+	runRender(delta :number) :void {
 		this.setPhase(RenderPhase.RENDERING);
 	};
 

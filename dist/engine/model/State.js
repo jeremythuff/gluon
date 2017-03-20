@@ -6,20 +6,42 @@ var State = (function () {
     function State(name) {
         if (name)
             this.setName(name);
+        this.initCBs = [];
+        this.loadCBs = [];
     }
     State.prototype.runInit = function () {
+        var _this = this;
         this.setPhase(RenderPhase_1.RenderPhase.INITIALIZING);
-        return Rx_1.Observable.of(function () { });
+        var initObservable = Rx_1.Observable.of("start").flatMap(function () {
+            _this.initCBs.forEach(function (cb) {
+                cb();
+            });
+            return initObservable;
+        });
+        return Rx_1.Observable.concat(initObservable, this.runLoad());
+    };
+    State.prototype.init = function (cb) {
+        this.initCBs.push(cb);
     };
     State.prototype.runLoad = function () {
+        var _this = this;
         this.setPhase(RenderPhase_1.RenderPhase.LOADING);
-        return Rx_1.Observable.of(function () { });
+        var loadObservable = Rx_1.Observable.of("start");
+        return loadObservable.flatMap(function () {
+            _this.loadCBs.forEach(function (cb) {
+                cb();
+            });
+            return loadObservable;
+        });
     };
-    State.prototype.runUpdate = function () {
+    State.prototype.load = function (cb) {
+        this.loadCBs.push(cb);
+    };
+    State.prototype.runUpdate = function (delta) {
         this.setPhase(RenderPhase_1.RenderPhase.UPDATING);
     };
     ;
-    State.prototype.runRender = function () {
+    State.prototype.runRender = function (delta) {
         this.setPhase(RenderPhase_1.RenderPhase.RENDERING);
     };
     ;
