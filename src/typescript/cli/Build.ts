@@ -5,6 +5,8 @@ import * as shell from "shelljs";
 import * as NodeSass from "node-sass";
 import * as fs from "fs";
 
+import * as path from "path";
+
 const colors = require('colors/safe');
 const nodecli = require("shelljs-nodecli");
 var table = require('text-table');
@@ -19,11 +21,11 @@ export default class Build extends AbstractCliCommand implements CliCommand {
 	execute(args :Array<string>) {
 
 		const engineDir = this.getGlobalModuleRoot();
-		const globalResourcesDir = `${engineDir}/dist/engine/resources`;
-		const mainHtmlTemplatePath = `${globalResourcesDir}/html/main.html`;
-		const localResourceDir = "src/resources";
-		const mainHtmlPath = "dist/main.html";
-		const mainCssPath = "resources/css/main.css";
+		const globalResourcesDir = `${engineDir}${path.sep}dist${path.sep}engine${path.sep}resources`;
+		const mainHtmlTemplatePath = `${globalResourcesDir}${path.sep}html${path.sep}main.html`;
+		const localResourceDir = `src${path.sep}resources`;
+		const mainHtmlPath = `dist${path.sep}main.html`;
+		const mainCssPath = `resources${path.sep}css${path.sep}main.css`;
 		const mainJsPath = "Main.js";
 
 		console.log(table([[new Date().toString(), "Transpiling typescript."]]));
@@ -36,18 +38,18 @@ export default class Build extends AbstractCliCommand implements CliCommand {
 
 			out.split(/\r?\n/).forEach(outLine => {
 				if(outLine.includes("TSFILE")&&!outLine.includes(".d.ts")&&!outLine.includes(".js.map")) {
-					const path = outLine.substring(outLine.indexOf("dist/")+5, outLine.length);
-					paths.push(path);
+					const filePath = outLine.substring(outLine.indexOf(`dist${path.sep}`)+5, outLine.length);
+					paths.push(filePath);
 				}
 			});
 
 			console.log(table([[new Date().toString(), "Building html."]]));
-			if (!shell.test('-d', "dist/resources")) shell.mkdir("dist/resources");  
-			if (shell.test('-d', `${localResourceDir}/html`)) shell.cp("-R", `${localResourceDir}/html`, "dist/resources/html/");
+			if (!shell.test('-d', `dist${path.sep}resources`)) shell.mkdir(`dist${path.sep}resources`);  
+			if (shell.test('-d', `${localResourceDir}${path.sep}html`)) shell.cp("-R", `${localResourceDir}${path.sep}html`, `dist${path.sep}resources${path.sep}html${path.sep}`);
 			shell.cp(mainHtmlTemplatePath, mainHtmlPath);
 
-			paths.forEach(path => {
-				shell.sed("-i", "{SCRIPTS}", `<script src='${path}'></script>\n\t\t{SCRIPTS}`, mainHtmlPath);
+			paths.forEach(scriptPath => {
+				shell.sed("-i", "{SCRIPTS}", `<script src='${scriptPath}'></script>\n\t\t{SCRIPTS}`, mainHtmlPath);
 			});
 			shell.sed("-i", "{SCRIPTS}", "", mainHtmlPath);
 			
@@ -56,12 +58,12 @@ export default class Build extends AbstractCliCommand implements CliCommand {
 			console.log(table([[new Date().toString(), "Compiling styles."]]));
 			NodeSass.render(
 				{
-					file: "src/resources/sass/main.scss"
+					file: `src${path.sep}resources${path.sep}sass${path.sep}main.scss`
 				},
 				function(err, res) {
 					if(!err) {
-						if (!shell.test('-d', "dist/resources/css")) shell.mkdir("dist/resources/css");
-						fs.writeFile("dist/"+mainCssPath, res.css, function(e){
+						if (!shell.test('-d', `dist${path.sep}resources${path.sep}css`)) shell.mkdir(`dist${path.sep}resources${path.sep}css`);
+						fs.writeFile(`dist${path.sep}`+mainCssPath, res.css, function(e){
 					        if(!e){
 					          console.log(table([[new Date().toString(), "Styles written to disk."]]));
 					        } else {

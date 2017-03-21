@@ -14,6 +14,7 @@ var AbstractCliCommand_1 = require("./AbstractCliCommand");
 var shell = require("shelljs");
 var NodeSass = require("node-sass");
 var fs = require("fs");
+var path = require("path");
 var colors = require('colors/safe');
 var nodecli = require("shelljs-nodecli");
 var table = require('text-table');
@@ -24,11 +25,11 @@ var Build = (function (_super) {
     }
     Build.prototype.execute = function (args) {
         var engineDir = this.getGlobalModuleRoot();
-        var globalResourcesDir = engineDir + "/dist/engine/resources";
-        var mainHtmlTemplatePath = globalResourcesDir + "/html/main.html";
-        var localResourceDir = "src/resources";
-        var mainHtmlPath = "dist/main.html";
-        var mainCssPath = "resources/css/main.css";
+        var globalResourcesDir = "" + engineDir + path.sep + "dist" + path.sep + "engine" + path.sep + "resources";
+        var mainHtmlTemplatePath = "" + globalResourcesDir + path.sep + "html" + path.sep + "main.html";
+        var localResourceDir = "src" + path.sep + "resources";
+        var mainHtmlPath = "dist" + path.sep + "main.html";
+        var mainCssPath = "resources" + path.sep + "css" + path.sep + "main.css";
         var mainJsPath = "Main.js";
         console.log(table([[new Date().toString(), "Transpiling typescript."]]));
         if (shell.test('-d', "dist"))
@@ -37,29 +38,29 @@ var Build = (function (_super) {
             var paths = new Array();
             out.split(/\r?\n/).forEach(function (outLine) {
                 if (outLine.includes("TSFILE") && !outLine.includes(".d.ts") && !outLine.includes(".js.map")) {
-                    var path = outLine.substring(outLine.indexOf("dist/") + 5, outLine.length);
-                    paths.push(path);
+                    var filePath = outLine.substring(outLine.indexOf("dist" + path.sep) + 5, outLine.length);
+                    paths.push(filePath);
                 }
             });
             console.log(table([[new Date().toString(), "Building html."]]));
-            if (!shell.test('-d', "dist/resources"))
-                shell.mkdir("dist/resources");
-            if (shell.test('-d', localResourceDir + "/html"))
-                shell.cp("-R", localResourceDir + "/html", "dist/resources/html/");
+            if (!shell.test('-d', "dist" + path.sep + "resources"))
+                shell.mkdir("dist" + path.sep + "resources");
+            if (shell.test('-d', "" + localResourceDir + path.sep + "html"))
+                shell.cp("-R", "" + localResourceDir + path.sep + "html", "dist" + path.sep + "resources" + path.sep + "html" + path.sep);
             shell.cp(mainHtmlTemplatePath, mainHtmlPath);
-            paths.forEach(function (path) {
-                shell.sed("-i", "{SCRIPTS}", "<script src='" + path + "'></script>\n\t\t{SCRIPTS}", mainHtmlPath);
+            paths.forEach(function (scriptPath) {
+                shell.sed("-i", "{SCRIPTS}", "<script src='" + scriptPath + "'></script>\n\t\t{SCRIPTS}", mainHtmlPath);
             });
             shell.sed("-i", "{SCRIPTS}", "", mainHtmlPath);
             shell.sed("-i", "{GAME_MAIN_CSS}", mainCssPath, mainHtmlPath);
             console.log(table([[new Date().toString(), "Compiling styles."]]));
             NodeSass.render({
-                file: "src/resources/sass/main.scss"
+                file: "src" + path.sep + "resources" + path.sep + "sass" + path.sep + "main.scss"
             }, function (err, res) {
                 if (!err) {
-                    if (!shell.test('-d', "dist/resources/css"))
-                        shell.mkdir("dist/resources/css");
-                    fs.writeFile("dist/" + mainCssPath, res.css, function (e) {
+                    if (!shell.test('-d', "dist" + path.sep + "resources" + path.sep + "css"))
+                        shell.mkdir("dist" + path.sep + "resources" + path.sep + "css");
+                    fs.writeFile("dist" + path.sep + mainCssPath, res.css, function (e) {
                         if (!e) {
                             console.log(table([[new Date().toString(), "Styles written to disk."]]));
                         }
