@@ -14,4 +14,4 @@ var RunningGameRegistry;
 })(RunningGameRegistry || (RunningGameRegistry = {}));
 ;
 module.exports = RunningGameRegistry;
-//# sourceMappingURL=RunningGame.js.map
+//# sourceMappingURL=RunningGameRegistry.js.map

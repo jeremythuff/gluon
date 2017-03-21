@@ -1,17 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var RunningGame = require("../registries/RunningGame");
+var RunningGameRegistry = require("../registries/RunningGameRegistry");
+var GameStateRegistry = require("../registries/GameStateRegistry");
 var totalStates = 0;
 function GameState(options) {
-    totalStates++;
     return function (decorated) {
         var state = new decorated(decorated.name);
         if (!state.getName())
             state.setName(decorated.name);
-        RunningGame.getRunningGameSubject().subscribe(function (game) {
+        RunningGameRegistry.getRunningGameSubject().subscribe(function (game) {
             if (game) {
                 console.log("Registering State: " + state.getName());
-                game.addState(state);
+                GameStateRegistry.addGameState(state);
             }
         });
     };
