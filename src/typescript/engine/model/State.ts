@@ -5,6 +5,8 @@ import {RenderCycle} from "./interface/RenderCycle";
 import {RenderPhase} from "../enum/RenderPhase";
 import {StatePhaseCB} from "./interface/StatePhaseCB";
 
+import Mode from "./Mode";
+
 /**
  * The State class acts as the primary organizing entiry for your game. 
  * States are registered and instantiated with the your game instance through the
@@ -21,10 +23,13 @@ export default class State implements RenderCycle {
 	private unloadCBs :StatePhaseCB[];
 	private destroyCBs :StatePhaseCB[];
 
+	private modes :Mode[];
+
 	phase :RenderPhase;
 
 	constructor(name ?:string) {
     	if(name) this.setName(name);
+    	this.modes = [];
     	this.initCBs = [];
     	this.loadCBs = [];
     	this.unloadCBs = [];
@@ -50,6 +55,7 @@ export default class State implements RenderCycle {
 
 	runLoad() :Observable<{}[]> {
 		this.setPhase(RenderPhase.LOADING);
+		
 		const loadObs = Observable.create(observer => {	
 		    this.loadCBs.forEach(cb=>{
 				cb();

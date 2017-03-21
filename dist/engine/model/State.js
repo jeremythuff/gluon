@@ -6,6 +6,7 @@ var State = (function () {
     function State(name) {
         if (name)
             this.setName(name);
+        this.modes = [];
         this.initCBs = [];
         this.loadCBs = [];
         this.unloadCBs = [];

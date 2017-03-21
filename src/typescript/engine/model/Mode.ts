@@ -4,5 +4,18 @@
  *  active at any given time.
  */
 export default class Mode {
-	constructor() {}
+
+	private name :string;
+
+	constructor(naem ?: string) {
+		if(name) this.name = name;
+	}
+
+	setName(name :string) :void {
+		this.name = name;
+	}
+ 
+	getName() :string {
+		return this.name;
+	}
 }

@@ -9,6 +9,7 @@ export default class State implements RenderCycle {
     private loadCBs;
     private unloadCBs;
     private destroyCBs;
+    private modes;
     phase: RenderPhase;
     constructor(name?: string);
     runInit(): Observable<{}[]>;
