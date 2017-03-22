@@ -3,9 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Rx_1 = require("@reactivex/rxjs/dist/cjs/Rx");
 var RenderPhase_1 = require("../enum/RenderPhase");
 var State = (function () {
-    function State(name) {
-        if (name)
-            this.setName(name);
+    function State() {
         this.modes = [];
         this.initCBs = [];
         this.loadCBs = [];
@@ -98,6 +96,12 @@ var State = (function () {
     State.prototype.setPhase = function (phase) {
         this.phase = phase;
         console.log("State " + this.getName() + " is " + RenderPhase_1.RenderPhase[this.getPhase()]);
+    };
+    State.prototype.setModes = function (modes) {
+        this.modes = modes;
+    };
+    State.prototype.getModes = function () {
+        return this.modes;
     };
     return State;
 }());

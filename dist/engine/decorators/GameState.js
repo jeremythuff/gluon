@@ -5,9 +5,14 @@ var GameStateRegistry = require("../registries/GameStateRegistry");
 var totalStates = 0;
 function GameState(options) {
     return function (decorated) {
-        var state = new decorated(decorated.name);
+        var state = new decorated();
         if (!state.getName())
             state.setName(decorated.name);
+        var liveModes = [];
+        options["modes"].forEach(function (mode) {
+            liveModes.push(new mode());
+        });
+        state.setModes(liveModes);
         RunningGameRegistry.getRunningGameSubject().subscribe(function (game) {
             if (game) {
                 console.log("Registering State: " + state.getName());

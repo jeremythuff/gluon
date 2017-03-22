@@ -2,6 +2,7 @@ import { Observable } from "@reactivex/rxjs/dist/cjs/Rx";
 import { RenderCycle } from "./interface/RenderCycle";
 import { RenderPhase } from "../enum/RenderPhase";
 import { StatePhaseCB } from "./interface/StatePhaseCB";
+import Mode from "./Mode";
 export default class State implements RenderCycle {
     private name;
     private framesPerSecond;
@@ -11,7 +12,7 @@ export default class State implements RenderCycle {
     private destroyCBs;
     private modes;
     phase: RenderPhase;
-    constructor(name?: string);
+    constructor();
     runInit(): Observable<{}[]>;
     init(cb: StatePhaseCB): void;
     runLoad(): Observable<{}[]>;
@@ -29,4 +30,6 @@ export default class State implements RenderCycle {
     phaseIs(phase: RenderPhase): boolean;
     getPhase(): RenderPhase;
     setPhase(phase: RenderPhase): void;
+    setModes(modes: Mode[]): void;
+    getModes(): Mode[];
 }

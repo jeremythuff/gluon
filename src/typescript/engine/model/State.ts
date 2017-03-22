@@ -24,11 +24,11 @@ export default class State implements RenderCycle {
 	private destroyCBs :StatePhaseCB[];
 
 	private modes :Mode[];
+	private activeModes :Mode[];
 
 	phase :RenderPhase;
 
-	constructor(name ?:string) {
-    	if(name) this.setName(name);
+	constructor() {
     	this.modes = [];
     	this.initCBs = [];
     	this.loadCBs = [];
@@ -136,6 +136,30 @@ export default class State implements RenderCycle {
 	setPhase(phase :RenderPhase) :void {
 		this.phase = phase;
 		console.log("State "+this.getName()+" is "+RenderPhase[this.getPhase()]);
+	}
+
+	setModes(modes :Mode[]) {
+		this.modes = modes;
+	}
+
+	getModes() :Mode[] {
+		return this.modes;
+	}
+
+	avtivateMode(mode :Mode) :void {
+		mode.runInit()
+			.take(1)
+			.subscribe(()=>{
+				this.activeModes.push(mode);
+			}).unsubscribe();
+	}
+
+	deAvtivateMode(mode :Mode) :void {
+		mode.runUnload()
+			.take(1)
+			.subscribe(()=>{
+				this.activeModes.splice(this.activeModes.indexOf(mode),1);		
+			}).unsubscribe();
 	}
 
 }
