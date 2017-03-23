@@ -10,7 +10,9 @@ function GameState(options) {
             state.setName(decorated.name);
         var liveModes = [];
         options["modes"].forEach(function (mode) {
-            liveModes.push(new mode());
+            var liveMode = new mode();
+            liveMode.setName(mode.name);
+            liveModes.push(liveMode);
         });
         state.setModes(liveModes);
         RunningGameRegistry.getRunningGameSubject().subscribe(function (game) {

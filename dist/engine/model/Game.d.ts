@@ -1,40 +1,21 @@
-import { RenderCycle } from "./interface/RenderCycle";
+import { AbstractRenderCycle } from "./abstracts/AbstractRenderCycle";
 import { Observable } from "@reactivex/rxjs/dist/cjs/Rx";
 import State from "./State";
-import { RenderPhase } from "../enum/RenderPhase";
-import { GamePhaseCB } from "./interface/GamePhaseCB";
-export default class Game implements RenderCycle {
-    phase: RenderPhase;
+export default class Game extends AbstractRenderCycle {
     private name;
     private framesPerSecond;
     private initialStateName;
     private activeState;
     private states;
-    private initCBs;
-    private loadCBs;
-    private updateCBs;
-    private renderCBs;
-    private pauseCBs;
-    private unPauseCBs;
-    private unloadCBs;
-    private destroyCBs;
     constructor(name?: string);
-    runInit(): Observable<{}[]>;
-    init(initCB: GamePhaseCB): void;
-    runLoad(): Observable<{}[]>;
-    load(cb: GamePhaseCB): void;
-    runUpdate(delta: number): void;
-    update(cb: GamePhaseCB): void;
-    runRender(delta: number): void;
-    render(cb: GamePhaseCB): void;
-    runPause(): void;
-    pause(cb: GamePhaseCB): void;
-    runUnPause(): void;
-    unPause(cb: GamePhaseCB): void;
-    runUnload(): Observable<{}[]>;
-    unload(cb: GamePhaseCB): void;
-    runDestroy(): Observable<{}[]>;
-    destroy(cb: GamePhaseCB): void;
+    protected _runInit(): Observable<{}[]>;
+    protected _runLoad(): Observable<{}[]>;
+    protected _RunUpdate(delta: number): void;
+    protected _RunRender(delta: number): void;
+    protected _RunPause(): void;
+    protected _RunUnPause(): void;
+    protected _runUnLoad(): Observable<{}[]>;
+    protected _runDestroy(): Observable<{}[]>;
     getName(): string;
     setName(name: string): void;
     getInitialStateName(): string;
@@ -45,7 +26,4 @@ export default class Game implements RenderCycle {
     setFramesPerSecond(framesPerSecond: number): void;
     getState(name: string): State;
     addState(state: State): State;
-    phaseIs(phase: RenderPhase): boolean;
-    getPhase(): RenderPhase;
-    setPhase(phase: RenderPhase): void;
 }

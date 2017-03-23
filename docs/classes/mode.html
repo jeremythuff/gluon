@@ -913,6 +913,9 @@ img { max-width: 100%; }
 			<a href="../enums/renderphase.html" class="tsd-kind-icon">Render<wbr>Phase</a>
 		</li>
 		<li class=" tsd-kind-class tsd-is-external">
+			<a href="abstractrendercycle.html" class="tsd-kind-icon">Abstract<wbr>Render<wbr>Cycle</a>
+		</li>
+		<li class=" tsd-kind-class tsd-is-external">
 			<a href="engine.html" class="tsd-kind-icon">Engine</a>
 		</li>
 		<li class=" tsd-kind-class tsd-is-external">
@@ -927,11 +930,47 @@ img { max-width: 100%; }
 				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
 					<a href="mode.html#name" class="tsd-kind-icon">name</a>
 				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
+					<a href="mode.html#phase" class="tsd-kind-icon">phase</a>
+				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
 					<a href="mode.html#getname" class="tsd-kind-icon">get<wbr>Name</a>
 				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a href="mode.html#getphase" class="tsd-kind-icon">get<wbr>Phase</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a href="mode.html#phaseis" class="tsd-kind-icon">phase<wbr>Is</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a href="mode.html#rundestroy" class="tsd-kind-icon">run<wbr>Destroy</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a href="mode.html#runinit" class="tsd-kind-icon">run<wbr>Init</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a href="mode.html#runload" class="tsd-kind-icon">run<wbr>Load</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a href="mode.html#runpause" class="tsd-kind-icon">run<wbr>Pause</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a href="mode.html#runrender" class="tsd-kind-icon">run<wbr>Render</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a href="mode.html#rununpause" class="tsd-kind-icon">run<wbr>UnPause</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a href="mode.html#rununload" class="tsd-kind-icon">run<wbr>Unload</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a href="mode.html#runupdate" class="tsd-kind-icon">run<wbr>Update</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
 					<a href="mode.html#setname" class="tsd-kind-icon">set<wbr>Name</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a href="mode.html#setphase" class="tsd-kind-icon">set<wbr>Phase</a>
 				</li>
 			</ul>
 		</li>
@@ -939,7 +978,7 @@ img { max-width: 100%; }
 			<a href="state.html" class="tsd-kind-icon">State</a>
 		</li>
 		<li class=" tsd-kind-interface tsd-is-external">
-			<a href="../interfaces/gamephasecb.html" class="tsd-kind-icon">Game<wbr>PhaseCB</a>
+			<a href="../interfaces/phasecb.html" class="tsd-kind-icon">PhaseCB</a>
 		</li>
 		<li class=" tsd-kind-interface tsd-is-external">
 			<a href="../interfaces/rendercycle.html" class="tsd-kind-icon">Render<wbr>Cycle</a>
@@ -979,6 +1018,12 @@ img { max-width: 100%; }
 				</li>
 			</ul>
 		</section>
+		<section class="tsd-panel">
+			<h3>Implements</h3>
+			<ul class="tsd-hierarchy">
+				<li><a href="../interfaces/rendercycle.html" class="tsd-signature-type">RenderCycle</a></li>
+			</ul>
+		</section>
 		<section class="tsd-panel-group tsd-index-group">
 			<h2>Index</h2>
 			<section class="tsd-panel tsd-index-panel">
@@ -989,17 +1034,29 @@ img { max-width: 100%; }
 							<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-external"><a href="mode.html#constructor" class="tsd-kind-icon">constructor</a></li>
 						</ul>
 					</section>
-					<section class="tsd-index-section tsd-is-private tsd-is-private-protected tsd-is-external">
+					<section class="tsd-index-section tsd-is-external">
 						<h3>Properties</h3>
 						<ul class="tsd-index-list">
 							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="mode.html#name" class="tsd-kind-icon">name</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="mode.html#phase" class="tsd-kind-icon">phase</a></li>
 						</ul>
 					</section>
 					<section class="tsd-index-section tsd-is-external">
 						<h3>Methods</h3>
 						<ul class="tsd-index-list">
 							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="mode.html#getname" class="tsd-kind-icon">get<wbr>Name</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="mode.html#getphase" class="tsd-kind-icon">get<wbr>Phase</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="mode.html#phaseis" class="tsd-kind-icon">phase<wbr>Is</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="mode.html#rundestroy" class="tsd-kind-icon">run<wbr>Destroy</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="mode.html#runinit" class="tsd-kind-icon">run<wbr>Init</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="mode.html#runload" class="tsd-kind-icon">run<wbr>Load</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="mode.html#runpause" class="tsd-kind-icon">run<wbr>Pause</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="mode.html#runrender" class="tsd-kind-icon">run<wbr>Render</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="mode.html#rununpause" class="tsd-kind-icon">run<wbr>UnPause</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="mode.html#rununload" class="tsd-kind-icon">run<wbr>Unload</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="mode.html#runupdate" class="tsd-kind-icon">run<wbr>Update</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="mode.html#setname" class="tsd-kind-icon">set<wbr>Name</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="mode.html#setphase" class="tsd-kind-icon">set<wbr>Phase</a></li>
 						</ul>
 					</section>
 				</div>
@@ -1017,7 +1074,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c5e4faa/src/typescript/engine/model/Mode.ts#L8">model/Mode.ts:8</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c036c60/src/typescript/engine/model/Mode.ts#L14">model/Mode.ts:14</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1031,7 +1088,7 @@ img { max-width: 100%; }
 				</ul>
 			</section>
 		</section>
-		<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected tsd-is-external">
+		<section class="tsd-panel-group tsd-member-group tsd-is-external">
 			<h2>Properties</h2>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
 				<a name="name" class="tsd-anchor"></a>
@@ -1039,7 +1096,17 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c5e4faa/src/typescript/engine/model/Mode.ts#L8">model/Mode.ts:8</a></li>
+						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c036c60/src/typescript/engine/model/Mode.ts#L14">model/Mode.ts:14</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-external">
+				<a name="phase" class="tsd-anchor"></a>
+				<h3>phase</h3>
+				<div class="tsd-signature tsd-kind-icon">phase<span class="tsd-signature-symbol">:</span> <a href="../enums/renderphase.html" class="tsd-signature-type">RenderPhase</a></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c036c60/src/typescript/engine/model/Mode.ts#L12">model/Mode.ts:12</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1056,10 +1123,208 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c5e4faa/src/typescript/engine/model/Mode.ts#L18">model/Mode.ts:18</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c036c60/src/typescript/engine/model/Mode.ts#L64">model/Mode.ts:64</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+				<a name="getphase" class="tsd-anchor"></a>
+				<h3>get<wbr>Phase</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<li class="tsd-signature tsd-kind-icon">get<wbr>Phase<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../enums/renderphase.html" class="tsd-signature-type">RenderPhase</a></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Implementation of <a href="../interfaces/rendercycle.html">RenderCycle</a>.<a href="../interfaces/rendercycle.html#getphase">getPhase</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c036c60/src/typescript/engine/model/Mode.ts#L56">model/Mode.ts:56</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-returns-title">Returns <a href="../enums/renderphase.html" class="tsd-signature-type">RenderPhase</a></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+				<a name="phaseis" class="tsd-anchor"></a>
+				<h3>phase<wbr>Is</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<li class="tsd-signature tsd-kind-icon">phase<wbr>Is<span class="tsd-signature-symbol">(</span>phase<span class="tsd-signature-symbol">: </span><a href="../enums/renderphase.html" class="tsd-signature-type">RenderPhase</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Implementation of <a href="../interfaces/rendercycle.html">RenderCycle</a>.<a href="../interfaces/rendercycle.html#phaseis">phaseIs</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c036c60/src/typescript/engine/model/Mode.ts#L50">model/Mode.ts:50</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>phase: <a href="../enums/renderphase.html" class="tsd-signature-type">RenderPhase</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+				<a name="rundestroy" class="tsd-anchor"></a>
+				<h3>run<wbr>Destroy</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<li class="tsd-signature tsd-kind-icon">run<wbr>Destroy<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">__type</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Implementation of <a href="../interfaces/rendercycle.html">RenderCycle</a>.<a href="../interfaces/rendercycle.html#rundestroy">runDestroy</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c036c60/src/typescript/engine/model/Mode.ts#L46">model/Mode.ts:46</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">__type</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+				<a name="runinit" class="tsd-anchor"></a>
+				<h3>run<wbr>Init</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<li class="tsd-signature tsd-kind-icon">run<wbr>Init<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">__type</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Implementation of <a href="../interfaces/rendercycle.html">RenderCycle</a>.<a href="../interfaces/rendercycle.html#runinit">runInit</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c036c60/src/typescript/engine/model/Mode.ts#L20">model/Mode.ts:20</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">__type</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+				<a name="runload" class="tsd-anchor"></a>
+				<h3>run<wbr>Load</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<li class="tsd-signature tsd-kind-icon">run<wbr>Load<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">__type</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Implementation of <a href="../interfaces/rendercycle.html">RenderCycle</a>.<a href="../interfaces/rendercycle.html#runload">runLoad</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c036c60/src/typescript/engine/model/Mode.ts#L30">model/Mode.ts:30</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">__type</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+				<a name="runpause" class="tsd-anchor"></a>
+				<h3>run<wbr>Pause</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<li class="tsd-signature tsd-kind-icon">run<wbr>Pause<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Implementation of <a href="../interfaces/rendercycle.html">RenderCycle</a>.<a href="../interfaces/rendercycle.html#runpause">runPause</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c036c60/src/typescript/engine/model/Mode.ts#L38">model/Mode.ts:38</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+				<a name="runrender" class="tsd-anchor"></a>
+				<h3>run<wbr>Render</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<li class="tsd-signature tsd-kind-icon">run<wbr>Render<span class="tsd-signature-symbol">(</span>clock<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Implementation of <a href="../interfaces/rendercycle.html">RenderCycle</a>.<a href="../interfaces/rendercycle.html#runrender">runRender</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c036c60/src/typescript/engine/model/Mode.ts#L36">model/Mode.ts:36</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> clock: <span class="tsd-signature-type">number</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+				<a name="rununpause" class="tsd-anchor"></a>
+				<h3>run<wbr>UnPause</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<li class="tsd-signature tsd-kind-icon">run<wbr>UnPause<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Implementation of <a href="../interfaces/rendercycle.html">RenderCycle</a>.<a href="../interfaces/rendercycle.html#rununpause">runUnPause</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c036c60/src/typescript/engine/model/Mode.ts#L40">model/Mode.ts:40</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+				<a name="rununload" class="tsd-anchor"></a>
+				<h3>run<wbr>Unload</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<li class="tsd-signature tsd-kind-icon">run<wbr>Unload<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">__type</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Implementation of <a href="../interfaces/rendercycle.html">RenderCycle</a>.<a href="../interfaces/rendercycle.html#rununload">runUnload</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c036c60/src/typescript/engine/model/Mode.ts#L42">model/Mode.ts:42</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">__type</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+				<a name="runupdate" class="tsd-anchor"></a>
+				<h3>run<wbr>Update</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<li class="tsd-signature tsd-kind-icon">run<wbr>Update<span class="tsd-signature-symbol">(</span>clock<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Implementation of <a href="../interfaces/rendercycle.html">RenderCycle</a>.<a href="../interfaces/rendercycle.html#runupdate">runUpdate</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c036c60/src/typescript/engine/model/Mode.ts#L34">model/Mode.ts:34</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> clock: <span class="tsd-signature-type">number</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 					</li>
 				</ul>
 			</section>
@@ -1073,13 +1338,37 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c5e4faa/src/typescript/engine/model/Mode.ts#L14">model/Mode.ts:14</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c036c60/src/typescript/engine/model/Mode.ts#L60">model/Mode.ts:60</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
 								<h5>name: <span class="tsd-signature-type">string</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+				<a name="setphase" class="tsd-anchor"></a>
+				<h3>set<wbr>Phase</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<li class="tsd-signature tsd-kind-icon">set<wbr>Phase<span class="tsd-signature-symbol">(</span>phase<span class="tsd-signature-symbol">: </span><a href="../enums/renderphase.html" class="tsd-signature-type">RenderPhase</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Implementation of <a href="../interfaces/rendercycle.html">RenderCycle</a>.<a href="../interfaces/rendercycle.html#setphase">setPhase</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c036c60/src/typescript/engine/model/Mode.ts#L53">model/Mode.ts:53</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>phase: <a href="../enums/renderphase.html" class="tsd-signature-type">RenderPhase</a></h5>
 							</li>
 						</ul>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>

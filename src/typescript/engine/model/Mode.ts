@@ -18,7 +18,13 @@ export default class Mode implements RenderCycle {
 	}
 
 	runInit() :Observable<{}[]> {
-		return null;
+		this.setPhase(RenderPhase.INITIALIZING);
+
+    	const initObs = Observable.create(observer => {
+		    observer.complete();
+		});
+
+		return Observable.forkJoin(initObs);
 	};
 
 	runLoad() :Observable<{}[]> {

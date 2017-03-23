@@ -1,7 +1,6 @@
 import { Observable } from "@reactivex/rxjs/dist/cjs/Rx";
 import { RenderPhase } from "../../enum/RenderPhase";
 export interface RenderCycle {
-    phase: RenderPhase;
     runInit(): Observable<{}[]>;
     runLoad(): Observable<{}[]>;
     runUpdate(clock?: number): void;

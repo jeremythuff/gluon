@@ -1,119 +1,50 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 Object.defineProperty(exports, "__esModule", { value: true });
+var AbstractRenderCycle_1 = require("./abstracts/AbstractRenderCycle");
 var Rx_1 = require("@reactivex/rxjs/dist/cjs/Rx");
-var RenderPhase_1 = require("../enum/RenderPhase");
-var Game = (function () {
+var Game = (function (_super) {
+    __extends(Game, _super);
     function Game(name) {
-        this.phase = RenderPhase_1.RenderPhase.OFF;
+        var _this = _super.call(this) || this;
         if (name)
-            this.setName(name);
-        this.states = [];
-        this.initCBs = [];
-        this.loadCBs = [];
-        this.updateCBs = [];
-        this.renderCBs = [];
-        this.pauseCBs = [];
-        this.unPauseCBs = [];
-        this.unloadCBs = [];
-        this.destroyCBs = [];
+            _this.setName(name);
+        _this.states = [];
+        return _this;
     }
-    Game.prototype.runInit = function () {
-        var _this = this;
-        this.setPhase(RenderPhase_1.RenderPhase.INITIALIZING);
+    Game.prototype._runInit = function () {
         this.activeState = this.getState(this.initialStateName);
-        console.log(this.activeState);
-        var initObs = Rx_1.Observable.create(function (observer) {
-            _this.initCBs.forEach(function (cb) {
-                cb();
-            });
-            observer.complete();
-        });
-        return Rx_1.Observable.forkJoin(initObs, this.activeState.runInit());
+        return Rx_1.Observable.forkJoin(this.activeState.runInit());
     };
-    Game.prototype.init = function (initCB) {
-        this.initCBs.push(initCB);
+    Game.prototype._runLoad = function () {
+        return Rx_1.Observable.forkJoin(this.activeState.runLoad());
     };
-    Game.prototype.runLoad = function () {
-        var _this = this;
-        this.setPhase(RenderPhase_1.RenderPhase.LOADING);
-        var loadObs = Rx_1.Observable.create(function (observer) {
-            _this.loadCBs.forEach(function (cb) {
-                cb();
-            });
-            observer.complete();
-        });
-        return Rx_1.Observable.forkJoin(loadObs, this.activeState.runLoad());
-    };
-    Game.prototype.load = function (cb) {
-        this.loadCBs.push(cb);
-    };
-    Game.prototype.runUpdate = function (delta) {
-        this.setPhase(RenderPhase_1.RenderPhase.UPDATING);
-        this.updateCBs.forEach(function (cb) {
-            cb(delta);
-        });
+    Game.prototype._RunUpdate = function (delta) {
         this.activeState.runUpdate(delta);
     };
-    Game.prototype.update = function (cb) {
-        this.updateCBs.push(cb);
-    };
-    Game.prototype.runRender = function (delta) {
-        this.setPhase(RenderPhase_1.RenderPhase.RENDERING);
-        this.renderCBs.forEach(function (cb) {
-            cb(delta);
-        });
+    ;
+    Game.prototype._RunRender = function (delta) {
         this.activeState.runRender(delta);
     };
-    Game.prototype.render = function (cb) {
-        this.renderCBs.push(cb);
-    };
-    Game.prototype.runPause = function () {
-        this.setPhase(RenderPhase_1.RenderPhase.PAUSED);
-        this.pauseCBs.forEach(function (cb) {
-            cb();
-        });
-    };
     ;
-    Game.prototype.pause = function (cb) {
-        this.pauseCBs.push(cb);
-    };
-    Game.prototype.runUnPause = function () {
-        this.setPhase(RenderPhase_1.RenderPhase.READY);
-        this.unPauseCBs.forEach(function (cb) {
-            cb();
-        });
-    };
+    Game.prototype._RunPause = function () { };
     ;
-    Game.prototype.unPause = function (cb) {
-        this.unPauseCBs.push(cb);
+    Game.prototype._RunUnPause = function () { };
+    ;
+    Game.prototype._runUnLoad = function () {
+        return Rx_1.Observable.forkJoin(this.activeState.runUnload());
     };
-    Game.prototype.runUnload = function () {
-        var _this = this;
-        this.setPhase(RenderPhase_1.RenderPhase.UNLOADING);
-        var loadObs = Rx_1.Observable.create(function (observer) {
-            _this.unloadCBs.forEach(function (cb) {
-                cb();
-            });
-            observer.complete();
-        });
-        return Rx_1.Observable.forkJoin(loadObs, this.activeState.runUnload());
-    };
-    Game.prototype.unload = function (cb) {
-        this.unloadCBs.push(cb);
-    };
-    Game.prototype.runDestroy = function () {
-        var _this = this;
-        this.setPhase(RenderPhase_1.RenderPhase.DESTROYING);
-        var loadObs = Rx_1.Observable.create(function (observer) {
-            _this.destroyCBs.forEach(function (cb) {
-                cb();
-            });
-            observer.complete();
-        });
-        return Rx_1.Observable.forkJoin(loadObs, this.activeState.runDestroy());
-    };
-    Game.prototype.destroy = function (cb) {
-        this.destroyCBs.push(cb);
+    Game.prototype._runDestroy = function () {
+        return Rx_1.Observable.forkJoin(this.activeState.runDestroy());
     };
     Game.prototype.getName = function () {
         return this.name;
@@ -171,16 +102,7 @@ var Game = (function () {
         this.states.push(state);
         return state;
     };
-    Game.prototype.phaseIs = function (phase) {
-        return phase === this.phase || phase === Math.floor(this.phase);
-    };
-    Game.prototype.getPhase = function () {
-        return this.phase;
-    };
-    Game.prototype.setPhase = function (phase) {
-        this.phase = phase;
-    };
     return Game;
-}());
+}(AbstractRenderCycle_1.AbstractRenderCycle));
 exports.default = Game;
 //# sourceMappingURL=Game.js.map

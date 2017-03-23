@@ -11,6 +11,7 @@ export default class State implements RenderCycle {
     private unloadCBs;
     private destroyCBs;
     private modes;
+    private activeModes;
     phase: RenderPhase;
     constructor();
     runInit(): Observable<{}[]>;
@@ -32,4 +33,10 @@ export default class State implements RenderCycle {
     setPhase(phase: RenderPhase): void;
     setModes(modes: Mode[]): void;
     getModes(): Mode[];
+    getModeByName(name: string): Mode;
+    activateMode(mode: Mode): void;
+    avtivateAllModes(mode: Mode): void;
+    deActivateMode(mode: Mode): void;
+    deActivateAllMode(mode: Mode): void;
+    private runPhaseCBs(cbs);
 }

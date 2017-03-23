@@ -30,6 +30,7 @@ export default class State implements RenderCycle {
 
 	constructor() {
     	this.modes = [];
+    	this.activeModes =[];
     	this.initCBs = [];
     	this.loadCBs = [];
     	this.unloadCBs = [];
@@ -38,15 +39,7 @@ export default class State implements RenderCycle {
 
     runInit() :Observable<{}[]> {
     	this.setPhase(RenderPhase.INITIALIZING);
-    	const initObs = Observable.create(observer => {
-		    this.initCBs.forEach(cb=>{
-				cb();
-			});
-		    observer.complete();
-		});
-
-		return Observable.forkJoin(initObs);
-
+		return Observable.forkJoin(this.runPhaseCBs(this.initCBs));
 	}
 
 	init(cb :StatePhaseCB) {
@@ -55,15 +48,7 @@ export default class State implements RenderCycle {
 
 	runLoad() :Observable<{}[]> {
 		this.setPhase(RenderPhase.LOADING);
-		
-		const loadObs = Observable.create(observer => {	
-		    this.loadCBs.forEach(cb=>{
-				cb();
-			});
-		    observer.complete();
-		});
-
-		return Observable.forkJoin(loadObs);
+		return Observable.forkJoin(this.runPhaseCBs(this.loadCBs));
 	}
 
 	load(cb :StatePhaseCB) {
@@ -87,26 +72,12 @@ export default class State implements RenderCycle {
 	};
 
 	runUnload() :Observable<{}[]> {
-		const unloadObs = Observable.create(observer => {	
-		    this.loadCBs.forEach(cb=>{
-				cb();
-			});
-		    observer.complete();
-		});
-
-		return Observable.forkJoin(unloadObs);
+		return Observable.forkJoin(this.runPhaseCBs(this.unloadCBs));
 	}
 
-	runDestroy() : Observable<{}[]>  {
+	runDestroy() :Observable<{}[]>  {
 		this.setPhase(RenderPhase.DESTROYING);
-		const destroyObs = Observable.create(observer => {	
-		    this.loadCBs.forEach(cb=>{
-				cb();
-			});
-		    observer.complete();
-		});
-
-		return Observable.forkJoin(destroyObs);
+		return Observable.forkJoin(this.runPhaseCBs(this.destroyCBs));
 	}
 
 	getName() : string {
@@ -135,7 +106,6 @@ export default class State implements RenderCycle {
 
 	setPhase(phase :RenderPhase) :void {
 		this.phase = phase;
-		console.log("State "+this.getName()+" is "+RenderPhase[this.getPhase()]);
 	}
 
 	setModes(modes :Mode[]) {
@@ -146,20 +116,51 @@ export default class State implements RenderCycle {
 		return this.modes;
 	}
 
-	avtivateMode(mode :Mode) :void {
+	getModeByName(name :string) :Mode {
+		let foundMode = null;
+		this.modes.some(mode=>{
+			const p = mode.getName() === name;
+			if(p) foundMode = mode;
+			return p;
+		});
+		return foundMode;
+	}
+
+	activateMode(mode :Mode) :void {
 		mode.runInit()
 			.take(1)
-			.subscribe(()=>{
+			.subscribe(null,null,()=>{
 				this.activeModes.push(mode);
+			});
+	}
+
+	avtivateAllModes(mode :Mode) :void {
+		this.modes.forEach(mode=>{
+			this.activateMode(mode);
+		});
+	}
+
+	deActivateMode(mode :Mode) :void {
+		mode.runUnload()
+			.take(1)
+			.subscribe(null,null,()=>{
+				this.activeModes.splice(this.activeModes.indexOf(mode),1);		
 			}).unsubscribe();
 	}
 
-	deAvtivateMode(mode :Mode) :void {
-		mode.runUnload()
-			.take(1)
-			.subscribe(()=>{
-				this.activeModes.splice(this.activeModes.indexOf(mode),1);		
-			}).unsubscribe();
+	deActivateAllMode(mode :Mode) :void {
+		this.activeModes.forEach(mode=>{
+			this.deActivateMode(mode);
+		});
+	}
+
+	private runPhaseCBs(cbs :StatePhaseCB[]) :Observable<{}[]> {
+		return Observable.create(observer => {	
+		    cbs.forEach(cb=>{
+				cb();
+			});
+		    observer.complete();
+		});
 	}
 
 }

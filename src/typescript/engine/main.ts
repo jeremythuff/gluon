@@ -11,7 +11,7 @@ import State from "./model/State";
 import Mode from "./model/Mode";
 
 //Interface
-import {GamePhaseCB} from "./model/interface/GamePhaseCB";
+import {PhaseCB} from "./model/interface/PhaseCB";
 import {RenderCycle} from "./model/interface/RenderCycle";
 import {StatePhaseCB} from "./model/interface/StatePhaseCB";
 
@@ -28,7 +28,7 @@ export {
 	Mode,
 
 	//Interface
-	GamePhaseCB,
+	PhaseCB,
 	RenderCycle,
 	StatePhaseCB,
 

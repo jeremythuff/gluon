@@ -5,35 +5,22 @@ var RenderPhase_1 = require("../enum/RenderPhase");
 var State = (function () {
     function State() {
         this.modes = [];
+        this.activeModes = [];
         this.initCBs = [];
         this.loadCBs = [];
         this.unloadCBs = [];
         this.destroyCBs = [];
     }
     State.prototype.runInit = function () {
-        var _this = this;
         this.setPhase(RenderPhase_1.RenderPhase.INITIALIZING);
-        var initObs = Rx_1.Observable.create(function (observer) {
-            _this.initCBs.forEach(function (cb) {
-                cb();
-            });
-            observer.complete();
-        });
-        return Rx_1.Observable.forkJoin(initObs);
+        return Rx_1.Observable.forkJoin(this.runPhaseCBs(this.initCBs));
     };
     State.prototype.init = function (cb) {
         this.initCBs.push(cb);
     };
     State.prototype.runLoad = function () {
-        var _this = this;
         this.setPhase(RenderPhase_1.RenderPhase.LOADING);
-        var loadObs = Rx_1.Observable.create(function (observer) {
-            _this.loadCBs.forEach(function (cb) {
-                cb();
-            });
-            observer.complete();
-        });
-        return Rx_1.Observable.forkJoin(loadObs);
+        return Rx_1.Observable.forkJoin(this.runPhaseCBs(this.loadCBs));
     };
     State.prototype.load = function (cb) {
         this.loadCBs.push(cb);
@@ -55,25 +42,11 @@ var State = (function () {
     };
     ;
     State.prototype.runUnload = function () {
-        var _this = this;
-        var unloadObs = Rx_1.Observable.create(function (observer) {
-            _this.loadCBs.forEach(function (cb) {
-                cb();
-            });
-            observer.complete();
-        });
-        return Rx_1.Observable.forkJoin(unloadObs);
+        return Rx_1.Observable.forkJoin(this.runPhaseCBs(this.unloadCBs));
     };
     State.prototype.runDestroy = function () {
-        var _this = this;
         this.setPhase(RenderPhase_1.RenderPhase.DESTROYING);
-        var destroyObs = Rx_1.Observable.create(function (observer) {
-            _this.loadCBs.forEach(function (cb) {
-                cb();
-            });
-            observer.complete();
-        });
-        return Rx_1.Observable.forkJoin(destroyObs);
+        return Rx_1.Observable.forkJoin(this.runPhaseCBs(this.destroyCBs));
     };
     State.prototype.getName = function () {
         return this.name;
@@ -95,13 +68,58 @@ var State = (function () {
     };
     State.prototype.setPhase = function (phase) {
         this.phase = phase;
-        console.log("State " + this.getName() + " is " + RenderPhase_1.RenderPhase[this.getPhase()]);
     };
     State.prototype.setModes = function (modes) {
         this.modes = modes;
     };
     State.prototype.getModes = function () {
         return this.modes;
+    };
+    State.prototype.getModeByName = function (name) {
+        var foundMode = null;
+        this.modes.some(function (mode) {
+            var p = mode.getName() === name;
+            if (p)
+                foundMode = mode;
+            return p;
+        });
+        return foundMode;
+    };
+    State.prototype.activateMode = function (mode) {
+        var _this = this;
+        mode.runInit()
+            .take(1)
+            .subscribe(null, null, function () {
+            _this.activeModes.push(mode);
+        });
+    };
+    State.prototype.avtivateAllModes = function (mode) {
+        var _this = this;
+        this.modes.forEach(function (mode) {
+            _this.activateMode(mode);
+        });
+    };
+    State.prototype.deActivateMode = function (mode) {
+        var _this = this;
+        mode.runUnload()
+            .take(1)
+            .subscribe(null, null, function () {
+            _this.activeModes.splice(_this.activeModes.indexOf(mode), 1);
+        }).unsubscribe();
+    };
+    State.prototype.deActivateAllMode = function (mode) {
+        var _this = this;
+        this.activeModes.forEach(function (mode) {
+            _this.deActivateMode(mode);
+        });
+    };
+    State.prototype.runPhaseCBs = function (cbs) {
+        return Rx_1.Observable.create(function (observer) {
+            cbs.forEach(function (cb) {
+                cb();
+            });
+            observer.complete();
+        });
     };
     return State;
 }());

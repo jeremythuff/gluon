@@ -22,7 +22,9 @@ export default function GameState(options ?: { [name: string]: any[]|string }) {
 		
 		const liveModes :Mode[] = [];
 		(<typeof Mode[]>options["modes"]).forEach(mode=>{
-			liveModes.push(new mode());
+			const liveMode = new mode();
+			liveMode.setName(mode.name);
+			liveModes.push(liveMode);
 		});
 
 		state.setModes(liveModes);

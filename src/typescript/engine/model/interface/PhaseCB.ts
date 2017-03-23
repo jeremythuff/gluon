@@ -1,6 +1,6 @@
 import Game from "../Game";
 
-export interface GamePhaseCB {
+export interface PhaseCB {
 	(delta ?:number): void;
 	
 }
