@@ -1,9 +1,8 @@
-import {AbstractRenderCycle} from "./abstracts/AbstractRenderCycle";
-import {ReplaySubject, Observable} from "@reactivex/rxjs/dist/cjs/Rx";
+import * as THREE from "three";
+import {Observable} from "@reactivex/rxjs/dist/cjs/Rx";
 
+import {AbstractRenderCycle} from "./abstracts/AbstractRenderCycle";
 import State from "./State";
-import {PhaseCB} from "./interface/PhaseCB";
-import {RenderPhase} from "../enum/RenderPhase";
 
 /**
  * The Game class is the central class to all Gluon games. By extending
@@ -14,6 +13,8 @@ export default class Game extends AbstractRenderCycle {
 
 	private name : string;
 
+	private renderer : THREE.WebGLRenderer;
+
 	private framesPerSecond :number;
 	private initialStateName :string;
 	private activeState :State;
@@ -23,10 +24,17 @@ export default class Game extends AbstractRenderCycle {
     	super();
     	if(name) this.setName(name);
     	this.states = [];
+    	this.renderer = new THREE.WebGLRenderer();
     }
 
     protected _runInit() :Observable<{}[]> {
     	this.activeState = this.getState(this.initialStateName);
+    	this.renderer.setSize(window.innerWidth, window.innerHeight);
+    	document.body.insertBefore(this.renderer.domElement, document.body.firstChild);
+    	const $windowResize = Observable.fromEvent(window, 'resize').debounceTime(100);
+    	$windowResize.subscribe(test=>{
+    		this.renderer.setSize(window.innerWidth, window.innerHeight);
+    	});
     	return Observable.forkJoin(this.activeState.runInit());
     }
 
@@ -34,17 +42,17 @@ export default class Game extends AbstractRenderCycle {
 		return Observable.forkJoin(this.activeState.runLoad());
 	}
 
-	protected _RunUpdate(delta :number) :void {
+	protected _runUpdate(delta :number) :void {
 		this.activeState.runUpdate(delta);
 	};
 
-	protected _RunRender(delta :number) :void {
+	protected _runRender(delta :number) :void {
 		this.activeState.runRender(delta);
 	};
 
-	protected _RunPause() :void {};
+	protected _runPause() :void {};
 
-	protected _RunUnPause() :void {};
+	protected _runUnPause() :void {};
 
 	protected _runUnLoad() :Observable<{}[]> {
 		return Observable.forkJoin(this.activeState.runUnload());

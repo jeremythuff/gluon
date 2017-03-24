@@ -1,36 +1,24 @@
 import { Observable } from "@reactivex/rxjs/dist/cjs/Rx";
-import { RenderCycle } from "./interface/RenderCycle";
-import { RenderPhase } from "../enum/RenderPhase";
-import { StatePhaseCB } from "./interface/StatePhaseCB";
+import { AbstractRenderCycle } from "./abstracts/AbstractRenderCycle";
 import Mode from "./Mode";
-export default class State implements RenderCycle {
+export default class State extends AbstractRenderCycle {
     private name;
     private framesPerSecond;
-    private initCBs;
-    private loadCBs;
-    private unloadCBs;
-    private destroyCBs;
     private modes;
     private activeModes;
-    phase: RenderPhase;
     constructor();
-    runInit(): Observable<{}[]>;
-    init(cb: StatePhaseCB): void;
-    runLoad(): Observable<{}[]>;
-    load(cb: StatePhaseCB): void;
-    runUpdate(delta: number): void;
-    runRender(delta: number): void;
-    runPause(): void;
-    runUnPause(): void;
-    runUnload(): Observable<{}[]>;
-    runDestroy(): Observable<{}[]>;
+    protected _runInit(): Observable<{}[]>;
+    protected _runLoad(): Observable<{}[]>;
+    protected _runUpdate(delta: number): void;
+    protected _runRender(delta: number): void;
+    protected _runPause(): void;
+    protected _runUnPause(): void;
+    protected _runUnLoad(): Observable<{}[]>;
+    protected _runDestroy(): Observable<{}[]>;
     getName(): string;
     setName(name: string): void;
     getFramesPerSecond(): number;
     setFramesPerSecond(framesPerSecond: number): void;
-    phaseIs(phase: RenderPhase): boolean;
-    getPhase(): RenderPhase;
-    setPhase(phase: RenderPhase): void;
     setModes(modes: Mode[]): void;
     getModes(): Mode[];
     getModeByName(name: string): Mode;
@@ -38,5 +26,4 @@ export default class State implements RenderCycle {
     avtivateAllModes(mode: Mode): void;
     deActivateMode(mode: Mode): void;
     deActivateAllMode(mode: Mode): void;
-    private runPhaseCBs(cbs);
 }

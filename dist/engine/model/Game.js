@@ -10,8 +10,9 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var AbstractRenderCycle_1 = require("./abstracts/AbstractRenderCycle");
+var THREE = require("three");
 var Rx_1 = require("@reactivex/rxjs/dist/cjs/Rx");
+var AbstractRenderCycle_1 = require("./abstracts/AbstractRenderCycle");
 var Game = (function (_super) {
     __extends(Game, _super);
     function Game(name) {
@@ -19,26 +20,34 @@ var Game = (function (_super) {
         if (name)
             _this.setName(name);
         _this.states = [];
+        _this.renderer = new THREE.WebGLRenderer();
         return _this;
     }
     Game.prototype._runInit = function () {
+        var _this = this;
         this.activeState = this.getState(this.initialStateName);
+        this.renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.insertBefore(this.renderer.domElement, document.body.firstChild);
+        var $windowResize = Rx_1.Observable.fromEvent(window, 'resize').debounceTime(100);
+        $windowResize.subscribe(function (test) {
+            _this.renderer.setSize(window.innerWidth, window.innerHeight);
+        });
         return Rx_1.Observable.forkJoin(this.activeState.runInit());
     };
     Game.prototype._runLoad = function () {
         return Rx_1.Observable.forkJoin(this.activeState.runLoad());
     };
-    Game.prototype._RunUpdate = function (delta) {
+    Game.prototype._runUpdate = function (delta) {
         this.activeState.runUpdate(delta);
     };
     ;
-    Game.prototype._RunRender = function (delta) {
+    Game.prototype._runRender = function (delta) {
         this.activeState.runRender(delta);
     };
     ;
-    Game.prototype._RunPause = function () { };
+    Game.prototype._runPause = function () { };
     ;
-    Game.prototype._RunUnPause = function () { };
+    Game.prototype._runUnPause = function () { };
     ;
     Game.prototype._runUnLoad = function () {
         return Rx_1.Observable.forkJoin(this.activeState.runUnload());

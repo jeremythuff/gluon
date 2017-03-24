@@ -56,52 +56,52 @@ export abstract class AbstractRenderCycle implements RenderCycle {
 		this.loadCBs.push(cb);
 	}
 
-	protected abstract _RunUpdate(delta :number) :void;
+	protected abstract _runUpdate(delta :number) :void;
 	public runUpdate(delta :number) :void {
 		this.setPhase(RenderPhase.UPDATING);
 		this.updateCBs.forEach(cb=>{
 			cb(delta);
 		});
-		this._RunUpdate(delta);
+		this._runUpdate(delta);
 	}
 
 	public update(cb :PhaseCB) :void {
 		this.updateCBs.push(cb);
 	}
 
-	protected abstract _RunRender(delta :number) :void;
+	protected abstract _runRender(delta :number) :void;
 	public runRender(delta :number) :void {
 		this.setPhase(RenderPhase.RENDERING);
 		this.renderCBs.forEach(cb=>{
 			cb(delta);
 		});
-		this._RunRender(delta);
+		this._runRender(delta);
 	}
 
 	public render(cb :PhaseCB) :void {
 		this.renderCBs.push(cb);
 	}
 
-	protected abstract _RunPause() :void;
+	protected abstract _runPause() :void;
 	public runPause() :void {
 		this.setPhase(RenderPhase.PAUSED);
 		this.pauseCBs.forEach(cb=>{
 			cb();
 		});
-		this._RunPause();
+		this._runPause();
 	};
 
 	public pause(cb :PhaseCB) {
 		this.pauseCBs.push(cb);
 	}
 
-	protected abstract _RunUnPause() :void;
+	protected abstract _runUnPause() :void;
 	public runUnPause() :void {
 		this.setPhase(RenderPhase.READY);
 		this.unPauseCBs.forEach(cb=>{
 			cb();
 		});
-		this._RunUnPause();
+		this._runUnPause();
 	};
 
 	public unPause(cb :PhaseCB) : void {

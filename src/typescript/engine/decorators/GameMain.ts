@@ -12,7 +12,7 @@ import * as GameStateRegistry from "../registries/GameStateRegistry";
  *
  * @decorator Class<typeof Game>
  */
-export default function GameMain(options ?: Map<string, any>) {
+export default function GameMain(options ?: { [name: string]: any[]|string }) {
 	return function(decorated : typeof Game) : void {
 		
 		const game = new decorated(decorated.name);

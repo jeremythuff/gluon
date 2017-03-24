@@ -1,8 +1,9 @@
-import { AbstractRenderCycle } from "./abstracts/AbstractRenderCycle";
 import { Observable } from "@reactivex/rxjs/dist/cjs/Rx";
+import { AbstractRenderCycle } from "./abstracts/AbstractRenderCycle";
 import State from "./State";
 export default class Game extends AbstractRenderCycle {
     private name;
+    private renderer;
     private framesPerSecond;
     private initialStateName;
     private activeState;
@@ -10,10 +11,10 @@ export default class Game extends AbstractRenderCycle {
     constructor(name?: string);
     protected _runInit(): Observable<{}[]>;
     protected _runLoad(): Observable<{}[]>;
-    protected _RunUpdate(delta: number): void;
-    protected _RunRender(delta: number): void;
-    protected _RunPause(): void;
-    protected _RunUnPause(): void;
+    protected _runUpdate(delta: number): void;
+    protected _runRender(delta: number): void;
+    protected _runPause(): void;
+    protected _runUnPause(): void;
     protected _runUnLoad(): Observable<{}[]>;
     protected _runDestroy(): Observable<{}[]>;
     getName(): string;

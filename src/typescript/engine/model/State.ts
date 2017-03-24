@@ -1,10 +1,6 @@
 import {Observable} from "@reactivex/rxjs/dist/cjs/Rx";
 
-import {RenderCycle} from "./interface/RenderCycle";
-
-import {RenderPhase} from "../enum/RenderPhase";
-import {StatePhaseCB} from "./interface/StatePhaseCB";
-
+import {AbstractRenderCycle} from "./abstracts/AbstractRenderCycle";
 import Mode from "./Mode";
 
 /**
@@ -13,71 +9,42 @@ import Mode from "./Mode";
  * use of the [[GameState]] decorator. Any class which both extends State and is decorated
  * with [[GameState]] will automatically be available for you in your game instance.
  * */
-export default class State implements RenderCycle {
+export default class State extends AbstractRenderCycle {
 
 	private name : string;
 	private framesPerSecond: number;
 
-	private initCBs :StatePhaseCB[];
-	private loadCBs :StatePhaseCB[];
-	private unloadCBs :StatePhaseCB[];
-	private destroyCBs :StatePhaseCB[];
-
 	private modes :Mode[];
 	private activeModes :Mode[];
 
-	phase :RenderPhase;
-
 	constructor() {
+		super();
     	this.modes = [];
     	this.activeModes =[];
-    	this.initCBs = [];
-    	this.loadCBs = [];
-    	this.unloadCBs = [];
-    	this.destroyCBs = [];
     }
 
-    runInit() :Observable<{}[]> {
-    	this.setPhase(RenderPhase.INITIALIZING);
-		return Observable.forkJoin(this.runPhaseCBs(this.initCBs));
+   protected  _runInit() :Observable<{}[]> {
+		return Observable.forkJoin();
 	}
 
-	init(cb :StatePhaseCB) {
-		this.initCBs.push(cb);
+	protected _runLoad() :Observable<{}[]> {
+		return Observable.forkJoin();
 	}
 
-	runLoad() :Observable<{}[]> {
-		this.setPhase(RenderPhase.LOADING);
-		return Observable.forkJoin(this.runPhaseCBs(this.loadCBs));
+	protected _runUpdate(delta :number) :void {};
+
+	protected _runRender(delta :number) :void {};
+
+	protected _runPause() :void {};
+
+	protected _runUnPause() :void {};
+
+	protected _runUnLoad() :Observable<{}[]> {
+		return Observable.forkJoin();
 	}
 
-	load(cb :StatePhaseCB) {
-		this.loadCBs.push(cb);
-	} 
-
-	runUpdate(delta :number) :void {
-		this.setPhase(RenderPhase.UPDATING);
-	};
-
-	runRender(delta :number) :void {
-		this.setPhase(RenderPhase.RENDERING);
-	};
-
-	runPause() :void {
-		this.setPhase(RenderPhase.PAUSED);
-	};
-
-	runUnPause() :void {
-		this.setPhase(RenderPhase.RENDERING);
-	};
-
-	runUnload() :Observable<{}[]> {
-		return Observable.forkJoin(this.runPhaseCBs(this.unloadCBs));
-	}
-
-	runDestroy() :Observable<{}[]>  {
-		this.setPhase(RenderPhase.DESTROYING);
-		return Observable.forkJoin(this.runPhaseCBs(this.destroyCBs));
+	protected _runDestroy() :Observable<{}[]>  {
+		return Observable.forkJoin();
 	}
 
 	getName() : string {
@@ -94,18 +61,6 @@ export default class State implements RenderCycle {
 
 	setFramesPerSecond(framesPerSecond :number) : void {
 		this.framesPerSecond = framesPerSecond;
-	}
-
-	phaseIs(phase:RenderPhase) :boolean {
-		return phase===this.phase || phase === Math.floor(this.phase);
-	}
-
-	getPhase() :RenderPhase {
-		return this.phase;
-	}
-
-	setPhase(phase :RenderPhase) :void {
-		this.phase = phase;
 	}
 
 	setModes(modes :Mode[]) {
@@ -151,15 +106,6 @@ export default class State implements RenderCycle {
 	deActivateAllMode(mode :Mode) :void {
 		this.activeModes.forEach(mode=>{
 			this.deActivateMode(mode);
-		});
-	}
-
-	private runPhaseCBs(cbs :StatePhaseCB[]) :Observable<{}[]> {
-		return Observable.create(observer => {	
-		    cbs.forEach(cb=>{
-				cb();
-			});
-		    observer.complete();
 		});
 	}
 

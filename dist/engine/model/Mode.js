@@ -1,52 +1,45 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 Object.defineProperty(exports, "__esModule", { value: true });
 var Rx_1 = require("@reactivex/rxjs/dist/cjs/Rx");
-var RenderPhase_1 = require("../enum/RenderPhase");
-var Mode = (function () {
-    function Mode(naem) {
+var AbstractRenderCycle_1 = require("./abstracts/AbstractRenderCycle");
+var Mode = (function (_super) {
+    __extends(Mode, _super);
+    function Mode(name) {
+        var _this = _super.call(this) || this;
         if (name)
-            this.name = name;
+            _this.name = name;
+        return _this;
     }
-    Mode.prototype.runInit = function () {
-        this.setPhase(RenderPhase_1.RenderPhase.INITIALIZING);
-        var initObs = Rx_1.Observable.create(function (observer) {
-            observer.complete();
-        });
-        return Rx_1.Observable.forkJoin(initObs);
+    Mode.prototype._runInit = function () {
+        return Rx_1.Observable.forkJoin();
     };
-    ;
-    Mode.prototype.runLoad = function () {
-        return null;
+    Mode.prototype._runLoad = function () {
+        return Rx_1.Observable.forkJoin();
     };
+    Mode.prototype._runUpdate = function (delta) { };
     ;
-    Mode.prototype.runUpdate = function (clock) { };
+    Mode.prototype._runRender = function (delta) { };
     ;
-    Mode.prototype.runRender = function (clock) { };
+    Mode.prototype._runPause = function () { };
     ;
-    Mode.prototype.runPause = function () { };
+    Mode.prototype._runUnPause = function () { };
     ;
-    Mode.prototype.runUnPause = function () { };
-    ;
-    Mode.prototype.runUnload = function () {
-        return null;
+    Mode.prototype._runUnLoad = function () {
+        return Rx_1.Observable.forkJoin();
     };
-    ;
-    Mode.prototype.runDestroy = function () {
-        return null;
+    Mode.prototype._runDestroy = function () {
+        return Rx_1.Observable.forkJoin();
     };
-    ;
-    Mode.prototype.phaseIs = function (phase) {
-        return null;
-    };
-    ;
-    Mode.prototype.setPhase = function (phase) {
-        this.phase = phase;
-    };
-    ;
-    Mode.prototype.getPhase = function () {
-        return this.phase;
-    };
-    ;
     Mode.prototype.setName = function (name) {
         this.name = name;
     };
@@ -54,6 +47,6 @@ var Mode = (function () {
         return this.name;
     };
     return Mode;
-}());
+}(AbstractRenderCycle_1.AbstractRenderCycle));
 exports.default = Mode;
 //# sourceMappingURL=Mode.js.map

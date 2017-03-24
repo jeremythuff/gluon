@@ -1,52 +1,44 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 Object.defineProperty(exports, "__esModule", { value: true });
 var Rx_1 = require("@reactivex/rxjs/dist/cjs/Rx");
-var RenderPhase_1 = require("../enum/RenderPhase");
-var State = (function () {
+var AbstractRenderCycle_1 = require("./abstracts/AbstractRenderCycle");
+var State = (function (_super) {
+    __extends(State, _super);
     function State() {
-        this.modes = [];
-        this.activeModes = [];
-        this.initCBs = [];
-        this.loadCBs = [];
-        this.unloadCBs = [];
-        this.destroyCBs = [];
+        var _this = _super.call(this) || this;
+        _this.modes = [];
+        _this.activeModes = [];
+        return _this;
     }
-    State.prototype.runInit = function () {
-        this.setPhase(RenderPhase_1.RenderPhase.INITIALIZING);
-        return Rx_1.Observable.forkJoin(this.runPhaseCBs(this.initCBs));
+    State.prototype._runInit = function () {
+        return Rx_1.Observable.forkJoin();
     };
-    State.prototype.init = function (cb) {
-        this.initCBs.push(cb);
+    State.prototype._runLoad = function () {
+        return Rx_1.Observable.forkJoin();
     };
-    State.prototype.runLoad = function () {
-        this.setPhase(RenderPhase_1.RenderPhase.LOADING);
-        return Rx_1.Observable.forkJoin(this.runPhaseCBs(this.loadCBs));
-    };
-    State.prototype.load = function (cb) {
-        this.loadCBs.push(cb);
-    };
-    State.prototype.runUpdate = function (delta) {
-        this.setPhase(RenderPhase_1.RenderPhase.UPDATING);
-    };
+    State.prototype._runUpdate = function (delta) { };
     ;
-    State.prototype.runRender = function (delta) {
-        this.setPhase(RenderPhase_1.RenderPhase.RENDERING);
-    };
+    State.prototype._runRender = function (delta) { };
     ;
-    State.prototype.runPause = function () {
-        this.setPhase(RenderPhase_1.RenderPhase.PAUSED);
-    };
+    State.prototype._runPause = function () { };
     ;
-    State.prototype.runUnPause = function () {
-        this.setPhase(RenderPhase_1.RenderPhase.RENDERING);
-    };
+    State.prototype._runUnPause = function () { };
     ;
-    State.prototype.runUnload = function () {
-        return Rx_1.Observable.forkJoin(this.runPhaseCBs(this.unloadCBs));
+    State.prototype._runUnLoad = function () {
+        return Rx_1.Observable.forkJoin();
     };
-    State.prototype.runDestroy = function () {
-        this.setPhase(RenderPhase_1.RenderPhase.DESTROYING);
-        return Rx_1.Observable.forkJoin(this.runPhaseCBs(this.destroyCBs));
+    State.prototype._runDestroy = function () {
+        return Rx_1.Observable.forkJoin();
     };
     State.prototype.getName = function () {
         return this.name;
@@ -59,15 +51,6 @@ var State = (function () {
     };
     State.prototype.setFramesPerSecond = function (framesPerSecond) {
         this.framesPerSecond = framesPerSecond;
-    };
-    State.prototype.phaseIs = function (phase) {
-        return phase === this.phase || phase === Math.floor(this.phase);
-    };
-    State.prototype.getPhase = function () {
-        return this.phase;
-    };
-    State.prototype.setPhase = function (phase) {
-        this.phase = phase;
     };
     State.prototype.setModes = function (modes) {
         this.modes = modes;
@@ -113,15 +96,7 @@ var State = (function () {
             _this.deActivateMode(mode);
         });
     };
-    State.prototype.runPhaseCBs = function (cbs) {
-        return Rx_1.Observable.create(function (observer) {
-            cbs.forEach(function (cb) {
-                cb();
-            });
-            observer.complete();
-        });
-    };
     return State;
-}());
+}(AbstractRenderCycle_1.AbstractRenderCycle));
 exports.default = State;
 //# sourceMappingURL=State.js.map

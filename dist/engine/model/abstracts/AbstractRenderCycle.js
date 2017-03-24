@@ -37,7 +37,7 @@ var AbstractRenderCycle = (function () {
         this.updateCBs.forEach(function (cb) {
             cb(delta);
         });
-        this._RunUpdate(delta);
+        this._runUpdate(delta);
     };
     AbstractRenderCycle.prototype.update = function (cb) {
         this.updateCBs.push(cb);
@@ -47,7 +47,7 @@ var AbstractRenderCycle = (function () {
         this.renderCBs.forEach(function (cb) {
             cb(delta);
         });
-        this._RunRender(delta);
+        this._runRender(delta);
     };
     AbstractRenderCycle.prototype.render = function (cb) {
         this.renderCBs.push(cb);
@@ -57,7 +57,7 @@ var AbstractRenderCycle = (function () {
         this.pauseCBs.forEach(function (cb) {
             cb();
         });
-        this._RunPause();
+        this._runPause();
     };
     ;
     AbstractRenderCycle.prototype.pause = function (cb) {
@@ -68,7 +68,7 @@ var AbstractRenderCycle = (function () {
         this.unPauseCBs.forEach(function (cb) {
             cb();
         });
-        this._RunUnPause();
+        this._runUnPause();
     };
     ;
     AbstractRenderCycle.prototype.unPause = function (cb) {
