@@ -6,6 +6,8 @@ export default class State extends AbstractRenderCycle {
     private framesPerSecond;
     private modes;
     private activeModes;
+    private renderer;
+    private scene;
     constructor();
     protected _runInit(): Observable<{}[]>;
     protected _runLoad(): Observable<{}[]>;

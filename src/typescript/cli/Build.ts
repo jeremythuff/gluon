@@ -3,7 +3,9 @@ import AbstractCliCommand from "./AbstractCliCommand";
 
 import * as shell from "shelljs";
 import * as NodeSass from "node-sass";
+import * as nodePath from "path";
 import * as fs from "fs";
+import * as readline from "readline";
 
 const colors = require('colors/safe');
 const nodecli = require("shelljs-nodecli");
@@ -36,8 +38,32 @@ export default class Build extends AbstractCliCommand implements CliCommand {
 
 			out.split(/\r?\n/).forEach(outLine => {
 				if(outLine.includes("TSFILE")&&!outLine.includes(".d.ts")&&!outLine.includes(".js.map")) {
+					const absolutePath = outLine.replace("TSFILE: ", "");
 					const path = outLine.substring(outLine.indexOf("dist/")+5, outLine.length);
 					paths.push(path);
+
+					const rl = readline.createInterface({
+					  	input: require('fs').createReadStream(absolutePath),
+					  	output: process.stdout,
+      					terminal: false
+					});
+
+					rl.on("line", line=>{
+						if(line.indexOf("require(\".."+nodePath.sep)!==-1||line.indexOf("require('.."+nodePath.sep)!==-1) {
+							// const upDirMatch = /(\.\.\/)/g;
+							// const upDirCount = (line.match(upDirMatch) || []).length;
+
+							// const absPathArr = absolutePath.split(nodePath.sep);
+							// const endOfPath = absolutePath.match(/^\\(.+\\)*(.+)\.(.+)$/);
+							// const pathStartIndex = absPathArr.length-upDirCount;
+							// const newPath = absPathArr.slice(pathStartIndex,absPathArr.length-1).join(nodePath.sep);
+
+							const upDirPattern = /(\.\.\/)+/
+							const modifiedLine = line.replace(upDirPattern, "."+nodePath.sep);
+							shell.sed("-i", line.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), modifiedLine, absolutePath);
+						}
+					});
+
 				}
 			});
 

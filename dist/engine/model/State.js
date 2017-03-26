@@ -11,6 +11,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var Rx_1 = require("@reactivex/rxjs/dist/cjs/Rx");
+var THREE = require("three");
 var AbstractRenderCycle_1 = require("./abstracts/AbstractRenderCycle");
 var State = (function (_super) {
     __extends(State, _super);
@@ -18,27 +19,54 @@ var State = (function (_super) {
         var _this = _super.call(this) || this;
         _this.modes = [];
         _this.activeModes = [];
+        _this.scene = new THREE.Scene();
         return _this;
     }
     State.prototype._runInit = function () {
-        return Rx_1.Observable.forkJoin();
+        var combinedObs = Rx_1.Observable.create();
+        return combinedObs;
     };
     State.prototype._runLoad = function () {
-        return Rx_1.Observable.forkJoin();
+        var combinedObs = Rx_1.Observable.create();
+        return combinedObs;
     };
-    State.prototype._runUpdate = function (delta) { };
+    State.prototype._runUpdate = function (delta) {
+        this.activeModes.forEach(function (mode) {
+            mode.runUpdate(delta);
+        });
+    };
     ;
-    State.prototype._runRender = function (delta) { };
+    State.prototype._runRender = function (delta) {
+        this.activeModes.forEach(function (mode) {
+            mode.runRender(delta);
+        });
+    };
     ;
-    State.prototype._runPause = function () { };
+    State.prototype._runPause = function () {
+        this.activeModes.forEach(function (mode) {
+            mode.runPause();
+        });
+    };
     ;
-    State.prototype._runUnPause = function () { };
+    State.prototype._runUnPause = function () {
+        this.activeModes.forEach(function (mode) {
+            mode.runUnPause();
+        });
+    };
     ;
     State.prototype._runUnLoad = function () {
-        return Rx_1.Observable.forkJoin();
+        var combinedObs = Rx_1.Observable.create();
+        this.activeModes.forEach(function (mode) {
+            combinedObs = Rx_1.Observable.forkJoin(mode.runUnload(), combinedObs);
+        });
+        return combinedObs;
     };
     State.prototype._runDestroy = function () {
-        return Rx_1.Observable.forkJoin();
+        var combinedObs = Rx_1.Observable.create();
+        this.activeModes.forEach(function (mode) {
+            combinedObs = Rx_1.Observable.forkJoin(mode.runDestroy(), combinedObs);
+        });
+        return combinedObs;
     };
     State.prototype.getName = function () {
         return this.name;

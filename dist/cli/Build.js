@@ -13,7 +13,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var AbstractCliCommand_1 = require("./AbstractCliCommand");
 var shell = require("shelljs");
 var NodeSass = require("node-sass");
+var nodePath = require("path");
 var fs = require("fs");
+var readline = require("readline");
 var colors = require('colors/safe');
 var nodecli = require("shelljs-nodecli");
 var table = require('text-table');
@@ -37,8 +39,27 @@ var Build = (function (_super) {
             var paths = new Array();
             out.split(/\r?\n/).forEach(function (outLine) {
                 if (outLine.includes("TSFILE") && !outLine.includes(".d.ts") && !outLine.includes(".js.map")) {
+                    var absolutePath_1 = outLine.replace("TSFILE: ", "");
                     var path = outLine.substring(outLine.indexOf("dist/") + 5, outLine.length);
                     paths.push(path);
+                    var rl = readline.createInterface({
+                        input: require('fs').createReadStream(absolutePath_1),
+                        output: process.stdout,
+                        terminal: false
+                    });
+                    rl.on("line", function (line) {
+                        if (line.indexOf("require(\".." + nodePath.sep) !== -1 || line.indexOf("require('.." + nodePath.sep) !== -1) {
+                            var upDirMatch = /(\.\.\/)/g;
+                            var upDirCount = (line.match(upDirMatch) || []).length;
+                            var absPathArr = absolutePath_1.split(nodePath.sep);
+                            var endOfPath = absolutePath_1.match(/^\\(.+\\)*(.+)\.(.+)$/);
+                            var pathStartIndex = absPathArr.length - upDirCount;
+                            var newPath = absPathArr.slice(pathStartIndex, absPathArr.length - 1).join(nodePath.sep);
+                            var upDirPattern = /(\.\.\/)+/;
+                            var modifiedLine = line.replace(upDirPattern, "." + nodePath.sep + newPath);
+                            shell.sed("-i", line.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), modifiedLine, absolutePath_1);
+                        }
+                    });
                 }
             });
             console.log(table([[new Date().toString(), "Building html."]]));

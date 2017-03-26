@@ -1,3 +1,3 @@
 import {RenderCycle} from "./RenderCycle";
 
-export interface Renderable extends RenderCycle {}
+export interface Renderable {}

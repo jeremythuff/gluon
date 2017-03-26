@@ -1,4 +1,5 @@
 import {Observable} from "@reactivex/rxjs/dist/cjs/Rx";
+import * as THREE from "three";
 
 import {AbstractRenderCycle} from "./abstracts/AbstractRenderCycle";
 import Mode from "./Mode";
@@ -17,34 +18,68 @@ export default class State extends AbstractRenderCycle {
 	private modes :Mode[];
 	private activeModes :Mode[];
 
+	private renderer :THREE.WebGLRenderer;
+	private scene :THREE.Scene;
+
 	constructor() {
 		super();
     	this.modes = [];
     	this.activeModes =[];
+    	this.scene = new THREE.Scene();
     }
 
    protected  _runInit() :Observable<{}[]> {
-		return Observable.forkJoin();
+		let combinedObs = Observable.create();
+		return combinedObs;
 	}
 
 	protected _runLoad() :Observable<{}[]> {
-		return Observable.forkJoin();
+		let combinedObs = Observable.create();
+		return combinedObs;
 	}
 
-	protected _runUpdate(delta :number) :void {};
+	protected _runUpdate(delta :number) :void {
+		this.activeModes.forEach(mode=>{
+			mode.runUpdate(delta);
+		});
+	};
 
-	protected _runRender(delta :number) :void {};
+	protected _runRender(delta :number) :void {
+		this.activeModes.forEach(mode=>{
+			mode.runRender(delta);
+		});
+	};
 
-	protected _runPause() :void {};
+	protected _runPause() :void {
+		this.activeModes.forEach(mode=>{
+			mode.runPause();
+		});
+	};
 
-	protected _runUnPause() :void {};
+	protected _runUnPause() :void {
+		this.activeModes.forEach(mode=>{
+			mode.runUnPause();
+		});
+	};
 
 	protected _runUnLoad() :Observable<{}[]> {
-		return Observable.forkJoin();
+		let combinedObs = Observable.create();
+
+		this.activeModes.forEach(mode=>{
+			combinedObs = Observable.forkJoin(mode.runUnload(),combinedObs);
+		});
+
+		return combinedObs;
 	}
 
 	protected _runDestroy() :Observable<{}[]>  {
-		return Observable.forkJoin();
+		let combinedObs = Observable.create();
+
+		this.activeModes.forEach(mode=>{
+			combinedObs = Observable.forkJoin(mode.runDestroy(),combinedObs);
+		});
+
+		return combinedObs;
 	}
 
 	getName() : string {
