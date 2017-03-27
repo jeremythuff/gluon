@@ -50,19 +50,10 @@ export default class Build extends AbstractCliCommand implements CliCommand {
 
 					rl.on("line", line=>{
 						if(line.indexOf("require(\".."+nodePath.sep)!==-1||line.indexOf("require('.."+nodePath.sep)!==-1) {
-							// const upDirMatch = /(\.\.\/)/g;
-							// const upDirCount = (line.match(upDirMatch) || []).length;
-
-							// const absPathArr = absolutePath.split(nodePath.sep);
-							// const endOfPath = absolutePath.match(/^\\(.+\\)*(.+)\.(.+)$/);
-							// const pathStartIndex = absPathArr.length-upDirCount;
-							// const newPath = absPathArr.slice(pathStartIndex,absPathArr.length-1).join(nodePath.sep);
 
 							const indexOfIncludePathStart = (line.indexOf("require(\"")||line.indexOf("require('"))+9;
 							const indexOfIncludePathEnd = line.length-3;
 							const requirePathArray = line.substring(indexOfIncludePathStart,indexOfIncludePathEnd).split(nodePath.sep);
-
-							console.log(line);
 
 							let numUpDir = 0;
 
@@ -77,15 +68,13 @@ export default class Build extends AbstractCliCommand implements CliCommand {
 							}
 
 							let replacement = "."+nodePath.sep;
-							console.log(projectPathArray);
+
 							projectPathArray.forEach(p=>{
 								replacement = replacement.concat(p+nodePath.sep);
 							});
 
 							const upDirPattern = /(\.\.\/)+/
 							const modifiedLine = line.replace(upDirPattern, replacement);
-
-							console.log(modifiedLine);
 
 							shell.sed("-i", line.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), modifiedLine, absolutePath);
 						}

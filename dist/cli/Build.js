@@ -52,7 +52,6 @@ var Build = (function (_super) {
                             var indexOfIncludePathStart = (line.indexOf("require(\"") || line.indexOf("require('")) + 9;
                             var indexOfIncludePathEnd = line.length - 3;
                             var requirePathArray = line.substring(indexOfIncludePathStart, indexOfIncludePathEnd).split(nodePath.sep);
-                            console.log(line);
                             var numUpDir_1 = 0;
                             requirePathArray.forEach(function (p) {
                                 if (p === "..")
@@ -64,13 +63,11 @@ var Build = (function (_super) {
                                 projectPathArray.pop();
                             }
                             var replacement_1 = "." + nodePath.sep;
-                            console.log(projectPathArray);
                             projectPathArray.forEach(function (p) {
                                 replacement_1 = replacement_1.concat(p + nodePath.sep);
                             });
                             var upDirPattern = /(\.\.\/)+/;
                             var modifiedLine = line.replace(upDirPattern, replacement_1);
-                            console.log(modifiedLine);
                             shell.sed("-i", line.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), modifiedLine, absolutePath_1);
                         }
                     });
