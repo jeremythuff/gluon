@@ -49,14 +49,28 @@ var Build = (function (_super) {
                     });
                     rl.on("line", function (line) {
                         if (line.indexOf("require(\".." + nodePath.sep) !== -1 || line.indexOf("require('.." + nodePath.sep) !== -1) {
-                            var upDirMatch = /(\.\.\/)/g;
-                            var upDirCount = (line.match(upDirMatch) || []).length;
-                            var absPathArr = absolutePath_1.split(nodePath.sep);
-                            var endOfPath = absolutePath_1.match(/^\\(.+\\)*(.+)\.(.+)$/);
-                            var pathStartIndex = absPathArr.length - upDirCount;
-                            var newPath = absPathArr.slice(pathStartIndex, absPathArr.length - 1).join(nodePath.sep);
+                            var indexOfIncludePathStart = (line.indexOf("require(\"") || line.indexOf("require('")) + 9;
+                            var indexOfIncludePathEnd = line.length - 3;
+                            var requirePathArray = line.substring(indexOfIncludePathStart, indexOfIncludePathEnd).split(nodePath.sep);
+                            console.log(line);
+                            var numUpDir_1 = 0;
+                            requirePathArray.forEach(function (p) {
+                                if (p === "..")
+                                    numUpDir_1++;
+                            });
+                            var projectPathArray = absolutePath_1.substring(absolutePath_1.indexOf("dist" + nodePath.sep) + 5, absolutePath_1.length).split(nodePath.sep);
+                            projectPathArray.pop();
+                            for (var i = 0; i < numUpDir_1; i++) {
+                                projectPathArray.pop();
+                            }
+                            var replacement_1 = "." + nodePath.sep;
+                            console.log(projectPathArray);
+                            projectPathArray.forEach(function (p) {
+                                replacement_1 = replacement_1.concat(p + nodePath.sep);
+                            });
                             var upDirPattern = /(\.\.\/)+/;
-                            var modifiedLine = line.replace(upDirPattern, "." + nodePath.sep + newPath);
+                            var modifiedLine = line.replace(upDirPattern, replacement_1);
+                            console.log(modifiedLine);
                             shell.sed("-i", line.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), modifiedLine, absolutePath_1);
                         }
                     });

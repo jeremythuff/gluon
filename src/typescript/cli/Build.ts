@@ -58,8 +58,35 @@ export default class Build extends AbstractCliCommand implements CliCommand {
 							// const pathStartIndex = absPathArr.length-upDirCount;
 							// const newPath = absPathArr.slice(pathStartIndex,absPathArr.length-1).join(nodePath.sep);
 
+							const indexOfIncludePathStart = (line.indexOf("require(\"")||line.indexOf("require('"))+9;
+							const indexOfIncludePathEnd = line.length-3;
+							const requirePathArray = line.substring(indexOfIncludePathStart,indexOfIncludePathEnd).split(nodePath.sep);
+
+							console.log(line);
+
+							let numUpDir = 0;
+
+							requirePathArray.forEach(p=>{
+								if(p==="..")numUpDir++;
+							})
+
+							const projectPathArray = absolutePath.substring(absolutePath.indexOf("dist"+nodePath.sep)+5, absolutePath.length).split(nodePath.sep);
+							projectPathArray.pop();
+							for(let i=0; i<numUpDir;i++) {
+								projectPathArray.pop();
+							}
+
+							let replacement = "."+nodePath.sep;
+							console.log(projectPathArray);
+							projectPathArray.forEach(p=>{
+								replacement = replacement.concat(p+nodePath.sep);
+							});
+
 							const upDirPattern = /(\.\.\/)+/
-							const modifiedLine = line.replace(upDirPattern, "."+nodePath.sep);
+							const modifiedLine = line.replace(upDirPattern, replacement);
+
+							console.log(modifiedLine);
+
 							shell.sed("-i", line.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), modifiedLine, absolutePath);
 						}
 					});
