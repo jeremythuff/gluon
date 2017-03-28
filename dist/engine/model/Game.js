@@ -13,6 +13,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var THREE = require("three");
 var Rx_1 = require("@reactivex/rxjs/dist/cjs/Rx");
 var AbstractRenderCycle_1 = require("./abstracts/AbstractRenderCycle");
+var RenderPhase_1 = require("../enum/RenderPhase");
 var Game = (function (_super) {
     __extends(Game, _super);
     function Game(name) {
@@ -35,19 +36,31 @@ var Game = (function (_super) {
         return Rx_1.Observable.forkJoin(this.activeState.runInit());
     };
     Game.prototype._runLoad = function () {
-        return Rx_1.Observable.forkJoin(this.activeState.runLoad());
+        var _this = this;
+        var stateLoad = this.activeState.runLoad();
+        stateLoad.subscribe(null, null, function () {
+            _this.activeState.setPhase(RenderPhase_1.RenderPhase.READY);
+        });
+        return Rx_1.Observable.forkJoin(stateLoad);
     };
     Game.prototype._runUpdate = function (delta) {
-        this.activeState.runUpdate(delta);
+        if (this.activeState.phaseIs(RenderPhase_1.RenderPhase.READY))
+            this.activeState.runUpdate(delta);
+        this.activeState.controls.runCBs();
     };
     ;
     Game.prototype._runRender = function (delta) {
-        this.activeState.runRender(delta);
+        if (this.activeState.phaseIs(RenderPhase_1.RenderPhase.READY))
+            this.activeState.runRender(delta);
     };
     ;
-    Game.prototype._runPause = function () { };
+    Game.prototype._runPause = function () {
+        this.activeState.runPause();
+    };
     ;
-    Game.prototype._runUnPause = function () { };
+    Game.prototype._runUnPause = function () {
+        this.activeState.runUnPause();
+    };
     ;
     Game.prototype._runUnLoad = function () {
         return Rx_1.Observable.forkJoin(this.activeState.runUnload());

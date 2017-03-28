@@ -1,6 +1,7 @@
 import { Observable } from "@reactivex/rxjs/dist/cjs/Rx";
 import { AbstractRenderCycle } from "./abstracts/AbstractRenderCycle";
 import Mode from "./Mode";
+import Controls from "../util/io/Controls";
 export default class State extends AbstractRenderCycle {
     private name;
     private framesPerSecond;
@@ -8,6 +9,7 @@ export default class State extends AbstractRenderCycle {
     private activeModes;
     private renderer;
     private scene;
+    controls: Controls;
     constructor();
     protected _runInit(): Observable<{}[]>;
     protected _runLoad(): Observable<{}[]>;

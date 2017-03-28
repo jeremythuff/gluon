@@ -28,7 +28,7 @@ export default class Mode extends AbstractRenderCycle {
 
 	protected _runRender(delta :number) :void {};
 
-	protected _runPause() :void {};
+	protected _runPause() :void {}
 
 	protected _runUnPause() :void {};
 

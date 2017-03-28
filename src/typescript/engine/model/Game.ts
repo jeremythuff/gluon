@@ -4,6 +4,8 @@ import {Observable} from "@reactivex/rxjs/dist/cjs/Rx";
 import {AbstractRenderCycle} from "./abstracts/AbstractRenderCycle";
 import State from "./State";
 
+import {RenderPhase} from "../enum/RenderPhase";
+
 /**
  * The Game class is the central class to all Gluon games. By extending
  * this class into you game main glass, and decorating it with the [[GameMain]]
@@ -28,31 +30,47 @@ export default class Game extends AbstractRenderCycle {
     }
 
     protected _runInit() :Observable<{}[]> {
+    	
     	this.activeState = this.getState(this.initialStateName);
     	this.renderer.setSize(window.innerWidth, window.innerHeight);
+    	
     	document.body.insertBefore(this.renderer.domElement, document.body.firstChild);
+    	
     	const $windowResize = Observable.fromEvent(window, 'resize').debounceTime(100);
+    	
     	$windowResize.subscribe(test=>{
     		this.renderer.setSize(window.innerWidth, window.innerHeight);
     	});
+    	
     	return Observable.forkJoin(this.activeState.runInit());
     }
 
 	protected _runLoad() :Observable<{}[]> {
-		return Observable.forkJoin(this.activeState.runLoad());
+		const stateLoad = this.activeState.runLoad();
+		stateLoad.subscribe(null,null,()=>{
+			this.activeState.setPhase(RenderPhase.READY);
+		});
+		return Observable.forkJoin(stateLoad);
 	}
 
 	protected _runUpdate(delta :number) :void {
-		this.activeState.runUpdate(delta);
+		if(this.activeState.phaseIs(RenderPhase.READY))
+			this.activeState.runUpdate(delta);
+		this.activeState.controls.runCBs();
 	};
 
 	protected _runRender(delta :number) :void {
-		this.activeState.runRender(delta);
+		if(this.activeState.phaseIs(RenderPhase.READY))
+			this.activeState.runRender(delta);
 	};
 
-	protected _runPause() :void {};
+	protected _runPause() :void {
+		this.activeState.runPause();
+	};
 
-	protected _runUnPause() :void {};
+	protected _runUnPause() :void {
+		this.activeState.runUnPause();
+	};
 
 	protected _runUnLoad() :Observable<{}[]> {
 		return Observable.forkJoin(this.activeState.runUnload());

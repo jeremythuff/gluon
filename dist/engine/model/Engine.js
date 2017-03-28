@@ -46,7 +46,6 @@ var Engine = (function () {
                 _this.running = true;
                 _this.animationLoop();
                 game.setPhase(RenderPhase_1.RenderPhase.RUNNING);
-                setTimeout(function () { game.runPause(); }, 5000);
             }).unsubscribe();
         }).unsubscribe();
         return game;

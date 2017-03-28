@@ -4,6 +4,8 @@ import * as THREE from "three";
 import {AbstractRenderCycle} from "./abstracts/AbstractRenderCycle";
 import Mode from "./Mode";
 
+import Controls from "../util/io/Controls";
+
 /**
  * The State class acts as the primary organizing entiry for your game. 
  * States are registered and instantiated with the your game instance through the
@@ -21,11 +23,14 @@ export default class State extends AbstractRenderCycle {
 	private renderer :THREE.WebGLRenderer;
 	private scene :THREE.Scene;
 
+	public controls :Controls;
+
 	constructor() {
 		super();
     	this.modes = [];
     	this.activeModes =[];
     	this.scene = new THREE.Scene();
+    	this.controls = new Controls();
     }
 
    protected  _runInit() :Observable<{}[]> {

@@ -99,7 +99,6 @@ var AbstractRenderCycle = (function () {
         return this.phase;
     };
     AbstractRenderCycle.prototype.setPhase = function (phase) {
-        console.log(phase);
         this.phase = phase;
     };
     AbstractRenderCycle.prototype.runPhaseCBs = function (cbs) {

@@ -2,7 +2,7 @@ import {RenderCycle} from "../interface/RenderCycle";
 import {PhaseCB} from "../interface/PhaseCB";
 import {RenderPhase} from "../../enum/RenderPhase";
 
-import {ReplaySubject, Observable} from "@reactivex/rxjs/dist/cjs/Rx";
+import {Observable} from "@reactivex/rxjs/dist/cjs/Rx";
 
 export abstract class AbstractRenderCycle implements RenderCycle {
 
@@ -145,7 +145,6 @@ export abstract class AbstractRenderCycle implements RenderCycle {
 	}
 
 	setPhase(phase :RenderPhase) :void {
-		console.log(phase);
 		this.phase = phase;
 	}
 

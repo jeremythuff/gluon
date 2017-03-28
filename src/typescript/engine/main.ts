@@ -13,11 +13,15 @@ import Mode from "./model/Mode";
 //Interface
 import {PhaseCB} from "./model/interface/PhaseCB";
 import {RenderCycle} from "./model/interface/RenderCycle";
-import {StatePhaseCB} from "./model/interface/StatePhaseCB";
 
 //Decorators
 import GameMain from "./decorators/GameMain";
 import GameState from "./decorators/GameState";
+
+//Enum
+import {Key} from "./enum/Key";
+import {RenderPhase} from "./enum/RenderPhase";
+
 
 export {
 
@@ -30,10 +34,13 @@ export {
 	//Interface
 	PhaseCB,
 	RenderCycle,
-	StatePhaseCB,
 
 	//Decorators
 	GameMain,
-	GameState
+	GameState,
+
+	//Enum
+	Key,
+	RenderPhase
 
 };

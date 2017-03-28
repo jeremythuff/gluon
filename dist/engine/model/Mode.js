@@ -31,7 +31,6 @@ var Mode = (function (_super) {
     Mode.prototype._runRender = function (delta) { };
     ;
     Mode.prototype._runPause = function () { };
-    ;
     Mode.prototype._runUnPause = function () { };
     ;
     Mode.prototype._runUnLoad = function () {
