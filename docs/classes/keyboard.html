@@ -937,19 +937,34 @@ img { max-width: 100%; }
 					<a href="keyboard.html#constructor" class="tsd-kind-icon">constructor</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
-					<a href="keyboard.html#cbs" class="tsd-kind-icon">cbs</a>
-				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
 					<a href="keyboard.html#keyboardobs" class="tsd-kind-icon">key<wbr>Board<wbr>Obs</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
 					<a href="keyboard.html#pressedkeys" class="tsd-kind-icon">pressed<wbr>Keys</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+					<a href="keyboard.html#runwhencbs" class="tsd-kind-icon">run<wbr>WhenCBS</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+					<a href="keyboard.html#whencbs" class="tsd-kind-icon">whenCBs</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+					<a href="keyboard.html#whilecbs" class="tsd-kind-icon">whileCBs</a>
 				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
 					<a href="keyboard.html#runcbs" class="tsd-kind-icon">runCBs</a>
 				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
 					<a href="keyboard.html#runwhen" class="tsd-kind-icon">run<wbr>When</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
+					<a href="keyboard.html#runwhencbs-1" class="tsd-kind-icon">run<wbr>WhenCBs</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a href="keyboard.html#runwhile" class="tsd-kind-icon">run<wbr>While</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
+					<a href="keyboard.html#runwhilecbs" class="tsd-kind-icon">run<wbr>WhileCBs</a>
 				</li>
 			</ul>
 		</li>
@@ -1009,9 +1024,11 @@ img { max-width: 100%; }
 					<section class="tsd-index-section tsd-is-private tsd-is-private-protected tsd-is-external">
 						<h3>Properties</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="keyboard.html#cbs" class="tsd-kind-icon">cbs</a></li>
 							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="keyboard.html#keyboardobs" class="tsd-kind-icon">key<wbr>Board<wbr>Obs</a></li>
 							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="keyboard.html#pressedkeys" class="tsd-kind-icon">pressed<wbr>Keys</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="keyboard.html#runwhencbs" class="tsd-kind-icon">run<wbr>WhenCBS</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="keyboard.html#whencbs" class="tsd-kind-icon">whenCBs</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="keyboard.html#whilecbs" class="tsd-kind-icon">whileCBs</a></li>
 						</ul>
 					</section>
 					<section class="tsd-index-section tsd-is-external">
@@ -1019,6 +1036,9 @@ img { max-width: 100%; }
 						<ul class="tsd-index-list">
 							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="keyboard.html#runcbs" class="tsd-kind-icon">runCBs</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="keyboard.html#runwhen" class="tsd-kind-icon">run<wbr>When</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="keyboard.html#runwhencbs-1" class="tsd-kind-icon">run<wbr>WhenCBs</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="keyboard.html#runwhile" class="tsd-kind-icon">run<wbr>While</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="keyboard.html#runwhilecbs" class="tsd-kind-icon">run<wbr>WhileCBs</a></li>
 						</ul>
 					</section>
 				</div>
@@ -1036,7 +1056,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in util/io/Keyboard.ts:14</li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/64a210e/src/typescript/engine/util/io/Keyboard.ts#L16">util/io/Keyboard.ts:16</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <a href="keyboard.html" class="tsd-signature-type">Keyboard</a></h4>
@@ -1047,22 +1067,12 @@ img { max-width: 100%; }
 		<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected tsd-is-external">
 			<h2>Properties</h2>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
-				<a name="cbs" class="tsd-anchor"></a>
-				<h3>cbs</h3>
-				<div class="tsd-signature tsd-kind-icon">cbs<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><a href="../enums/key.html" class="tsd-signature-type">Key</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><a href="../interfaces/controlcb.html" class="tsd-signature-type">ControlCB</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in util/io/Keyboard.ts:12</li>
-					</ul>
-				</aside>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
 				<a name="keyboardobs" class="tsd-anchor"></a>
 				<h3>key<wbr>Board<wbr>Obs</h3>
 				<div class="tsd-signature tsd-kind-icon">key<wbr>Board<wbr>Obs<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">KeyboardEvent</span><span class="tsd-signature-symbol">&gt;</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in util/io/Keyboard.ts:14</li>
+						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/64a210e/src/typescript/engine/util/io/Keyboard.ts#L16">util/io/Keyboard.ts:16</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1072,7 +1082,37 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">pressed<wbr>Keys<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">[]</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in util/io/Keyboard.ts:10</li>
+						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/64a210e/src/typescript/engine/util/io/Keyboard.ts#L10">util/io/Keyboard.ts:10</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+				<a name="runwhencbs" class="tsd-anchor"></a>
+				<h3>run<wbr>WhenCBS</h3>
+				<div class="tsd-signature tsd-kind-icon">run<wbr>WhenCBS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/controlcb.html" class="tsd-signature-type">ControlCB</a><span class="tsd-signature-symbol">&gt;</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/64a210e/src/typescript/engine/util/io/Keyboard.ts#L14">util/io/Keyboard.ts:14</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+				<a name="whencbs" class="tsd-anchor"></a>
+				<h3>whenCBs</h3>
+				<div class="tsd-signature tsd-kind-icon">whenCBs<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><a href="../enums/key.html" class="tsd-signature-type">Key</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><a href="../interfaces/controlcb.html" class="tsd-signature-type">ControlCB</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/64a210e/src/typescript/engine/util/io/Keyboard.ts#L13">util/io/Keyboard.ts:13</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+				<a name="whilecbs" class="tsd-anchor"></a>
+				<h3>whileCBs</h3>
+				<div class="tsd-signature tsd-kind-icon">whileCBs<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><a href="../enums/key.html" class="tsd-signature-type">Key</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><a href="../interfaces/controlcb.html" class="tsd-signature-type">ControlCB</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/64a210e/src/typescript/engine/util/io/Keyboard.ts#L12">util/io/Keyboard.ts:12</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1089,7 +1129,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in util/io/Keyboard.ts:44</li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/64a210e/src/typescript/engine/util/io/Keyboard.ts#L56">util/io/Keyboard.ts:56</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1106,7 +1146,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in util/io/Keyboard.ts:38</li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/64a210e/src/typescript/engine/util/io/Keyboard.ts#L44">util/io/Keyboard.ts:44</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1119,6 +1159,66 @@ img { max-width: 100%; }
 							</li>
 						</ul>
 						<h4 class="tsd-returns-title">Returns <a href="keyboard.html" class="tsd-signature-type">Keyboard</a></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
+				<a name="runwhencbs-1" class="tsd-anchor"></a>
+				<h3>run<wbr>WhenCBs</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
+					<li class="tsd-signature tsd-kind-icon">run<wbr>WhenCBs<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/64a210e/src/typescript/engine/util/io/Keyboard.ts#L61">util/io/Keyboard.ts:61</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+				<a name="runwhile" class="tsd-anchor"></a>
+				<h3>run<wbr>While</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<li class="tsd-signature tsd-kind-icon">run<wbr>While<span class="tsd-signature-symbol">(</span>cb<span class="tsd-signature-symbol">: </span><a href="../interfaces/controlcb.html" class="tsd-signature-type">ControlCB</a>, <span class="tsd-signature-symbol">...</span>keys<span class="tsd-signature-symbol">: </span><a href="../enums/key.html" class="tsd-signature-type">Key</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="keyboard.html" class="tsd-signature-type">Keyboard</a></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/64a210e/src/typescript/engine/util/io/Keyboard.ts#L50">util/io/Keyboard.ts:50</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>cb: <a href="../interfaces/controlcb.html" class="tsd-signature-type">ControlCB</a></h5>
+							</li>
+							<li>
+								<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>keys: <a href="../enums/key.html" class="tsd-signature-type">Key</a><span class="tsd-signature-symbol">[]</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <a href="keyboard.html" class="tsd-signature-type">Keyboard</a></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
+				<a name="runwhilecbs" class="tsd-anchor"></a>
+				<h3>run<wbr>WhileCBs</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private tsd-is-external">
+					<li class="tsd-signature tsd-kind-icon">run<wbr>WhileCBs<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/64a210e/src/typescript/engine/util/io/Keyboard.ts#L76">util/io/Keyboard.ts:76</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 					</li>
 				</ul>
 			</section>

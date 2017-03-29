@@ -16,19 +16,22 @@ var Keyboard = (function (_super) {
     __extends(Keyboard, _super);
     function Keyboard() {
         var _this = _super.call(this) || this;
-        _this.cbs = new Map();
+        _this.whileCBs = new Map();
+        _this.whenCBs = new Map();
+        _this.runWhenCBS = [];
         _this.pressedKeys = [];
         _this.keyBoardObs = Rx_1.Observable
-            .merge(Rx_1.Observable.fromEvent(window, "keyup"), Rx_1.Observable.fromEvent(window, "keydown"));
-        var lastValue = null;
+            .merge(Rx_1.Observable.fromEvent(window, "keyup"), Rx_1.Observable.fromEvent(window, "keydown"))
+            .distinctUntilChanged();
         _this.keyBoardObs
-            .takeWhile(function (k) {
-            var allow = k !== lastValue;
-            lastValue = k;
-            return allow;
-        })
             .subscribe(function (e) {
-            _this.pressedKeys[e.which] = e.type == "keyup" ? false : true;
+            if (e.type == "keyup") {
+                _this.pressedKeys[e.which] = false;
+                _this.runWhenCBS.length = 0;
+            }
+            else {
+                _this.pressedKeys[e.which] = true;
+            }
         });
         return _this;
     }
@@ -38,12 +41,41 @@ var Keyboard = (function (_super) {
             keys[_i - 1] = arguments[_i];
         }
         var runCB = false;
-        this.cbs.get(keys) ? this.cbs.get(keys).push(cb) : this.cbs.set(keys, [cb]);
+        this.whenCBs.get(keys) ? this.whenCBs.get(keys).push(cb) : this.whenCBs.set(keys, [cb]);
+        return this;
+    };
+    Keyboard.prototype.runWhile = function (cb) {
+        var keys = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            keys[_i - 1] = arguments[_i];
+        }
+        var runCB = false;
+        this.whileCBs.get(keys) ? this.whileCBs.get(keys).push(cb) : this.whileCBs.set(keys, [cb]);
         return this;
     };
     Keyboard.prototype.runCBs = function () {
+        this.runWhileCBs();
+        this.runWhenCBs();
+    };
+    Keyboard.prototype.runWhenCBs = function () {
         var _this = this;
-        this.cbs.forEach(function (cbArray, keyArray) {
+        this.whenCBs.forEach(function (cbArray, keyArray) {
+            var runCB = keyArray.every(function (k) {
+                return _this.pressedKeys[k];
+            });
+            if (runCB)
+                cbArray.forEach(function (cb) {
+                    if (_this.runWhenCBS.indexOf(cb) === -1) {
+                        console.log();
+                        cb();
+                        _this.runWhenCBS.push(cb);
+                    }
+                });
+        });
+    };
+    Keyboard.prototype.runWhileCBs = function () {
+        var _this = this;
+        this.whileCBs.forEach(function (cbArray, keyArray) {
             var runCB = keyArray.every(function (k) {
                 return _this.pressedKeys[k];
             });
