@@ -9,8 +9,8 @@ export default class Controls {
 		this.keyboard = new Keyboard();
 	}
 
-	runCBs() :void {
-		this.keyboard.runCBs();
+	_runCBs(delta ?:number) :void {
+		this.keyboard._runCBs(delta);
 	}
 
 }

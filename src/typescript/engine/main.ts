@@ -19,7 +19,7 @@ import GameMain from "./decorators/GameMain";
 import GameState from "./decorators/GameState";
 
 //Enum
-import {Key} from "./enum/Key";
+import {Key} from "./util/io/Key";
 import {RenderPhase} from "./enum/RenderPhase";
 
 

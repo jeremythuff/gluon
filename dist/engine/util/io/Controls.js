@@ -5,8 +5,8 @@ var Controls = (function () {
     function Controls() {
         this.keyboard = new Keyboard_1.default();
     }
-    Controls.prototype.runCBs = function () {
-        this.keyboard.runCBs();
+    Controls.prototype._runCBs = function (delta) {
+        this.keyboard._runCBs(delta);
     };
     return Controls;
 }());

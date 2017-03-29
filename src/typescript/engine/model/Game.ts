@@ -56,7 +56,7 @@ export default class Game extends AbstractRenderCycle {
 	protected _runUpdate(delta :number) :void {
 		if(this.activeState.phaseIs(RenderPhase.READY))
 			this.activeState.runUpdate(delta);
-		this.activeState.controls.runCBs();
+		this.activeState.controls._runCBs(delta);
 	};
 
 	protected _runRender(delta :number) :void {

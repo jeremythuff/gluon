@@ -6,6 +6,6 @@ import { PhaseCB } from "./model/interface/PhaseCB";
 import { RenderCycle } from "./model/interface/RenderCycle";
 import GameMain from "./decorators/GameMain";
 import GameState from "./decorators/GameState";
-import { Key } from "./enum/Key";
+import { Key } from "./util/io/Key";
 import { RenderPhase } from "./enum/RenderPhase";
 export { Engine, Game, State, Mode, PhaseCB, RenderCycle, GameMain, GameState, Key, RenderPhase };
