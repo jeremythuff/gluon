@@ -7,12 +7,15 @@ export abstract class AbstractControlDevice {
 
 	protected whileCBs :Map<(Key|Button)[], ControlCB[]>;
 	protected whenCBs :Map<(Key|Button)[], ControlCB[]>;
-	protected runWhenCBS :Array<ControlCB>;
+	protected runWhenCBS :Array<ControlCB[]>;
 	protected activatedInput :boolean[];
+
+	private cbsToCall :Map<(Key|Button)[], ControlCB[]> 
 
 	constructor() {
 		this.runWhenCBS = [];
 		this.activatedInput = [];
+		this.cbsToCall = new Map<(Key|Button)[], ControlCB[]>();
 	}
 
 	protected activateInput(inputCode :number) {
@@ -43,34 +46,71 @@ export abstract class AbstractControlDevice {
 	_runCBs(delta ?:number) :void {
 		this.runWhileCBs(delta);
 		this.runWhenCBs(delta);
+		this.cbsToCall.forEach((cbArr, keys)=>cbArr.forEach(cb=>cb(delta,keys)));
+		this.cbsToCall.clear();
 	}
 
 	private runWhenCBs(delta ?:number) :void {
-		this.whenCBs.forEach((cbArray, keyArray)=>{
-			let runCB = keyArray.every(k=>{
+		this.whenCBs.forEach((cbArr, inputArr)=>{
+			const keysActive = inputArr.every(k=>{
 				return this.activatedInput[k];
 			});
-			if(runCB) cbArray.forEach(cb=>{
-				if(this.runWhenCBS.indexOf(cb)===-1){
-					cb(delta, keyArray);
-					this.runWhenCBS.push(cb);
-				}
-			});
+
+			if(keysActive && this.runWhenCBS.indexOf(cbArr)===-1) {
+
+				this.cbsToCall.set(inputArr, cbArr);
+				this.runWhenCBS.push(cbArr);
+
+				this.cbsToCall.forEach((cA, iA, map)=>{
+
+					if(iA!==inputArr && iA.some(i=>{
+						return inputArr.indexOf(i) !==-1;
+					})) {
+						console.log("key is active");
+						if(iA.length<=inputArr.length) {
+							this.cbsToCall.delete(iA);
+						} else {
+							this.cbsToCall.delete(inputArr);
+						}
+					}
+				});
+
+			}
+
 		});
 	}
 
 	private runWhileCBs(delta ?:number) :void {
-		this.whileCBs.forEach((cbArray, keyArray)=>{
+
+		this.whileCBs.forEach((cbArr, inputArr)=>{
 			
-			let runCB = keyArray.every(k=>{
+			const keysActive = inputArr.every(k=>{
 				return this.activatedInput[k];
 			});
 			
-			if(runCB) cbArray.forEach(cb=>{
-				cb(delta, keyArray);
-			});
+			if(keysActive) {
+
+				this.cbsToCall.set(inputArr, cbArr);
+
+				this.cbsToCall.forEach((cA, iA, map)=>{
+
+					if(iA!==inputArr && iA.some(i=>{
+						return inputArr.indexOf(i) !==-1;
+					})) {
+					
+						if(iA.length<=inputArr.length) {
+							this.cbsToCall.delete(iA);
+						} else {
+							this.cbsToCall.delete(inputArr);
+						}
+
+					}
+				});
+
+			}
 
 		});
+
 	}
 
 }

@@ -5,8 +5,9 @@ import ControlRule from "./ControlRule";
 export declare abstract class AbstractControlDevice {
     protected whileCBs: Map<(Key | Button)[], ControlCB[]>;
     protected whenCBs: Map<(Key | Button)[], ControlCB[]>;
-    protected runWhenCBS: Array<ControlCB>;
+    protected runWhenCBS: Array<ControlCB[]>;
     protected activatedInput: boolean[];
+    private cbsToCall;
     constructor();
     protected activateInput(inputCode: number): void;
     protected releaseInput(inputCode: number): void;

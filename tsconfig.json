@@ -20,6 +20,7 @@
     },
     "files": [
         "src/typescript/engine/main.ts",
+        "src/typescript/engine/util/io/AbstractControlDevice.ts",
         "src/typescript/launcher/Launcher.ts",
         "src/typescript/cli/GluonCli.ts"
     ],

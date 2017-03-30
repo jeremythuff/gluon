@@ -5,6 +5,7 @@ var AbstractControlDevice = (function () {
     function AbstractControlDevice() {
         this.runWhenCBS = [];
         this.activatedInput = [];
+        this.cbsToCall = new Map();
     }
     AbstractControlDevice.prototype.activateInput = function (inputCode) {
         this.activatedInput[inputCode] = true;
@@ -44,32 +45,55 @@ var AbstractControlDevice = (function () {
     AbstractControlDevice.prototype._runCBs = function (delta) {
         this.runWhileCBs(delta);
         this.runWhenCBs(delta);
+        this.cbsToCall.forEach(function (cbArr, keys) { return cbArr.forEach(function (cb) { return cb(delta, keys); }); });
+        this.cbsToCall.clear();
     };
     AbstractControlDevice.prototype.runWhenCBs = function (delta) {
         var _this = this;
-        this.whenCBs.forEach(function (cbArray, keyArray) {
-            var runCB = keyArray.every(function (k) {
+        this.whenCBs.forEach(function (cbArr, inputArr) {
+            var keysActive = inputArr.every(function (k) {
                 return _this.activatedInput[k];
             });
-            if (runCB)
-                cbArray.forEach(function (cb) {
-                    if (_this.runWhenCBS.indexOf(cb) === -1) {
-                        cb(delta, keyArray);
-                        _this.runWhenCBS.push(cb);
+            if (keysActive && _this.runWhenCBS.indexOf(cbArr) === -1) {
+                _this.cbsToCall.set(inputArr, cbArr);
+                _this.runWhenCBS.push(cbArr);
+                _this.cbsToCall.forEach(function (cA, iA, map) {
+                    if (iA !== inputArr && iA.some(function (i) {
+                        return inputArr.indexOf(i) !== -1;
+                    })) {
+                        console.log("key is active");
+                        if (iA.length <= inputArr.length) {
+                            _this.cbsToCall.delete(iA);
+                        }
+                        else {
+                            _this.cbsToCall.delete(inputArr);
+                        }
                     }
                 });
+            }
         });
     };
     AbstractControlDevice.prototype.runWhileCBs = function (delta) {
         var _this = this;
-        this.whileCBs.forEach(function (cbArray, keyArray) {
-            var runCB = keyArray.every(function (k) {
+        this.whileCBs.forEach(function (cbArr, inputArr) {
+            var keysActive = inputArr.every(function (k) {
                 return _this.activatedInput[k];
             });
-            if (runCB)
-                cbArray.forEach(function (cb) {
-                    cb(delta, keyArray);
+            if (keysActive) {
+                _this.cbsToCall.set(inputArr, cbArr);
+                _this.cbsToCall.forEach(function (cA, iA, map) {
+                    if (iA !== inputArr && iA.some(function (i) {
+                        return inputArr.indexOf(i) !== -1;
+                    })) {
+                        if (iA.length <= inputArr.length) {
+                            _this.cbsToCall.delete(iA);
+                        }
+                        else {
+                            _this.cbsToCall.delete(inputArr);
+                        }
+                    }
                 });
+            }
         });
     };
     return AbstractControlDevice;
