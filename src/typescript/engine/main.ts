@@ -19,7 +19,8 @@ import GameMain from "./decorators/GameMain";
 import GameState from "./decorators/GameState";
 
 //Enum
-import {Key} from "./util/io/Key";
+import {Keyboard} from "./util/io/Keyboard";
+import {Mouse} from "./util/io/Mouse";
 import {RenderPhase} from "./enum/RenderPhase";
 
 
@@ -40,7 +41,8 @@ export {
 	GameState,
 
 	//Enum
-	Key,
+	Keyboard,
+	Mouse,
 	RenderPhase
 
 };

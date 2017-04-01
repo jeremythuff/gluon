@@ -4,6 +4,7 @@ var ControlRule = (function () {
     function ControlRule(inputs, cbs, any) {
         this.cbs = cbs;
         this.inputs = inputs;
+        this.excludes = [];
         this.any = any;
     }
     ControlRule.prototype.run = function (cb) {
@@ -16,6 +17,11 @@ var ControlRule = (function () {
         else {
             this.cbs.get(this.inputs) ? this.cbs.get(this.inputs).push(cb) : this.cbs.set(this.inputs, [cb]);
         }
+        return this;
+    };
+    ControlRule.prototype.exclude = function (inputs) {
+        this.inputs.concat(inputs);
+        return this;
     };
     return ControlRule;
 }());

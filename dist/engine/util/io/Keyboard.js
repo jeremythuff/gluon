@@ -1,38 +1,104 @@
 "use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 Object.defineProperty(exports, "__esModule", { value: true });
-var AbstractControlDevice_1 = require("./AbstractControlDevice");
-var Rx_1 = require("@reactivex/rxjs/dist/cjs/Rx");
-var Keyboard = (function (_super) {
-    __extends(Keyboard, _super);
-    function Keyboard() {
-        var _this = _super.call(this) || this;
-        _this.whileCBs = new Map();
-        _this.whenCBs = new Map();
-        _this.keyBoardObs = Rx_1.Observable
-            .merge(Rx_1.Observable.fromEvent(window, "keyup"), Rx_1.Observable.fromEvent(window, "keydown"))
-            .distinctUntilChanged();
-        _this.keyBoardObs
-            .subscribe(function (e) {
-            if (e.type == "keydown") {
-                _this.activateInput(e.which);
-            }
-            else {
-                _this.releaseInput(e.which);
-            }
-        });
-        return _this;
-    }
-    return Keyboard;
-}(AbstractControlDevice_1.AbstractControlDevice));
-exports.default = Keyboard;
+var Keyboard;
+(function (Keyboard) {
+    Keyboard[Keyboard["BACKSPACE"] = 8] = "BACKSPACE";
+    Keyboard[Keyboard["TAB"] = 9] = "TAB";
+    Keyboard[Keyboard["ENTER"] = 13] = "ENTER";
+    Keyboard[Keyboard["SHIFT"] = 16] = "SHIFT";
+    Keyboard[Keyboard["CTRL"] = 17] = "CTRL";
+    Keyboard[Keyboard["ALT"] = 18] = "ALT";
+    Keyboard[Keyboard["CAPSLOCK"] = 20] = "CAPSLOCK";
+    Keyboard[Keyboard["ESC"] = 27] = "ESC";
+    Keyboard[Keyboard["PAGEUP"] = 33] = "PAGEUP";
+    Keyboard[Keyboard["PAGEDOWN"] = 34] = "PAGEDOWN";
+    Keyboard[Keyboard["END"] = 35] = "END";
+    Keyboard[Keyboard["HOME"] = 36] = "HOME";
+    Keyboard[Keyboard["BREAK"] = 19] = "BREAK";
+    Keyboard[Keyboard["LEFTARROW"] = 37] = "LEFTARROW";
+    Keyboard[Keyboard["UPARROW"] = 38] = "UPARROW";
+    Keyboard[Keyboard["RIGHTARROW"] = 39] = "RIGHTARROW";
+    Keyboard[Keyboard["DOWNARROW"] = 40] = "DOWNARROW";
+    Keyboard[Keyboard["INSERT"] = 45] = "INSERT";
+    Keyboard[Keyboard["DELETE"] = 46] = "DELETE";
+    Keyboard[Keyboard["ZERO"] = 48] = "ZERO";
+    Keyboard[Keyboard["ONE"] = 49] = "ONE";
+    Keyboard[Keyboard["TWO"] = 50] = "TWO";
+    Keyboard[Keyboard["THREE"] = 51] = "THREE";
+    Keyboard[Keyboard["FOUR"] = 52] = "FOUR";
+    Keyboard[Keyboard["FIVE"] = 53] = "FIVE";
+    Keyboard[Keyboard["SIX"] = 54] = "SIX";
+    Keyboard[Keyboard["SEVEN"] = 55] = "SEVEN";
+    Keyboard[Keyboard["EIGHT"] = 56] = "EIGHT";
+    Keyboard[Keyboard["NINE"] = 57] = "NINE";
+    Keyboard[Keyboard["A"] = 65] = "A";
+    Keyboard[Keyboard["B"] = 66] = "B";
+    Keyboard[Keyboard["C"] = 67] = "C";
+    Keyboard[Keyboard["D"] = 68] = "D";
+    Keyboard[Keyboard["E"] = 69] = "E";
+    Keyboard[Keyboard["F"] = 70] = "F";
+    Keyboard[Keyboard["G"] = 71] = "G";
+    Keyboard[Keyboard["H"] = 72] = "H";
+    Keyboard[Keyboard["I"] = 73] = "I";
+    Keyboard[Keyboard["J"] = 74] = "J";
+    Keyboard[Keyboard["K"] = 75] = "K";
+    Keyboard[Keyboard["L"] = 76] = "L";
+    Keyboard[Keyboard["M"] = 77] = "M";
+    Keyboard[Keyboard["N"] = 78] = "N";
+    Keyboard[Keyboard["O"] = 79] = "O";
+    Keyboard[Keyboard["P"] = 80] = "P";
+    Keyboard[Keyboard["Q"] = 81] = "Q";
+    Keyboard[Keyboard["R"] = 82] = "R";
+    Keyboard[Keyboard["S"] = 83] = "S";
+    Keyboard[Keyboard["T"] = 84] = "T";
+    Keyboard[Keyboard["U"] = 85] = "U";
+    Keyboard[Keyboard["V"] = 86] = "V";
+    Keyboard[Keyboard["W"] = 87] = "W";
+    Keyboard[Keyboard["X"] = 88] = "X";
+    Keyboard[Keyboard["Y"] = 89] = "Y";
+    Keyboard[Keyboard["Z"] = 90] = "Z";
+    Keyboard[Keyboard["LEFTWINDOWKEY"] = 91] = "LEFTWINDOWKEY";
+    Keyboard[Keyboard["RIGHTWINDOWKEY"] = 92] = "RIGHTWINDOWKEY";
+    Keyboard[Keyboard["SELECTKEY"] = 93] = "SELECTKEY";
+    Keyboard[Keyboard["NUM0"] = 96] = "NUM0";
+    Keyboard[Keyboard["NUM1"] = 97] = "NUM1";
+    Keyboard[Keyboard["NUM2"] = 98] = "NUM2";
+    Keyboard[Keyboard["NUM3"] = 99] = "NUM3";
+    Keyboard[Keyboard["NUM4"] = 100] = "NUM4";
+    Keyboard[Keyboard["NUM5"] = 101] = "NUM5";
+    Keyboard[Keyboard["NUM6"] = 102] = "NUM6";
+    Keyboard[Keyboard["NUM7"] = 103] = "NUM7";
+    Keyboard[Keyboard["NUM8"] = 104] = "NUM8";
+    Keyboard[Keyboard["NUM9"] = 105] = "NUM9";
+    Keyboard[Keyboard["MULITPLY"] = 106] = "MULITPLY";
+    Keyboard[Keyboard["ADD"] = 107] = "ADD";
+    Keyboard[Keyboard["SUBTRACT"] = 109] = "SUBTRACT";
+    Keyboard[Keyboard["DECIMALPOINT"] = 110] = "DECIMALPOINT";
+    Keyboard[Keyboard["DIVIDE"] = 111] = "DIVIDE";
+    Keyboard[Keyboard["F1"] = 112] = "F1";
+    Keyboard[Keyboard["F2"] = 113] = "F2";
+    Keyboard[Keyboard["F3"] = 114] = "F3";
+    Keyboard[Keyboard["F4"] = 115] = "F4";
+    Keyboard[Keyboard["F5"] = 116] = "F5";
+    Keyboard[Keyboard["F6"] = 117] = "F6";
+    Keyboard[Keyboard["F7"] = 118] = "F7";
+    Keyboard[Keyboard["F8"] = 119] = "F8";
+    Keyboard[Keyboard["F9"] = 120] = "F9";
+    Keyboard[Keyboard["F10"] = 121] = "F10";
+    Keyboard[Keyboard["F11"] = 122] = "F11";
+    Keyboard[Keyboard["F12"] = 123] = "F12";
+    Keyboard[Keyboard["NUMLOCK"] = 144] = "NUMLOCK";
+    Keyboard[Keyboard["SCROLLLOCK"] = 145] = "SCROLLLOCK";
+    Keyboard[Keyboard["SEMICOLON"] = 186] = "SEMICOLON";
+    Keyboard[Keyboard["EQUALSIGN"] = 187] = "EQUALSIGN";
+    Keyboard[Keyboard["COMMA"] = 188] = "COMMA";
+    Keyboard[Keyboard["DASH"] = 189] = "DASH";
+    Keyboard[Keyboard["PERIOD"] = 190] = "PERIOD";
+    Keyboard[Keyboard["FOREWARDSLASH"] = 191] = "FOREWARDSLASH";
+    Keyboard[Keyboard["GRAVEACCENT"] = 192] = "GRAVEACCENT";
+    Keyboard[Keyboard["OPENBRAKET"] = 219] = "OPENBRAKET";
+    Keyboard[Keyboard["BACKSLASH"] = 220] = "BACKSLASH";
+    Keyboard[Keyboard["CLOSEBRAKET"] = 221] = "CLOSEBRAKET";
+    Keyboard[Keyboard["SINGLEQUOTE"] = 22] = "SINGLEQUOTE";
+})(Keyboard = exports.Keyboard || (exports.Keyboard = {}));
 //# sourceMappingURL=Keyboard.js.map

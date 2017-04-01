@@ -1,8 +1,8 @@
 import {AbstractControlDevice} from "./AbstractControlDevice";
-import {Key} from "./Key";
-import {Button} from "./Button";
+import {Keyboard} from "./Keyboard";
+import {Mouse} from "./Mouse";
 
 export interface ControlCB {
-	(delta ?:number, inputs ?:(Key|Button)[]) :void;
+	(delta ?:number, inputs ?:(Keyboard|Mouse)[]) :void;
 	
 }
