@@ -1,7 +1,7 @@
 import Engine from "../model/Engine"
 import Game from "../model/Game"
 
-import * as RunningGameRegistry from "../registries/RunningGameRegistry";
+import * as RunningGameRegistry from "../registries/GameMainRegistry";
 import * as GameStateRegistry from "../registries/GameStateRegistry";
 
 /**
@@ -21,9 +21,9 @@ export default function GameMain(options ?: { [name: string]: any[]|string }) {
 		
 		console.log(`Registering Game: ${game.getName()}`);
 		
-		RunningGameRegistry.setRunningGame(game);
+		RunningGameRegistry.setGameMain(game);
 
-		const runningGameSubject = RunningGameRegistry.getRunningGameSubject();
+		const runningGameSubject = RunningGameRegistry.getGameMainSubject();
 		runningGameSubject.subscribe(game=>{
 			const lastRegisteredStateObservable = GameStateRegistry.getLastRegisteredGameState();
 			lastRegisteredStateObservable.subscribe(state=>{

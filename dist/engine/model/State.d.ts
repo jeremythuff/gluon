@@ -25,6 +25,8 @@ export default class State extends AbstractRenderCycle {
     setFramesPerSecond(framesPerSecond: number): void;
     setModes(modes: Mode[]): void;
     getModes(): Mode[];
+    addMode(mode: Mode): void;
+    removeMode(mode: Mode): void;
     getModeByName(name: string): Mode;
     activateMode(mode: Mode): void;
     avtivateAllModes(mode: Mode): void;

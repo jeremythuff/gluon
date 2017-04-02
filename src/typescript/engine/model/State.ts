@@ -111,6 +111,14 @@ export default class State extends AbstractRenderCycle {
 		return this.modes;
 	}
 
+	addMode(mode :Mode) :void {
+		this.modes.push(mode);
+	}
+
+	removeMode(mode :Mode) :void {
+		this.modes.splice(this.modes.indexOf(mode), 1);
+	}
+
 	getModeByName(name :string) :Mode {
 		let foundMode = null;
 		this.modes.some(mode=>{

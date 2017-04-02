@@ -1,11 +1,11 @@
 "use strict";
 var Rx_1 = require("@reactivex/rxjs/dist/cjs/Rx");
-var RunningGameRegistry = require("./RunningGameRegistry");
+var GameMainRegistry = require("./GameMainRegistry");
 var GameStateRegistry;
 (function (GameStateRegistry) {
     var initialStateSubject = new Rx_1.Subject();
     function addGameState(state) {
-        RunningGameRegistry.getRunningGameSubject().subscribe(function (game) {
+        GameMainRegistry.getGameMainSubject().subscribe(function (game) {
             game.addState(state);
             if (game.getInitialStateName() === state.getName())
                 initialStateSubject.next(state);

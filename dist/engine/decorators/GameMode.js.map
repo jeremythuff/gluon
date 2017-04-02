@@ -1,0 +1,1 @@
+{"version":3,"file":"GameMode.js","sourceRoot":"","sources":["../../../src/typescript/engine/decorators/GameMode.ts"],"names":[],"mappings":";;AAEA,iEAAmE;AAEnE,kBAAiC,OAA2C;IACxE,MAAM,CAAC,UAAS,SAAsB;QAElC,gBAAgB,CAAC,WAAW,CAAC,SAAS,CAAC,CAAA;QAEvC,MAAM,CAAC,SAAS,CAAC;IAErB,CAAC,CAAA;AACL,CAAC;AARD,2BAQC"}

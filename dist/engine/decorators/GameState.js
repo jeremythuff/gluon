@@ -1,21 +1,25 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var RunningGameRegistry = require("../registries/RunningGameRegistry");
+var GameMainRegistry = require("../registries/GameMainRegistry");
 var GameStateRegistry = require("../registries/GameStateRegistry");
+var GameModeRegistry = require("../registries/GameModeRegistry");
 var totalStates = 0;
 function GameState(options) {
     return function (decorated) {
         var state = new decorated();
         if (!state.getName())
             state.setName(decorated.name);
-        var liveModes = [];
-        options["modes"].forEach(function (mode) {
-            var liveMode = new mode();
-            liveMode.setName(mode.name);
-            liveModes.push(liveMode);
+        GameModeRegistry.getGameModeObservable().subscribe(function (Mode) {
+            console.log(Mode);
+            if (options["modes"].some(function (modeName) {
+                return modeName === Mode.name;
+            })) {
+                var mode = new Mode();
+                mode.setName(Mode.name);
+                state.addMode(mode);
+            }
         });
-        state.setModes(liveModes);
-        RunningGameRegistry.getRunningGameSubject().subscribe(function (game) {
+        GameMainRegistry.getGameMainSubject().subscribe(function (game) {
             if (game) {
                 console.log("Registering State: " + state.getName());
                 GameStateRegistry.addGameState(state);

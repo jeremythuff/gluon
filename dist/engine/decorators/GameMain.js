@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Engine_1 = require("../model/Engine");
-var RunningGameRegistry = require("../registries/RunningGameRegistry");
+var RunningGameRegistry = require("../registries/GameMainRegistry");
 var GameStateRegistry = require("../registries/GameStateRegistry");
 function GameMain(options) {
     return function (decorated) {
@@ -9,8 +9,8 @@ function GameMain(options) {
         if (!game.getName())
             game.setName(decorated.name);
         console.log("Registering Game: " + game.getName());
-        RunningGameRegistry.setRunningGame(game);
-        var runningGameSubject = RunningGameRegistry.getRunningGameSubject();
+        RunningGameRegistry.setGameMain(game);
+        var runningGameSubject = RunningGameRegistry.getGameMainSubject();
         runningGameSubject.subscribe(function (game) {
             var lastRegisteredStateObservable = GameStateRegistry.getLastRegisteredGameState();
             lastRegisteredStateObservable.subscribe(function (state) {

@@ -88,6 +88,12 @@ var State = (function (_super) {
     State.prototype.getModes = function () {
         return this.modes;
     };
+    State.prototype.addMode = function (mode) {
+        this.modes.push(mode);
+    };
+    State.prototype.removeMode = function (mode) {
+        this.modes.splice(this.modes.indexOf(mode), 1);
+    };
     State.prototype.getModeByName = function (name) {
         var foundMode = null;
         this.modes.some(function (mode) {

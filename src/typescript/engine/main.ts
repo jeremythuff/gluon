@@ -17,6 +17,7 @@ import {RenderCycle} from "./model/interface/RenderCycle";
 //Decorators
 import GameMain from "./decorators/GameMain";
 import GameState from "./decorators/GameState";
+import GameMode from "./decorators/GameMode";
 
 //Enum
 import {Keyboard} from "./util/io/Keyboard";
@@ -29,8 +30,8 @@ export {
 	//Models
 	Engine,
 	Game,
-	State,
 	Mode,
+	State,
 
 	//Interface
 	PhaseCB,
@@ -39,6 +40,7 @@ export {
 	//Decorators
 	GameMain,
 	GameState,
+	GameMode,
 
 	//Enum
 	Keyboard,

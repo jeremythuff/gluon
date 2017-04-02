@@ -1,8 +1,9 @@
 import State from "../model/State"
 import Mode from "../model/Mode"
 
-import * as RunningGameRegistry from "../registries/RunningGameRegistry";
+import * as GameMainRegistry from "../registries/GameMainRegistry";
 import * as GameStateRegistry from "../registries/GameStateRegistry";
+import * as GameModeRegistry from "../registries/GameModeRegistry";
 
 
 let totalStates : number = 0;
@@ -19,21 +20,27 @@ export default function GameState(options ?: { [name: string]: any[]|string }) {
 		
 		const state = new decorated();
 		if(!state.getName()) state.setName(decorated.name);
-		
-		const liveModes :Mode[] = [];
-		(<typeof Mode[]>options["modes"]).forEach(mode=>{
-			const liveMode = new mode();
-			liveMode.setName(mode.name);
-			liveModes.push(liveMode);
+
+		GameModeRegistry.getGameModeObservable().subscribe(Mode=>{
+			console.log(Mode);
+			if((<string[]>options["modes"]).some(modeName=>{
+				return modeName === Mode.name;
+			})) {				
+
+				const mode = new Mode();
+				mode.setName(Mode.name);
+
+				state.addMode(mode);
+			}
+
 		});
 
-		state.setModes(liveModes);
-
-		RunningGameRegistry.getRunningGameSubject().subscribe(game=>{
+		GameMainRegistry.getGameMainSubject().subscribe(game=>{
 			if(game) {
 				console.log(`Registering State: ${state.getName()}`);
 				GameStateRegistry.addGameState(state);
 			}
-		});		
+		});	
+	
 	}
 }
