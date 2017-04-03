@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var GameMainRegistry = require("../registries/GameMainRegistry");
 var GameStateRegistry = require("../registries/GameStateRegistry");
 var GameModeRegistry = require("../registries/GameModeRegistry");
+var GameControllereRegistry = require("../registries/GameControllerRegistry");
 var totalStates = 0;
 function GameState(options) {
     return function (decorated) {
@@ -18,6 +19,10 @@ function GameState(options) {
                 mode.setName(Mode.name);
                 state.addMode(mode);
             }
+        });
+        GameControllereRegistry.getControlProfileObservable().subscribe(function (ControlProfile) {
+            var newControllerProfile = new ControlProfile(state);
+            state.addControlProfile(newControllerProfile);
         });
         GameMainRegistry.getGameMainSubject().subscribe(function (game) {
             if (game) {

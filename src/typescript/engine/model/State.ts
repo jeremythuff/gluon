@@ -2,9 +2,12 @@ import {Observable} from "@reactivex/rxjs/dist/cjs/Rx";
 import * as THREE from "three";
 
 import {AbstractRenderCycle} from "./abstracts/AbstractRenderCycle";
+import {Controlable} from "./interface/Controlable";
+
 import Mode from "./Mode";
 
-import Controls from "../util/io/Controls";
+import ControlProfile from "../util/io/ControlProfile";
+import ControlRunner from "../util/io/ControlRunner";
 
 /**
  * The State class acts as the primary organizing entiry for your game. 
@@ -12,7 +15,7 @@ import Controls from "../util/io/Controls";
  * use of the [[GameState]] decorator. Any class which both extends State and is decorated
  * with [[GameState]] will automatically be available for you in your game instance.
  * */
-export default class State extends AbstractRenderCycle {
+export default class State extends AbstractRenderCycle implements Controlable {
 
 	private name : string;
 	private framesPerSecond: number;
@@ -23,14 +26,17 @@ export default class State extends AbstractRenderCycle {
 	private renderer :THREE.WebGLRenderer;
 	private scene :THREE.Scene;
 
-	public controls :Controls;
+	private controlRunner :ControlRunner;
+
+	private controlProfiles :ControlProfile[];
 
 	constructor() {
 		super();
     	this.modes = [];
     	this.activeModes =[];
+		this.controlProfiles = [];
+
     	this.scene = new THREE.Scene();
-    	this.controls = new Controls();
     }
 
    protected  _runInit() :Observable<{}[]> {
@@ -155,6 +161,23 @@ export default class State extends AbstractRenderCycle {
 		this.activeModes.forEach(mode=>{
 			this.deActivateMode(mode);
 		});
+	}
+
+	setControlProfiles(controlProfiles :ControlProfile[]) :void {
+		this.controlProfiles = controlProfiles;
+	}
+
+	getControlProfiles() :ControlProfile[] {
+		return this.controlProfiles;
+	}
+
+	addControlProfile(controlProfile :ControlProfile) :void {
+		this.getControlProfiles().push(controlProfile);
+	}
+
+	removeControlProfile(controlProfile :ControlProfile) :void {
+		const controlProfiles = this.getControlProfiles();
+		controlProfiles.splice(controlProfiles.indexOf(controlProfile), 1);
 	}
 
 }

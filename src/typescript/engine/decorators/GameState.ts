@@ -1,9 +1,11 @@
 import State from "../model/State"
 import Mode from "../model/Mode"
+import ControlProfile from "../util/io/ControlProfile";
 
 import * as GameMainRegistry from "../registries/GameMainRegistry";
 import * as GameStateRegistry from "../registries/GameStateRegistry";
 import * as GameModeRegistry from "../registries/GameModeRegistry";
+import * as GameControllereRegistry from "../registries/GameControllerRegistry";
 
 
 let totalStates : number = 0;
@@ -33,6 +35,11 @@ export default function GameState(options ?: { [name: string]: any[]|string }) {
 				state.addMode(mode);
 			}
 
+		});
+
+		GameControllereRegistry.getControlProfileObservable().subscribe(ControlProfile=>{
+			const newControllerProfile :ControlProfile = new ControlProfile(state);
+			state.addControlProfile(newControllerProfile);
 		});
 
 		GameMainRegistry.getGameMainSubject().subscribe(game=>{

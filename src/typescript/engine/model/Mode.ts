@@ -1,13 +1,14 @@
 import {Observable} from "@reactivex/rxjs/dist/cjs/Rx";
 
 import {AbstractRenderCycle} from "./abstracts/AbstractRenderCycle";
+import {Controlable} from "./interface/Controlable";
 
 /**
  *  The Mode class represents a grouping of controll definition and
  *  displayable elements. Modes are registered in a [[State]] and many can be
  *  active at any given time.
  */
-export default class Mode extends AbstractRenderCycle {
+export default class Mode extends AbstractRenderCycle implements Controlable {
 
 	private name :string;
 

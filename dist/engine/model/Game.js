@@ -46,7 +46,6 @@ var Game = (function (_super) {
     Game.prototype._runUpdate = function (delta) {
         if (this.activeState.phaseIs(RenderPhase_1.RenderPhase.READY))
             this.activeState.runUpdate(delta);
-        this.activeState.controls._runCBs(delta);
     };
     ;
     Game.prototype._runRender = function (delta) {

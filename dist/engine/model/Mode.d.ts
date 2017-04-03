@@ -1,6 +1,7 @@
 import { Observable } from "@reactivex/rxjs/dist/cjs/Rx";
 import { AbstractRenderCycle } from "./abstracts/AbstractRenderCycle";
-export default class Mode extends AbstractRenderCycle {
+import { Controlable } from "./interface/Controlable";
+export default class Mode extends AbstractRenderCycle implements Controlable {
     private name;
     constructor(name?: string);
     protected _runInit(): Observable<{}[]>;

@@ -1,15 +1,17 @@
 import { Observable } from "@reactivex/rxjs/dist/cjs/Rx";
 import { AbstractRenderCycle } from "./abstracts/AbstractRenderCycle";
+import { Controlable } from "./interface/Controlable";
 import Mode from "./Mode";
-import Controls from "../util/io/Controls";
-export default class State extends AbstractRenderCycle {
+import ControlProfile from "../util/io/ControlProfile";
+export default class State extends AbstractRenderCycle implements Controlable {
     private name;
     private framesPerSecond;
     private modes;
     private activeModes;
     private renderer;
     private scene;
-    controls: Controls;
+    private controlRunner;
+    private controlProfiles;
     constructor();
     protected _runInit(): Observable<{}[]>;
     protected _runLoad(): Observable<{}[]>;
@@ -32,4 +34,8 @@ export default class State extends AbstractRenderCycle {
     avtivateAllModes(mode: Mode): void;
     deActivateMode(mode: Mode): void;
     deActivateAllMode(mode: Mode): void;
+    setControlProfiles(controlProfiles: ControlProfile[]): void;
+    getControlProfiles(): ControlProfile[];
+    addControlProfile(controlProfile: ControlProfile): void;
+    removeControlProfile(controlProfile: ControlProfile): void;
 }

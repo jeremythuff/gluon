@@ -13,15 +13,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Rx_1 = require("@reactivex/rxjs/dist/cjs/Rx");
 var THREE = require("three");
 var AbstractRenderCycle_1 = require("./abstracts/AbstractRenderCycle");
-var Controls_1 = require("../util/io/Controls");
 var State = (function (_super) {
     __extends(State, _super);
     function State() {
         var _this = _super.call(this) || this;
         _this.modes = [];
         _this.activeModes = [];
+        _this.controlProfiles = [];
         _this.scene = new THREE.Scene();
-        _this.controls = new Controls_1.default();
         return _this;
     }
     State.prototype._runInit = function () {
@@ -131,6 +130,19 @@ var State = (function (_super) {
         this.activeModes.forEach(function (mode) {
             _this.deActivateMode(mode);
         });
+    };
+    State.prototype.setControlProfiles = function (controlProfiles) {
+        this.controlProfiles = controlProfiles;
+    };
+    State.prototype.getControlProfiles = function () {
+        return this.controlProfiles;
+    };
+    State.prototype.addControlProfile = function (controlProfile) {
+        this.getControlProfiles().push(controlProfile);
+    };
+    State.prototype.removeControlProfile = function (controlProfile) {
+        var controlProfiles = this.getControlProfiles();
+        controlProfiles.splice(controlProfiles.indexOf(controlProfile), 1);
     };
     return State;
 }(AbstractRenderCycle_1.AbstractRenderCycle));

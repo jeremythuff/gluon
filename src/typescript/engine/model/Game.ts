@@ -2,6 +2,7 @@ import * as THREE from "three";
 import {Observable} from "@reactivex/rxjs/dist/cjs/Rx";
 
 import {AbstractRenderCycle} from "./abstracts/AbstractRenderCycle";
+import {Controlable} from "./interface/Controlable";
 import State from "./State";
 
 import {RenderPhase} from "../enum/RenderPhase";
@@ -11,7 +12,7 @@ import {RenderPhase} from "../enum/RenderPhase";
  * this class into you game main glass, and decorating it with the [[GameMain]]
  * decorator, it will be the main entry point for your game.
  */
-export default class Game extends AbstractRenderCycle {
+export default class Game extends AbstractRenderCycle implements Controlable {
 
 	private name : string;
 
@@ -56,7 +57,7 @@ export default class Game extends AbstractRenderCycle {
 	protected _runUpdate(delta :number) :void {
 		if(this.activeState.phaseIs(RenderPhase.READY))
 			this.activeState.runUpdate(delta);
-		this.activeState.controls._runCBs(delta);
+		//this.activeState.controls._runCBs(delta);
 	};
 
 	protected _runRender(delta :number) :void {

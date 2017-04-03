@@ -1,7 +1,8 @@
 import { Observable } from "@reactivex/rxjs/dist/cjs/Rx";
 import { AbstractRenderCycle } from "./abstracts/AbstractRenderCycle";
+import { Controlable } from "./interface/Controlable";
 import State from "./State";
-export default class Game extends AbstractRenderCycle {
+export default class Game extends AbstractRenderCycle implements Controlable {
     private name;
     private renderer;
     private framesPerSecond;
