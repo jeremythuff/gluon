@@ -15,6 +15,7 @@ import ControlProfile from "./util/io/ControlProfile";
 import {PhaseCB} from "./model/interface/PhaseCB";
 import {RenderCycle} from "./model/interface/RenderCycle";
 import {ControlCB} from "./util/io/ControlCB";
+import {Controlable} from "./model/interface/Controlable";
 
 //Decorators
 import GameMain from "./decorators/GameMain";
@@ -36,6 +37,7 @@ export {
 	Mode,
 	State,
 	ControlProfile,
+	Controlable,
 
 	//Interface
 	PhaseCB,

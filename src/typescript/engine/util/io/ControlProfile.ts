@@ -15,34 +15,15 @@ export default class ControlProfile {
         this.controlee = controlee;
         this.whileCBs = new Map<(Keyboard|Mouse)[], ControlCB[]>();
 		this.whenCBs = new Map<(Keyboard|Mouse)[], ControlCB[]>();
+        console.log("BUILT");
     }
 
-    protected While(...inputs :(Keyboard|Mouse)[]) {
-        return function(controlCB: any, propertyKey: string, descriptor: PropertyDescriptor) :void {
-            this.whileCBs.get([inputs])?this.whileCBs.get([inputs]).push(controlCB):this.whileCBs.set([inputs], [controlCB]);		
-        };
+    addWhileCBs(inputs :(Keyboard|Mouse)[], cbs :ControlCB[]) :void {
+        this.whileCBs.set(inputs, cbs);
     }
 
-    protected When(...inputs :(Keyboard|Mouse)[]) {
-        return function(controlCB: any, propertyKey: string, descriptor: PropertyDescriptor) :void {
-            this.whenCBs.get([inputs])?this.whenCBs.get([inputs]).push(controlCB):this.whenCBs.set([inputs], [controlCB]);		
-        }
-    }
-
-    protected WhileAny(...inputs :(Keyboard|Mouse)[]) {
-        return function(controlCB :any) :void {
-            inputs.forEach(k=>{
-				this.whileCBs.get([k])?this.whileCBs.get([k]).push(controlCB):this.whileCBs.set([k], [controlCB]);		
-			});
-        }
-    }
-
-    protected WhenAny(...inputs :(Keyboard|Mouse)[]) {
-        return function(controlCB :any) :void {
-            inputs.forEach(k=>{
-				this.whenCBs.get([k])?this.whenCBs.get([k]).push(controlCB):this.whenCBs.set([k], [controlCB]);		
-			});
-        }
+    addWhenCBs(inputs :(Keyboard|Mouse)[], cbs :ControlCB[]) :void {
+        this.whenCBs.set(inputs, cbs);
     }
 
     getWhileCBs() :Map<(Keyboard|Mouse)[], ControlCB[]> {
@@ -52,6 +33,5 @@ export default class ControlProfile {
     getWhenCBs() :Map<(Keyboard|Mouse)[], ControlCB[]> {
         return this.whenCBs;
     }
-
 
 }
