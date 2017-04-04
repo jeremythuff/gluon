@@ -1,6 +1,6 @@
 import {ControlCB} from "./ControlCB";
 
-export abstract class AbstractControlDevice {
+export abstract class AbstractControlListener {
 
 	private runWhenCBS :Array<ControlCB[]>;
 	protected activatedInput :boolean[];

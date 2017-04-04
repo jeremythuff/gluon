@@ -1,9 +1,9 @@
 
-import {AbstractControlDevice} from "./AbstractControlDevice";
+import {AbstractControlListener} from "./AbstractControlListener";
 import {ControlCB} from "./ControlCB";
 import {Observable} from "@reactivex/rxjs/dist/cjs/Rx";
 
-export default class MouseListener extends AbstractControlDevice {
+export default class MouseListener extends AbstractControlListener {
 
 	private MouseObs :Observable<MouseEvent>;
 

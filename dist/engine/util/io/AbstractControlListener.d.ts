@@ -1,5 +1,5 @@
 import { ControlCB } from "./ControlCB";
-export declare abstract class AbstractControlDevice {
+export declare abstract class AbstractControlListener {
     private runWhenCBS;
     protected activatedInput: boolean[];
     constructor(runWhenCBS: Array<ControlCB[]>, activatedInput: boolean[]);

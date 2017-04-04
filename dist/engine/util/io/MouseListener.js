@@ -10,7 +10,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var AbstractControlDevice_1 = require("./AbstractControlDevice");
+var AbstractControlListener_1 = require("./AbstractControlListener");
 var Rx_1 = require("@reactivex/rxjs/dist/cjs/Rx");
 var MouseListener = (function (_super) {
     __extends(MouseListener, _super);
@@ -35,6 +35,6 @@ var MouseListener = (function (_super) {
         return _this;
     }
     return MouseListener;
-}(AbstractControlDevice_1.AbstractControlDevice));
+}(AbstractControlListener_1.AbstractControlListener));
 exports.default = MouseListener;
 //# sourceMappingURL=MouseListener.js.map

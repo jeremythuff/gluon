@@ -1,9 +1,9 @@
 
-import {AbstractControlDevice} from "./AbstractControlDevice";
+import {AbstractControlListener} from "./AbstractControlListener";
 import {ControlCB} from "./ControlCB";
 import {Observable} from "@reactivex/rxjs/dist/cjs/Rx";
 
-export default class KeyboardListener extends AbstractControlDevice {
+export default class KeyboardListener extends AbstractControlListener {
 
 	private keyBoardObs :Observable<KeyboardEvent>;
 

@@ -3,7 +3,6 @@ import {Mouse} from "./Mouse";
 import {ControlCB} from "./ControlCB";
 import KeyboardListener from "./KeyboardListener";
 import MouseListener from "./MouseListener";
-import ControlRule from "./ControlRule";
 import ControlProfile from "./ControlProfile";
 
 export default class ControlRunner {

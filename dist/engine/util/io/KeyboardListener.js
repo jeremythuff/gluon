@@ -10,7 +10,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var AbstractControlDevice_1 = require("./AbstractControlDevice");
+var AbstractControlListener_1 = require("./AbstractControlListener");
 var Rx_1 = require("@reactivex/rxjs/dist/cjs/Rx");
 var KeyboardListener = (function (_super) {
     __extends(KeyboardListener, _super);
@@ -31,6 +31,6 @@ var KeyboardListener = (function (_super) {
         return _this;
     }
     return KeyboardListener;
-}(AbstractControlDevice_1.AbstractControlDevice));
+}(AbstractControlListener_1.AbstractControlListener));
 exports.default = KeyboardListener;
 //# sourceMappingURL=KeyboardListener.js.map
