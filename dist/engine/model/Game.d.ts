@@ -9,6 +9,7 @@ export default class Game extends AbstractRenderCycle implements Controlable {
     private initialStateName;
     private activeState;
     private states;
+    private controlRunner;
     constructor(name?: string);
     protected _runInit(): Observable<{}[]>;
     protected _runLoad(): Observable<{}[]>;

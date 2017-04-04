@@ -3,6 +3,7 @@ import {Observable} from "@reactivex/rxjs/dist/cjs/Rx";
 
 import {AbstractRenderCycle} from "./abstracts/AbstractRenderCycle";
 import {Controlable} from "./interface/Controlable";
+import ControlRunner from "../util/io/ControlRunner";
 import State from "./State";
 
 import {RenderPhase} from "../enum/RenderPhase";
@@ -22,12 +23,14 @@ export default class Game extends AbstractRenderCycle implements Controlable {
 	private initialStateName :string;
 	private activeState :State;
 	private states :State[];
+	private controlRunner :ControlRunner;
 	
     constructor(name ?:string) {
     	super();
     	if(name) this.setName(name);
     	this.states = [];
     	this.renderer = new THREE.WebGLRenderer();
+		this.controlRunner = new ControlRunner();
     }
 
     protected _runInit() :Observable<{}[]> {
@@ -56,8 +59,9 @@ export default class Game extends AbstractRenderCycle implements Controlable {
 
 	protected _runUpdate(delta :number) :void {
 		if(this.activeState.phaseIs(RenderPhase.READY))
-			this.activeState.runUpdate(delta);
-		//this.activeState.controls._runCBs(delta);
+			this.activeState.runUpdate(delta);	
+		this.controlRunner._runCBs(this.activeState.getControlProfiles(), delta);
+	
 	};
 
 	protected _runRender(delta :number) :void {

@@ -18,12 +18,12 @@ export default class ControlProfile {
         console.log("BUILT");
     }
 
-    addWhileCBs(inputs :(Keyboard|Mouse)[], cbs :ControlCB[]) :void {
-        this.whileCBs.set(inputs, cbs);
+    setWhileCBs(whileCBs :Map<(Keyboard|Mouse)[], ControlCB[]>) :void {
+        this.whileCBs = whileCBs;
     }
 
-    addWhenCBs(inputs :(Keyboard|Mouse)[], cbs :ControlCB[]) :void {
-        this.whenCBs.set(inputs, cbs);
+    setWhhenCBs(whileCBs :Map<(Keyboard|Mouse)[], ControlCB[]>) :void {
+        this.whileCBs = whileCBs;
     }
 
     getWhileCBs() :Map<(Keyboard|Mouse)[], ControlCB[]> {

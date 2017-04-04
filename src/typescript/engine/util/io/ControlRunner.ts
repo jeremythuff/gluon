@@ -36,7 +36,7 @@ export default class ControlRunner {
 	}
 
 	private runWhenCBs(profiles :ControlProfile[], delta ?:number) :void {
-
+		
 		profiles.forEach(profile=>{
 
 			profile.getWhenCBs().forEach((cbArr, inputArr)=>{

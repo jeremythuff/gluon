@@ -13,6 +13,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var THREE = require("three");
 var Rx_1 = require("@reactivex/rxjs/dist/cjs/Rx");
 var AbstractRenderCycle_1 = require("./abstracts/AbstractRenderCycle");
+var ControlRunner_1 = require("../util/io/ControlRunner");
 var RenderPhase_1 = require("../enum/RenderPhase");
 var Game = (function (_super) {
     __extends(Game, _super);
@@ -22,6 +23,7 @@ var Game = (function (_super) {
             _this.setName(name);
         _this.states = [];
         _this.renderer = new THREE.WebGLRenderer();
+        _this.controlRunner = new ControlRunner_1.default();
         return _this;
     }
     Game.prototype._runInit = function () {
@@ -46,6 +48,7 @@ var Game = (function (_super) {
     Game.prototype._runUpdate = function (delta) {
         if (this.activeState.phaseIs(RenderPhase_1.RenderPhase.READY))
             this.activeState.runUpdate(delta);
+        this.controlRunner._runCBs(this.activeState.getControlProfiles(), delta);
     };
     ;
     Game.prototype._runRender = function (delta) {

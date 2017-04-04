@@ -7,9 +7,6 @@ import * as GameStateRegistry from "../registries/GameStateRegistry";
 import * as GameModeRegistry from "../registries/GameModeRegistry";
 import * as GameControllereRegistry from "../registries/GameControllerRegistry";
 
-
-let totalStates : number = 0;
-
 /**
  * This function is used to decorate classes which extend [[State]]. It registers and 
  * instantiates such classes within your main game instance.
@@ -39,6 +36,8 @@ export default function GameState(options ?: { [name: string]: any[]|string }) {
 
 		GameControllereRegistry.getControlProfileObservable().subscribe(ControlProfile=>{
 			const newControllerProfile :ControlProfile = new ControlProfile(state);
+			const whileMap = GameControllereRegistry.getWhileCBMapByName(ControlProfile.name);
+			newControllerProfile.setWhileCBs(whileMap);
 			state.addControlProfile(newControllerProfile);
 		});
 

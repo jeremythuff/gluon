@@ -4,7 +4,6 @@ var GameMainRegistry = require("../registries/GameMainRegistry");
 var GameStateRegistry = require("../registries/GameStateRegistry");
 var GameModeRegistry = require("../registries/GameModeRegistry");
 var GameControllereRegistry = require("../registries/GameControllerRegistry");
-var totalStates = 0;
 function GameState(options) {
     return function (decorated) {
         var state = new decorated();
@@ -22,6 +21,8 @@ function GameState(options) {
         });
         GameControllereRegistry.getControlProfileObservable().subscribe(function (ControlProfile) {
             var newControllerProfile = new ControlProfile(state);
+            var whileMap = GameControllereRegistry.getWhileCBMapByName(ControlProfile.name);
+            newControllerProfile.setWhileCBs(whileMap);
             state.addControlProfile(newControllerProfile);
         });
         GameMainRegistry.getGameMainSubject().subscribe(function (game) {

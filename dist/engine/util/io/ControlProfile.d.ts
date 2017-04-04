@@ -7,8 +7,8 @@ export default class ControlProfile {
     private whileCBs;
     private whenCBs;
     constructor(controlee: Controlable);
-    addWhileCBs(inputs: (Keyboard | Mouse)[], cbs: ControlCB[]): void;
-    addWhenCBs(inputs: (Keyboard | Mouse)[], cbs: ControlCB[]): void;
+    setWhileCBs(whileCBs: Map<(Keyboard | Mouse)[], ControlCB[]>): void;
+    setWhhenCBs(whileCBs: Map<(Keyboard | Mouse)[], ControlCB[]>): void;
     getWhileCBs(): Map<(Keyboard | Mouse)[], ControlCB[]>;
     getWhenCBs(): Map<(Keyboard | Mouse)[], ControlCB[]>;
 }

@@ -22,6 +22,8 @@ import GameMain from "./decorators/GameMain";
 import GameState from "./decorators/GameState";
 import GameMode from "./decorators/GameMode";
 import GameController from "./decorators/GameController";
+import While from "./decorators/While";
+
 
 //Enum
 import {Keyboard} from "./util/io/Keyboard";
@@ -49,6 +51,7 @@ export {
 	GameState,
 	GameMode,
 	GameController,
+	While,
 
 	//Enum
 	Keyboard,

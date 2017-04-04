@@ -7,11 +7,11 @@ var ControlProfile = (function () {
         this.whenCBs = new Map();
         console.log("BUILT");
     }
-    ControlProfile.prototype.addWhileCBs = function (inputs, cbs) {
-        this.whileCBs.set(inputs, cbs);
+    ControlProfile.prototype.setWhileCBs = function (whileCBs) {
+        this.whileCBs = whileCBs;
     };
-    ControlProfile.prototype.addWhenCBs = function (inputs, cbs) {
-        this.whenCBs.set(inputs, cbs);
+    ControlProfile.prototype.setWhhenCBs = function (whileCBs) {
+        this.whileCBs = whileCBs;
     };
     ControlProfile.prototype.getWhileCBs = function () {
         return this.whileCBs;
