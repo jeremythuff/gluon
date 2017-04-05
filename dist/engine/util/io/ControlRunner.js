@@ -9,11 +9,15 @@ var ControlRunner = (function () {
         this.activatedInput = [];
         this.keyboardListener = new KeyboardListener_1.default(this.alreadyRun, this.activatedInput);
         this.mouseListener = new MouseListener_1.default(this.alreadyRun, this.activatedInput);
+        this.lastEvents = new Map();
     }
     ControlRunner.prototype._runCBs = function (profiles, delta) {
         this.runWhileCBs(profiles, delta);
         this.runWhenCBs(profiles, delta);
-        this.cbsToCall.forEach(function (cbArr, inputs) { return cbArr.forEach(function (cb) { return cb(null, delta); }); });
+        var lastEventMap = new Map();
+        lastEventMap.set("keyboard", this.keyboardListener.getLastEvent());
+        lastEventMap.set("mouse", this.mouseListener.getLastEvent());
+        this.cbsToCall.forEach(function (cbArr, inputs) { return cbArr.forEach(function (cb) { return cb(lastEventMap, delta); }); });
         this.cbsToCall.clear();
     };
     ControlRunner.prototype.runWhenCBs = function (profiles, delta) {

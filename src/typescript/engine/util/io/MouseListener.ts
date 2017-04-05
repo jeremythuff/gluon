@@ -33,6 +33,8 @@ export default class MouseListener extends AbstractControlListener {
 						// code...
 						break;
 				}
+
+				this.lastEvent=e;
 			
 			});
 

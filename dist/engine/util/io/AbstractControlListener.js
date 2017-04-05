@@ -12,6 +12,9 @@ var AbstractControlListener = (function () {
         this.activatedInput[inputCode] = false;
         this.runWhenCBS.length = 0;
     };
+    AbstractControlListener.prototype.getLastEvent = function () {
+        return this.lastEvent;
+    };
     return AbstractControlListener;
 }());
 exports.AbstractControlListener = AbstractControlListener;

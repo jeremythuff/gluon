@@ -31,6 +31,7 @@ var MouseListener = (function (_super) {
                 default:
                     break;
             }
+            _this.lastEvent = e;
         });
         return _this;
     }

@@ -21,6 +21,7 @@ export default class KeyboardListener extends AbstractControlListener {
 			.subscribe(e=>{
 				if(e.type=="keydown") {
 					this.activateInput(e.which);
+					this.lastEvent = e;
 				} else {
 					this.releaseInput(e.which);
 				}				

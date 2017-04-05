@@ -1,5 +1,6 @@
 import ControlProfile from "./ControlProfile";
 export default class ControlRunner {
+    protected lastEvents: Map<string, Event>;
     private keyboardListener;
     private mouseListener;
     private alreadyRun;

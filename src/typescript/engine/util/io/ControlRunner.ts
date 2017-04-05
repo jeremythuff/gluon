@@ -7,6 +7,8 @@ import ControlProfile from "./ControlProfile";
 
 export default class ControlRunner {
 
+	protected lastEvents :Map<string, Event>;
+
 	private keyboardListener :KeyboardListener;
 	private mouseListener :MouseListener;
 
@@ -25,12 +27,21 @@ export default class ControlRunner {
 
 		this.keyboardListener = new KeyboardListener(this.alreadyRun, this.activatedInput);
 		this.mouseListener = new MouseListener(this.alreadyRun, this.activatedInput);
+
+		this.lastEvents = new Map<string, Event>();
+
 	}
 
 	_runCBs(profiles :ControlProfile[], delta ?:number) :void {
 		this.runWhileCBs(profiles, delta);
 		this.runWhenCBs(profiles, delta);
-		this.cbsToCall.forEach((cbArr, inputs)=>cbArr.forEach(cb=>cb(null,delta)));
+
+		const lastEventMap = new Map<string, Event>();
+
+		lastEventMap.set("keyboard", this.keyboardListener.getLastEvent());
+		lastEventMap.set("mouse", this.mouseListener.getLastEvent());
+
+		this.cbsToCall.forEach((cbArr, inputs)=>cbArr.forEach(cb=>cb(lastEventMap,delta)));
 		this.cbsToCall.clear();
 	}
 

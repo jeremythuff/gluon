@@ -948,8 +948,14 @@ img { max-width: 100%; }
 				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
 					<a href="keyboardlistener.html#keyboardobs" class="tsd-kind-icon">key<wbr>Board<wbr>Obs</a>
 				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external">
+					<a href="keyboardlistener.html#lastevent" class="tsd-kind-icon">last<wbr>Event</a>
+				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external">
 					<a href="keyboardlistener.html#activateinput" class="tsd-kind-icon">activate<wbr>Input</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+					<a href="keyboardlistener.html#getlastevent" class="tsd-kind-icon">get<wbr>Last<wbr>Event</a>
 				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external">
 					<a href="keyboardlistener.html#releaseinput" class="tsd-kind-icon">release<wbr>Input</a>
@@ -1029,12 +1035,14 @@ img { max-width: 100%; }
 						<ul class="tsd-index-list">
 							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external"><a href="keyboardlistener.html#activatedinput" class="tsd-kind-icon">activated<wbr>Input</a></li>
 							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="keyboardlistener.html#keyboardobs" class="tsd-kind-icon">key<wbr>Board<wbr>Obs</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external"><a href="keyboardlistener.html#lastevent" class="tsd-kind-icon">last<wbr>Event</a></li>
 						</ul>
 					</section>
-					<section class="tsd-index-section tsd-is-inherited tsd-is-private-protected tsd-is-external">
+					<section class="tsd-index-section tsd-is-inherited tsd-is-external">
 						<h3>Methods</h3>
 						<ul class="tsd-index-list">
 							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external"><a href="keyboardlistener.html#activateinput" class="tsd-kind-icon">activate<wbr>Input</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="keyboardlistener.html#getlastevent" class="tsd-kind-icon">get<wbr>Last<wbr>Event</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external"><a href="keyboardlistener.html#releaseinput" class="tsd-kind-icon">release<wbr>Input</a></li>
 						</ul>
 					</section>
@@ -1054,7 +1062,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Overrides <a href="abstractcontrollistener.html">AbstractControlListener</a>.<a href="abstractcontrollistener.html#constructor">constructor</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/f7dcc48/src/typescript/engine/util/io/KeyboardListener.ts#L8">util/io/KeyboardListener.ts:8</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/6462d6a/src/typescript/engine/util/io/KeyboardListener.ts#L8">util/io/KeyboardListener.ts:8</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1080,7 +1088,7 @@ img { max-width: 100%; }
 				<aside class="tsd-sources">
 					<p>Inherited from <a href="abstractcontrollistener.html">AbstractControlListener</a>.<a href="abstractcontrollistener.html#activatedinput">activatedInput</a></p>
 					<ul>
-						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/f7dcc48/src/typescript/engine/util/io/AbstractControlListener.ts#L6">util/io/AbstractControlListener.ts:6</a></li>
+						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/6462d6a/src/typescript/engine/util/io/AbstractControlListener.ts#L6">util/io/AbstractControlListener.ts:6</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1090,12 +1098,23 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">key<wbr>Board<wbr>Obs<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">KeyboardEvent</span><span class="tsd-signature-symbol">&gt;</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/f7dcc48/src/typescript/engine/util/io/KeyboardListener.ts#L8">util/io/KeyboardListener.ts:8</a></li>
+						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/6462d6a/src/typescript/engine/util/io/KeyboardListener.ts#L8">util/io/KeyboardListener.ts:8</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external">
+				<a name="lastevent" class="tsd-anchor"></a>
+				<h3>last<wbr>Event</h3>
+				<div class="tsd-signature tsd-kind-icon">last<wbr>Event<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Event</span></div>
+				<aside class="tsd-sources">
+					<p>Inherited from <a href="abstractcontrollistener.html">AbstractControlListener</a>.<a href="abstractcontrollistener.html#lastevent">lastEvent</a></p>
+					<ul>
+						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/6462d6a/src/typescript/engine/util/io/AbstractControlListener.ts#L7">util/io/AbstractControlListener.ts:7</a></li>
 					</ul>
 				</aside>
 			</section>
 		</section>
-		<section class="tsd-panel-group tsd-member-group tsd-is-inherited tsd-is-private-protected tsd-is-external">
+		<section class="tsd-panel-group tsd-member-group tsd-is-inherited tsd-is-external">
 			<h2>Methods</h2>
 			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external">
 				<a name="activateinput" class="tsd-anchor"></a>
@@ -1108,7 +1127,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Inherited from <a href="abstractcontrollistener.html">AbstractControlListener</a>.<a href="abstractcontrollistener.html#activateinput">activateInput</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/f7dcc48/src/typescript/engine/util/io/AbstractControlListener.ts#L13">util/io/AbstractControlListener.ts:13</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/6462d6a/src/typescript/engine/util/io/AbstractControlListener.ts#L14">util/io/AbstractControlListener.ts:14</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1118,6 +1137,24 @@ img { max-width: 100%; }
 							</li>
 						</ul>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+				<a name="getlastevent" class="tsd-anchor"></a>
+				<h3>get<wbr>Last<wbr>Event</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+					<li class="tsd-signature tsd-kind-icon">get<wbr>Last<wbr>Event<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Event</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from <a href="abstractcontrollistener.html">AbstractControlListener</a>.<a href="abstractcontrollistener.html#getlastevent">getLastEvent</a></p>
+							<ul>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/6462d6a/src/typescript/engine/util/io/AbstractControlListener.ts#L23">util/io/AbstractControlListener.ts:23</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Event</span></h4>
 					</li>
 				</ul>
 			</section>
@@ -1132,7 +1169,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Inherited from <a href="abstractcontrollistener.html">AbstractControlListener</a>.<a href="abstractcontrollistener.html#releaseinput">releaseInput</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/f7dcc48/src/typescript/engine/util/io/AbstractControlListener.ts#L17">util/io/AbstractControlListener.ts:17</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/6462d6a/src/typescript/engine/util/io/AbstractControlListener.ts#L18">util/io/AbstractControlListener.ts:18</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>

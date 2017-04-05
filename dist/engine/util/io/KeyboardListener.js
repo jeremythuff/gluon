@@ -23,6 +23,7 @@ var KeyboardListener = (function (_super) {
             .subscribe(function (e) {
             if (e.type == "keydown") {
                 _this.activateInput(e.which);
+                _this.lastEvent = e;
             }
             else {
                 _this.releaseInput(e.which);
