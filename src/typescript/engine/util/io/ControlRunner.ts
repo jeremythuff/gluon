@@ -10,7 +10,7 @@ export default class ControlRunner {
 	private keyboardListener :KeyboardListener;
 	private mouseListener :MouseListener;
 
-	private runWhenCBS :Array<ControlCB[]>;
+	private alreadyRun :Array<ControlCB[]>;
 
 	private cbsToCall :Map<(Keyboard|Mouse)[], ControlCB[]> 
 
@@ -19,12 +19,12 @@ export default class ControlRunner {
 	constructor() {
 
 		this.cbsToCall = new Map<(Keyboard|Mouse)[], ControlCB[]>();
-		this.runWhenCBS = [];
+		this.alreadyRun = [];
 		this.activatedInput = [];
 
 
-		this.keyboardListener = new KeyboardListener(this.runWhenCBS, this.activatedInput);
-		this.mouseListener = new MouseListener(this.runWhenCBS, this.activatedInput);
+		this.keyboardListener = new KeyboardListener(this.alreadyRun, this.activatedInput);
+		this.mouseListener = new MouseListener(this.alreadyRun, this.activatedInput);
 	}
 
 	_runCBs(profiles :ControlProfile[], delta ?:number) :void {
@@ -42,11 +42,11 @@ export default class ControlRunner {
 				const inputsActive = inputArr.every(k=>{
 					return this.activatedInput[k];
 				});
-
-				if(inputsActive && this.runWhenCBS.indexOf(cbArr)===-1) {
-
+				
+				if(inputsActive && this.alreadyRun.indexOf(cbArr)===-1) {
+					
 					this.cbsToCall.set(inputArr, cbArr);
-					this.runWhenCBS.push(cbArr);
+					this.alreadyRun.push(cbArr);
 
 					this.cbsToCall.forEach((cA, iA, map)=>{
 

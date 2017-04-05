@@ -23,7 +23,7 @@ import GameState from "./decorators/GameState";
 import GameMode from "./decorators/GameMode";
 import GameController from "./decorators/GameController";
 import While from "./decorators/While";
-import When from "./decorators/While";
+import When from "./decorators/When";
 
 
 //Enum

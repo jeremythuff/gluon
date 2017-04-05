@@ -2,7 +2,7 @@ import ControlProfile from "./ControlProfile";
 export default class ControlRunner {
     private keyboardListener;
     private mouseListener;
-    private runWhenCBS;
+    private alreadyRun;
     private cbsToCall;
     private activatedInput;
     constructor();

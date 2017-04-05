@@ -37,7 +37,9 @@ export default function GameState(options ?: { [name: string]: any[]|string }) {
 		GameControllereRegistry.getControlProfileObservable().subscribe(ControlProfile=>{
 			const newControllerProfile :ControlProfile = new ControlProfile(state);
 			const whileMap = GameControllereRegistry.getWhileCBMapByName(ControlProfile.name);
+			const whenMap = GameControllereRegistry.getWhenCBMapByName(ControlProfile.name);
 			newControllerProfile.setWhileCBs(whileMap);
+			newControllerProfile.setWhenCBs(whenMap);
 			state.addControlProfile(newControllerProfile);
 		});
 

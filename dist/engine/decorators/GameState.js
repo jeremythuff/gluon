@@ -22,7 +22,9 @@ function GameState(options) {
         GameControllereRegistry.getControlProfileObservable().subscribe(function (ControlProfile) {
             var newControllerProfile = new ControlProfile(state);
             var whileMap = GameControllereRegistry.getWhileCBMapByName(ControlProfile.name);
+            var whenMap = GameControllereRegistry.getWhenCBMapByName(ControlProfile.name);
             newControllerProfile.setWhileCBs(whileMap);
+            newControllerProfile.setWhenCBs(whenMap);
             state.addControlProfile(newControllerProfile);
         });
         GameMainRegistry.getGameMainSubject().subscribe(function (game) {

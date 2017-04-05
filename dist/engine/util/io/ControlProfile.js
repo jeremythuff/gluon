@@ -10,8 +10,8 @@ var ControlProfile = (function () {
     ControlProfile.prototype.setWhileCBs = function (whileCBs) {
         this.whileCBs = whileCBs;
     };
-    ControlProfile.prototype.setWhhenCBs = function (whileCBs) {
-        this.whileCBs = whileCBs;
+    ControlProfile.prototype.setWhenCBs = function (whenCBs) {
+        this.whenCBs = whenCBs;
     };
     ControlProfile.prototype.getWhileCBs = function () {
         return this.whileCBs;

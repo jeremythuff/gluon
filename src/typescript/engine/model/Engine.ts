@@ -68,6 +68,11 @@ export default class Engine {
 						this.running = true;
 						this.animationLoop();
 						game.setPhase(RenderPhase.RUNNING);
+
+						// setTimeout(()=>{
+						// 	game.setPhase(RenderPhase.PAUSED);
+						// }, 5000);
+
 					}).unsubscribe();
 		}).unsubscribe();		
 

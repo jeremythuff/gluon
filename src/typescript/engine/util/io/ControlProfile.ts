@@ -22,8 +22,8 @@ export default class ControlProfile {
         this.whileCBs = whileCBs;
     }
 
-    setWhhenCBs(whileCBs :Map<(Keyboard|Mouse)[], ControlCB[]>) :void {
-        this.whileCBs = whileCBs;
+    setWhenCBs(whenCBs :Map<(Keyboard|Mouse)[], ControlCB[]>) :void {
+        this.whenCBs = whenCBs;
     }
 
     getWhileCBs() :Map<(Keyboard|Mouse)[], ControlCB[]> {
