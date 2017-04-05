@@ -948,14 +948,20 @@ img { max-width: 100%; }
 				<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-external">
 					<a href="mouselistener.html#constructor" class="tsd-kind-icon">constructor</a>
 				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
-					<a href="mouselistener.html#mouseobs" class="tsd-kind-icon">Mouse<wbr>Obs</a>
-				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external">
 					<a href="mouselistener.html#activatedinput" class="tsd-kind-icon">activated<wbr>Input</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external">
 					<a href="mouselistener.html#lastevent" class="tsd-kind-icon">last<wbr>Event</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+					<a href="mouselistener.html#mousemovestoptimer" class="tsd-kind-icon">mouse<wbr>Move<wbr>Stop<wbr>Timer</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+					<a href="mouselistener.html#mouseobs" class="tsd-kind-icon">mouse<wbr>Obs</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+					<a href="mouselistener.html#mousewheelstoptimer" class="tsd-kind-icon">mouse<wbr>Wheel<wbr>Stop<wbr>Timer</a>
 				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external">
 					<a href="mouselistener.html#activateinput" class="tsd-kind-icon">activate<wbr>Input</a>
@@ -1033,9 +1039,11 @@ img { max-width: 100%; }
 					<section class="tsd-index-section tsd-is-private-protected tsd-is-external">
 						<h3>Properties</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="mouselistener.html#mouseobs" class="tsd-kind-icon">Mouse<wbr>Obs</a></li>
 							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external"><a href="mouselistener.html#activatedinput" class="tsd-kind-icon">activated<wbr>Input</a></li>
 							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external"><a href="mouselistener.html#lastevent" class="tsd-kind-icon">last<wbr>Event</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="mouselistener.html#mousemovestoptimer" class="tsd-kind-icon">mouse<wbr>Move<wbr>Stop<wbr>Timer</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="mouselistener.html#mouseobs" class="tsd-kind-icon">mouse<wbr>Obs</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="mouselistener.html#mousewheelstoptimer" class="tsd-kind-icon">mouse<wbr>Wheel<wbr>Stop<wbr>Timer</a></li>
 						</ul>
 					</section>
 					<section class="tsd-index-section tsd-is-inherited tsd-is-external">
@@ -1062,7 +1070,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Overrides <a href="abstractcontrollistener.html">AbstractControlListener</a>.<a href="abstractcontrollistener.html#constructor">constructor</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/6462d6a/src/typescript/engine/util/io/MouseListener.ts#L8">util/io/MouseListener.ts:8</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/47faec8/src/typescript/engine/util/io/MouseListener.ts#L11">util/io/MouseListener.ts:11</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1081,16 +1089,6 @@ img { max-width: 100%; }
 		</section>
 		<section class="tsd-panel-group tsd-member-group tsd-is-private-protected tsd-is-external">
 			<h2>Properties</h2>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
-				<a name="mouseobs" class="tsd-anchor"></a>
-				<h3>Mouse<wbr>Obs</h3>
-				<div class="tsd-signature tsd-kind-icon">Mouse<wbr>Obs<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">MouseEvent</span><span class="tsd-signature-symbol">&gt;</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/6462d6a/src/typescript/engine/util/io/MouseListener.ts#L8">util/io/MouseListener.ts:8</a></li>
-					</ul>
-				</aside>
-			</section>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected tsd-is-external">
 				<a name="activatedinput" class="tsd-anchor"></a>
 				<h3>activated<wbr>Input</h3>
@@ -1098,7 +1096,7 @@ img { max-width: 100%; }
 				<aside class="tsd-sources">
 					<p>Inherited from <a href="abstractcontrollistener.html">AbstractControlListener</a>.<a href="abstractcontrollistener.html#activatedinput">activatedInput</a></p>
 					<ul>
-						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/6462d6a/src/typescript/engine/util/io/AbstractControlListener.ts#L6">util/io/AbstractControlListener.ts:6</a></li>
+						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/47faec8/src/typescript/engine/util/io/AbstractControlListener.ts#L6">util/io/AbstractControlListener.ts:6</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1109,7 +1107,37 @@ img { max-width: 100%; }
 				<aside class="tsd-sources">
 					<p>Inherited from <a href="abstractcontrollistener.html">AbstractControlListener</a>.<a href="abstractcontrollistener.html#lastevent">lastEvent</a></p>
 					<ul>
-						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/6462d6a/src/typescript/engine/util/io/AbstractControlListener.ts#L7">util/io/AbstractControlListener.ts:7</a></li>
+						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/47faec8/src/typescript/engine/util/io/AbstractControlListener.ts#L7">util/io/AbstractControlListener.ts:7</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+				<a name="mousemovestoptimer" class="tsd-anchor"></a>
+				<h3>mouse<wbr>Move<wbr>Stop<wbr>Timer</h3>
+				<div class="tsd-signature tsd-kind-icon">mouse<wbr>Move<wbr>Stop<wbr>Timer<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/47faec8/src/typescript/engine/util/io/MouseListener.ts#L10">util/io/MouseListener.ts:10</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+				<a name="mouseobs" class="tsd-anchor"></a>
+				<h3>mouse<wbr>Obs</h3>
+				<div class="tsd-signature tsd-kind-icon">mouse<wbr>Obs<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">MouseEvent</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">WheelEvent</span><span class="tsd-signature-symbol">&gt;</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/47faec8/src/typescript/engine/util/io/MouseListener.ts#L9">util/io/MouseListener.ts:9</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+				<a name="mousewheelstoptimer" class="tsd-anchor"></a>
+				<h3>mouse<wbr>Wheel<wbr>Stop<wbr>Timer</h3>
+				<div class="tsd-signature tsd-kind-icon">mouse<wbr>Wheel<wbr>Stop<wbr>Timer<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/47faec8/src/typescript/engine/util/io/MouseListener.ts#L11">util/io/MouseListener.ts:11</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1127,7 +1155,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Inherited from <a href="abstractcontrollistener.html">AbstractControlListener</a>.<a href="abstractcontrollistener.html#activateinput">activateInput</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/6462d6a/src/typescript/engine/util/io/AbstractControlListener.ts#L14">util/io/AbstractControlListener.ts:14</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/47faec8/src/typescript/engine/util/io/AbstractControlListener.ts#L14">util/io/AbstractControlListener.ts:14</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1151,7 +1179,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Inherited from <a href="abstractcontrollistener.html">AbstractControlListener</a>.<a href="abstractcontrollistener.html#getlastevent">getLastEvent</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/6462d6a/src/typescript/engine/util/io/AbstractControlListener.ts#L23">util/io/AbstractControlListener.ts:23</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/47faec8/src/typescript/engine/util/io/AbstractControlListener.ts#L23">util/io/AbstractControlListener.ts:23</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Event</span></h4>
@@ -1169,7 +1197,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Inherited from <a href="abstractcontrollistener.html">AbstractControlListener</a>.<a href="abstractcontrollistener.html#releaseinput">releaseInput</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/6462d6a/src/typescript/engine/util/io/AbstractControlListener.ts#L18">util/io/AbstractControlListener.ts:18</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/47faec8/src/typescript/engine/util/io/AbstractControlListener.ts#L18">util/io/AbstractControlListener.ts:18</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>

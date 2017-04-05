@@ -3,7 +3,7 @@ export declare enum Mouse {
     MIDDLE = 1001,
     RIGHT = 1002,
     MOVE = 1003,
-    SCROLL = 1004,
-    SCROLL_UP = 1005,
-    SCROLL_DOWN = 1006,
+    WHEEL = 1004,
+    WHEEL_UP = 1004.1,
+    WHEEL_DOWN = 1004.2,
 }

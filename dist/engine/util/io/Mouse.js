@@ -6,8 +6,8 @@ var Mouse;
     Mouse[Mouse["MIDDLE"] = 1001] = "MIDDLE";
     Mouse[Mouse["RIGHT"] = 1002] = "RIGHT";
     Mouse[Mouse["MOVE"] = 1003] = "MOVE";
-    Mouse[Mouse["SCROLL"] = 1004] = "SCROLL";
-    Mouse[Mouse["SCROLL_UP"] = 1005] = "SCROLL_UP";
-    Mouse[Mouse["SCROLL_DOWN"] = 1006] = "SCROLL_DOWN";
+    Mouse[Mouse["WHEEL"] = 1004] = "WHEEL";
+    Mouse[Mouse["WHEEL_UP"] = 1004.1] = "WHEEL_UP";
+    Mouse[Mouse["WHEEL_DOWN"] = 1004.2] = "WHEEL_DOWN";
 })(Mouse = exports.Mouse || (exports.Mouse = {}));
 //# sourceMappingURL=Mouse.js.map
