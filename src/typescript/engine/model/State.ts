@@ -27,7 +27,6 @@ export default class State extends AbstractRenderCycle implements Controlable {
 	private scene :THREE.Scene;
 
 	private controlRunner :ControlRunner;
-
 	private controlProfiles :ControlProfile[];
 
 	constructor() {
@@ -37,6 +36,7 @@ export default class State extends AbstractRenderCycle implements Controlable {
 		this.controlProfiles = [];
 
     	this.scene = new THREE.Scene();
+
     }
 
    protected  _runInit() :Observable<{}[]> {
@@ -139,6 +139,9 @@ export default class State extends AbstractRenderCycle implements Controlable {
 		mode.runInit()
 			.take(1)
 			.subscribe(null,null,()=>{
+				mode.getControlProfiles().forEach(cp=>{
+					this.addControlProfile(cp);
+				});
 				this.activeModes.push(mode);
 			});
 	}
@@ -153,6 +156,9 @@ export default class State extends AbstractRenderCycle implements Controlable {
 		mode.runUnload()
 			.take(1)
 			.subscribe(null,null,()=>{
+				mode.getControlProfiles().forEach(cp=>{
+					this.removeControlProfile(cp);
+				});
 				this.activeModes.splice(this.activeModes.indexOf(mode),1);		
 			}).unsubscribe();
 	}

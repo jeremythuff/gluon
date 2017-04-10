@@ -1,3 +1,5 @@
+import "reflect-metadata";
+
 import State from "../model/State"
 import Mode from "../model/Mode"
 import ControlProfile from "../util/io/ControlProfile";
@@ -29,18 +31,42 @@ export default function GameState(options ?: { [name: string]: any[]|string }) {
 				const mode = new Mode();
 				mode.setName(Mode.name);
 
+				const modeOption :{ [name: string]: any[]|string } = Reflect.getMetadata("options", Mode);
+
+				GameControllereRegistry.getControlProfileObservable().subscribe(ControlProfile=>{
+					if((<string[]>modeOption["controlProfiles"]).some(controlProfileName=>{
+						return controlProfileName === ControlProfile.name;
+					})) {
+						
+						const newControllerProfile :ControlProfile = new ControlProfile(mode);
+						const whileMap = GameControllereRegistry.getWhileCBMapByName(ControlProfile.name);
+						const whenMap = GameControllereRegistry.getWhenCBMapByName(ControlProfile.name);
+						
+						newControllerProfile.setWhileCBs(whileMap);
+						newControllerProfile.setWhenCBs(whenMap);
+						
+						mode.addControlProfile(newControllerProfile);
+						console.log("foo bar biz");
+						console.log(mode);
+					}
+				});
+
 				state.addMode(mode);
 			}
 
 		});
 
 		GameControllereRegistry.getControlProfileObservable().subscribe(ControlProfile=>{
-			const newControllerProfile :ControlProfile = new ControlProfile(state);
-			const whileMap = GameControllereRegistry.getWhileCBMapByName(ControlProfile.name);
-			const whenMap = GameControllereRegistry.getWhenCBMapByName(ControlProfile.name);
-			newControllerProfile.setWhileCBs(whileMap);
-			newControllerProfile.setWhenCBs(whenMap);
-			state.addControlProfile(newControllerProfile);
+			if((<string[]>options["controlProfiles"]).some(controlProfileName=>{
+				return controlProfileName === ControlProfile.name;
+			})) {
+				const newControllerProfile :ControlProfile = new ControlProfile(state);
+				const whileMap = GameControllereRegistry.getWhileCBMapByName(ControlProfile.name);
+				const whenMap = GameControllereRegistry.getWhenCBMapByName(ControlProfile.name);
+				newControllerProfile.setWhileCBs(whileMap);
+				newControllerProfile.setWhenCBs(whenMap);
+				state.addControlProfile(newControllerProfile);
+			}
 		});
 
 		GameMainRegistry.getGameMainSubject().subscribe(game=>{

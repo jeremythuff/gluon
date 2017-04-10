@@ -14,10 +14,9 @@ var Rx_1 = require("@reactivex/rxjs/dist/cjs/Rx");
 var AbstractRenderCycle_1 = require("./abstracts/AbstractRenderCycle");
 var Mode = (function (_super) {
     __extends(Mode, _super);
-    function Mode(name) {
+    function Mode() {
         var _this = _super.call(this) || this;
-        if (name)
-            _this.name = name;
+        _this.controlProfiles = [];
         return _this;
     }
     Mode.prototype._runInit = function () {
@@ -44,6 +43,19 @@ var Mode = (function (_super) {
     };
     Mode.prototype.getName = function () {
         return this.name;
+    };
+    Mode.prototype.setControlProfiles = function (controlProfiles) {
+        this.controlProfiles = controlProfiles;
+    };
+    Mode.prototype.getControlProfiles = function () {
+        return this.controlProfiles;
+    };
+    Mode.prototype.addControlProfile = function (controlProfile) {
+        this.getControlProfiles().push(controlProfile);
+    };
+    Mode.prototype.removeControlProfile = function (controlProfile) {
+        var controlProfiles = this.getControlProfiles();
+        controlProfiles.splice(controlProfiles.indexOf(controlProfile), 1);
     };
     return Mode;
 }(AbstractRenderCycle_1.AbstractRenderCycle));

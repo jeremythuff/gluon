@@ -17,10 +17,13 @@ export default function GameMain(options ?: { [name: string]: any[]|string }) {
 		
 		const game = new decorated(decorated.name);
 				
-		if(!game.getName()) game.setName(decorated.name);		
-		
+		if(!game.getName()) 
+			game.setName(decorated.name);		
+				
+		if((<string>options["initialState"])) 
+			game.setInitialStateName((<string>options["initialState"]));
+
 		console.log(`Registering Game: ${game.getName()}`);
-		
 		RunningGameRegistry.setGameMain(game);
 
 		const runningGameSubject = RunningGameRegistry.getGameMainSubject();

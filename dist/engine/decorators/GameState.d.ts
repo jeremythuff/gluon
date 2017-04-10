@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import State from "../model/State";
 export default function GameState(options?: {
     [name: string]: any[] | string;

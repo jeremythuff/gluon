@@ -18,18 +18,24 @@ var AbstractRenderCycle = (function () {
         this.setPhase(RenderPhase_1.RenderPhase.INITIALIZING);
         var _initObs = this._runInit();
         var initObs = this.runPhaseCBs(this.initCBs);
+        this.init();
         return Rx_1.Observable.forkJoin(initObs, _initObs);
     };
-    AbstractRenderCycle.prototype.init = function (initCB) {
+    AbstractRenderCycle.prototype.init = function () { };
+    ;
+    AbstractRenderCycle.prototype.registerInitAction = function (initCB) {
         this.initCBs.push(initCB);
     };
     AbstractRenderCycle.prototype.runLoad = function () {
         this.setPhase(RenderPhase_1.RenderPhase.LOADING);
         var _loadObs = this._runLoad();
         var loadObs = this.runPhaseCBs(this.loadCBs);
+        this.load();
         return Rx_1.Observable.forkJoin(loadObs, _loadObs);
     };
-    AbstractRenderCycle.prototype.load = function (cb) {
+    AbstractRenderCycle.prototype.load = function () { };
+    ;
+    AbstractRenderCycle.prototype.registerLoadAction = function (cb) {
         this.loadCBs.push(cb);
     };
     AbstractRenderCycle.prototype.runUpdate = function (delta) {
@@ -37,9 +43,12 @@ var AbstractRenderCycle = (function () {
         this.updateCBs.forEach(function (cb) {
             cb(delta);
         });
+        this.update(delta);
         this._runUpdate(delta);
     };
-    AbstractRenderCycle.prototype.update = function (cb) {
+    AbstractRenderCycle.prototype.update = function (delta) { };
+    ;
+    AbstractRenderCycle.prototype.registerUpdateAction = function (cb) {
         this.updateCBs.push(cb);
     };
     AbstractRenderCycle.prototype.runRender = function (delta) {
@@ -47,9 +56,12 @@ var AbstractRenderCycle = (function () {
         this.renderCBs.forEach(function (cb) {
             cb(delta);
         });
+        this.render(delta);
         this._runRender(delta);
     };
-    AbstractRenderCycle.prototype.render = function (cb) {
+    AbstractRenderCycle.prototype.render = function (delta) { };
+    ;
+    AbstractRenderCycle.prototype.registerRenderAction = function (cb) {
         this.renderCBs.push(cb);
     };
     AbstractRenderCycle.prototype.runPause = function () {
@@ -57,10 +69,13 @@ var AbstractRenderCycle = (function () {
         this.pauseCBs.forEach(function (cb) {
             cb();
         });
+        this.pause();
         this._runPause();
     };
     ;
-    AbstractRenderCycle.prototype.pause = function (cb) {
+    AbstractRenderCycle.prototype.pause = function () { };
+    ;
+    AbstractRenderCycle.prototype.registerPauseAction = function (cb) {
         this.pauseCBs.push(cb);
     };
     AbstractRenderCycle.prototype.runUnPause = function () {
@@ -68,28 +83,37 @@ var AbstractRenderCycle = (function () {
         this.unPauseCBs.forEach(function (cb) {
             cb();
         });
+        this.unpause();
         this._runUnPause();
     };
     ;
-    AbstractRenderCycle.prototype.unPause = function (cb) {
+    AbstractRenderCycle.prototype.unpause = function () { };
+    ;
+    AbstractRenderCycle.prototype.registerUnpauseAction = function (cb) {
         this.unPauseCBs.push(cb);
     };
     AbstractRenderCycle.prototype.runUnload = function () {
         this.setPhase(RenderPhase_1.RenderPhase.UNLOADING);
         var _unLoadObs = this._runUnLoad();
         var unLoadObs = this.runPhaseCBs(this.unloadCBs);
+        this.unload();
         return Rx_1.Observable.forkJoin(unLoadObs, _unLoadObs);
     };
-    AbstractRenderCycle.prototype.unload = function (cb) {
+    AbstractRenderCycle.prototype.unload = function () { };
+    ;
+    AbstractRenderCycle.prototype.registerUnloadAction = function (cb) {
         this.unloadCBs.push(cb);
     };
     AbstractRenderCycle.prototype.runDestroy = function () {
         this.setPhase(RenderPhase_1.RenderPhase.DESTROYING);
         var _loadObs = this._runDestroy();
         var loadObs = this.runPhaseCBs(this.destroyCBs);
+        this.destroy();
         return Rx_1.Observable.forkJoin(loadObs, _loadObs);
     };
-    AbstractRenderCycle.prototype.destroy = function (cb) {
+    AbstractRenderCycle.prototype.destroy = function () { };
+    ;
+    AbstractRenderCycle.prototype.registerDestroyAction = function (cb) {
         this.destroyCBs.push(cb);
     };
     AbstractRenderCycle.prototype.phaseIs = function (phase) {

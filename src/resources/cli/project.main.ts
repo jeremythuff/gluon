@@ -1,10 +1,11 @@
+import {GameMain} from "gluon-engine";
+import {Game} from "gluon-engine";
 
-import * as Gluon from "gluon-engine";
-
-@Gluon.GameMain()
-class {GAME_NAME} extends Gluon.Game {
-	constructor() {
-		super();
-		this.setInitialStateName("FirstState");
+@GameMain({
+	initialState: "FirstState"
+})
+class MyGame extends Game {
+	init() :void {
+		console.log(this);
 	}
 }

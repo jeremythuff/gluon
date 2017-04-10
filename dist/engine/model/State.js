@@ -108,6 +108,9 @@ var State = (function (_super) {
         mode.runInit()
             .take(1)
             .subscribe(null, null, function () {
+            mode.getControlProfiles().forEach(function (cp) {
+                _this.addControlProfile(cp);
+            });
             _this.activeModes.push(mode);
         });
     };
@@ -122,6 +125,9 @@ var State = (function (_super) {
         mode.runUnload()
             .take(1)
             .subscribe(null, null, function () {
+            mode.getControlProfiles().forEach(function (cp) {
+                _this.removeControlProfile(cp);
+            });
             _this.activeModes.splice(_this.activeModes.indexOf(mode), 1);
         }).unsubscribe();
     };

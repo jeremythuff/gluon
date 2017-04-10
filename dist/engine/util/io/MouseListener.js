@@ -39,10 +39,10 @@ var MouseListener = (function (_super) {
                     break;
                 case "wheel":
                     _this.activateInput(Mouse_1.Mouse.WHEEL);
-                    if (e.wheelDelta > 0) {
+                    if (e.wheelDelta < 0) {
                         _this.activateInput(Mouse_1.Mouse.WHEEL_UP);
                     }
-                    else if (e.wheelDelta < 0) {
+                    else if (e.wheelDelta > 0) {
                         _this.activateInput(Mouse_1.Mouse.WHEEL_DOWN);
                     }
                     else {

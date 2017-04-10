@@ -34,11 +34,14 @@ export abstract class AbstractRenderCycle implements RenderCycle {
 
 		const _initObs = this._runInit();
 		const initObs = this.runPhaseCBs(this.initCBs);
+		this.init();
 
 		return Observable.forkJoin(initObs, _initObs);
 	}
+	
+	public init() :void {};
 
-	public init(initCB :PhaseCB) :void {
+	public registerInitAction(initCB :PhaseCB) :void {
 		this.initCBs.push(initCB);
 	}
 
@@ -48,11 +51,14 @@ export abstract class AbstractRenderCycle implements RenderCycle {
 		
 		const _loadObs = this._runLoad();
 		const loadObs = this.runPhaseCBs(this.loadCBs);
+		this.load();
 
 		return Observable.forkJoin(loadObs, _loadObs);
 	}
 
-	public load(cb :PhaseCB) :void {
+	public load() :void {};
+
+	public registerLoadAction(cb :PhaseCB) :void {
 		this.loadCBs.push(cb);
 	}
 
@@ -62,10 +68,13 @@ export abstract class AbstractRenderCycle implements RenderCycle {
 		this.updateCBs.forEach(cb=>{
 			cb(delta);
 		});
+		this.update(delta);
 		this._runUpdate(delta);
 	}
 
-	public update(cb :PhaseCB) :void {
+	public update(delta :number) :void {};
+
+	public registerUpdateAction(cb :PhaseCB) :void {
 		this.updateCBs.push(cb);
 	}
 
@@ -75,10 +84,13 @@ export abstract class AbstractRenderCycle implements RenderCycle {
 		this.renderCBs.forEach(cb=>{
 			cb(delta);
 		});
+		this.render(delta);
 		this._runRender(delta);
 	}
 
-	public render(cb :PhaseCB) :void {
+	public render(delta :number) :void {};
+
+	public registerRenderAction(cb :PhaseCB) :void {
 		this.renderCBs.push(cb);
 	}
 
@@ -88,10 +100,13 @@ export abstract class AbstractRenderCycle implements RenderCycle {
 		this.pauseCBs.forEach(cb=>{
 			cb();
 		});
+		this.pause();
 		this._runPause();
 	};
 
-	public pause(cb :PhaseCB) {
+	public pause() :void {};
+
+	public registerPauseAction(cb :PhaseCB) {
 		this.pauseCBs.push(cb);
 	}
 
@@ -101,10 +116,13 @@ export abstract class AbstractRenderCycle implements RenderCycle {
 		this.unPauseCBs.forEach(cb=>{
 			cb();
 		});
+		this.unpause();
 		this._runUnPause();
 	};
 
-	public unPause(cb :PhaseCB) : void {
+	public unpause() :void {};
+
+	public registerUnpauseAction(cb :PhaseCB) : void {
 		this.unPauseCBs.push(cb);
 	}
 
@@ -114,11 +132,13 @@ export abstract class AbstractRenderCycle implements RenderCycle {
 
 		const _unLoadObs = this._runUnLoad();
 		const unLoadObs = this.runPhaseCBs(this.unloadCBs);
-
+		this.unload();
 		return Observable.forkJoin(unLoadObs, _unLoadObs);
 	}
 
-	public unload(cb :PhaseCB) :void {
+	public unload() :void {};
+
+	public registerUnloadAction(cb :PhaseCB) :void {
 		this.unloadCBs.push(cb);
 	}
 	
@@ -128,11 +148,13 @@ export abstract class AbstractRenderCycle implements RenderCycle {
 
 		const _loadObs = this._runDestroy();
 		const loadObs = this.runPhaseCBs(this.destroyCBs);
-
+		this.destroy();
 		return Observable.forkJoin(loadObs, _loadObs);
 	}
 
-	public destroy(cb :PhaseCB) :void {
+	public destroy() {};
+
+	public registerDestroyAction(cb :PhaseCB) :void {
 		this.destroyCBs.push(cb);
 	}
 

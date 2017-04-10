@@ -8,6 +8,8 @@ function GameMain(options) {
         var game = new decorated(decorated.name);
         if (!game.getName())
             game.setName(decorated.name);
+        if (options["initialState"])
+            game.setInitialStateName(options["initialState"]);
         console.log("Registering Game: " + game.getName());
         RunningGameRegistry.setGameMain(game);
         var runningGameSubject = RunningGameRegistry.getGameMainSubject();
