@@ -2,7 +2,8 @@ import { RenderCycle } from "../interface/RenderCycle";
 import { PhaseCB } from "../interface/PhaseCB";
 import { RenderPhase } from "../../enum/RenderPhase";
 import { Observable } from "@reactivex/rxjs/dist/cjs/Rx";
-export declare abstract class AbstractRenderCycle implements RenderCycle {
+import { AbstractControllable } from "./AbstractControllable";
+export declare abstract class AbstractRenderCycle extends AbstractControllable implements RenderCycle {
     protected phase: RenderPhase;
     protected initCBs: PhaseCB[];
     protected loadCBs: PhaseCB[];

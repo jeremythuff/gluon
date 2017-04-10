@@ -1,13 +1,14 @@
-import {Observable} from "@reactivex/rxjs/dist/cjs/Rx";
+import { Observable } from "@reactivex/rxjs/dist/cjs/Rx";
 import * as THREE from "three";
 
-import {AbstractRenderCycle} from "./abstracts/AbstractRenderCycle";
-import {Controlable} from "./interface/Controlable";
+import { AbstractRenderCycle } from "./abstracts/AbstractRenderCycle";
 
 import Mode from "./Mode";
 
 import ControlProfile from "../util/io/ControlProfile";
 import ControlRunner from "../util/io/ControlRunner";
+
+import { AbstractControllable } from "../model/abstracts/AbstractControllable";
 
 /**
  * The State class acts as the primary organizing entiry for your game. 
@@ -15,173 +16,173 @@ import ControlRunner from "../util/io/ControlRunner";
  * use of the [[GameState]] decorator. Any class which both extends State and is decorated
  * with [[GameState]] will automatically be available for you in your game instance.
  * */
-export default class State extends AbstractRenderCycle implements Controlable {
+export default class State extends AbstractRenderCycle {
 
-	private name : string;
+	private name: string;
 	private framesPerSecond: number;
 
-	private modes :Mode[];
-	private activeModes :Mode[];
+	private modes: Mode[];
+	private activeModes: Mode[];
 
-	private renderer :THREE.WebGLRenderer;
-	private scene :THREE.Scene;
+	private renderer: THREE.WebGLRenderer;
+	private scene: THREE.Scene;
 
-	private controlRunner :ControlRunner;
-	private controlProfiles :ControlProfile[];
+	private controlRunner: ControlRunner;
+	private controlProfiles: ControlProfile<AbstractControllable>[];
 
 	constructor() {
 		super();
-    	this.modes = [];
-    	this.activeModes =[];
+		this.modes = [];
+		this.activeModes = [];
 		this.controlProfiles = [];
 
-    	this.scene = new THREE.Scene();
+		this.scene = new THREE.Scene();
 
-    }
+	}
 
-   protected  _runInit() :Observable<{}[]> {
+	protected _runInit(): Observable<{}[]> {
 		let combinedObs = Observable.create();
 		return combinedObs;
 	}
 
-	protected _runLoad() :Observable<{}[]> {
+	protected _runLoad(): Observable<{}[]> {
 		let combinedObs = Observable.create();
 		return combinedObs;
 	}
 
-	protected _runUpdate(delta :number) :void {
-		this.activeModes.forEach(mode=>{
+	protected _runUpdate(delta: number): void {
+		this.activeModes.forEach(mode => {
 			mode.runUpdate(delta);
 		});
 	};
 
-	protected _runRender(delta :number) :void {
-		this.activeModes.forEach(mode=>{
+	protected _runRender(delta: number): void {
+		this.activeModes.forEach(mode => {
 			mode.runRender(delta);
 		});
 	};
 
-	protected _runPause() :void {
-		this.activeModes.forEach(mode=>{
+	protected _runPause(): void {
+		this.activeModes.forEach(mode => {
 			mode.runPause();
 		});
 	};
 
-	protected _runUnPause() :void {
-		this.activeModes.forEach(mode=>{
+	protected _runUnPause(): void {
+		this.activeModes.forEach(mode => {
 			mode.runUnPause();
 		});
 	};
 
-	protected _runUnLoad() :Observable<{}[]> {
+	protected _runUnLoad(): Observable<{}[]> {
 		let combinedObs = Observable.create();
 
-		this.activeModes.forEach(mode=>{
-			combinedObs = Observable.forkJoin(mode.runUnload(),combinedObs);
+		this.activeModes.forEach(mode => {
+			combinedObs = Observable.forkJoin(mode.runUnload(), combinedObs);
 		});
 
 		return combinedObs;
 	}
 
-	protected _runDestroy() :Observable<{}[]>  {
+	protected _runDestroy(): Observable<{}[]> {
 		let combinedObs = Observable.create();
 
-		this.activeModes.forEach(mode=>{
-			combinedObs = Observable.forkJoin(mode.runDestroy(),combinedObs);
+		this.activeModes.forEach(mode => {
+			combinedObs = Observable.forkJoin(mode.runDestroy(), combinedObs);
 		});
 
 		return combinedObs;
 	}
 
-	getName() : string {
+	getName(): string {
 		return this.name;
 	}
 
-	setName(name :string) : void {
+	setName(name: string): void {
 		this.name = name;
 	}
 
-	getFramesPerSecond() : number {
+	getFramesPerSecond(): number {
 		return this.framesPerSecond;
 	}
 
-	setFramesPerSecond(framesPerSecond :number) : void {
+	setFramesPerSecond(framesPerSecond: number): void {
 		this.framesPerSecond = framesPerSecond;
 	}
 
-	setModes(modes :Mode[]) {
+	setModes(modes: Mode[]) {
 		this.modes = modes;
 	}
 
-	getModes() :Mode[] {
+	getModes(): Mode[] {
 		return this.modes;
 	}
 
-	addMode(mode :Mode) :void {
+	addMode(mode: Mode): void {
 		this.modes.push(mode);
 	}
 
-	removeMode(mode :Mode) :void {
+	removeMode(mode: Mode): void {
 		this.modes.splice(this.modes.indexOf(mode), 1);
 	}
 
-	getModeByName(name :string) :Mode {
+	getModeByName(name: string): Mode {
 		let foundMode = null;
-		this.modes.some(mode=>{
+		this.modes.some(mode => {
 			const p = mode.getName() === name;
-			if(p) foundMode = mode;
+			if (p) foundMode = mode;
 			return p;
 		});
 		return foundMode;
 	}
 
-	activateMode(mode :Mode) :void {
+	activateMode(mode: Mode): void {
 		mode.runInit()
 			.take(1)
-			.subscribe(null,null,()=>{
-				mode.getControlProfiles().forEach(cp=>{
+			.subscribe(null, null, () => {
+				mode.getControlProfiles().forEach(cp => {
 					this.addControlProfile(cp);
 				});
 				this.activeModes.push(mode);
 			});
 	}
 
-	avtivateAllModes(mode :Mode) :void {
-		this.modes.forEach(mode=>{
+	avtivateAllModes(mode: Mode): void {
+		this.modes.forEach(mode => {
 			this.activateMode(mode);
 		});
 	}
 
-	deActivateMode(mode :Mode) :void {
+	deActivateMode(mode: Mode): void {
 		mode.runUnload()
 			.take(1)
-			.subscribe(null,null,()=>{
-				mode.getControlProfiles().forEach(cp=>{
+			.subscribe(null, null, () => {
+				mode.getControlProfiles().forEach(cp => {
 					this.removeControlProfile(cp);
 				});
-				this.activeModes.splice(this.activeModes.indexOf(mode),1);		
+				this.activeModes.splice(this.activeModes.indexOf(mode), 1);
 			}).unsubscribe();
 	}
 
-	deActivateAllMode(mode :Mode) :void {
-		this.activeModes.forEach(mode=>{
+	deActivateAllMode(mode: Mode): void {
+		this.activeModes.forEach(mode => {
 			this.deActivateMode(mode);
 		});
 	}
 
-	setControlProfiles(controlProfiles :ControlProfile[]) :void {
+	setControlProfiles(controlProfiles: ControlProfile<AbstractControllable>[]): void {
 		this.controlProfiles = controlProfiles;
 	}
 
-	getControlProfiles() :ControlProfile[] {
+	getControlProfiles(): ControlProfile<AbstractControllable>[] {
 		return this.controlProfiles;
 	}
 
-	addControlProfile(controlProfile :ControlProfile) :void {
+	addControlProfile(controlProfile: ControlProfile<AbstractControllable>): void {
 		this.getControlProfiles().push(controlProfile);
 	}
 
-	removeControlProfile(controlProfile :ControlProfile) :void {
+	removeControlProfile(controlProfile: ControlProfile<AbstractControllable>): void {
 		const controlProfiles = this.getControlProfiles();
 		controlProfiles.splice(controlProfiles.indexOf(controlProfile), 1);
 	}

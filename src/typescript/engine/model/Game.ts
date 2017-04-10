@@ -1,128 +1,129 @@
 import * as THREE from "three";
-import {Observable} from "@reactivex/rxjs/dist/cjs/Rx";
+import { Observable } from "@reactivex/rxjs/dist/cjs/Rx";
 
-import {AbstractRenderCycle} from "./abstracts/AbstractRenderCycle";
-import {Controlable} from "./interface/Controlable";
+import { AbstractRenderCycle } from "./abstracts/AbstractRenderCycle";
 import ControlRunner from "../util/io/ControlRunner";
 import ControlProfile from "../util/io/ControlProfile";
 import State from "./State";
 
-import {RenderPhase} from "../enum/RenderPhase";
+import { RenderPhase } from "../enum/RenderPhase";
+
+import { AbstractControllable } from "../model/abstracts/AbstractControllable";
 
 /**
  * The Game class is the central class to all Gluon games. By extending
  * this class into you game main glass, and decorating it with the [[GameMain]]
  * decorator, it will be the main entry point for your game.
  */
-export default class Game extends AbstractRenderCycle implements Controlable {
+export default class Game extends AbstractRenderCycle {
 
-	private name : string;
+	private name: string;
 
-	private renderer : THREE.WebGLRenderer;
+	private renderer: THREE.WebGLRenderer;
 
-	private framesPerSecond :number;
-	private initialStateName :string;
-	private activeState :State;
-	private states :State[];
-	private controlRunner :ControlRunner;
+	private framesPerSecond: number;
+	private initialStateName: string;
+	private activeState: State;
+	private states: State[];
+	private controlRunner: ControlRunner;
 
-	private controlProfiles :ControlProfile[];
-	
-    constructor(name ?:string) {
-    	super();
-    	if(name) this.setName(name);
-    	this.states = [];
+	private controlProfiles: ControlProfile<AbstractControllable>[];
+
+	constructor(name?: string) {
+		super();
+		if (name) this.setName(name);
+		this.states = [];
 		this.controlProfiles = [];
-    	this.renderer = new THREE.WebGLRenderer();
+		this.renderer = new THREE.WebGLRenderer();
 		this.controlRunner = new ControlRunner();
-    }
+	}
 
-    protected _runInit() :Observable<{}[]> {
-    	
-    	this.activeState = this.getState(this.initialStateName);
-    	this.renderer.setSize(window.innerWidth, window.innerHeight);
-    	
-    	document.body.insertBefore(this.renderer.domElement, document.body.firstChild);
-    	
-    	const $windowResize = Observable.fromEvent(window, 'resize').debounceTime(100);
-    	
-    	$windowResize.subscribe(test=>{
-    		this.renderer.setSize(window.innerWidth, window.innerHeight);
-    	});
-    	
-    	return Observable.forkJoin(this.activeState.runInit());
-    }
+	protected _runInit(): Observable<{}[]> {
 
-	protected _runLoad() :Observable<{}[]> {
+		this.activeState = this.getState(this.initialStateName);
+		this.renderer.setSize(window.innerWidth, window.innerHeight);
+
+		document.body.insertBefore(this.renderer.domElement, document.body.firstChild);
+
+		const $windowResize = Observable.fromEvent(window, 'resize').debounceTime(100);
+
+		$windowResize.subscribe(test => {
+			this.renderer.setSize(window.innerWidth, window.innerHeight);
+		});
+
+		return Observable.forkJoin(this.activeState.runInit());
+	}
+
+	protected _runLoad(): Observable<{}[]> {
 		const stateLoad = this.activeState.runLoad();
-		stateLoad.subscribe(null,null,()=>{
+		stateLoad.subscribe(null, null, () => {
 			this.activeState.setPhase(RenderPhase.READY);
 		});
 		return Observable.forkJoin(stateLoad);
 	}
 
-	protected _runUpdate(delta :number) :void {
-		if(this.activeState.phaseIs(RenderPhase.READY))
+	protected _runUpdate(delta: number): void {
+		if (this.activeState.phaseIs(RenderPhase.READY))
 			this.activeState.runUpdate(delta);
 
-		const cps = this.activeState.phaseIs(RenderPhase.READY)?this.activeState.getControlProfiles().concat(this.getControlProfiles()):this.getControlProfiles();
+		const cps = this.activeState.phaseIs(RenderPhase.READY) ? this.activeState.getControlProfiles().concat(this.getControlProfiles()) : this.getControlProfiles();
 
 		this.controlRunner._runCBs(cps, delta);
-	
+
 	};
 
-	protected _runRender(delta :number) :void {
-		if(this.activeState.phaseIs(RenderPhase.READY))
+	protected _runRender(delta: number): void {
+		if (this.activeState.phaseIs(RenderPhase.READY))
 			this.activeState.runRender(delta);
 	};
 
-	protected _runPause() :void {
+	protected _runPause(): void {
 		this.activeState.runPause();
 	};
 
-	protected _runUnPause() :void {
+	protected _runUnPause(): void {
 		this.activeState.runUnPause();
 	};
 
-	protected _runUnLoad() :Observable<{}[]> {
+	protected _runUnLoad(): Observable<{}[]> {
 		return Observable.forkJoin(this.activeState.runUnload());
 	}
 
-	protected _runDestroy() :Observable<{}[]> {
+	protected _runDestroy(): Observable<{}[]> {
 		return Observable.forkJoin(this.activeState.runDestroy());
 	}
 
-	getName() : string {
+	getName(): string {
 		return this.name;
 	}
 
-	setName(name:string) : void {
+	setName(name: string): void {
 		this.name = name;
 	}
 
-	getInitialStateName() : string {
+	getInitialStateName(): string {
 		return this.initialStateName;
 	}
 
-	setInitialStateName(stateName :string) : void {
+	setInitialStateName(stateName: string): void {
 		this.initialStateName = stateName;
 	}
 
-	getActiveState() :State {
+	getActiveState(): State {
 		return this.activeState;
 	}
 
-	setActiveState(state :State) :void {
+	setActiveState(state: State): void {
 
-		if(!state) {
+		if (!state) {
 			console.error("State undefined");
 			return;
 		}
 
-		if(this.activeState) {
+		if (this.activeState) {
 			this.activeState.runUnload()
 				.take(1)
-				.subscribe(null,null,()=>{
+				.subscribe(null, null, () => {
 					this.activeState = state;
 					this.activeState.runInit();
 				});
@@ -133,53 +134,53 @@ export default class Game extends AbstractRenderCycle implements Controlable {
 
 	}
 
-	getFramesPerSecond() :number {
+	getFramesPerSecond(): number {
 		let frameRate = this.framesPerSecond;
-		if(this.getActiveState()) {
+		if (this.getActiveState()) {
 			frameRate = this.getActiveState().getFramesPerSecond()
-				?this.getActiveState().getFramesPerSecond()
-				:this.framesPerSecond;
+				? this.getActiveState().getFramesPerSecond()
+				: this.framesPerSecond;
 		}
 		return frameRate;
 	}
 
-	setFramesPerSecond(framesPerSecond :number) :void {
+	setFramesPerSecond(framesPerSecond: number): void {
 		this.framesPerSecond = framesPerSecond;
 	}
 
-	getState(name :string) : State {
+	getState(name: string): State {
 		let foundState = null;
 
-		this.states.some((state :State) => {
+		this.states.some((state: State) => {
 			let pred = state.getName() === name;
-			
-			if(pred) foundState = state;
+
+			if (pred) foundState = state;
 			return pred;
 		});
 
-		if(!foundState) console.error(`No state: ${name}`);
+		if (!foundState) console.error(`No state: ${name}`);
 
 		return foundState;
 	}
 
-	addState(state :State) : State {
+	addState(state: State): State {
 		this.states.push(state);
 		return state;
 	}
 
-	setControlProfiles(controlProfiles :ControlProfile[]) :void {
+	setControlProfiles(controlProfiles: ControlProfile<AbstractControllable>[]): void {
 		this.controlProfiles = controlProfiles;
 	}
 
-	getControlProfiles() :ControlProfile[] {
+	getControlProfiles(): ControlProfile<AbstractControllable>[] {
 		return this.controlProfiles;
 	}
 
-	addControlProfile(controlProfile :ControlProfile) :void {
+	addControlProfile(controlProfile: ControlProfile<AbstractControllable>): void {
 		this.getControlProfiles().push(controlProfile);
 	}
 
-	removeControlProfile(controlProfile :ControlProfile) :void {
+	removeControlProfile(controlProfile: ControlProfile<AbstractControllable>): void {
 		const controlProfiles = this.getControlProfiles();
 		controlProfiles.splice(controlProfiles.indexOf(controlProfile), 1);
 	}

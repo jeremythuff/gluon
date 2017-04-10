@@ -1,18 +1,32 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 Object.defineProperty(exports, "__esModule", { value: true });
 var RenderPhase_1 = require("../../enum/RenderPhase");
 var Rx_1 = require("@reactivex/rxjs/dist/cjs/Rx");
-var AbstractRenderCycle = (function () {
+var AbstractControllable_1 = require("./AbstractControllable");
+var AbstractRenderCycle = (function (_super) {
+    __extends(AbstractRenderCycle, _super);
     function AbstractRenderCycle() {
-        this.phase = RenderPhase_1.RenderPhase.OFF;
-        this.initCBs = [];
-        this.loadCBs = [];
-        this.updateCBs = [];
-        this.renderCBs = [];
-        this.pauseCBs = [];
-        this.unPauseCBs = [];
-        this.unloadCBs = [];
-        this.destroyCBs = [];
+        var _this = _super.call(this) || this;
+        _this.phase = RenderPhase_1.RenderPhase.OFF;
+        _this.initCBs = [];
+        _this.loadCBs = [];
+        _this.updateCBs = [];
+        _this.renderCBs = [];
+        _this.pauseCBs = [];
+        _this.unPauseCBs = [];
+        _this.unloadCBs = [];
+        _this.destroyCBs = [];
+        return _this;
     }
     AbstractRenderCycle.prototype.runInit = function () {
         this.setPhase(RenderPhase_1.RenderPhase.INITIALIZING);
@@ -134,6 +148,6 @@ var AbstractRenderCycle = (function () {
         });
     };
     return AbstractRenderCycle;
-}());
+}(AbstractControllable_1.AbstractControllable));
 exports.AbstractRenderCycle = AbstractRenderCycle;
 //# sourceMappingURL=AbstractRenderCycle.js.map

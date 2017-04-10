@@ -10,9 +10,9 @@ const app = electron.app;
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow: Electron.BrowserWindow;
 
-function createWindow () {
+function createWindow() {
 
-  const nodeIntegration : boolean = process.argv[3]?process.argv[3]==='true'?true:false:true;
+  const nodeIntegration: boolean = process.argv[3] ? process.argv[3] === 'true' ? true : false : true;
 
   mainWindow = new electron.BrowserWindow({ width: 800, height: 600, webPreferences: { nodeIntegration: nodeIntegration } });
 
@@ -35,7 +35,7 @@ app.on('window-all-closed', function () {
   // On OS X it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
   //if (process.platform !== 'darwin') {
-    app.quit();
+  app.quit();
   //}
 });
 

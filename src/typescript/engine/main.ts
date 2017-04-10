@@ -12,10 +12,10 @@ import Mode from "./model/Mode";
 import ControlProfile from "./util/io/ControlProfile";
 
 //Interface
-import {PhaseCB} from "./model/interface/PhaseCB";
-import {RenderCycle} from "./model/interface/RenderCycle";
-import {ControlCB} from "./util/io/ControlCB";
-import {Controlable} from "./model/interface/Controlable";
+import { PhaseCB } from "./model/interface/PhaseCB";
+import { RenderCycle } from "./model/interface/RenderCycle";
+import { ControlCB } from "./util/io/ControlCB";
+import { AbstractControllable } from "./model/abstracts/AbstractControllable";
 
 //Decorators
 import GameMain from "./decorators/GameMain";
@@ -29,9 +29,9 @@ import WhenAny from "./decorators/WhenAny";
 
 
 //Enum
-import {Keyboard} from "./util/io/Keyboard";
-import {Mouse} from "./util/io/Mouse";
-import {RenderPhase} from "./enum/RenderPhase";
+import { Keyboard } from "./util/io/Keyboard";
+import { Mouse } from "./util/io/Mouse";
+import { RenderPhase } from "./enum/RenderPhase";
 
 
 export {
@@ -42,7 +42,7 @@ export {
 	Mode,
 	State,
 	ControlProfile,
-	Controlable,
+	AbstractControllable,
 
 	//Interface
 	PhaseCB,

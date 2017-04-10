@@ -1,71 +1,71 @@
-import {Observable} from "@reactivex/rxjs/dist/cjs/Rx";
+import { Observable } from "@reactivex/rxjs/dist/cjs/Rx";
 
-import {AbstractRenderCycle} from "./abstracts/AbstractRenderCycle";
-import {Controlable} from "./interface/Controlable";
+import { AbstractRenderCycle } from "./abstracts/AbstractRenderCycle";
 import ControlProfile from "../util/io/ControlProfile";
 
+import { AbstractControllable } from "../model/abstracts/AbstractControllable";
 
 /**
  *  The Mode class represents a grouping of control definition and
  *  displayable elements. Modes are registered in a [[State]] and many can be
  *  active at any given time.
  */
-export default class Mode extends AbstractRenderCycle implements Controlable {
+export default class Mode extends AbstractRenderCycle {
 
-	private name :string;
+	private name: string;
 
-	private controlProfiles :ControlProfile[];
+	private controlProfiles: ControlProfile<AbstractControllable>[];
 
 	constructor() {
 		super();
 		this.controlProfiles = [];
 	}
 
-	protected  _runInit() :Observable<{}[]> {
+	protected _runInit(): Observable<{}[]> {
 		return Observable.forkJoin();
 	}
 
-	protected _runLoad() :Observable<{}[]> {
+	protected _runLoad(): Observable<{}[]> {
 		return Observable.forkJoin();
 	}
 
-	protected _runUpdate(delta :number) :void {};
+	protected _runUpdate(delta: number): void { };
 
-	protected _runRender(delta :number) :void {};
+	protected _runRender(delta: number): void { };
 
-	protected _runPause() :void {}
+	protected _runPause(): void { }
 
-	protected _runUnPause() :void {};
+	protected _runUnPause(): void { };
 
-	protected _runUnLoad() :Observable<{}[]> {
+	protected _runUnLoad(): Observable<{}[]> {
 		return Observable.forkJoin();
 	}
 
-	protected _runDestroy() :Observable<{}[]>  {
+	protected _runDestroy(): Observable<{}[]> {
 		return Observable.forkJoin();
 	}
 
-	setName(name :string) :void {
+	setName(name: string): void {
 		this.name = name;
 	}
- 
-	getName() :string {
+
+	getName(): string {
 		return this.name;
 	}
 
-	setControlProfiles(controlProfiles :ControlProfile[]) :void {
+	setControlProfiles(controlProfiles: ControlProfile<AbstractControllable>[]): void {
 		this.controlProfiles = controlProfiles;
 	}
 
-	getControlProfiles() :ControlProfile[] {
+	getControlProfiles(): ControlProfile<AbstractControllable>[] {
 		return this.controlProfiles;
 	}
 
-	addControlProfile(controlProfile :ControlProfile) :void {
+	addControlProfile(controlProfile: ControlProfile<AbstractControllable>): void {
 		this.getControlProfiles().push(controlProfile);
 	}
 
-	removeControlProfile(controlProfile :ControlProfile) :void {
+	removeControlProfile(controlProfile: ControlProfile<AbstractControllable>): void {
 		const controlProfiles = this.getControlProfiles();
 		controlProfiles.splice(controlProfiles.indexOf(controlProfile), 1);
 	}

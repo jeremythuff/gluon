@@ -9,45 +9,48 @@ import * as GameStateRegistry from "../registries/GameStateRegistry";
 import * as GameModeRegistry from "../registries/GameModeRegistry";
 import * as GameControllereRegistry from "../registries/GameControllerRegistry";
 
+import { AbstractControllable } from "../model/abstracts/AbstractControllable";
+
 /**
  * This function is used to decorate classes which extend [[State]]. It registers and 
  * instantiates such classes within your main game instance.
  *
  * @decorator Class<typeof State>
  */
-export default function GameState(options ?: { [name: string]: any[]|string }) {
+export default function GameState(options?: { [name: string]: any[] | string }) {
 
-	return function(decorated : typeof State) : void {
+	return function (decorated: typeof State): void {
 
 		Reflect.defineMetadata("options", options, decorated);
-		
-		const state = new decorated();
-		if(!state.getName()) state.setName(decorated.name);
 
-		GameModeRegistry.getGameModeObservable().subscribe(Mode=>{
+		const state = new decorated();
+		if (!state.getName()) state.setName(decorated.name);
+
+		GameModeRegistry.getGameModeObservable().subscribe(Mode => {
 			console.log(Mode);
-			if((<string[]>options["modes"]).some(modeName=>{
+			if ((<string[]>options["modes"]).some(modeName => {
 				return modeName === Mode.name;
-			})) {				
+			})) {
 
 				const mode = new Mode();
 				mode.setName(Mode.name);
 
-				const modeOption :{ [name: string]: any[]|string } = Reflect.getMetadata("options", Mode);
+				const modeOption: { [name: string]: any[] | string } = Reflect.getMetadata("options", Mode);
 
-				GameControllereRegistry.getControlProfileObservable().subscribe(ControlProfile=>{
-					if((<string[]>modeOption["controlProfiles"]).some(controlProfileName=>{
+				GameControllereRegistry.getControlProfileObservable().subscribe(ControlProfile => {
+					if ((<string[]>modeOption["controlProfiles"]).some(controlProfileName => {
 						return controlProfileName === ControlProfile.name;
 					})) {
-						
-						const newControllerProfile :ControlProfile = new ControlProfile(mode);
+
+						const newControllerProfile: ControlProfile<AbstractControllable> = new ControlProfile<AbstractControllable>(mode);
 						const whileMap = GameControllereRegistry.getWhileCBMapByName(ControlProfile.name);
 						const whenMap = GameControllereRegistry.getWhenCBMapByName(ControlProfile.name);
-						
+
 						newControllerProfile.setWhileCBs(whileMap);
 						newControllerProfile.setWhenCBs(whenMap);
-						
-						mode.addControlProfile(newControllerProfile);					}
+
+						mode.addControlProfile(newControllerProfile);
+					}
 				});
 
 				state.addMode(mode);
@@ -55,11 +58,11 @@ export default function GameState(options ?: { [name: string]: any[]|string }) {
 
 		});
 
-		GameControllereRegistry.getControlProfileObservable().subscribe(ControlProfile=>{
-			if((<string[]>options["controlProfiles"]).some(controlProfileName=>{
+		GameControllereRegistry.getControlProfileObservable().subscribe(ControlProfile => {
+			if ((<string[]>options["controlProfiles"]).some(controlProfileName => {
 				return controlProfileName === ControlProfile.name;
 			})) {
-				const newControllerProfile :ControlProfile = new ControlProfile(state);
+				const newControllerProfile: ControlProfile<AbstractControllable> = new ControlProfile<AbstractControllable>(state);
 				const whileMap = GameControllereRegistry.getWhileCBMapByName(ControlProfile.name);
 				const whenMap = GameControllereRegistry.getWhenCBMapByName(ControlProfile.name);
 				newControllerProfile.setWhileCBs(whileMap);
@@ -68,12 +71,12 @@ export default function GameState(options ?: { [name: string]: any[]|string }) {
 			}
 		});
 
-		GameMainRegistry.getGameMainSubject().subscribe(game=>{
-			if(game) {
+		GameMainRegistry.getGameMainSubject().subscribe(game => {
+			if (game) {
 				console.log(`Registering State: ${state.getName()}`);
 				GameStateRegistry.addGameState(state);
 			}
-		});	
-	
+		});
+
 	}
 }

@@ -1,4 +1,5 @@
 import ControlProfile from "./ControlProfile";
+import { AbstractControllable } from "../../model/abstracts/AbstractControllable";
 export default class ControlRunner {
     protected lastEvents: Map<string, Event>;
     private keyboardListener;
@@ -7,7 +8,7 @@ export default class ControlRunner {
     private cbsToCall;
     private activatedInput;
     constructor();
-    _runCBs(profiles: ControlProfile[], delta?: number): void;
+    _runCBs(profiles: ControlProfile<AbstractControllable>[], delta?: number): void;
     private runWhenCBs(profiles, delta?);
     private runWhileCBs(profiles, delta?);
 }
