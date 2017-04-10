@@ -1,5 +1,5 @@
 import Game from "../model/Game";
-import {ReplaySubject, Observable} from "@reactivex/rxjs/dist/cjs/Rx";
+import { ReplaySubject, Observable } from "@reactivex/rxjs/dist/cjs/Rx";
 
 /**
  * The GameMainRegistry namespace is a global registry for classes
@@ -9,12 +9,12 @@ import {ReplaySubject, Observable} from "@reactivex/rxjs/dist/cjs/Rx";
 namespace GameMainRegistry {
 
 	let gameSubject: ReplaySubject<Game> = new ReplaySubject<Game>(100);
-	
-	export function setGameMain(game :Game) :void {
+
+	export function setGameMain(game: Game): void {
 		gameSubject.next(game);
 	}
 
-	export function getGameMainSubject() : ReplaySubject<Game> {
+	export function getGameMainSubject(): ReplaySubject<Game> {
 		return gameSubject;
 	}
 

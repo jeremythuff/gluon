@@ -1,4 +1,4 @@
-import {CliCommand} from "./CliCommand"
+import { CliCommand } from "./CliCommand"
 import AbstractCliCommand from "./AbstractCliCommand"
 
 import * as shelljs from "shelljs";
@@ -11,11 +11,11 @@ const nodecli = require("shelljs-nodecli");
 
 export default class Docs extends AbstractCliCommand implements CliCommand {
 
-	static key : string = "docs";
-	static shortKey : string = "d";
-	static help : [string, string] = [`${Docs.key}, ${Docs.shortKey}`, colors.green("Launches a documentation application.")];
+	static key: string = "docs";
+	static shortKey: string = "d";
+	static help: [string, string] = [`${Docs.key}, ${Docs.shortKey}`, colors.green("Launches a documentation application.")];
 
-	execute(args :Array<string>) {
+	execute(args: Array<string>) {
 
 		const engineDir = this.getGlobalModuleRoot();
 		const resourcesDir = `${engineDir}/dist/engine/resources`;

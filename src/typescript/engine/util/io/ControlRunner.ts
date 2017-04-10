@@ -1,26 +1,28 @@
-import {Keyboard} from "./Keyboard";
-import {Mouse} from "./Mouse";
-import {ControlCB} from "./ControlCB";
+import { Keyboard } from "./Keyboard";
+import { Mouse } from "./Mouse";
+import { ControlCB } from "./ControlCB";
 import KeyboardListener from "./KeyboardListener";
 import MouseListener from "./MouseListener";
 import ControlProfile from "./ControlProfile";
 
+import { AbstractControllable } from "../../model/abstracts/AbstractControllable";
+
 export default class ControlRunner {
 
-	protected lastEvents :Map<string, Event>;
+	protected lastEvents: Map<string, Event>;
 
-	private keyboardListener :KeyboardListener;
-	private mouseListener :MouseListener;
+	private keyboardListener: KeyboardListener;
+	private mouseListener: MouseListener;
 
-	private alreadyRun :Array<ControlCB[]>;
+	private alreadyRun: Array<ControlCB[]>;
 
-	private cbsToCall :Map<(Keyboard|Mouse)[], ControlCB[]> 
+	private cbsToCall: Map<(Keyboard | Mouse)[], ControlCB[]>
 
-	private activatedInput :boolean[];
+	private activatedInput: boolean[];
 
 	constructor() {
 
-		this.cbsToCall = new Map<(Keyboard|Mouse)[], ControlCB[]>();
+		this.cbsToCall = new Map<(Keyboard | Mouse)[], ControlCB[]>();
 		this.alreadyRun = [];
 		this.activatedInput = [];
 
@@ -32,7 +34,7 @@ export default class ControlRunner {
 
 	}
 
-	_runCBs(profiles :ControlProfile[], delta ?:number) :void {
+	_runCBs(profiles: ControlProfile<AbstractControllable>[], delta?: number): void {
 		this.runWhileCBs(profiles, delta);
 		this.runWhenCBs(profiles, delta);
 
@@ -41,38 +43,38 @@ export default class ControlRunner {
 		lastEventMap.set("keyboard", this.keyboardListener.getLastEvent());
 		lastEventMap.set("mouse", this.mouseListener.getLastEvent());
 
-		this.cbsToCall.forEach((cbArr, inputs)=>cbArr.forEach(cb=>{
-			cb(lastEventMap,delta);
+		this.cbsToCall.forEach((cbArr, inputs) => cbArr.forEach(cb => {
+			cb(lastEventMap, delta);
 		}));
 
 		this.cbsToCall.clear();
 	}
 
-	private runWhenCBs(profiles :ControlProfile[], delta ?:number) :void {
-		
-		profiles.forEach(profile=>{
+	private runWhenCBs(profiles: ControlProfile<AbstractControllable>[], delta?: number): void {
 
-			profile.getWhenCBs().forEach((cbArr, inputArr)=>{
-				const inputsActive = inputArr.every(k=>{
+		profiles.forEach(profile => {
+
+			profile.getWhenCBs().forEach((cbArr, inputArr) => {
+				const inputsActive = inputArr.every(k => {
 					return this.activatedInput[k];
 				});
-				
-				if(inputsActive && this.alreadyRun.indexOf(cbArr)===-1) {
 
-					cbArr.forEach((cb,i,arr)=>{
-						arr[i]=cb.bind(profile);
+				if (inputsActive && this.alreadyRun.indexOf(cbArr) === -1) {
+
+					cbArr.forEach((cb, i, arr) => {
+						arr[i] = cb.bind(profile);
 					});
-					
+
 					this.cbsToCall.set(inputArr, cbArr);
 					this.alreadyRun.push(cbArr);
 
-					this.cbsToCall.forEach((cA, iA, map)=>{
+					this.cbsToCall.forEach((cA, iA, map) => {
 
-						if(iA!==inputArr && iA.some(i=>{
-							return inputArr.indexOf(i) !==-1;
+						if (iA !== inputArr && iA.some(i => {
+							return inputArr.indexOf(i) !== -1;
 						})) {
-							
-							if(iA.length<=inputArr.length) {
+
+							if (iA.length <= inputArr.length) {
 								this.cbsToCall.delete(iA);
 							} else {
 								this.cbsToCall.delete(inputArr);
@@ -83,35 +85,35 @@ export default class ControlRunner {
 				}
 
 			});
-			
+
 		});
 	}
 
-	private runWhileCBs(profiles :ControlProfile[], delta ?:number) :void {
+	private runWhileCBs(profiles: ControlProfile<AbstractControllable>[], delta?: number): void {
 
-		profiles.forEach(profile=>{
+		profiles.forEach(profile => {
 
-			profile.getWhileCBs().forEach((cbArr, inputArr)=>{
-			
-				const inputsActive = inputArr.every(k=>{
+			profile.getWhileCBs().forEach((cbArr, inputArr) => {
+
+				const inputsActive = inputArr.every(k => {
 					return this.activatedInput[k];
 				});
-				
-				if(inputsActive) {
 
-					cbArr.forEach((cb,i,arr)=>{
-						arr[i]=cb.bind(profile);
+				if (inputsActive) {
+
+					cbArr.forEach((cb, i, arr) => {
+						arr[i] = cb.bind(profile);
 					});
 
 					this.cbsToCall.set(inputArr, cbArr);
 
-					this.cbsToCall.forEach((cA, iA, map)=>{
+					this.cbsToCall.forEach((cA, iA, map) => {
 
-						if(iA!==inputArr && iA.some(i=>{
-							return inputArr.indexOf(i) !==-1;
+						if (iA !== inputArr && iA.some(i => {
+							return inputArr.indexOf(i) !== -1;
 						})) {
-						
-							if(iA.length<=inputArr.length) {
+
+							if (iA.length <= inputArr.length) {
 								this.cbsToCall.delete(iA);
 							} else {
 								this.cbsToCall.delete(inputArr);

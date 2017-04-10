@@ -1,12 +1,12 @@
-import { Controlable } from "../../model/interface/Controlable";
+import { AbstractControllable } from "../../model/abstracts/AbstractControllable";
 import { ControlCB } from "./ControlCB";
 import { Keyboard } from "./Keyboard";
 import { Mouse } from "./Mouse";
-export default class ControlProfile {
-    protected controlee: Controlable;
+export default class ControlProfile<C extends AbstractControllable> {
+    protected controlee: C;
     private whileCBs;
     private whenCBs;
-    constructor(controlee: Controlable);
+    constructor(controlee: C);
     setWhileCBs(whileCBs: Map<(Keyboard | Mouse)[], ControlCB[]>): void;
     setWhenCBs(whenCBs: Map<(Keyboard | Mouse)[], ControlCB[]>): void;
     getWhileCBs(): Map<(Keyboard | Mouse)[], ControlCB[]>;

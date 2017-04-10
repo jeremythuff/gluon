@@ -1,9 +1,9 @@
 import { Observable } from "@reactivex/rxjs/dist/cjs/Rx";
 import { AbstractRenderCycle } from "./abstracts/AbstractRenderCycle";
-import { Controlable } from "./interface/Controlable";
 import ControlProfile from "../util/io/ControlProfile";
 import State from "./State";
-export default class Game extends AbstractRenderCycle implements Controlable {
+import { AbstractControllable } from "../model/abstracts/AbstractControllable";
+export default class Game extends AbstractRenderCycle {
     private name;
     private renderer;
     private framesPerSecond;
@@ -31,8 +31,8 @@ export default class Game extends AbstractRenderCycle implements Controlable {
     setFramesPerSecond(framesPerSecond: number): void;
     getState(name: string): State;
     addState(state: State): State;
-    setControlProfiles(controlProfiles: ControlProfile[]): void;
-    getControlProfiles(): ControlProfile[];
-    addControlProfile(controlProfile: ControlProfile): void;
-    removeControlProfile(controlProfile: ControlProfile): void;
+    setControlProfiles(controlProfiles: ControlProfile<AbstractControllable>[]): void;
+    getControlProfiles(): ControlProfile<AbstractControllable>[];
+    addControlProfile(controlProfile: ControlProfile<AbstractControllable>): void;
+    removeControlProfile(controlProfile: ControlProfile<AbstractControllable>): void;
 }

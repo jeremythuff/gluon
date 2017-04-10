@@ -1,35 +1,35 @@
-import {Controlable} from "../../model/interface/Controlable";
-import {ControlCB} from "./ControlCB";
-import {Keyboard} from "./Keyboard";
-import {Mouse} from "./Mouse";
+import { AbstractControllable } from "../../model/abstracts/AbstractControllable";
+import { ControlCB } from "./ControlCB";
+import { Keyboard } from "./Keyboard";
+import { Mouse } from "./Mouse";
 
 
-export default class ControlProfile {
-    
-    protected controlee :Controlable;
+export default class ControlProfile<C extends AbstractControllable> {
 
-    private whileCBs :Map<(Keyboard|Mouse)[], ControlCB[]>;
-	private whenCBs :Map<(Keyboard|Mouse)[], ControlCB[]>;
+    protected controlee: C;
 
-    constructor(controlee :Controlable) {
+    private whileCBs: Map<(Keyboard | Mouse)[], ControlCB[]>;
+    private whenCBs: Map<(Keyboard | Mouse)[], ControlCB[]>;
+
+    constructor(controlee: C) {
         this.controlee = controlee;
-        this.whileCBs = new Map<(Keyboard|Mouse)[], ControlCB[]>();
-		this.whenCBs = new Map<(Keyboard|Mouse)[], ControlCB[]>();
+        this.whileCBs = new Map<(Keyboard | Mouse)[], ControlCB[]>();
+        this.whenCBs = new Map<(Keyboard | Mouse)[], ControlCB[]>();
     }
 
-    setWhileCBs(whileCBs :Map<(Keyboard|Mouse)[], ControlCB[]>) :void {
+    setWhileCBs(whileCBs: Map<(Keyboard | Mouse)[], ControlCB[]>): void {
         this.whileCBs = whileCBs;
     }
 
-    setWhenCBs(whenCBs :Map<(Keyboard|Mouse)[], ControlCB[]>) :void {
+    setWhenCBs(whenCBs: Map<(Keyboard | Mouse)[], ControlCB[]>): void {
         this.whenCBs = whenCBs;
     }
 
-    getWhileCBs() :Map<(Keyboard|Mouse)[], ControlCB[]> {
+    getWhileCBs(): Map<(Keyboard | Mouse)[], ControlCB[]> {
         return this.whileCBs;
     }
 
-    getWhenCBs() :Map<(Keyboard|Mouse)[], ControlCB[]> {
+    getWhenCBs(): Map<(Keyboard | Mouse)[], ControlCB[]> {
         return this.whenCBs;
     }
 

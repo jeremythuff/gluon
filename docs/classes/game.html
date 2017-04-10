@@ -922,9 +922,12 @@ img { max-width: 100%; }
 			<a href="abstractcontrollistener.html" class="tsd-kind-icon">Abstract<wbr>Control<wbr>Listener</a>
 		</li>
 		<li class=" tsd-kind-class tsd-is-external">
-			<a href="abstractrendercycle.html" class="tsd-kind-icon">Abstract<wbr>Render<wbr>Cycle</a>
+			<a href="abstractcontrollable.html" class="tsd-kind-icon">Abstract<wbr>Controllable</a>
 		</li>
 		<li class=" tsd-kind-class tsd-is-external">
+			<a href="abstractrendercycle.html" class="tsd-kind-icon">Abstract<wbr>Render<wbr>Cycle</a>
+		</li>
+		<li class=" tsd-kind-class tsd-has-type-parameter tsd-is-external">
 			<a href="controlprofile.html" class="tsd-kind-icon">Control<wbr>Profile</a>
 		</li>
 		<li class=" tsd-kind-class tsd-is-external">
@@ -1155,9 +1158,6 @@ img { max-width: 100%; }
 			<a href="../interfaces/controlcb.html" class="tsd-kind-icon">ControlCB</a>
 		</li>
 		<li class=" tsd-kind-interface tsd-is-external">
-			<a href="../interfaces/controlable.html" class="tsd-kind-icon">Controlable</a>
-		</li>
-		<li class=" tsd-kind-interface tsd-is-external">
 			<a href="../interfaces/phasecb.html" class="tsd-kind-icon">PhaseCB</a>
 		</li>
 		<li class=" tsd-kind-interface tsd-is-external">
@@ -1213,7 +1213,6 @@ img { max-width: 100%; }
 			<h3>Implements</h3>
 			<ul class="tsd-hierarchy">
 				<li><a href="../interfaces/rendercycle.html" class="tsd-signature-type">RenderCycle</a></li>
-				<li><a href="../interfaces/controlable.html" class="tsd-signature-type">Controlable</a></li>
 			</ul>
 		</section>
 		<section class="tsd-panel-group tsd-index-group">
@@ -1318,7 +1317,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Overrides <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#constructor">constructor</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/Game.ts#L29">model/Game.ts:29</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/Game.ts#L30">model/Game.ts:30</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1340,17 +1339,17 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">active<wbr>State<span class="tsd-signature-symbol">:</span> <a href="state.html" class="tsd-signature-type">State</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/Game.ts#L25">model/Game.ts:25</a></li>
+						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/Game.ts#L26">model/Game.ts:26</a></li>
 					</ul>
 				</aside>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
 				<a name="controlprofiles" class="tsd-anchor"></a>
 				<h3>control<wbr>Profiles</h3>
-				<div class="tsd-signature tsd-kind-icon">control<wbr>Profiles<span class="tsd-signature-symbol">:</span> <a href="controlprofile.html" class="tsd-signature-type">ControlProfile</a><span class="tsd-signature-symbol">[]</span></div>
+				<div class="tsd-signature tsd-kind-icon">control<wbr>Profiles<span class="tsd-signature-symbol">:</span> <a href="controlprofile.html" class="tsd-signature-type">ControlProfile</a><span class="tsd-signature-symbol">&lt;</span><a href="abstractcontrollable.html" class="tsd-signature-type">AbstractControllable</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/Game.ts#L29">model/Game.ts:29</a></li>
+						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/Game.ts#L30">model/Game.ts:30</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1360,7 +1359,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">control<wbr>Runner<span class="tsd-signature-symbol">:</span> <a href="controlrunner.html" class="tsd-signature-type">ControlRunner</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/Game.ts#L27">model/Game.ts:27</a></li>
+						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/Game.ts#L28">model/Game.ts:28</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1371,7 +1370,7 @@ img { max-width: 100%; }
 				<aside class="tsd-sources">
 					<p>Inherited from <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#destroycbs">destroyCBs</a></p>
 					<ul>
-						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L18">model/abstracts/AbstractRenderCycle.ts:18</a></li>
+						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L20">model/abstracts/AbstractRenderCycle.ts:20</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1381,7 +1380,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">frames<wbr>Per<wbr>Second<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/Game.ts#L23">model/Game.ts:23</a></li>
+						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/Game.ts#L24">model/Game.ts:24</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1392,7 +1391,7 @@ img { max-width: 100%; }
 				<aside class="tsd-sources">
 					<p>Inherited from <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#initcbs">initCBs</a></p>
 					<ul>
-						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L11">model/abstracts/AbstractRenderCycle.ts:11</a></li>
+						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L13">model/abstracts/AbstractRenderCycle.ts:13</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1402,7 +1401,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">initial<wbr>State<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/Game.ts#L24">model/Game.ts:24</a></li>
+						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/Game.ts#L25">model/Game.ts:25</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1413,7 +1412,7 @@ img { max-width: 100%; }
 				<aside class="tsd-sources">
 					<p>Inherited from <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#loadcbs">loadCBs</a></p>
 					<ul>
-						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L12">model/abstracts/AbstractRenderCycle.ts:12</a></li>
+						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L14">model/abstracts/AbstractRenderCycle.ts:14</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1423,7 +1422,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/Game.ts#L19">model/Game.ts:19</a></li>
+						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/Game.ts#L20">model/Game.ts:20</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1434,7 +1433,7 @@ img { max-width: 100%; }
 				<aside class="tsd-sources">
 					<p>Inherited from <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#pausecbs">pauseCBs</a></p>
 					<ul>
-						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L15">model/abstracts/AbstractRenderCycle.ts:15</a></li>
+						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L17">model/abstracts/AbstractRenderCycle.ts:17</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1445,7 +1444,7 @@ img { max-width: 100%; }
 				<aside class="tsd-sources">
 					<p>Inherited from <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#phase">phase</a></p>
 					<ul>
-						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L9">model/abstracts/AbstractRenderCycle.ts:9</a></li>
+						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L11">model/abstracts/AbstractRenderCycle.ts:11</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1456,7 +1455,7 @@ img { max-width: 100%; }
 				<aside class="tsd-sources">
 					<p>Inherited from <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#rendercbs">renderCBs</a></p>
 					<ul>
-						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L14">model/abstracts/AbstractRenderCycle.ts:14</a></li>
+						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L16">model/abstracts/AbstractRenderCycle.ts:16</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1466,7 +1465,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">renderer<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">WebGLRenderer</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/Game.ts#L21">model/Game.ts:21</a></li>
+						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/Game.ts#L22">model/Game.ts:22</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1476,7 +1475,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">states<span class="tsd-signature-symbol">:</span> <a href="state.html" class="tsd-signature-type">State</a><span class="tsd-signature-symbol">[]</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/Game.ts#L26">model/Game.ts:26</a></li>
+						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/Game.ts#L27">model/Game.ts:27</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1487,7 +1486,7 @@ img { max-width: 100%; }
 				<aside class="tsd-sources">
 					<p>Inherited from <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#unpausecbs">unPauseCBs</a></p>
 					<ul>
-						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L16">model/abstracts/AbstractRenderCycle.ts:16</a></li>
+						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L18">model/abstracts/AbstractRenderCycle.ts:18</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1498,7 +1497,7 @@ img { max-width: 100%; }
 				<aside class="tsd-sources">
 					<p>Inherited from <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#unloadcbs">unloadCBs</a></p>
 					<ul>
-						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L17">model/abstracts/AbstractRenderCycle.ts:17</a></li>
+						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L19">model/abstracts/AbstractRenderCycle.ts:19</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1509,7 +1508,7 @@ img { max-width: 100%; }
 				<aside class="tsd-sources">
 					<p>Inherited from <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#updatecbs">updateCBs</a></p>
 					<ul>
-						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L13">model/abstracts/AbstractRenderCycle.ts:13</a></li>
+						<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L15">model/abstracts/AbstractRenderCycle.ts:15</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1527,7 +1526,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Overrides <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#_rundestroy">_runDestroy</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/Game.ts#L91">model/Game.ts:91</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/Game.ts#L92">model/Game.ts:92</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">__type</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -1545,7 +1544,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Overrides <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#_runinit">_runInit</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/Game.ts#L40">model/Game.ts:40</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/Game.ts#L41">model/Game.ts:41</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">__type</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -1563,7 +1562,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Overrides <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#_runload">_runLoad</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/Game.ts#L56">model/Game.ts:56</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/Game.ts#L57">model/Game.ts:57</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">__type</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -1581,7 +1580,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Overrides <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#_runpause">_runPause</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/Game.ts#L79">model/Game.ts:79</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/Game.ts#L80">model/Game.ts:80</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1599,7 +1598,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Overrides <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#_runrender">_runRender</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/Game.ts#L74">model/Game.ts:74</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/Game.ts#L75">model/Game.ts:75</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1623,7 +1622,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Overrides <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#_rununload">_runUnLoad</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/Game.ts#L87">model/Game.ts:87</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/Game.ts#L88">model/Game.ts:88</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">__type</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -1641,7 +1640,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Overrides <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#_rununpause">_runUnPause</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/Game.ts#L83">model/Game.ts:83</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/Game.ts#L84">model/Game.ts:84</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1659,7 +1658,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Overrides <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#_runupdate">_runUpdate</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/Game.ts#L64">model/Game.ts:64</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/Game.ts#L65">model/Game.ts:65</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1676,19 +1675,19 @@ img { max-width: 100%; }
 				<a name="addcontrolprofile" class="tsd-anchor"></a>
 				<h3>add<wbr>Control<wbr>Profile</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
-					<li class="tsd-signature tsd-kind-icon">add<wbr>Control<wbr>Profile<span class="tsd-signature-symbol">(</span>controlProfile<span class="tsd-signature-symbol">: </span><a href="controlprofile.html" class="tsd-signature-type">ControlProfile</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					<li class="tsd-signature tsd-kind-icon">add<wbr>Control<wbr>Profile<span class="tsd-signature-symbol">(</span>controlProfile<span class="tsd-signature-symbol">: </span><a href="controlprofile.html" class="tsd-signature-type">ControlProfile</a><span class="tsd-signature-symbol">&lt;</span><a href="abstractcontrollable.html" class="tsd-signature-type">AbstractControllable</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/Game.ts#L178">model/Game.ts:178</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/Game.ts#L179">model/Game.ts:179</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>controlProfile: <a href="controlprofile.html" class="tsd-signature-type">ControlProfile</a></h5>
+								<h5>controlProfile: <a href="controlprofile.html" class="tsd-signature-type">ControlProfile</a><span class="tsd-signature-symbol">&lt;</span><a href="abstractcontrollable.html" class="tsd-signature-type">AbstractControllable</a><span class="tsd-signature-symbol">&gt;</span></h5>
 							</li>
 						</ul>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1705,7 +1704,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/Game.ts#L165">model/Game.ts:165</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/Game.ts#L166">model/Game.ts:166</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1729,7 +1728,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Inherited from <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#destroy">destroy</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L155">model/abstracts/AbstractRenderCycle.ts:155</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L158">model/abstracts/AbstractRenderCycle.ts:158</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1746,7 +1745,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/Game.ts#L111">model/Game.ts:111</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/Game.ts#L112">model/Game.ts:112</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <a href="state.html" class="tsd-signature-type">State</a></h4>
@@ -1757,16 +1756,16 @@ img { max-width: 100%; }
 				<a name="getcontrolprofiles" class="tsd-anchor"></a>
 				<h3>get<wbr>Control<wbr>Profiles</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
-					<li class="tsd-signature tsd-kind-icon">get<wbr>Control<wbr>Profiles<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="controlprofile.html" class="tsd-signature-type">ControlProfile</a><span class="tsd-signature-symbol">[]</span></li>
+					<li class="tsd-signature tsd-kind-icon">get<wbr>Control<wbr>Profiles<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="controlprofile.html" class="tsd-signature-type">ControlProfile</a><span class="tsd-signature-symbol">&lt;</span><a href="abstractcontrollable.html" class="tsd-signature-type">AbstractControllable</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/Game.ts#L174">model/Game.ts:174</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/Game.ts#L175">model/Game.ts:175</a></li>
 							</ul>
 						</aside>
-						<h4 class="tsd-returns-title">Returns <a href="controlprofile.html" class="tsd-signature-type">ControlProfile</a><span class="tsd-signature-symbol">[]</span></h4>
+						<h4 class="tsd-returns-title">Returns <a href="controlprofile.html" class="tsd-signature-type">ControlProfile</a><span class="tsd-signature-symbol">&lt;</span><a href="abstractcontrollable.html" class="tsd-signature-type">AbstractControllable</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h4>
 					</li>
 				</ul>
 			</section>
@@ -1780,7 +1779,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/Game.ts#L136">model/Game.ts:136</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/Game.ts#L137">model/Game.ts:137</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -1797,7 +1796,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/Game.ts#L103">model/Game.ts:103</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/Game.ts#L104">model/Game.ts:104</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -1814,7 +1813,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/Game.ts#L95">model/Game.ts:95</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/Game.ts#L96">model/Game.ts:96</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -1833,7 +1832,7 @@ img { max-width: 100%; }
 							<p>Implementation of <a href="../interfaces/rendercycle.html">RenderCycle</a>.<a href="../interfaces/rendercycle.html#getphase">getPhase</a></p>
 							<p>Inherited from <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#getphase">getPhase</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L165">model/abstracts/AbstractRenderCycle.ts:165</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L168">model/abstracts/AbstractRenderCycle.ts:168</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <a href="../enums/renderphase.html" class="tsd-signature-type">RenderPhase</a></h4>
@@ -1850,7 +1849,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/Game.ts#L150">model/Game.ts:150</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/Game.ts#L151">model/Game.ts:151</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1874,7 +1873,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Inherited from <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#init">init</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L42">model/abstracts/AbstractRenderCycle.ts:42</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L45">model/abstracts/AbstractRenderCycle.ts:45</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1892,7 +1891,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Inherited from <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#load">load</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L59">model/abstracts/AbstractRenderCycle.ts:59</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L62">model/abstracts/AbstractRenderCycle.ts:62</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1910,7 +1909,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Inherited from <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#pause">pause</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L107">model/abstracts/AbstractRenderCycle.ts:107</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L110">model/abstracts/AbstractRenderCycle.ts:110</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1929,7 +1928,7 @@ img { max-width: 100%; }
 							<p>Implementation of <a href="../interfaces/rendercycle.html">RenderCycle</a>.<a href="../interfaces/rendercycle.html#phaseis">phaseIs</a></p>
 							<p>Inherited from <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#phaseis">phaseIs</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L161">model/abstracts/AbstractRenderCycle.ts:161</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L164">model/abstracts/AbstractRenderCycle.ts:164</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1953,7 +1952,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Inherited from <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#registerdestroyaction">registerDestroyAction</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L157">model/abstracts/AbstractRenderCycle.ts:157</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L160">model/abstracts/AbstractRenderCycle.ts:160</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1977,7 +1976,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Inherited from <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#registerinitaction">registerInitAction</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L44">model/abstracts/AbstractRenderCycle.ts:44</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L47">model/abstracts/AbstractRenderCycle.ts:47</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2001,7 +2000,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Inherited from <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#registerloadaction">registerLoadAction</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L61">model/abstracts/AbstractRenderCycle.ts:61</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L64">model/abstracts/AbstractRenderCycle.ts:64</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2025,7 +2024,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Inherited from <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#registerpauseaction">registerPauseAction</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L109">model/abstracts/AbstractRenderCycle.ts:109</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L112">model/abstracts/AbstractRenderCycle.ts:112</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2049,7 +2048,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Inherited from <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#registerrenderaction">registerRenderAction</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L93">model/abstracts/AbstractRenderCycle.ts:93</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L96">model/abstracts/AbstractRenderCycle.ts:96</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2073,7 +2072,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Inherited from <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#registerunloadaction">registerUnloadAction</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L141">model/abstracts/AbstractRenderCycle.ts:141</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L144">model/abstracts/AbstractRenderCycle.ts:144</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2097,7 +2096,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Inherited from <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#registerunpauseaction">registerUnpauseAction</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L125">model/abstracts/AbstractRenderCycle.ts:125</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L128">model/abstracts/AbstractRenderCycle.ts:128</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2121,7 +2120,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Inherited from <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#registerupdateaction">registerUpdateAction</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L77">model/abstracts/AbstractRenderCycle.ts:77</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L80">model/abstracts/AbstractRenderCycle.ts:80</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2138,19 +2137,19 @@ img { max-width: 100%; }
 				<a name="removecontrolprofile" class="tsd-anchor"></a>
 				<h3>remove<wbr>Control<wbr>Profile</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
-					<li class="tsd-signature tsd-kind-icon">remove<wbr>Control<wbr>Profile<span class="tsd-signature-symbol">(</span>controlProfile<span class="tsd-signature-symbol">: </span><a href="controlprofile.html" class="tsd-signature-type">ControlProfile</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					<li class="tsd-signature tsd-kind-icon">remove<wbr>Control<wbr>Profile<span class="tsd-signature-symbol">(</span>controlProfile<span class="tsd-signature-symbol">: </span><a href="controlprofile.html" class="tsd-signature-type">ControlProfile</a><span class="tsd-signature-symbol">&lt;</span><a href="abstractcontrollable.html" class="tsd-signature-type">AbstractControllable</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/Game.ts#L182">model/Game.ts:182</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/Game.ts#L183">model/Game.ts:183</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>controlProfile: <a href="controlprofile.html" class="tsd-signature-type">ControlProfile</a></h5>
+								<h5>controlProfile: <a href="controlprofile.html" class="tsd-signature-type">ControlProfile</a><span class="tsd-signature-symbol">&lt;</span><a href="abstractcontrollable.html" class="tsd-signature-type">AbstractControllable</a><span class="tsd-signature-symbol">&gt;</span></h5>
 							</li>
 						</ul>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -2168,7 +2167,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Inherited from <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#render">render</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L91">model/abstracts/AbstractRenderCycle.ts:91</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L94">model/abstracts/AbstractRenderCycle.ts:94</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2193,7 +2192,7 @@ img { max-width: 100%; }
 							<p>Implementation of <a href="../interfaces/rendercycle.html">RenderCycle</a>.<a href="../interfaces/rendercycle.html#rundestroy">runDestroy</a></p>
 							<p>Inherited from <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#rundestroy">runDestroy</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L146">model/abstracts/AbstractRenderCycle.ts:146</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L149">model/abstracts/AbstractRenderCycle.ts:149</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">__type</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -2212,7 +2211,7 @@ img { max-width: 100%; }
 							<p>Implementation of <a href="../interfaces/rendercycle.html">RenderCycle</a>.<a href="../interfaces/rendercycle.html#runinit">runInit</a></p>
 							<p>Inherited from <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#runinit">runInit</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L32">model/abstracts/AbstractRenderCycle.ts:32</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L35">model/abstracts/AbstractRenderCycle.ts:35</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">__type</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -2231,7 +2230,7 @@ img { max-width: 100%; }
 							<p>Implementation of <a href="../interfaces/rendercycle.html">RenderCycle</a>.<a href="../interfaces/rendercycle.html#runload">runLoad</a></p>
 							<p>Inherited from <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#runload">runLoad</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L49">model/abstracts/AbstractRenderCycle.ts:49</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L52">model/abstracts/AbstractRenderCycle.ts:52</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">__type</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -2250,7 +2249,7 @@ img { max-width: 100%; }
 							<p>Implementation of <a href="../interfaces/rendercycle.html">RenderCycle</a>.<a href="../interfaces/rendercycle.html#runpause">runPause</a></p>
 							<p>Inherited from <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#runpause">runPause</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L98">model/abstracts/AbstractRenderCycle.ts:98</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L101">model/abstracts/AbstractRenderCycle.ts:101</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -2269,7 +2268,7 @@ img { max-width: 100%; }
 							<p>Implementation of <a href="../interfaces/rendercycle.html">RenderCycle</a>.<a href="../interfaces/rendercycle.html#runrender">runRender</a></p>
 							<p>Inherited from <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#runrender">runRender</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L82">model/abstracts/AbstractRenderCycle.ts:82</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L85">model/abstracts/AbstractRenderCycle.ts:85</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2294,7 +2293,7 @@ img { max-width: 100%; }
 							<p>Implementation of <a href="../interfaces/rendercycle.html">RenderCycle</a>.<a href="../interfaces/rendercycle.html#rununpause">runUnPause</a></p>
 							<p>Inherited from <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#rununpause">runUnPause</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L114">model/abstracts/AbstractRenderCycle.ts:114</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L117">model/abstracts/AbstractRenderCycle.ts:117</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -2313,7 +2312,7 @@ img { max-width: 100%; }
 							<p>Implementation of <a href="../interfaces/rendercycle.html">RenderCycle</a>.<a href="../interfaces/rendercycle.html#rununload">runUnload</a></p>
 							<p>Inherited from <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#rununload">runUnload</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L130">model/abstracts/AbstractRenderCycle.ts:130</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L133">model/abstracts/AbstractRenderCycle.ts:133</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">__type</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -2332,7 +2331,7 @@ img { max-width: 100%; }
 							<p>Implementation of <a href="../interfaces/rendercycle.html">RenderCycle</a>.<a href="../interfaces/rendercycle.html#runupdate">runUpdate</a></p>
 							<p>Inherited from <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#runupdate">runUpdate</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L66">model/abstracts/AbstractRenderCycle.ts:66</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L69">model/abstracts/AbstractRenderCycle.ts:69</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2355,7 +2354,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/Game.ts#L115">model/Game.ts:115</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/Game.ts#L116">model/Game.ts:116</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2372,19 +2371,19 @@ img { max-width: 100%; }
 				<a name="setcontrolprofiles" class="tsd-anchor"></a>
 				<h3>set<wbr>Control<wbr>Profiles</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
-					<li class="tsd-signature tsd-kind-icon">set<wbr>Control<wbr>Profiles<span class="tsd-signature-symbol">(</span>controlProfiles<span class="tsd-signature-symbol">: </span><a href="controlprofile.html" class="tsd-signature-type">ControlProfile</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					<li class="tsd-signature tsd-kind-icon">set<wbr>Control<wbr>Profiles<span class="tsd-signature-symbol">(</span>controlProfiles<span class="tsd-signature-symbol">: </span><a href="controlprofile.html" class="tsd-signature-type">ControlProfile</a><span class="tsd-signature-symbol">&lt;</span><a href="abstractcontrollable.html" class="tsd-signature-type">AbstractControllable</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/Game.ts#L170">model/Game.ts:170</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/Game.ts#L171">model/Game.ts:171</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>controlProfiles: <a href="controlprofile.html" class="tsd-signature-type">ControlProfile</a><span class="tsd-signature-symbol">[]</span></h5>
+								<h5>controlProfiles: <a href="controlprofile.html" class="tsd-signature-type">ControlProfile</a><span class="tsd-signature-symbol">&lt;</span><a href="abstractcontrollable.html" class="tsd-signature-type">AbstractControllable</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h5>
 							</li>
 						</ul>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -2401,7 +2400,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/Game.ts#L146">model/Game.ts:146</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/Game.ts#L147">model/Game.ts:147</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2424,7 +2423,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/Game.ts#L107">model/Game.ts:107</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/Game.ts#L108">model/Game.ts:108</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2447,7 +2446,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/Game.ts#L99">model/Game.ts:99</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/Game.ts#L100">model/Game.ts:100</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2472,7 +2471,7 @@ img { max-width: 100%; }
 							<p>Implementation of <a href="../interfaces/rendercycle.html">RenderCycle</a>.<a href="../interfaces/rendercycle.html#setphase">setPhase</a></p>
 							<p>Inherited from <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#setphase">setPhase</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L169">model/abstracts/AbstractRenderCycle.ts:169</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L172">model/abstracts/AbstractRenderCycle.ts:172</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2496,7 +2495,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Inherited from <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#unload">unload</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L139">model/abstracts/AbstractRenderCycle.ts:139</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L142">model/abstracts/AbstractRenderCycle.ts:142</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -2514,7 +2513,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Inherited from <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#unpause">unpause</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L123">model/abstracts/AbstractRenderCycle.ts:123</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L126">model/abstracts/AbstractRenderCycle.ts:126</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -2532,7 +2531,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Inherited from <a href="abstractrendercycle.html">AbstractRenderCycle</a>.<a href="abstractrendercycle.html#update">update</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/a53f3d0/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L75">model/abstracts/AbstractRenderCycle.ts:75</a></li>
+								<li>Defined in <a href="https://github.com/jeremythuff/Gluon/blob/c3b1428/src/typescript/engine/model/abstracts/AbstractRenderCycle.ts#L78">model/abstracts/AbstractRenderCycle.ts:78</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
