@@ -3,7 +3,6 @@ import { AbstractRenderCycle } from "./abstracts/AbstractRenderCycle";
 import { Controlable } from "./interface/Controlable";
 import ControlProfile from "../util/io/ControlProfile";
 export default class Mode extends AbstractRenderCycle implements Controlable {
-    static _staticControlProfiles: (typeof ControlProfile)[];
     private name;
     private controlProfiles;
     constructor();

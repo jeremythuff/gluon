@@ -17,7 +17,9 @@ var ControlRunner = (function () {
         var lastEventMap = new Map();
         lastEventMap.set("keyboard", this.keyboardListener.getLastEvent());
         lastEventMap.set("mouse", this.mouseListener.getLastEvent());
-        this.cbsToCall.forEach(function (cbArr, inputs) { return cbArr.forEach(function (cb) { return cb(lastEventMap, delta); }); });
+        this.cbsToCall.forEach(function (cbArr, inputs) { return cbArr.forEach(function (cb) {
+            cb(lastEventMap, delta);
+        }); });
         this.cbsToCall.clear();
     };
     ControlRunner.prototype.runWhenCBs = function (profiles, delta) {
@@ -28,6 +30,9 @@ var ControlRunner = (function () {
                     return _this.activatedInput[k];
                 });
                 if (inputsActive && _this.alreadyRun.indexOf(cbArr) === -1) {
+                    cbArr.forEach(function (cb, i, arr) {
+                        arr[i] = cb.bind(profile);
+                    });
                     _this.cbsToCall.set(inputArr, cbArr);
                     _this.alreadyRun.push(cbArr);
                     _this.cbsToCall.forEach(function (cA, iA, map) {
@@ -54,6 +59,9 @@ var ControlRunner = (function () {
                     return _this.activatedInput[k];
                 });
                 if (inputsActive) {
+                    cbArr.forEach(function (cb, i, arr) {
+                        arr[i] = cb.bind(profile);
+                    });
                     _this.cbsToCall.set(inputArr, cbArr);
                     _this.cbsToCall.forEach(function (cA, iA, map) {
                         if (iA !== inputArr && iA.some(function (i) {

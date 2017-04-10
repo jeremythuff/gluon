@@ -3,7 +3,7 @@ var Rx_1 = require("@reactivex/rxjs/dist/cjs/Rx");
 var GameMainRegistry = require("./GameMainRegistry");
 var GameStateRegistry;
 (function (GameStateRegistry) {
-    var initialStateSubject = new Rx_1.Subject();
+    var initialStateSubject = new Rx_1.ReplaySubject(100);
     function addGameState(state) {
         GameMainRegistry.getGameMainSubject().subscribe(function (game) {
             game.addState(state);

@@ -3,7 +3,7 @@ import { ControlCB } from "./ControlCB";
 import { Keyboard } from "./Keyboard";
 import { Mouse } from "./Mouse";
 export default class ControlProfile {
-    private controlee;
+    protected controlee: Controlable;
     private whileCBs;
     private whenCBs;
     constructor(controlee: Controlable);

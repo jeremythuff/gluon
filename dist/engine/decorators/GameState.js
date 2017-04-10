@@ -7,6 +7,7 @@ var GameModeRegistry = require("../registries/GameModeRegistry");
 var GameControllereRegistry = require("../registries/GameControllerRegistry");
 function GameState(options) {
     return function (decorated) {
+        Reflect.defineMetadata("options", options, decorated);
         var state = new decorated();
         if (!state.getName())
             state.setName(decorated.name);
@@ -28,8 +29,6 @@ function GameState(options) {
                         newControllerProfile.setWhileCBs(whileMap);
                         newControllerProfile.setWhenCBs(whenMap);
                         mode_1.addControlProfile(newControllerProfile);
-                        console.log("foo bar biz");
-                        console.log(mode_1);
                     }
                 });
                 state.addMode(mode_1);

@@ -52,7 +52,7 @@ export default class Engine {
 	}
 
 	start() :Game {
-		
+		console.log("Starting");
 		let game = this.getGame();
 		const gameFramesPerSecond :number = this.getGame().getFramesPerSecond();
 		this.framesPerSecond = gameFramesPerSecond?gameFramesPerSecond:this.defaultFramesPerSecond;
@@ -68,10 +68,6 @@ export default class Engine {
 						this.running = true;
 						this.animationLoop();
 						game.setPhase(RenderPhase.RUNNING);
-
-						// setTimeout(()=>{
-						// 	game.setPhase(RenderPhase.PAUSED);
-						// }, 5000);
 
 					}).unsubscribe();
 		}).unsubscribe();		

@@ -33,6 +33,7 @@ var Engine = (function () {
     };
     Engine.prototype.start = function () {
         var _this = this;
+        console.log("Starting");
         var game = this.getGame();
         var gameFramesPerSecond = this.getGame().getFramesPerSecond();
         this.framesPerSecond = gameFramesPerSecond ? gameFramesPerSecond : this.defaultFramesPerSecond;

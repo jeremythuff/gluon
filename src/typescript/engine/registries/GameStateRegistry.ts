@@ -1,5 +1,5 @@
 import State from "../model/State";
-import {Subject, Observable} from "@reactivex/rxjs/dist/cjs/Rx";
+import {ReplaySubject, Observable} from "@reactivex/rxjs/dist/cjs/Rx";
 
 import * as GameMainRegistry from "./GameMainRegistry";
 import * as GameControllereRegistry from "../registries/GameControllerRegistry";
@@ -11,7 +11,7 @@ import * as GameControllereRegistry from "../registries/GameControllerRegistry";
  */
 namespace GameStateRegistry {
 
-	let initialStateSubject: Subject<State> = new Subject<State>();
+	let initialStateSubject: ReplaySubject<State> = new ReplaySubject<State>(100);
 	
 	export function addGameState(state :State) :void {
 		GameMainRegistry.getGameMainSubject().subscribe(game=>{

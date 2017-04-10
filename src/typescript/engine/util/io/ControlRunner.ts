@@ -41,7 +41,10 @@ export default class ControlRunner {
 		lastEventMap.set("keyboard", this.keyboardListener.getLastEvent());
 		lastEventMap.set("mouse", this.mouseListener.getLastEvent());
 
-		this.cbsToCall.forEach((cbArr, inputs)=>cbArr.forEach(cb=>cb(lastEventMap,delta)));
+		this.cbsToCall.forEach((cbArr, inputs)=>cbArr.forEach(cb=>{
+			cb(lastEventMap,delta);
+		}));
+
 		this.cbsToCall.clear();
 	}
 
@@ -55,6 +58,10 @@ export default class ControlRunner {
 				});
 				
 				if(inputsActive && this.alreadyRun.indexOf(cbArr)===-1) {
+
+					cbArr.forEach((cb,i,arr)=>{
+						arr[i]=cb.bind(profile);
+					});
 					
 					this.cbsToCall.set(inputArr, cbArr);
 					this.alreadyRun.push(cbArr);
@@ -91,6 +98,10 @@ export default class ControlRunner {
 				});
 				
 				if(inputsActive) {
+
+					cbArr.forEach((cb,i,arr)=>{
+						arr[i]=cb.bind(profile);
+					});
 
 					this.cbsToCall.set(inputArr, cbArr);
 

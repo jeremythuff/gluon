@@ -22,6 +22,7 @@ var Game = (function (_super) {
         if (name)
             _this.setName(name);
         _this.states = [];
+        _this.controlProfiles = [];
         _this.renderer = new THREE.WebGLRenderer();
         _this.controlRunner = new ControlRunner_1.default();
         return _this;
@@ -48,7 +49,8 @@ var Game = (function (_super) {
     Game.prototype._runUpdate = function (delta) {
         if (this.activeState.phaseIs(RenderPhase_1.RenderPhase.READY))
             this.activeState.runUpdate(delta);
-        this.controlRunner._runCBs(this.activeState.getControlProfiles(), delta);
+        var cps = this.activeState.phaseIs(RenderPhase_1.RenderPhase.READY) ? this.activeState.getControlProfiles().concat(this.getControlProfiles()) : this.getControlProfiles();
+        this.controlRunner._runCBs(cps, delta);
     };
     ;
     Game.prototype._runRender = function (delta) {
@@ -87,6 +89,10 @@ var Game = (function (_super) {
     };
     Game.prototype.setActiveState = function (state) {
         var _this = this;
+        if (!state) {
+            console.error("State undefined");
+            return;
+        }
         if (this.activeState) {
             this.activeState.runUnload()
                 .take(1)
@@ -120,11 +126,26 @@ var Game = (function (_super) {
                 foundState = state;
             return pred;
         });
+        if (!foundState)
+            console.error("No state: " + name);
         return foundState;
     };
     Game.prototype.addState = function (state) {
         this.states.push(state);
         return state;
+    };
+    Game.prototype.setControlProfiles = function (controlProfiles) {
+        this.controlProfiles = controlProfiles;
+    };
+    Game.prototype.getControlProfiles = function () {
+        return this.controlProfiles;
+    };
+    Game.prototype.addControlProfile = function (controlProfile) {
+        this.getControlProfiles().push(controlProfile);
+    };
+    Game.prototype.removeControlProfile = function (controlProfile) {
+        var controlProfiles = this.getControlProfiles();
+        controlProfiles.splice(controlProfiles.indexOf(controlProfile), 1);
     };
     return Game;
 }(AbstractRenderCycle_1.AbstractRenderCycle));

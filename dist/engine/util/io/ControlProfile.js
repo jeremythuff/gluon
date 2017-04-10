@@ -5,7 +5,6 @@ var ControlProfile = (function () {
         this.controlee = controlee;
         this.whileCBs = new Map();
         this.whenCBs = new Map();
-        console.log("BUILT");
     }
     ControlProfile.prototype.setWhileCBs = function (whileCBs) {
         this.whileCBs = whileCBs;

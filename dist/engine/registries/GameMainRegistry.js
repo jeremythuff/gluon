@@ -2,7 +2,7 @@
 var Rx_1 = require("@reactivex/rxjs/dist/cjs/Rx");
 var GameMainRegistry;
 (function (GameMainRegistry) {
-    var gameSubject = new Rx_1.ReplaySubject(1);
+    var gameSubject = new Rx_1.ReplaySubject(100);
     function setGameMain(game) {
         gameSubject.next(game);
     }

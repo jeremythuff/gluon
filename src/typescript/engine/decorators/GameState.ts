@@ -18,6 +18,8 @@ import * as GameControllereRegistry from "../registries/GameControllerRegistry";
 export default function GameState(options ?: { [name: string]: any[]|string }) {
 
 	return function(decorated : typeof State) : void {
+
+		Reflect.defineMetadata("options", options, decorated);
 		
 		const state = new decorated();
 		if(!state.getName()) state.setName(decorated.name);
@@ -45,10 +47,7 @@ export default function GameState(options ?: { [name: string]: any[]|string }) {
 						newControllerProfile.setWhileCBs(whileMap);
 						newControllerProfile.setWhenCBs(whenMap);
 						
-						mode.addControlProfile(newControllerProfile);
-						console.log("foo bar biz");
-						console.log(mode);
-					}
+						mode.addControlProfile(newControllerProfile);					}
 				});
 
 				state.addMode(mode);

@@ -4,6 +4,7 @@ import {Observable} from "@reactivex/rxjs/dist/cjs/Rx";
 import {AbstractRenderCycle} from "./abstracts/AbstractRenderCycle";
 import {Controlable} from "./interface/Controlable";
 import ControlRunner from "../util/io/ControlRunner";
+import ControlProfile from "../util/io/ControlProfile";
 import State from "./State";
 
 import {RenderPhase} from "../enum/RenderPhase";
@@ -24,11 +25,14 @@ export default class Game extends AbstractRenderCycle implements Controlable {
 	private activeState :State;
 	private states :State[];
 	private controlRunner :ControlRunner;
+
+	private controlProfiles :ControlProfile[];
 	
     constructor(name ?:string) {
     	super();
     	if(name) this.setName(name);
     	this.states = [];
+		this.controlProfiles = [];
     	this.renderer = new THREE.WebGLRenderer();
 		this.controlRunner = new ControlRunner();
     }
@@ -59,8 +63,11 @@ export default class Game extends AbstractRenderCycle implements Controlable {
 
 	protected _runUpdate(delta :number) :void {
 		if(this.activeState.phaseIs(RenderPhase.READY))
-			this.activeState.runUpdate(delta);	
-		this.controlRunner._runCBs(this.activeState.getControlProfiles(), delta);
+			this.activeState.runUpdate(delta);
+
+		const cps = this.activeState.phaseIs(RenderPhase.READY)?this.activeState.getControlProfiles().concat(this.getControlProfiles()):this.getControlProfiles();
+
+		this.controlRunner._runCBs(cps, delta);
 	
 	};
 
@@ -107,6 +114,11 @@ export default class Game extends AbstractRenderCycle implements Controlable {
 
 	setActiveState(state :State) :void {
 
+		if(!state) {
+			console.error("State undefined");
+			return;
+		}
+
 		if(this.activeState) {
 			this.activeState.runUnload()
 				.take(1)
@@ -140,9 +152,12 @@ export default class Game extends AbstractRenderCycle implements Controlable {
 
 		this.states.some((state :State) => {
 			let pred = state.getName() === name;
+			
 			if(pred) foundState = state;
 			return pred;
 		});
+
+		if(!foundState) console.error(`No state: ${name}`);
 
 		return foundState;
 	}
@@ -150,6 +165,23 @@ export default class Game extends AbstractRenderCycle implements Controlable {
 	addState(state :State) : State {
 		this.states.push(state);
 		return state;
+	}
+
+	setControlProfiles(controlProfiles :ControlProfile[]) :void {
+		this.controlProfiles = controlProfiles;
+	}
+
+	getControlProfiles() :ControlProfile[] {
+		return this.controlProfiles;
+	}
+
+	addControlProfile(controlProfile :ControlProfile) :void {
+		this.getControlProfiles().push(controlProfile);
+	}
+
+	removeControlProfile(controlProfile :ControlProfile) :void {
+		const controlProfiles = this.getControlProfiles();
+		controlProfiles.splice(controlProfiles.indexOf(controlProfile), 1);
 	}
 
 }

@@ -9,7 +9,6 @@ import * as GameControllereRegistry from "../registries/GameControllerRegistry";
 export default function GameMode(options ?: { [name: string]: any[]|string }) {
     return function(decorated :typeof Mode) :typeof Mode {
 
-        Mode._staticControlProfiles = [];
         Reflect.defineMetadata("options", options, decorated);
         GameModeRegistry.setGameMode(decorated)
 

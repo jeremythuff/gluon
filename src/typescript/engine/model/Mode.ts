@@ -12,8 +12,6 @@ import ControlProfile from "../util/io/ControlProfile";
  */
 export default class Mode extends AbstractRenderCycle implements Controlable {
 
-	static _staticControlProfiles :(typeof ControlProfile)[];
-
 	private name :string;
 
 	private controlProfiles :ControlProfile[];

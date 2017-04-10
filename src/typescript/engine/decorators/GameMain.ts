@@ -1,8 +1,13 @@
+import "reflect-metadata";
+
 import Engine from "../model/Engine"
 import Game from "../model/Game"
 
 import * as RunningGameRegistry from "../registries/GameMainRegistry";
 import * as GameStateRegistry from "../registries/GameStateRegistry";
+import * as GameControllereRegistry from "../registries/GameControllerRegistry";
+
+import ControlProfile from "../util/io/ControlProfile";
 
 /**
  * This function is used to decorate classes which extend [[Game]]. It registers such
@@ -14,6 +19,8 @@ import * as GameStateRegistry from "../registries/GameStateRegistry";
  */
 export default function GameMain(options ?: { [name: string]: any[]|string }) {
 	return function(decorated : typeof Game) : void {
+
+        Reflect.defineMetadata("options", options, decorated);
 		
 		const game = new decorated(decorated.name);
 				
@@ -22,6 +29,24 @@ export default function GameMain(options ?: { [name: string]: any[]|string }) {
 				
 		if((<string>options["initialState"])) 
 			game.setInitialStateName((<string>options["initialState"]));
+
+
+		GameControllereRegistry.getControlProfileObservable().subscribe(ControlProfile=>{
+			if((<string[]>options["controlProfiles"]).some(controlProfileName=>{
+				return controlProfileName === ControlProfile.name;
+			})) {
+				
+				const newControllerProfile :ControlProfile = new ControlProfile(game);
+				const whileMap = GameControllereRegistry.getWhileCBMapByName(ControlProfile.name);
+				const whenMap = GameControllereRegistry.getWhenCBMapByName(ControlProfile.name);
+				
+				newControllerProfile.setWhileCBs(whileMap);
+				newControllerProfile.setWhenCBs(whenMap);
+				
+				game.addControlProfile(newControllerProfile);
+				
+			}
+		});
 
 		console.log(`Registering Game: ${game.getName()}`);
 		RunningGameRegistry.setGameMain(game);
@@ -34,7 +59,6 @@ export default function GameMain(options ?: { [name: string]: any[]|string }) {
 					console.log("Starting engine");
 					const engine = new Engine(game);
 					engine.start();
-					runningGameSubject.unsubscribe();
 				}
 			});
 		});

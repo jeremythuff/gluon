@@ -6,7 +6,7 @@ import {Mouse} from "./Mouse";
 
 export default class ControlProfile {
     
-    private controlee :Controlable;
+    protected controlee :Controlable;
 
     private whileCBs :Map<(Keyboard|Mouse)[], ControlCB[]>;
 	private whenCBs :Map<(Keyboard|Mouse)[], ControlCB[]>;
@@ -15,7 +15,6 @@ export default class ControlProfile {
         this.controlee = controlee;
         this.whileCBs = new Map<(Keyboard|Mouse)[], ControlCB[]>();
 		this.whenCBs = new Map<(Keyboard|Mouse)[], ControlCB[]>();
-        console.log("BUILT");
     }
 
     setWhileCBs(whileCBs :Map<(Keyboard|Mouse)[], ControlCB[]>) :void {

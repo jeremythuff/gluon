@@ -1,6 +1,7 @@
 import { Observable } from "@reactivex/rxjs/dist/cjs/Rx";
 import { AbstractRenderCycle } from "./abstracts/AbstractRenderCycle";
 import { Controlable } from "./interface/Controlable";
+import ControlProfile from "../util/io/ControlProfile";
 import State from "./State";
 export default class Game extends AbstractRenderCycle implements Controlable {
     private name;
@@ -10,6 +11,7 @@ export default class Game extends AbstractRenderCycle implements Controlable {
     private activeState;
     private states;
     private controlRunner;
+    private controlProfiles;
     constructor(name?: string);
     protected _runInit(): Observable<{}[]>;
     protected _runLoad(): Observable<{}[]>;
@@ -29,4 +31,8 @@ export default class Game extends AbstractRenderCycle implements Controlable {
     setFramesPerSecond(framesPerSecond: number): void;
     getState(name: string): State;
     addState(state: State): State;
+    setControlProfiles(controlProfiles: ControlProfile[]): void;
+    getControlProfiles(): ControlProfile[];
+    addControlProfile(controlProfile: ControlProfile): void;
+    removeControlProfile(controlProfile: ControlProfile): void;
 }

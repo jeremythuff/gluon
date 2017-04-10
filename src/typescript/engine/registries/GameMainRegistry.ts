@@ -8,7 +8,7 @@ import {ReplaySubject, Observable} from "@reactivex/rxjs/dist/cjs/Rx";
  */
 namespace GameMainRegistry {
 
-	let gameSubject: ReplaySubject<Game> = new ReplaySubject<Game>(1);
+	let gameSubject: ReplaySubject<Game> = new ReplaySubject<Game>(100);
 	
 	export function setGameMain(game :Game) :void {
 		gameSubject.next(game);

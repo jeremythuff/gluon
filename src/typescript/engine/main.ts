@@ -23,7 +23,9 @@ import GameState from "./decorators/GameState";
 import GameMode from "./decorators/GameMode";
 import GameController from "./decorators/GameController";
 import While from "./decorators/While";
+import WhileAny from "./decorators/WhileAny";
 import When from "./decorators/When";
+import WhenAny from "./decorators/WhenAny";
 
 
 //Enum
@@ -53,7 +55,9 @@ export {
 	GameMode,
 	GameController,
 	While,
+	WhileAny,
 	When,
+	WhenAny,
 
 	//Enum
 	Keyboard,
