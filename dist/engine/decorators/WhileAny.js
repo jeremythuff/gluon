@@ -8,9 +8,10 @@ function While() {
     }
     return function (targetClass, methodName, descriptor) {
         var rbMap = GameControllereRegistry.getWhileCBMapByName(targetClass.constructor.name);
-        var cbMap = rbMap.get(inputs);
         inputs.forEach(function (input) {
-            cbMap ? cbMap.push(descriptor.value) : rbMap.set([input], [descriptor.value]);
+            input = input instanceof Array ? input : [input];
+            var cbMap = rbMap.get(input);
+            cbMap ? cbMap.push(descriptor.value) : rbMap.set(input, [descriptor.value]);
         });
     };
 }
