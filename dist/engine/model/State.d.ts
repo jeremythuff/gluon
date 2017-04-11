@@ -18,8 +18,8 @@ export default class State extends AbstractRenderCycle {
     protected _runUpdate(delta: number): void;
     protected _runRender(delta: number): void;
     protected _runPause(): void;
-    protected _runUnPause(): void;
-    protected _runUnLoad(): Observable<{}[]>;
+    protected _runUnpause(): void;
+    protected _runUnload(): Observable<{}[]>;
     protected _runDestroy(): Observable<{}[]>;
     getName(): string;
     setName(name: string): void;
@@ -32,8 +32,8 @@ export default class State extends AbstractRenderCycle {
     getModeByName(name: string): Mode;
     activateMode(mode: Mode): void;
     avtivateAllModes(mode: Mode): void;
-    deActivateMode(mode: Mode): void;
-    deActivateAllMode(mode: Mode): void;
+    deActivateMode(mode: Mode): Observable<{}[]>;
+    deActivateAllModes(): Observable<{}[]>;
     setControlProfiles(controlProfiles: ControlProfile<AbstractControllable>[]): void;
     getControlProfiles(): ControlProfile<AbstractControllable>[];
     addControlProfile(controlProfile: ControlProfile<AbstractControllable>): void;

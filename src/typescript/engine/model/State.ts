@@ -52,45 +52,36 @@ export default class State extends AbstractRenderCycle {
 
 	protected _runUpdate(delta: number): void {
 		this.activeModes.forEach(mode => {
-			mode.runUpdate(delta);
+			mode.startUpdate(delta);
 		});
 	};
 
 	protected _runRender(delta: number): void {
 		this.activeModes.forEach(mode => {
-			mode.runRender(delta);
+			mode.startRender(delta);
 		});
 	};
 
 	protected _runPause(): void {
 		this.activeModes.forEach(mode => {
-			mode.runPause();
+			mode.startPause();
 		});
 	};
 
-	protected _runUnPause(): void {
+	protected _runUnpause(): void {
 		this.activeModes.forEach(mode => {
-			mode.runUnPause();
+			mode.startUnpause();
 		});
 	};
 
-	protected _runUnLoad(): Observable<{}[]> {
+	protected _runUnload(): Observable<{}[]> {
 		let combinedObs = Observable.create();
-
-		this.activeModes.forEach(mode => {
-			combinedObs = Observable.forkJoin(mode.runUnload(), combinedObs);
-		});
-
+		combinedObs = Observable.forkJoin(this.deActivateAllModes(), combinedObs);
 		return combinedObs;
 	}
 
 	protected _runDestroy(): Observable<{}[]> {
 		let combinedObs = Observable.create();
-
-		this.activeModes.forEach(mode => {
-			combinedObs = Observable.forkJoin(mode.runDestroy(), combinedObs);
-		});
-
 		return combinedObs;
 	}
 
@@ -137,7 +128,7 @@ export default class State extends AbstractRenderCycle {
 	}
 
 	activateMode(mode: Mode): void {
-		mode.runInit()
+		mode.startInit()
 			.take(1)
 			.subscribe(null, null, () => {
 				mode.getControlProfiles().forEach(cp => {
@@ -153,8 +144,9 @@ export default class State extends AbstractRenderCycle {
 		});
 	}
 
-	deActivateMode(mode: Mode): void {
-		mode.runUnload()
+	deActivateMode(mode: Mode): Observable<{}[]> {
+		const deactivateObs: Observable<{}[]> = mode.startUnload()
+		deactivateObs
 			.take(1)
 			.subscribe(null, null, () => {
 				mode.getControlProfiles().forEach(cp => {
@@ -162,12 +154,15 @@ export default class State extends AbstractRenderCycle {
 				});
 				this.activeModes.splice(this.activeModes.indexOf(mode), 1);
 			}).unsubscribe();
+		return deactivateObs;		
 	}
 
-	deActivateAllMode(mode: Mode): void {
+	deActivateAllModes(): Observable<{}[]> {
+		let deactivateObs :Observable<{}[]> = Observable.create();
 		this.activeModes.forEach(mode => {
-			this.deActivateMode(mode);
+			deactivateObs = Observable.forkJoin(deactivateObs, this.deActivateMode(mode));
 		});
+		return deactivateObs;
 	}
 
 	setControlProfiles(controlProfiles: ControlProfile<AbstractControllable>[]): void {

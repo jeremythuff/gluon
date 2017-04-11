@@ -33,40 +33,35 @@ var State = (function (_super) {
     };
     State.prototype._runUpdate = function (delta) {
         this.activeModes.forEach(function (mode) {
-            mode.runUpdate(delta);
+            mode.startUpdate(delta);
         });
     };
     ;
     State.prototype._runRender = function (delta) {
         this.activeModes.forEach(function (mode) {
-            mode.runRender(delta);
+            mode.startRender(delta);
         });
     };
     ;
     State.prototype._runPause = function () {
         this.activeModes.forEach(function (mode) {
-            mode.runPause();
+            mode.startPause();
         });
     };
     ;
-    State.prototype._runUnPause = function () {
+    State.prototype._runUnpause = function () {
         this.activeModes.forEach(function (mode) {
-            mode.runUnPause();
+            mode.startUnpause();
         });
     };
     ;
-    State.prototype._runUnLoad = function () {
+    State.prototype._runUnload = function () {
         var combinedObs = Rx_1.Observable.create();
-        this.activeModes.forEach(function (mode) {
-            combinedObs = Rx_1.Observable.forkJoin(mode.runUnload(), combinedObs);
-        });
+        combinedObs = Rx_1.Observable.forkJoin(this.deActivateAllModes(), combinedObs);
         return combinedObs;
     };
     State.prototype._runDestroy = function () {
         var combinedObs = Rx_1.Observable.create();
-        this.activeModes.forEach(function (mode) {
-            combinedObs = Rx_1.Observable.forkJoin(mode.runDestroy(), combinedObs);
-        });
         return combinedObs;
     };
     State.prototype.getName = function () {
@@ -105,7 +100,7 @@ var State = (function (_super) {
     };
     State.prototype.activateMode = function (mode) {
         var _this = this;
-        mode.runInit()
+        mode.startInit()
             .take(1)
             .subscribe(null, null, function () {
             mode.getControlProfiles().forEach(function (cp) {
@@ -122,7 +117,8 @@ var State = (function (_super) {
     };
     State.prototype.deActivateMode = function (mode) {
         var _this = this;
-        mode.runUnload()
+        var deactivateObs = mode.startUnload();
+        deactivateObs
             .take(1)
             .subscribe(null, null, function () {
             mode.getControlProfiles().forEach(function (cp) {
@@ -130,12 +126,15 @@ var State = (function (_super) {
             });
             _this.activeModes.splice(_this.activeModes.indexOf(mode), 1);
         }).unsubscribe();
+        return deactivateObs;
     };
-    State.prototype.deActivateAllMode = function (mode) {
+    State.prototype.deActivateAllModes = function () {
         var _this = this;
+        var deactivateObs = Rx_1.Observable.create();
         this.activeModes.forEach(function (mode) {
-            _this.deActivateMode(mode);
+            deactivateObs = Rx_1.Observable.forkJoin(deactivateObs, _this.deActivateMode(mode));
         });
+        return deactivateObs;
     };
     State.prototype.setControlProfiles = function (controlProfiles) {
         this.controlProfiles = controlProfiles;

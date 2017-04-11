@@ -36,41 +36,36 @@ var Game = (function (_super) {
         $windowResize.subscribe(function (test) {
             _this.renderer.setSize(window.innerWidth, window.innerHeight);
         });
-        return Rx_1.Observable.forkJoin(this.activeState.runInit());
+        return Rx_1.Observable.forkJoin(this.activeState.startInit());
     };
     Game.prototype._runLoad = function () {
-        var _this = this;
-        var stateLoad = this.activeState.runLoad();
-        stateLoad.subscribe(null, null, function () {
-            _this.activeState.setPhase(RenderPhase_1.RenderPhase.READY);
-        });
-        return Rx_1.Observable.forkJoin(stateLoad);
+        return Rx_1.Observable.forkJoin();
     };
     Game.prototype._runUpdate = function (delta) {
         if (this.activeState.phaseIs(RenderPhase_1.RenderPhase.READY))
-            this.activeState.runUpdate(delta);
+            this.activeState.startUpdate(delta);
         var cps = this.activeState.phaseIs(RenderPhase_1.RenderPhase.READY) ? this.activeState.getControlProfiles().concat(this.getControlProfiles()) : this.getControlProfiles();
         this.controlRunner._runCBs(cps, delta);
     };
     ;
     Game.prototype._runRender = function (delta) {
         if (this.activeState.phaseIs(RenderPhase_1.RenderPhase.READY))
-            this.activeState.runRender(delta);
+            this.activeState.startRender(delta);
     };
     ;
     Game.prototype._runPause = function () {
-        this.activeState.runPause();
+        this.activeState.startPause();
     };
     ;
-    Game.prototype._runUnPause = function () {
-        this.activeState.runUnPause();
+    Game.prototype._runUnpause = function () {
+        this.activeState.startUnpause();
     };
     ;
-    Game.prototype._runUnLoad = function () {
-        return Rx_1.Observable.forkJoin(this.activeState.runUnload());
+    Game.prototype._runUnload = function () {
+        return Rx_1.Observable.forkJoin(this.activeState.startUnload());
     };
     Game.prototype._runDestroy = function () {
-        return Rx_1.Observable.forkJoin(this.activeState.runDestroy());
+        return Rx_1.Observable.forkJoin();
     };
     Game.prototype.getName = function () {
         return this.name;
@@ -94,16 +89,16 @@ var Game = (function (_super) {
             return;
         }
         if (this.activeState) {
-            this.activeState.runUnload()
+            this.activeState.startUnload()
                 .take(1)
                 .subscribe(null, null, function () {
                 _this.activeState = state;
-                _this.activeState.runInit();
+                _this.activeState.startInit();
             });
         }
         else {
             this.activeState = state;
-            this.activeState.runInit();
+            this.activeState.startInit();
         }
     };
     Game.prototype.getFramesPerSecond = function () {

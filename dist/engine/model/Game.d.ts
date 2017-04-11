@@ -18,8 +18,8 @@ export default class Game extends AbstractRenderCycle {
     protected _runUpdate(delta: number): void;
     protected _runRender(delta: number): void;
     protected _runPause(): void;
-    protected _runUnPause(): void;
-    protected _runUnLoad(): Observable<{}[]>;
+    protected _runUnpause(): void;
+    protected _runUnload(): Observable<{}[]>;
     protected _runDestroy(): Observable<{}[]>;
     getName(): string;
     setName(name: string): void;

@@ -31,14 +31,14 @@ export default class Engine {
 			const delta = this.clock.getDelta();
 			const now = this.clock.getElapsedTime();
 
-			if (this.game && this.game.phaseIs(RenderPhase.RUNNING)) this.game.runUpdate(delta);
+			if (this.game && this.game.phaseIs(RenderPhase.RUNNING)) this.game.startUpdate(delta);
 
 			const gameFramesPerSecond: number = this.getGame().getFramesPerSecond();
 			const currentFramesPerSecond: number = gameFramesPerSecond ? gameFramesPerSecond : this.framesPerSecond;
 
 			if (this.game && this.game.phaseIs(RenderPhase.RUNNING) && (now - this.lastFrameTime) * 1000 > (1000 / currentFramesPerSecond)) {
 				this.lastFrameTime = now;
-				this.game.runRender(delta);
+				this.game.startRender(delta);
 			}
 		}
 	}
@@ -59,10 +59,10 @@ export default class Engine {
 
 		game.setPhase(RenderPhase.START);
 
-		game.runInit()
+		game.startInit()
 			.take(1)
 			.subscribe(null, null, () => {
-				game.runLoad()
+				game.startLoad()
 					.take(1)
 					.subscribe(null, null, () => {
 						this.running = true;
@@ -78,10 +78,10 @@ export default class Engine {
 	stop(): void {
 		const game = this.getGame();
 		game.setPhase(RenderPhase.STOP);
-		game.runUnload()
+		game.startUnload()
 			.take(1)
 			.subscribe(null, null, () => {
-				game.runDestroy()
+				game.startDestroy()
 					.take(1)
 					.subscribe(null, null, () => {
 						game.setPhase(RenderPhase.OFF);

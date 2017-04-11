@@ -32,7 +32,7 @@ export abstract class AbstractRenderCycle extends AbstractControllable implement
 	}
 
 	protected abstract _runInit(): Observable<{}[]>;
-	public runInit(): Observable<{}[]> {
+	public startInit(): Observable<{}[]> {
 		this.setPhase(RenderPhase.INITIALIZING);
 
 		const _initObs = this._runInit();
@@ -49,7 +49,7 @@ export abstract class AbstractRenderCycle extends AbstractControllable implement
 	}
 
 	protected abstract _runLoad(): Observable<{}[]>;
-	public runLoad(): Observable<{}[]> {
+	public startLoad(): Observable<{}[]> {
 		this.setPhase(RenderPhase.LOADING);
 
 		const _loadObs = this._runLoad();
@@ -66,7 +66,7 @@ export abstract class AbstractRenderCycle extends AbstractControllable implement
 	}
 
 	protected abstract _runUpdate(delta: number): void;
-	public runUpdate(delta: number): void {
+	public startUpdate(delta: number): void {
 		this.setPhase(RenderPhase.UPDATING);
 		this.updateCBs.forEach(cb => {
 			cb(delta);
@@ -82,7 +82,7 @@ export abstract class AbstractRenderCycle extends AbstractControllable implement
 	}
 
 	protected abstract _runRender(delta: number): void;
-	public runRender(delta: number): void {
+	public startRender(delta: number): void {
 		this.setPhase(RenderPhase.RENDERING);
 		this.renderCBs.forEach(cb => {
 			cb(delta);
@@ -98,7 +98,7 @@ export abstract class AbstractRenderCycle extends AbstractControllable implement
 	}
 
 	protected abstract _runPause(): void;
-	public runPause(): void {
+	public startPause(): void {
 		this.setPhase(RenderPhase.PAUSED);
 		this.pauseCBs.forEach(cb => {
 			cb();
@@ -113,14 +113,14 @@ export abstract class AbstractRenderCycle extends AbstractControllable implement
 		this.pauseCBs.push(cb);
 	}
 
-	protected abstract _runUnPause(): void;
-	public runUnPause(): void {
+	protected abstract _runUnpause(): void;
+	public startUnpause(): void {
 		this.setPhase(RenderPhase.READY);
 		this.unPauseCBs.forEach(cb => {
 			cb();
 		});
 		this.unpause();
-		this._runUnPause();
+		this._runUnpause();
 	};
 
 	public unpause(): void { };
@@ -129,11 +129,11 @@ export abstract class AbstractRenderCycle extends AbstractControllable implement
 		this.unPauseCBs.push(cb);
 	}
 
-	protected abstract _runUnLoad(): Observable<{}[]>;
-	public runUnload(): Observable<{}[]> {
+	protected abstract _runUnload(): Observable<{}[]>;
+	public startUnload(): Observable<{}[]> {
 		this.setPhase(RenderPhase.UNLOADING);
 
-		const _unLoadObs = this._runUnLoad();
+		const _unLoadObs = this._runUnload();
 		const unLoadObs = this.runPhaseCBs(this.unloadCBs);
 		this.unload();
 		return Observable.forkJoin(unLoadObs, _unLoadObs);
@@ -146,7 +146,7 @@ export abstract class AbstractRenderCycle extends AbstractControllable implement
 	}
 
 	protected abstract _runDestroy(): Observable<{}[]>;
-	public runDestroy(): Observable<{}[]> {
+	public startDestroy(): Observable<{}[]> {
 		this.setPhase(RenderPhase.DESTROYING);
 
 		const _loadObs = this._runDestroy();

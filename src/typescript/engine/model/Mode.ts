@@ -35,9 +35,9 @@ export default class Mode extends AbstractRenderCycle {
 
 	protected _runPause(): void { }
 
-	protected _runUnPause(): void { };
+	protected _runUnpause(): void { };
 
-	protected _runUnLoad(): Observable<{}[]> {
+	protected _runUnload(): Observable<{}[]> {
 		return Observable.forkJoin();
 	}
 

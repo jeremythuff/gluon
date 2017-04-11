@@ -51,20 +51,16 @@ export default class Game extends AbstractRenderCycle {
 			this.renderer.setSize(window.innerWidth, window.innerHeight);
 		});
 
-		return Observable.forkJoin(this.activeState.runInit());
+		return Observable.forkJoin(this.activeState.startInit());
 	}
 
 	protected _runLoad(): Observable<{}[]> {
-		const stateLoad = this.activeState.runLoad();
-		stateLoad.subscribe(null, null, () => {
-			this.activeState.setPhase(RenderPhase.READY);
-		});
-		return Observable.forkJoin(stateLoad);
+		return Observable.forkJoin();
 	}
 
 	protected _runUpdate(delta: number): void {
 		if (this.activeState.phaseIs(RenderPhase.READY))
-			this.activeState.runUpdate(delta);
+			this.activeState.startUpdate(delta);
 
 		const cps = this.activeState.phaseIs(RenderPhase.READY) ? this.activeState.getControlProfiles().concat(this.getControlProfiles()) : this.getControlProfiles();
 
@@ -74,23 +70,23 @@ export default class Game extends AbstractRenderCycle {
 
 	protected _runRender(delta: number): void {
 		if (this.activeState.phaseIs(RenderPhase.READY))
-			this.activeState.runRender(delta);
+			this.activeState.startRender(delta);
 	};
 
 	protected _runPause(): void {
-		this.activeState.runPause();
+		this.activeState.startPause();
 	};
 
-	protected _runUnPause(): void {
-		this.activeState.runUnPause();
+	protected _runUnpause(): void {
+		this.activeState.startUnpause();
 	};
 
-	protected _runUnLoad(): Observable<{}[]> {
-		return Observable.forkJoin(this.activeState.runUnload());
+	protected _runUnload(): Observable<{}[]> {
+		return Observable.forkJoin(this.activeState.startUnload());
 	}
 
 	protected _runDestroy(): Observable<{}[]> {
-		return Observable.forkJoin(this.activeState.runDestroy());
+		return Observable.forkJoin();
 	}
 
 	getName(): string {
@@ -121,15 +117,15 @@ export default class Game extends AbstractRenderCycle {
 		}
 
 		if (this.activeState) {
-			this.activeState.runUnload()
+			this.activeState.startUnload()
 				.take(1)
 				.subscribe(null, null, () => {
 					this.activeState = state;
-					this.activeState.runInit();
+					this.activeState.startInit();
 				});
 		} else {
 			this.activeState = state;
-			this.activeState.runInit();
+			this.activeState.startInit();
 		}
 
 	}

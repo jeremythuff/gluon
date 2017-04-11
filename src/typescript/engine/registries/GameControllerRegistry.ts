@@ -18,7 +18,6 @@ namespace GameControllerRegistry {
 	let controllerSubject: ReplaySubject<typeof ControlProfile> = new ReplaySubject<typeof ControlProfile>(100);
 
 	export function setControlProfile(mode: typeof ControlProfile): void {
-		console.log(mode);
 		controllerSubject.next(mode);
 	};
 

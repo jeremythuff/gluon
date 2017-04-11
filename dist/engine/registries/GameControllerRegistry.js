@@ -6,7 +6,6 @@ var GameControllerRegistry;
     var whenCBMapCache = new Map();
     var controllerSubject = new Rx_1.ReplaySubject(100);
     function setControlProfile(mode) {
-        console.log(mode);
         controllerSubject.next(mode);
     }
     GameControllerRegistry.setControlProfile = setControlProfile;

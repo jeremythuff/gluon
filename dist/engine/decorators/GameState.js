@@ -12,7 +12,6 @@ function GameState(options) {
         if (!state.getName())
             state.setName(decorated.name);
         GameModeRegistry.getGameModeObservable().subscribe(function (Mode) {
-            console.log(Mode);
             if (options["modes"].some(function (modeName) {
                 return modeName === Mode.name;
             })) {

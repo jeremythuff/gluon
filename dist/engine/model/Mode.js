@@ -30,9 +30,9 @@ var Mode = (function (_super) {
     Mode.prototype._runRender = function (delta) { };
     ;
     Mode.prototype._runPause = function () { };
-    Mode.prototype._runUnPause = function () { };
+    Mode.prototype._runUnpause = function () { };
     ;
-    Mode.prototype._runUnLoad = function () {
+    Mode.prototype._runUnload = function () {
         return Rx_1.Observable.forkJoin();
     };
     Mode.prototype._runDestroy = function () {

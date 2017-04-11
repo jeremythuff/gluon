@@ -16,12 +16,12 @@ var Engine = (function () {
             var delta = this.clock.getDelta();
             var now = this.clock.getElapsedTime();
             if (this.game && this.game.phaseIs(RenderPhase_1.RenderPhase.RUNNING))
-                this.game.runUpdate(delta);
+                this.game.startUpdate(delta);
             var gameFramesPerSecond = this.getGame().getFramesPerSecond();
             var currentFramesPerSecond = gameFramesPerSecond ? gameFramesPerSecond : this.framesPerSecond;
             if (this.game && this.game.phaseIs(RenderPhase_1.RenderPhase.RUNNING) && (now - this.lastFrameTime) * 1000 > (1000 / currentFramesPerSecond)) {
                 this.lastFrameTime = now;
-                this.game.runRender(delta);
+                this.game.startRender(delta);
             }
         }
     };
@@ -38,10 +38,10 @@ var Engine = (function () {
         var gameFramesPerSecond = this.getGame().getFramesPerSecond();
         this.framesPerSecond = gameFramesPerSecond ? gameFramesPerSecond : this.defaultFramesPerSecond;
         game.setPhase(RenderPhase_1.RenderPhase.START);
-        game.runInit()
+        game.startInit()
             .take(1)
             .subscribe(null, null, function () {
-            game.runLoad()
+            game.startLoad()
                 .take(1)
                 .subscribe(null, null, function () {
                 _this.running = true;
@@ -55,10 +55,10 @@ var Engine = (function () {
         var _this = this;
         var game = this.getGame();
         game.setPhase(RenderPhase_1.RenderPhase.STOP);
-        game.runUnload()
+        game.startUnload()
             .take(1)
             .subscribe(null, null, function () {
-            game.runDestroy()
+            game.startDestroy()
                 .take(1)
                 .subscribe(null, null, function () {
                 game.setPhase(RenderPhase_1.RenderPhase.OFF);

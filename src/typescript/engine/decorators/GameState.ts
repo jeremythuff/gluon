@@ -27,7 +27,6 @@ export default function GameState(options?: { [name: string]: any[] | string }) 
 		if (!state.getName()) state.setName(decorated.name);
 
 		GameModeRegistry.getGameModeObservable().subscribe(Mode => {
-			console.log(Mode);
 			if ((<string[]>options["modes"]).some(modeName => {
 				return modeName === Mode.name;
 			})) {
