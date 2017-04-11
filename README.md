@@ -1,11 +1,13 @@
 # Gluon
 WebGL Game Engine in Electron
 
-1) npm -g intall
+1) npm -g install
 2) gluon-cli i [game name]
 3) cd [game name]
 4) gluon-cli b
 5) gluon-cli s
+
+run gluon-cli h for a full list of commands.
 
 To work on the engine follow the above directions, then from the Gluon directory run:
 
