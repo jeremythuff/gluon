@@ -10,6 +10,8 @@ import { RenderPhase } from "../enum/RenderPhase";
 
 import { AbstractControllable } from "../model/abstracts/AbstractControllable";
 
+import FileLoader from "../util/loaders/FileLoader"
+
 /**
  * The Game class is the central class to all Gluon games. By extending
  * this class into you game main glass, and decorating it with the [[GameMain]]
