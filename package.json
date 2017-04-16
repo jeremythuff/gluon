@@ -13,6 +13,7 @@
   },
   "scripts": {
     "test": "test",
+    "dev-test-watch": "mocha-typescript-watch --reporter spec './dist/**/*.spec.js'",
     "clean:sass": "echo 'TODO'",
     "clean:html": "echo 'TODO'",
     "clean:cli": "echo 'TODO'",
@@ -50,6 +51,8 @@
     "@types/three": "^0.83.3",
     "colors": "^1.1.2",
     "concurrently": "^3.2.0",
+    "mocha": "^3.2.0",
+    "mocha-typescript": "^1.0.23",
     "node-sass": "^4.5.0",
     "npm": "^4.4.1",
     "onchange": "^3.2.1",
