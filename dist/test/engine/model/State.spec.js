@@ -10,85 +10,90 @@ var mocha_typescript_1 = require("mocha-typescript");
 var assert = require("assert");
 var State_1 = require("../../../typescript/engine/model/State");
 var Mode_1 = require("../../../typescript/engine/model/Mode");
-var StateSpec = StateSpec_1 = (function () {
+var StateSpec = (function () {
     function StateSpec() {
+        this.STATE_NAME = "Test State";
+        this.STATE_FPS = 30;
+        this.MODE_ONE_NAME = "Test Mode One";
+        this.MODE_TWO_NAME = "Test Mode Two";
     }
     StateSpec.prototype.before = function () {
-        StateSpec_1.STATE = new State_1.default();
-        StateSpec_1.STATE_NAME = "Test State";
-        StateSpec_1.STATE_FPS = 30;
-        StateSpec_1.MODE_ONE = new Mode_1.default();
-        StateSpec_1.MODE_ONE_NAME = "Test Mode One";
-        StateSpec_1.MODE_TWO = new Mode_1.default();
-        StateSpec_1.MODE_TWO_NAME = "Test Mode Two";
+        this.STATE = new State_1.default();
+        this.MODE_ONE = new Mode_1.default();
+        this.MODE_TWO = new Mode_1.default();
     };
     StateSpec.prototype["Test name accessors"] = function () {
-        StateSpec_1.STATE.setName(StateSpec_1.STATE_NAME);
-        assert.equal(StateSpec_1.STATE.getName(), StateSpec_1.STATE_NAME);
+        this.STATE.setName(this.STATE_NAME);
+        assert.equal(this.STATE.getName(), this.STATE_NAME);
     };
     StateSpec.prototype["Test frame rate accessors"] = function () {
-        StateSpec_1.STATE.setFramesPerSecond(StateSpec_1.STATE_FPS);
-        assert.equal(StateSpec_1.STATE_FPS, StateSpec_1.STATE.getFramesPerSecond());
+        this.STATE.setFramesPerSecond(this.STATE_FPS);
+        assert.equal(this.STATE_FPS, this.STATE.getFramesPerSecond());
     };
     StateSpec.prototype["Test mode indavidual accessors"] = function () {
-        StateSpec_1.STATE.addMode(StateSpec_1.MODE_ONE);
+        var _this = this;
+        this.STATE.addMode(this.MODE_ONE);
         var contains = false;
-        StateSpec_1.STATE.getModes().some(function (mode) {
-            contains = mode === StateSpec_1.MODE_ONE;
+        this.STATE.getModes().some(function (mode) {
+            contains = mode === _this.MODE_ONE;
             return contains;
         });
         assert.equal(contains, true);
     };
     StateSpec.prototype["Test mode aggregated accessors"] = function () {
+        var _this = this;
         var modes = [];
-        modes.push(StateSpec_1.MODE_ONE);
-        modes.push(StateSpec_1.MODE_TWO);
-        StateSpec_1.STATE.setModes(modes);
+        modes.push(this.MODE_ONE);
+        modes.push(this.MODE_TWO);
+        this.STATE.setModes(modes);
         var contains = false;
-        StateSpec_1.STATE.getModes().some(function (mode) {
-            contains = mode === StateSpec_1.MODE_ONE;
+        this.STATE.getModes().some(function (mode) {
+            contains = mode === _this.MODE_ONE;
             return contains;
         });
-        StateSpec_1.STATE.getModes().some(function (mode) {
-            contains = mode === StateSpec_1.MODE_TWO;
+        this.STATE.getModes().some(function (mode) {
+            contains = mode === _this.MODE_TWO;
             return contains;
         });
         assert.equal(contains, true);
     };
     StateSpec.prototype["Test mode activated"] = function () {
-        StateSpec_1.STATE.activateMode(StateSpec_1.MODE_ONE);
+        var _this = this;
+        this.STATE.activateMode(this.MODE_ONE);
         var contains = false;
-        StateSpec_1.STATE.getActiveModes().some(function (mode) {
-            contains = mode === StateSpec_1.MODE_ONE;
+        this.STATE.getActiveModes().some(function (mode) {
+            contains = mode === _this.MODE_ONE;
             return contains;
         });
         assert.equal(contains, true);
     };
     StateSpec.prototype["Test mode deactivated"] = function () {
-        StateSpec_1.STATE.activateMode(StateSpec_1.MODE_ONE);
+        var _this = this;
+        this.STATE.activateMode(this.MODE_ONE);
         var contains = false;
-        StateSpec_1.STATE.getActiveModes().some(function (mode) {
-            contains = mode === StateSpec_1.MODE_ONE;
+        this.STATE.getActiveModes().some(function (mode) {
+            contains = mode === _this.MODE_ONE;
             return contains;
         });
         assert.equal(contains, true);
-        StateSpec_1.STATE.deActivateMode(StateSpec_1.MODE_ONE);
+        this.STATE.deActivateMode(this.MODE_ONE);
         contains = false;
-        StateSpec_1.STATE.getActiveModes().some(function (mode) {
-            contains = mode === StateSpec_1.MODE_ONE;
+        this.STATE.getActiveModes().some(function (mode) {
+            contains = mode === _this.MODE_ONE;
             return contains;
         });
         assert.equal(contains, false);
     };
     StateSpec.prototype["Test mode deactivated aggregated"] = function (done) {
-        StateSpec_1.MODE_ONE.setName(StateSpec_1.MODE_ONE_NAME);
-        StateSpec_1.STATE.activateMode(StateSpec_1.MODE_ONE);
-        StateSpec_1.MODE_TWO.setName(StateSpec_1.MODE_TWO_NAME);
-        StateSpec_1.STATE.activateMode(StateSpec_1.MODE_TWO);
-        assert.equal(StateSpec_1.STATE.getActiveModes().length, 2);
-        StateSpec_1.STATE.deActivateAllModes()
+        var _this = this;
+        this.MODE_ONE.setName(this.MODE_ONE_NAME);
+        this.STATE.activateMode(this.MODE_ONE);
+        this.MODE_TWO.setName(this.MODE_TWO_NAME);
+        this.STATE.activateMode(this.MODE_TWO);
+        assert.equal(this.STATE.getActiveModes().length, 2);
+        this.STATE.deActivateAllModes()
             .subscribe(null, null, function () {
-            assert.equal(StateSpec_1.STATE.getActiveModes().length, 0);
+            assert.equal(_this.STATE.getActiveModes().length, 0);
             done();
         });
     };
@@ -115,8 +120,7 @@ __decorate([
 __decorate([
     mocha_typescript_1.test
 ], StateSpec.prototype, "Test mode deactivated aggregated", null);
-StateSpec = StateSpec_1 = __decorate([
+StateSpec = __decorate([
     mocha_typescript_1.suite
 ], StateSpec);
-var StateSpec_1;
 //# sourceMappingURL=State.spec.js.map
