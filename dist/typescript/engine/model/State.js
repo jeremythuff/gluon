@@ -98,10 +98,12 @@ var State = (function (_super) {
         });
         return foundMode;
     };
+    State.prototype.getActiveModes = function () {
+        return this.activeModes;
+    };
     State.prototype.activateMode = function (mode) {
         var _this = this;
         mode.startInit()
-            .take(1)
             .subscribe(null, null, function () {
             mode.getControlProfiles().forEach(function (cp) {
                 _this.addControlProfile(cp);
@@ -119,22 +121,21 @@ var State = (function (_super) {
         var _this = this;
         var deactivateObs = mode.startUnload();
         deactivateObs
-            .take(1)
             .subscribe(null, null, function () {
             mode.getControlProfiles().forEach(function (cp) {
                 _this.removeControlProfile(cp);
             });
             _this.activeModes.splice(_this.activeModes.indexOf(mode), 1);
-        }).unsubscribe();
+        });
         return deactivateObs;
     };
     State.prototype.deActivateAllModes = function () {
-        var _this = this;
-        var deactivateObs = Rx_1.Observable.create();
-        this.activeModes.forEach(function (mode) {
-            deactivateObs = Rx_1.Observable.forkJoin(deactivateObs, _this.deActivateMode(mode));
-        });
-        return deactivateObs;
+        var obsArr = [];
+        for (var i = this.activeModes.length - 1; i >= 0; i--) {
+            var mode = this.activeModes[i];
+            obsArr.push(this.deActivateMode(mode));
+        }
+        return Rx_1.Observable.merge.apply(Rx_1.Observable, obsArr);
     };
     State.prototype.setControlProfiles = function (controlProfiles) {
         this.controlProfiles = controlProfiles;

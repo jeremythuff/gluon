@@ -127,9 +127,12 @@ export default class State extends AbstractRenderCycle {
 		return foundMode;
 	}
 
+	getActiveModes() {
+		return this.activeModes;
+	}
+
 	activateMode(mode: Mode): void {
 		mode.startInit()
-			.take(1)
 			.subscribe(null, null, () => {
 				mode.getControlProfiles().forEach(cp => {
 					this.addControlProfile(cp);
@@ -147,22 +150,24 @@ export default class State extends AbstractRenderCycle {
 	deActivateMode(mode: Mode): Observable<{}[]> {
 		const deactivateObs: Observable<{}[]> = mode.startUnload()
 		deactivateObs
-			.take(1)
 			.subscribe(null, null, () => {
 				mode.getControlProfiles().forEach(cp => {
 					this.removeControlProfile(cp);
 				});
 				this.activeModes.splice(this.activeModes.indexOf(mode), 1);
-			}).unsubscribe();
+			});
 		return deactivateObs;		
 	}
 
 	deActivateAllModes(): Observable<{}[]> {
-		let deactivateObs :Observable<{}[]> = Observable.create();
-		this.activeModes.forEach(mode => {
-			deactivateObs = Observable.forkJoin(deactivateObs, this.deActivateMode(mode));
-		});
-		return deactivateObs;
+		let obsArr: Observable<{}[]>[] = []; 
+
+		for(let i=this.activeModes.length-1; i>=0; i--) {
+			let mode = this.activeModes[i];
+			obsArr.push(this.deActivateMode(mode));
+		}
+
+		return Observable.merge(...obsArr);
 	}
 
 	setControlProfiles(controlProfiles: ControlProfile<AbstractControllable>[]): void {

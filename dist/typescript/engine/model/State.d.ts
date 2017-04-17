@@ -30,6 +30,7 @@ export default class State extends AbstractRenderCycle {
     addMode(mode: Mode): void;
     removeMode(mode: Mode): void;
     getModeByName(name: string): Mode;
+    getActiveModes(): Mode[];
     activateMode(mode: Mode): void;
     avtivateAllModes(mode: Mode): void;
     deActivateMode(mode: Mode): Observable<{}[]>;

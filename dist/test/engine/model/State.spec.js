@@ -13,31 +13,108 @@ var Mode_1 = require("../../../typescript/engine/model/Mode");
 var StateSpec = StateSpec_1 = (function () {
     function StateSpec() {
     }
+    StateSpec.prototype.before = function () {
+        StateSpec_1.STATE = new State_1.default();
+        StateSpec_1.STATE_NAME = "Test State";
+        StateSpec_1.STATE_FPS = 30;
+        StateSpec_1.MODE_ONE = new Mode_1.default();
+        StateSpec_1.MODE_ONE_NAME = "Test Mode One";
+        StateSpec_1.MODE_TWO = new Mode_1.default();
+        StateSpec_1.MODE_TWO_NAME = "Test Mode Two";
+    };
     StateSpec.prototype["Test name accessors"] = function () {
         StateSpec_1.STATE.setName(StateSpec_1.STATE_NAME);
         assert.equal(StateSpec_1.STATE.getName(), StateSpec_1.STATE_NAME);
     };
-    StateSpec.prototype["Test mode accessors"] = function () {
-        StateSpec_1.STATE.addMode(StateSpec_1.MODE);
+    StateSpec.prototype["Test frame rate accessors"] = function () {
+        StateSpec_1.STATE.setFramesPerSecond(StateSpec_1.STATE_FPS);
+        assert.equal(StateSpec_1.STATE_FPS, StateSpec_1.STATE.getFramesPerSecond());
+    };
+    StateSpec.prototype["Test mode indavidual accessors"] = function () {
+        StateSpec_1.STATE.addMode(StateSpec_1.MODE_ONE);
         var contains = false;
         StateSpec_1.STATE.getModes().some(function (mode) {
-            contains = mode === StateSpec_1.MODE;
+            contains = mode === StateSpec_1.MODE_ONE;
             return contains;
         });
         assert.equal(contains, true);
     };
+    StateSpec.prototype["Test mode aggregated accessors"] = function () {
+        var modes = [];
+        modes.push(StateSpec_1.MODE_ONE);
+        modes.push(StateSpec_1.MODE_TWO);
+        StateSpec_1.STATE.setModes(modes);
+        var contains = false;
+        StateSpec_1.STATE.getModes().some(function (mode) {
+            contains = mode === StateSpec_1.MODE_ONE;
+            return contains;
+        });
+        StateSpec_1.STATE.getModes().some(function (mode) {
+            contains = mode === StateSpec_1.MODE_TWO;
+            return contains;
+        });
+        assert.equal(contains, true);
+    };
+    StateSpec.prototype["Test mode activated"] = function () {
+        StateSpec_1.STATE.activateMode(StateSpec_1.MODE_ONE);
+        var contains = false;
+        StateSpec_1.STATE.getActiveModes().some(function (mode) {
+            contains = mode === StateSpec_1.MODE_ONE;
+            return contains;
+        });
+        assert.equal(contains, true);
+    };
+    StateSpec.prototype["Test mode deactivated"] = function () {
+        StateSpec_1.STATE.activateMode(StateSpec_1.MODE_ONE);
+        var contains = false;
+        StateSpec_1.STATE.getActiveModes().some(function (mode) {
+            contains = mode === StateSpec_1.MODE_ONE;
+            return contains;
+        });
+        assert.equal(contains, true);
+        StateSpec_1.STATE.deActivateMode(StateSpec_1.MODE_ONE);
+        contains = false;
+        StateSpec_1.STATE.getActiveModes().some(function (mode) {
+            contains = mode === StateSpec_1.MODE_ONE;
+            return contains;
+        });
+        assert.equal(contains, false);
+    };
+    StateSpec.prototype["Test mode deactivated aggregated"] = function (done) {
+        StateSpec_1.MODE_ONE.setName(StateSpec_1.MODE_ONE_NAME);
+        StateSpec_1.STATE.activateMode(StateSpec_1.MODE_ONE);
+        StateSpec_1.MODE_TWO.setName(StateSpec_1.MODE_TWO_NAME);
+        StateSpec_1.STATE.activateMode(StateSpec_1.MODE_TWO);
+        assert.equal(StateSpec_1.STATE.getActiveModes().length, 2);
+        StateSpec_1.STATE.deActivateAllModes()
+            .subscribe(null, null, function () {
+            assert.equal(StateSpec_1.STATE.getActiveModes().length, 0);
+            done();
+        });
+    };
     return StateSpec;
 }());
-StateSpec.STATE = new State_1.default();
-StateSpec.STATE_NAME = "Test State";
-StateSpec.MODE = new Mode_1.default();
-StateSpec.MODE_NAME = "Test Mode";
 __decorate([
     mocha_typescript_1.test
 ], StateSpec.prototype, "Test name accessors", null);
 __decorate([
     mocha_typescript_1.test
-], StateSpec.prototype, "Test mode accessors", null);
+], StateSpec.prototype, "Test frame rate accessors", null);
+__decorate([
+    mocha_typescript_1.test
+], StateSpec.prototype, "Test mode indavidual accessors", null);
+__decorate([
+    mocha_typescript_1.test
+], StateSpec.prototype, "Test mode aggregated accessors", null);
+__decorate([
+    mocha_typescript_1.test
+], StateSpec.prototype, "Test mode activated", null);
+__decorate([
+    mocha_typescript_1.test
+], StateSpec.prototype, "Test mode deactivated", null);
+__decorate([
+    mocha_typescript_1.test
+], StateSpec.prototype, "Test mode deactivated aggregated", null);
 StateSpec = StateSpec_1 = __decorate([
     mocha_typescript_1.suite
 ], StateSpec);
