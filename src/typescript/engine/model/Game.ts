@@ -92,7 +92,7 @@ export default class Game extends AbstractRenderCycle {
 	}
 
 	getName(): string {
-		return "foo";//this.name;
+		return this.name;
 	}
 
 	setName(name: string): void {

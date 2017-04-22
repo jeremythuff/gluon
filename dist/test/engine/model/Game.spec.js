@@ -12,6 +12,7 @@ var Game_1 = require("../../../typescript/engine/model/Game");
 var GameSpec = (function () {
     function GameSpec() {
         this.GAME_NAME = "Test Game";
+        this.GAME_FPS = 30;
     }
     GameSpec.prototype.before = function () {
         this.GAME = new Game_1.default();
@@ -20,11 +21,18 @@ var GameSpec = (function () {
         this.GAME.setName(this.GAME_NAME);
         assert.equal(this.GAME.getName(), this.GAME_NAME);
     };
+    GameSpec.prototype["Test frame rate accessors"] = function () {
+        this.GAME.setFramesPerSecond(this.GAME_FPS);
+        assert.equal(this.GAME_FPS, this.GAME.getFramesPerSecond());
+    };
     return GameSpec;
 }());
 __decorate([
     mocha_typescript_1.test
 ], GameSpec.prototype, "Test name accessors", null);
+__decorate([
+    mocha_typescript_1.test
+], GameSpec.prototype, "Test frame rate accessors", null);
 GameSpec = __decorate([
     mocha_typescript_1.suite
 ], GameSpec);
