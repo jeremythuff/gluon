@@ -9,6 +9,7 @@ import Build from "./Build";
 import Docs from "./Docs";
 import Init from "./Init";
 import Start from "./Start";
+import Test from "./Test";
 import Help from "./Help";
 
 const colors = require('colors/safe');
@@ -50,10 +51,15 @@ class GluonCli {
 					command = new Start(this.engineRoot, globalModuleRoot);
 					break;
 				}
+				case Test.key:
+				case Test.shortKey: {
+					command = new Test(this.engineRoot, globalModuleRoot);
+					break;
+				}
 				case Help.key:
 				case Help.shortKey:
 				default: {
-					if (arg !== Help.key || arg !== Help.shortKey) {
+					if (arg !== Help.key && arg !== Help.shortKey) {
 						console.log(colors.red(`\n *ERROR* command not found: ${arg}`));
 					}
 					command = new Help(this.engineRoot, globalModuleRoot);
