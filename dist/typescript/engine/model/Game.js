@@ -68,7 +68,7 @@ var Game = (function (_super) {
         return Rx_1.Observable.forkJoin();
     };
     Game.prototype.getName = function () {
-        return this.name;
+        return "foo";
     };
     Game.prototype.setName = function (name) {
         this.name = name;
