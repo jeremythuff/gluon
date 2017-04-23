@@ -27,12 +27,11 @@ export default class Test extends AbstractCliCommand implements CliCommand {
 		if(args.some(arg=>{
 			return arg === "watch" || arg === "w"
 		})) {
-			nodecli.exec("tsc-watch", "--onSuccess 'glu t'");
+			var child = nodecli.exec("tsc-watch", "--onSuccess 'glu t'", {async:true});
 		} else {
 			nodecli.exec("electron-mocha", `-w --renderer -R spec "${shelljs.pwd()}/dist/**/*.spec.js"`);
+			shelljs.exit(0);
 		}
-		
 
-		shelljs.exit(0);
 	}
 }

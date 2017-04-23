@@ -1,3 +1,3 @@
 export interface CliCommand {
-    execute(args: Array<string>): void;
+    execute(args: string[]): void;
 }

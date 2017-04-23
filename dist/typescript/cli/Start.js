@@ -25,8 +25,7 @@ var Start = (function (_super) {
         var resourcesDir = engineDir + "/dist/engine/resources";
         var mainHtmlPath = shelljs.pwd() + "/dist/main.html";
         var execustionPath = engineDir + "/dist/typescript/launcher/Launcher.js";
-        nodecli.exec("electron", execustionPath + " " + mainHtmlPath);
-        shelljs.exit(0);
+        nodecli.exec("electron", execustionPath + " " + mainHtmlPath, { async: true });
     };
     return Start;
 }(AbstractCliCommand_1.default));

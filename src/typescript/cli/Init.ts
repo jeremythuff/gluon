@@ -55,7 +55,7 @@ export default class Init extends AbstractCliCommand implements CliCommand {
 		shell.sed('-i', '{GAME_NAME}', classSafeGameName, 'src/typescript/game/main.ts');
 
 		shell.cp(`${cliDir}/project.main.spec.ts`, 'src/test/Main.spec.ts');
-		shell.sed('-i', '{GAME_NAME}', classSafeGameName, 'src/test/Main.spec.ts');
+		shell.sed('-i', '{GAME_NAME}', `${classSafeGameName}Spec`, 'src/test/Main.spec.ts');
 
 		if (!shell.test('-d', "src/typescript/game/state")) shell.mkdir("src/typescript/game/state");
 		shell.cp(`${cliDir}/project.firstState.ts`, 'src/typescript/game/state/FirstState.ts');
