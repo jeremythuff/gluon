@@ -15,22 +15,30 @@ var AbstractCliCommand_1 = require("./AbstractCliCommand");
 var shelljs = require("shelljs");
 var colors = require('colors/safe');
 var nodecli = require("shelljs-nodecli");
-var Start = (function (_super) {
-    __extends(Start, _super);
-    function Start() {
+var Test = (function (_super) {
+    __extends(Test, _super);
+    function Test() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    Start.prototype.execute = function (args) {
+    Test.prototype.execute = function (args) {
         var engineDir = this.getGlobalModuleRoot();
         var resourcesDir = engineDir + "/dist/engine/resources";
         var mainHtmlPath = shelljs.pwd() + "/dist/main.html";
-        var execustionPath = engineDir + "/dist/typescript/launcher/Launcher.js";
-        nodecli.exec("electron", execustionPath + " " + mainHtmlPath, { async: true });
+        var execustionPath = engineDir + "/dist/launcher/Launcher.js";
+        if (args.some(function (arg) {
+            return arg === "watch" || arg === "w";
+        })) {
+            var child = nodecli.exec("tsc-watch", "--onSuccess 'glu t'", { async: true });
+        }
+        else {
+            nodecli.exec("electron-mocha", "-w --renderer -R spec \"" + shelljs.pwd() + "/dist/**/*.spec.js\"");
+            shelljs.exit(0);
+        }
     };
-    return Start;
+    return Test;
 }(AbstractCliCommand_1.default));
-Start.key = "start";
-Start.shortKey = "s";
-Start.help = [Start.key + ", " + Start.shortKey + " [Main.js]", colors.green("Launches the Gluon project.")];
-exports.default = Start;
-//# sourceMappingURL=Start.js.map
+Test.key = "test";
+Test.shortKey = "t";
+Test.help = [Test.key + ", " + Test.shortKey + " [Main.js]", colors.green("Tests the Gluon project.")];
+exports.default = Test;
+//# sourceMappingURL=Test.js.map

@@ -26,7 +26,7 @@ var Build = (function (_super) {
     }
     Build.prototype.execute = function (args) {
         var engineDir = this.getGlobalModuleRoot();
-        var globalResourcesDir = engineDir + "/dist/engine/resources";
+        var globalResourcesDir = engineDir + "/dist/resources";
         var mainHtmlTemplatePath = globalResourcesDir + "/html/main.html";
         var localResourceDir = "src/resources";
         var mainHtmlPath = "dist/main.html";
@@ -38,7 +38,7 @@ var Build = (function (_super) {
         nodecli.exec("tsc", function (code, out) {
             var paths = new Array();
             out.split(/\r?\n/).forEach(function (outLine) {
-                if (outLine.includes("TSFILE") && !outLine.includes(".d.ts") && !outLine.includes(".js.map")) {
+                if (outLine.includes("TSFILE") && !outLine.includes(".d.ts") && !outLine.includes(".js.map") && !outLine.includes(".spec.js")) {
                     var absolutePath_1 = outLine.replace("TSFILE: ", "");
                     var path = outLine.substring(outLine.indexOf("dist/") + 5, outLine.length);
                     paths.push(path);

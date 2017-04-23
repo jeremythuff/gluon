@@ -8,6 +8,7 @@ var Build_1 = require("./Build");
 var Docs_1 = require("./Docs");
 var Init_1 = require("./Init");
 var Start_1 = require("./Start");
+var Test_1 = require("./Test");
 var Help_1 = require("./Help");
 var colors = require('colors/safe');
 var GluonCli = (function () {
@@ -40,10 +41,15 @@ var GluonCli = (function () {
                     command = new Start_1.default(this.engineRoot, globalModuleRoot);
                     break;
                 }
+                case Test_1.default.key:
+                case Test_1.default.shortKey: {
+                    command = new Test_1.default(this.engineRoot, globalModuleRoot);
+                    break;
+                }
                 case Help_1.default.key:
                 case Help_1.default.shortKey:
                 default: {
-                    if (arg !== Help_1.default.key || arg !== Help_1.default.shortKey) {
+                    if (arg !== Help_1.default.key && arg !== Help_1.default.shortKey) {
                         console.log(colors.red("\n *ERROR* command not found: " + arg));
                     }
                     command = new Help_1.default(this.engineRoot, globalModuleRoot);

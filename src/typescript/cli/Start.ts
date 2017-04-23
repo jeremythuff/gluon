@@ -22,10 +22,9 @@ export default class Start extends AbstractCliCommand implements CliCommand {
 		const engineDir = this.getGlobalModuleRoot();
 		const resourcesDir = `${engineDir}/dist/engine/resources`;
 		const mainHtmlPath = `${shelljs.pwd()}/dist/main.html`;
-		const execustionPath = `${engineDir}/dist/launcher/Launcher.js`;
+		const execustionPath = `${engineDir}/dist/typescript/launcher/Launcher.js`;
 
-		nodecli.exec("electron", execustionPath + " " + mainHtmlPath);
+		nodecli.exec("electron", execustionPath + " " + mainHtmlPath, {async:true});
 
-		shelljs.exit(0);
 	}
 }

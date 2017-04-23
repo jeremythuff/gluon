@@ -6,6 +6,7 @@ import AbstractCliCommand from "./AbstractCliCommand"
 import Start from "./Start";
 import Init from "./Init";
 import Build from "./Build";
+import Test from "./Test";
 import Docs from "./Docs";
 
 const colors = require('colors/safe');
@@ -26,6 +27,7 @@ export default class Help extends AbstractCliCommand implements CliCommand {
 			Build.help,
 			Start.help,
 			Docs.help,
+			Test.help,
 			Help.help
 		]);
 

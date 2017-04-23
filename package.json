@@ -2,14 +2,14 @@
   "name": "gluon-engine",
   "version": "0.0.1",
   "description": "WebGl in an Electron wrapper",
-  "main": "./dist/engine/main.js",
-  "types": "./dist/engine/main.d.ts",
+  "main": "./dist/typescript/engine/main.js",
+  "types": "./dist/typescript/engine/main.d.ts",
   "files": [
     "dist/",
     "docs"
   ],
   "bin": {
-    "gluon-cli": "./dist/cli/GluonCli.js"
+    "glu": "./dist/typescript/cli/GluonCli.js"
   },
   "scripts": {
     "clean:sass": "shx rm -rf dist/resources/sass",
@@ -31,7 +31,8 @@
     "build:docs": "typeDoc --exclude '**/+(cli|launcher)/**/*.ts' --theme minimal --mode file --module commonjs --hideGenerator --name Gluon --readme README.md  --target 'ES6' --out docs src/typescript/engine",
     "build:sass": "node bld/sass.js",
     "build:html": "node bld/html.js",
-    "build:resources": "concurrently --prefix \"{time}-{pid}\" \"npm run build:html\" \"npm run build:sass\"",
+    "build:cli-resources": "node bld/cli.js",
+    "build:resources": "concurrently --prefix \"{time}-{pid}\" \"npm run build:html\" \"npm run build:sass\" \"npm run build:cli-resources\"",
     "build": "concurrently --prefix \"{time}-{pid}\" \"npm run build:ts\" \"npm run build:resources\" \"npm run build:docs\"",
     "test": "electron-mocha -w --renderer -R spec \"./dist/**/*.spec.js\"",
     "gluon": "electron dist/typescript/launcher/Launcher.js"

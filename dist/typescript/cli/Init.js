@@ -24,7 +24,7 @@ var Init = (function (_super) {
         var gameName = args[0] ? args[0] : "game";
         var classSafeGameName = this.classCase(gameName);
         var engineDir = this.getGlobalModuleRoot();
-        var resourcesDir = engineDir + "/dist/engine/resources";
+        var resourcesDir = engineDir + "/dist/resources";
         var cliDir = resourcesDir + "/cli";
         var tmpDir = shell.tempdir();
         console.log(table([[new Date().toString(), "Creating project directory: " + gameName + "."]]));
@@ -45,12 +45,16 @@ var Init = (function (_super) {
         shell.cp(cliDir + "/project.tsconfig.json", "tsconfig.json");
         if (!shell.test('-d', "src"))
             shell.mkdir("src");
+        if (!shell.test('-d', "src/test"))
+            shell.mkdir("src/test");
         if (!shell.test('-d', "src/typescript"))
             shell.mkdir("src/typescript");
         if (!shell.test('-d', "src/typescript/game"))
             shell.mkdir("src/typescript/game");
         shell.cp(cliDir + "/project.main.ts", 'src/typescript/game/Main.ts');
         shell.sed('-i', '{GAME_NAME}', classSafeGameName, 'src/typescript/game/main.ts');
+        shell.cp(cliDir + "/project.main.spec.ts", 'src/test/Main.spec.ts');
+        shell.sed('-i', '{GAME_NAME}', classSafeGameName + "Spec", 'src/test/Main.spec.ts');
         if (!shell.test('-d', "src/typescript/game/state"))
             shell.mkdir("src/typescript/game/state");
         shell.cp(cliDir + "/project.firstState.ts", 'src/typescript/game/state/FirstState.ts');

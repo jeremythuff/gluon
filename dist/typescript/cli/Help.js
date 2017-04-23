@@ -15,6 +15,7 @@ var AbstractCliCommand_1 = require("./AbstractCliCommand");
 var Start_1 = require("./Start");
 var Init_1 = require("./Init");
 var Build_1 = require("./Build");
+var Test_1 = require("./Test");
 var Docs_1 = require("./Docs");
 var colors = require('colors/safe');
 var table = require('text-table');
@@ -30,6 +31,7 @@ var Help = (function (_super) {
             Build_1.default.help,
             Start_1.default.help,
             Docs_1.default.help,
+            Test_1.default.help,
             Help.help
         ]);
         console.log(helpTable);

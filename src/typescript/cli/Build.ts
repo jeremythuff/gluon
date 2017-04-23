@@ -21,7 +21,7 @@ export default class Build extends AbstractCliCommand implements CliCommand {
 	execute(args: Array<string>) {
 
 		const engineDir = this.getGlobalModuleRoot();
-		const globalResourcesDir = `${engineDir}/dist/engine/resources`;
+		const globalResourcesDir = `${engineDir}/dist/resources`;
 		const mainHtmlTemplatePath = `${globalResourcesDir}/html/main.html`;
 		const localResourceDir = "src/resources";
 		const mainHtmlPath = "dist/main.html";
@@ -37,7 +37,7 @@ export default class Build extends AbstractCliCommand implements CliCommand {
 			const paths: Array<string> = new Array<string>();
 
 			out.split(/\r?\n/).forEach(outLine => {
-				if (outLine.includes("TSFILE") && !outLine.includes(".d.ts") && !outLine.includes(".js.map")) {
+				if (outLine.includes("TSFILE") && !outLine.includes(".d.ts") && !outLine.includes(".js.map") && !outLine.includes(".spec.js")) {
 					const absolutePath = outLine.replace("TSFILE: ", "");
 					const path = outLine.substring(outLine.indexOf("dist/") + 5, outLine.length);
 					paths.push(path);
