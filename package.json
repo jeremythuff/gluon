@@ -2,8 +2,8 @@
   "name": "gluon-engine",
   "version": "0.0.1",
   "description": "WebGl in an Electron wrapper",
-  "main": "./dist/engine/main.js",
-  "types": "./dist/engine/main.d.ts",
+  "main": "./dist/typescript/engine/main.js",
+  "types": "./dist/typescript/engine/main.d.ts",
   "files": [
     "dist/",
     "docs"
