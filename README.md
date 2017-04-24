@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/jeremythuff/Gluon.svg?branch=master)](https://travis-ci.org/jeremythuff/Gluon)
+
+
 # Gluon
 WebGL Game Engine in Electron
 
