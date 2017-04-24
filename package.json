@@ -73,9 +73,7 @@
     "three": "^0.84.0",
     "tsc-watch": "^1.0.5",
     "typescript": "*",
-    "watch-run": "^1.2.5"
-  },
-  "devDependencies": {
+    "watch-run": "^1.2.5",
     "typedoc": "^0.5.7"
   }
 }
