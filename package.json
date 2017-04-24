@@ -28,7 +28,7 @@
     "watch:test": "npm run build && npm test && echo \"Watching...\" && concurrently --prefix \"{time}-{pid}\" \"tsc-watch --onSuccess 'npm test'\" \"npm run watch:sass\" \"npm run watch:html\"",
     "build:ts": "tsc",
     "build:ts:test": "tsc && npm test",
-    "build:docs": "typeDoc --exclude '**/+(cli|launcher)/**/*.ts' --theme minimal --mode file --module commonjs --hideGenerator --name Gluon --readme README.md  --target 'ES6' --out docs src/typescript/engine",
+    "build:docs": "typedoc --exclude '**/+(cli|launcher)/**/*.ts' --theme minimal --mode file --module commonjs --hideGenerator --name Gluon --readme README.md  --target 'ES6' --out docs src/typescript/engine",
     "build:sass": "node bld/sass.js",
     "build:html": "node bld/html.js",
     "build:cli-resources": "node bld/cli.js",
