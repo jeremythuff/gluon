@@ -35,7 +35,6 @@
     "build:resources": "concurrently --prefix \"{time}-{pid}\" \"npm run build:html\" \"npm run build:sass\" \"npm run build:cli-resources\"",
     "build": "concurrently --prefix \"{time}-{pid}\" \"npm run build:ts\" \"npm run build:resources\" \"npm run build:docs\"",
     "test": "ELECTRON_PATH='./node_modules/.bin/electron' electron-mocha --renderer -R spec \"./dist/**/*.spec.js\"",
-    "travis-test": "ELECTRON_PATH='./node_modules/.bin/electron' xvfb-maybe electron-mocha --renderer -R spec \"./dist/**/*.spec.js\"",
     "gluon": "electron dist/typescript/launcher/Launcher.js"
   },
   "repository": {
