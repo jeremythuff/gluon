@@ -3,7 +3,6 @@ node_js:
   - '7'
 before_install:
   - "export DISPLAY=:99.0"
-  - source scripts/bootstrap.sh
   - sleep 3
 script:
   - npm run build
