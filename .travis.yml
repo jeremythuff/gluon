@@ -1,15 +1,28 @@
-language: node_js
-node_js:
-  - '7'
-install:
-    - npm install xvfb-maybe
-    - npm install
-before_script:
-  - export DISPLAY=':99.0'
-  - Xvfb :99 -screen 0 1024x768x24 -extension RANDR &
-script:
-  - npm run build
-  - xvfb-maybe npm test
-os: linux
-dist: trusty
 sudo: required
+dist: trusty
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+
+language: node_js
+
+node_js:
+  - "6"
+  - "7"
+
+cache:
+  directories:
+    - node_modules
+
+before_script:
+  - npm run build
+  - export CHROME_BIN=chromium-browser
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - sleep 3
+
+script:
+  - npm test
