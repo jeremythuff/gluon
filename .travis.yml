@@ -5,6 +5,7 @@ addons:
     sources:
       - google-chrome
     packages:
+      - xvfb
       - google-chrome-stable
 
 language: node_js
