@@ -45,8 +45,5 @@ app.on('activate', function () {
   if (mainWindow === null) {
     createWindow();
   }
-
-
-  app.commandLine.appendSwitch("--ignore-gpu-blacklist");
   
 });
