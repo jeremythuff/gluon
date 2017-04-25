@@ -77,5 +77,8 @@
     "typedoc": "^0.5.7",
     "typescript": "*",
     "watch-run": "^1.2.5"
+  },
+  "devDependencies": {
+    "gl": "^4.0.3"
   }
 }

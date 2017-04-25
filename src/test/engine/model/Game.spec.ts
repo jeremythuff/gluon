@@ -3,6 +3,10 @@ import * as assert from "assert";
 
 import Game from "../../../typescript/engine/model/Game";
 
+import * as gl from 'gl';
+
+gl(800, 800, { preserveDrawingBuffer: true });
+
 @suite class GameSpec {
 
     private GAME: Game;
@@ -13,14 +17,14 @@ import Game from "../../../typescript/engine/model/Game";
         this.GAME = new Game();
     }
 
-     @test "Test name accessors"() {
+    @test "Test name accessors"() {
         this.GAME.setName(this.GAME_NAME);
         assert.equal(this.GAME.getName(), this.GAME_NAME);
-     }
+    }
 
     @test "Test frame rate accessors"() {
         this.GAME.setFramesPerSecond(this.GAME_FPS);
         assert.equal(this.GAME_FPS, this.GAME.getFramesPerSecond());
     }
-     
+
 }
