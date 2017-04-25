@@ -9,7 +9,7 @@ before_script:
   - Xvfb :99 -screen 0 1024x768x24 -extension RANDR &
 script:
   - npm run build
-  - npm test
+  - xvfb-maybe npm test
 os: linux
 dist: trusty
 sudo: required
