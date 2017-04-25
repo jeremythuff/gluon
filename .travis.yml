@@ -1,46 +1,16 @@
 language: node_js
 node_js:
   - '7'
-cache:
-  apt: true
-  directories:
-    - $HOME/.npm
-    - $HOME/.node-gyp
-    - $NVM
 env:
   global:
     - NODE_ENV=test
     - NVM=$HOME/.nvm
-
-matrix:
-  include:
-    - os: linux
-      dist: trusty
-      sudo: required
-      compiler: clang
-
-    - os: osx
-      osx_image: xcode8
-      compiler: clang
-
-before_install:
-  - if [[ $TRAVIS_OS_NAME = "linux" ]]; then
-      export DISPLAY=:99.0;
-      Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
-    fi
-  - if [[ ! -d $NVM/.git ]]; then
-      rm -rf $NVM;
-      git clone https://github.com/creationix/nvm.git $NVM;
-    fi
-  - git -C $NVM pull -f origin master || true
-  - git -C $NVM checkout -f `git -C $NVM describe --abbrev=0 --tags`
-  - source $NVM/nvm.sh || true
-  - nvm install
-  - node --version && npm --version
-
 install:
-  - npm install -g node-gyp --no-progress --silent
+  - npm install -g xvfb-maybe
   - npm install --no-progress --silent
 script:
   - npm run build
-  - npm test
+  - xvfb-maybe npm test
+os: linux
+dist: trusty
+sudo: required
