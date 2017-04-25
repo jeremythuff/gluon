@@ -34,7 +34,7 @@
     "build:cli-resources": "node bld/cli.js",
     "build:resources": "concurrently --prefix \"{time}-{pid}\" \"npm run build:html\" \"npm run build:sass\" \"npm run build:cli-resources\"",
     "build": "concurrently --prefix \"{time}-{pid}\" \"npm run build:ts\" \"npm run build:resources\" \"npm run build:docs\"",
-    "test": "ELECTRON_PATH='./node_modules/.bin/electron' electron-mocha --renderer -R spec \"./dist/**/*.spec.js\"",
+    "test": "ELECTRON_PATH='./node_modules/.bin/electron' xvfb-maybe electron-mocha --renderer -R spec \"./dist/**/*.spec.js\"",
     "gluon": "electron dist/typescript/launcher/Launcher.js"
   },
   "repository": {
@@ -75,6 +75,7 @@
     "tsc-watch": "^1.0.5",
     "typedoc": "^0.5.7",
     "typescript": "*",
-    "watch-run": "^1.2.5"
+    "watch-run": "^1.2.5",
+    "xvfb-maybe": "^0.1.3"
   }
 }

@@ -1,16 +1,9 @@
 language: node_js
 node_js:
   - '7'
-env:
-  global:
-    - NODE_ENV=test
-    - NVM=$HOME/.nvm
-install:
-  - npm install -g xvfb-maybe
-  - npm install --no-progress --silent
 script:
   - npm run build
-  - xvfb-maybe npm test
+  - npm test
 os: linux
 dist: trusty
 sudo: required
