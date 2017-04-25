@@ -26,4 +26,4 @@ before_script:
   - sleep 3
 
 script:
-  - npm run travis:test
+  - npm run test:travis
