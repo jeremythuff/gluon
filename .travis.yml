@@ -3,11 +3,7 @@ dist: trusty
 addons:
   apt:
     packages:
-      - mesa-utils
       - xvfb
-      - libgl1-mesa-dri
-      - libglapi-mesa
-      - libosmesa6
 
 language: node_js
 
@@ -26,4 +22,4 @@ before_script:
   - sleep 3
 
 script:
-  - npm run test:travis
+  - npm test

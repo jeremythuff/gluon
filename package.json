@@ -35,8 +35,7 @@
     "build:resources": "concurrently --prefix \"{time}-{pid}\" \"npm run build:html\" \"npm run build:sass\" \"npm run build:cli-resources\"",
     "build": "concurrently --prefix \"{time}-{pid}\" \"npm run build:ts\" \"npm run build:resources\" \"npm run build:docs\"",
     "pretest": "ELECTRON_PATH='./node_modules/.bin/electron'",
-    "test": "electron-mocha --renderer -R spec \"./dist/**/*.spec.js\"",
-    "test:travis": "xvfb-run -s \"-ac -screen 0 1280x1024x24\" electron-mocha --renderer -R spec \"./dist/**/*.spec.js\"",
+    "test": "electron-mocha --renderer --require-main dist/typescript/launcher/Launcher.js -R spec \"./dist/**/*.spec.js\"",
     "gluon": "electron dist/typescript/launcher/Launcher.js"
   },
   "repository": {
@@ -78,8 +77,5 @@
     "typedoc": "^0.5.7",
     "typescript": "*",
     "watch-run": "^1.2.5"
-  },
-  "devDependencies": {
-    "gl": "^4.0.3"
   }
 }
