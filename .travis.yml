@@ -2,13 +2,16 @@ language: node_js
 node_js:
   - '7'
 os: linux
-dist: trusty
 sudo: required
-
-before_install:
-  - sudo apt-get -qq update
-  - sudo apt-get install -y build-essential libxi-dev libglu1-mesa-dev libglew-dev
-
+dist: trusty
+addons:
+  apt:
+    packages:
+    - mesa-utils
+    - xvfb
+    - libgl1-mesa-dri
+    - libglapi-mesa
+    - libosmesa6
 install:
     - npm install -g xvfb-maybe
     - npm install
