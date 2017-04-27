@@ -25,4 +25,4 @@ before_script:
     - sleep 3
 script:
   - npm run build
-  - xvfb-run -s "-ac -screen 0 1280x1024x24" npm test
+  - npm test
