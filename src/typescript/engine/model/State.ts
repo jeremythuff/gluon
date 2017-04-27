@@ -27,6 +27,9 @@ export default class State extends AbstractRenderCycle {
 	private renderer: THREE.WebGLRenderer;
 	private scene: THREE.Scene;
 
+	private sceneMesh: THREE.Object3D;
+	private sceneCamera: THREE.Camera;
+
 	private controlRunner: ControlRunner;
 	private controlProfiles: ControlProfile<AbstractControllable>[];
 
@@ -37,6 +40,7 @@ export default class State extends AbstractRenderCycle {
 		this.controlProfiles = [];
 
 		this.scene = new THREE.Scene();
+		this.sceneMesh = new THREE.Object3D();
 
 	}
 
@@ -185,6 +189,30 @@ export default class State extends AbstractRenderCycle {
 	removeControlProfile(controlProfile: ControlProfile<AbstractControllable>): void {
 		const controlProfiles = this.getControlProfiles();
 		controlProfiles.splice(controlProfiles.indexOf(controlProfile), 1);
+	}
+
+	getRenderer(): THREE.WebGLRenderer {
+		return this.renderer;
+	}
+
+	setRenderer(renderer: THREE.WebGLRenderer): void {
+		this.renderer = renderer;
+	}
+
+	getScene(): THREE.Scene {
+		return this.scene;
+	}
+
+	getSeceneCamera(): THREE.Camera {
+		return this.sceneCamera;
+	}
+
+	setSeceneCamera(camera: THREE.Camera) :void {
+		this.sceneCamera = camera;
+	}
+
+	getSceneMesh(): THREE.Object3D {
+		return this.sceneMesh;
 	}
 
 }

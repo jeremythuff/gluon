@@ -3,6 +3,8 @@
  * for all of Gluons exported classes, interfaces and enums.
  */
 
+//LIBS
+import * as THREE from "three";
 
 //Models
 import Engine from "./model/Engine";
@@ -35,6 +37,9 @@ import { RenderPhase } from "./enum/RenderPhase";
 
 
 export {
+
+	//LIBS
+	THREE,
 
 	//Models
 	Engine,

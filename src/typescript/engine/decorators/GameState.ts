@@ -58,7 +58,10 @@ export default function GameState(options?: { [name: string]: any[] | string }) 
 		});
 
 		GameControllereRegistry.getControlProfileObservable().subscribe(ControlProfile => {
-			if ((<string[]>options["controlProfiles"]).some(controlProfileName => {
+
+			const controlProfileNames = (<string[]>options["controlProfiles"]);
+
+			if (controlProfileNames && controlProfileNames.some(controlProfileName => {
 				return controlProfileName === ControlProfile.name;
 			})) {
 				const newControllerProfile: ControlProfile<AbstractControllable> = new ControlProfile<AbstractControllable>(state);

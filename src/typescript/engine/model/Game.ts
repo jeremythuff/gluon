@@ -99,6 +99,10 @@ export default class Game extends AbstractRenderCycle {
 		this.name = name;
 	}
 
+	getRenderer(): THREE.WebGLRenderer {
+		return this.renderer;
+	}
+
 	getInitialStateName(): string {
 		return this.initialStateName;
 	}
@@ -162,6 +166,7 @@ export default class Game extends AbstractRenderCycle {
 	}
 
 	addState(state: State): State {
+		state.setRenderer(this.getRenderer());
 		this.states.push(state);
 		return state;
 	}

@@ -52,6 +52,7 @@
   "dependencies": {
     "@reactivex/rxjs": "^5.1.1",
     "@types/electron": "^1.4.32",
+    "@types/mocha": "^2.2.41",
     "@types/node": "^7.0.5",
     "@types/node-sass": "^3.10.32",
     "@types/npm": "^2.0.28",
@@ -73,8 +74,9 @@
     "text-table": "^0.2.0",
     "three": "^0.84.0",
     "tsc-watch": "^1.0.5",
-    "typedoc": "^0.5.7",
-    "typescript": "*",
-    "watch-run": "^1.2.5"
+    "typescript": "*"
+  },
+  "devDependencies": {
+    "typedoc": "^0.5.7"
   }
 }
