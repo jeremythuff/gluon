@@ -1,8 +1,16 @@
 language: node_js
 node_js:
   - '7'
+os: linux
+dist: trusty
+sudo: required
+
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get install -y build-essential libxi-dev libglu1-mesa-dev libglew-dev
+
 install:
-    - npm install xvfb-maybe
+    - npm install -g xvfb-maybe
     - npm install
 before_script:
   - export DISPLAY=':99.0'
@@ -10,6 +18,3 @@ before_script:
 script:
   - npm run build
   - xvfb-maybe npm test
-os: linux
-dist: trusty
-sudo: required
