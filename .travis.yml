@@ -4,6 +4,18 @@ node_js:
 os: linux
 sudo: required
 dist: trusty
+cache:
+  apt: true
+  directories:
+    - node_modules
+addons:
+  apt:
+    packages:
+    - mesa-utils
+    - xvfb
+    - libgl1-mesa-dri
+    - libglapi-mesa
+    - libosmesa6
 install:
     - npm install -g xvfb-maybe
     - npm install
