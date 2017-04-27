@@ -19,7 +19,7 @@ addons:
     - libglapi-mesa
     - libosmesa6
 install:
-    - npm install -g xvfb-maybe
+    - npm install xvfb-maybe
     - npm install
 before_script:
   - export DISPLAY=':99.0'
