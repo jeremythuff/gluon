@@ -19,11 +19,10 @@ addons:
     - libglapi-mesa
     - libosmesa6
 install:
-    - npm install xvfb-maybe
     - npm install
 before_script:
-  - export DISPLAY=':99.0'
-  - Xvfb :99 -screen 0 1024x768x24 -extension RANDR &
+    - export DISPLAY=:99.0; sh -e /etc/init.d/xvfb start
+    - sleep 3
 script:
   - npm run build
-  - xvfb-maybe npm test
+  - xvfb-run -s "-ac -screen 0 1280x1024x24" npm test
