@@ -15,7 +15,7 @@
         "target":"ES5",
         "lib": ["es2015", "dom"],
         "moduleResolution": "node",
-        "baseUrl": "./src/typescript/game/"
+        "baseUrl": "./src/typescript/game/",
     },
     "include": [
         "src/typescript/**/*.ts",

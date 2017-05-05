@@ -28,6 +28,7 @@ import While from "./decorators/While";
 import WhileAny from "./decorators/WhileAny";
 import When from "./decorators/When";
 import WhenAny from "./decorators/WhenAny";
+import WhenDone from "./decorators/WhenDone";
 
 
 //Enum
@@ -63,6 +64,7 @@ export {
 	WhileAny,
 	When,
 	WhenAny,
+	WhenDone,
 
 	//Enum
 	Keyboard,
