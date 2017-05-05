@@ -19,6 +19,7 @@ export default class KeyboardListener extends AbstractControlListener {
 
 		this.keyBoardObs
 			.subscribe(e => {
+				e.preventDefault();
 				if (e.type == "keydown") {
 					this.activateInput(e.which);
 					this.lastEvent = e;

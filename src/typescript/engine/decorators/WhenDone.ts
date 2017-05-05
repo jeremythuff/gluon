@@ -4,7 +4,7 @@ import * as GameControllereRegistry from "../registries/GameControllerRegistry";
 
 import { AbstractControllable } from "../model/abstracts/AbstractControllable";
 
-export default function WhenDone(cbName) {
+export default function WhenDone(cbName, ...cbArgs: any[]) {
 	return function (targetClass: ControlProfile<AbstractControllable>, methodName: string, descriptor: PropertyDescriptor) {
 		
 		const finishedCB = targetClass[cbName];
@@ -16,10 +16,9 @@ export default function WhenDone(cbName) {
 
 			if(timeout) window.clearTimeout(timeout);
 			timeout = window.setTimeout(()=>{
-				finishedCB.apply(this);;
+				finishedCB.apply(this, cbArgs);
 			}, 100)
 
-			const a = args.map(a => JSON.stringify(a)).join();
 			const result = originalMethod.apply(this, args);
 			const r = JSON.stringify(result);
 			return result;

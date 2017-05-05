@@ -24,7 +24,7 @@ export default class MouseListener extends AbstractControlListener {
 
 		this.mouseObs
 			.subscribe(e => {
-
+				e.preventDefault();
 				switch (e.type) {
 					case "mousedown":
 						this.activateInput((<MouseEvent>e).button + 1000);
