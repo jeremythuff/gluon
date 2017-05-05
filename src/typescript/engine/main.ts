@@ -36,6 +36,8 @@ import { Keyboard } from "./util/io/Keyboard";
 import { Mouse } from "./util/io/Mouse";
 import { RenderPhase } from "./enum/RenderPhase";
 
+//Util
+import DevelopmentControls from "./util/io/DevelopmentControls"; 
 
 export {
 
@@ -69,6 +71,9 @@ export {
 	//Enum
 	Keyboard,
 	Mouse,
-	RenderPhase
+	RenderPhase,
+
+	//Util
+	DevelopmentControls
 
 };
