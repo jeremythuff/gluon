@@ -20,7 +20,6 @@ export default function WhenDone(cbName, ...cbArgs: any[]) {
 			}, 100)
 
 			const result = originalMethod.apply(this, args);
-			const r = JSON.stringify(result);
 			return result;
 		}
 
