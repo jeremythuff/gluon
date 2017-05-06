@@ -4,7 +4,7 @@ import * as GameControllereRegistry from "../registries/GameControllerRegistry";
 
 import { AbstractControllable } from "../model/abstracts/AbstractControllable";
 
-export default function WhenDone(cbName, time, ...cbArgs: any[]) {
+export default function WhenDone(cbName: string, time?: number, ...cbArgs: any[]) {
 	return function (targetClass: ControlProfile<AbstractControllable>, methodName: string, descriptor: PropertyDescriptor) {
 		
 		const finishedCB = targetClass[cbName];
