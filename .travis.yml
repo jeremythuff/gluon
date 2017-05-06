@@ -25,4 +25,4 @@ before_script:
     - sleep 3
 script:
   - npm run build
-  - xvfb-run -a npm test
+  #- xvfb-run -a npm test
