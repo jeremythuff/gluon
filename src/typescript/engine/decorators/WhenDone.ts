@@ -6,7 +6,7 @@ import { AbstractControllable } from "../model/abstracts/AbstractControllable";
 
 export default function WhenDone(cbName: string, time?: number, ...cbArgs: any[]) {
 	return function (targetClass: ControlProfile<AbstractControllable>, methodName: string, descriptor: PropertyDescriptor) {
-		
+
 		const finishedCB = targetClass[cbName];
 		const originalMethod = descriptor.value; 
 
