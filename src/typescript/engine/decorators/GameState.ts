@@ -59,7 +59,7 @@ export default function GameState(options?: { [name: string]: any[] | string }) 
 
 		GameControllereRegistry.getControlProfileObservable().subscribe(ControlProfile => {
 
-			const controlProfileNames = (<string[]>options["controlProfiles"]);
+			const controlProfileNames = options?(<string[]>options["controlProfiles"]):null;
 
 			if (controlProfileNames && controlProfileNames.some(controlProfileName => {
 				return controlProfileName === ControlProfile.name;
