@@ -51,7 +51,6 @@
   "license": "MIT",
   "dependencies": {
     "@reactivex/rxjs": "^5.1.1",
-    "@types/electron": "^1.4.32",
     "@types/mocha": "^2.2.41",
     "@types/nedb": "^1.8.3",
     "@types/node": "^7.0.5",
