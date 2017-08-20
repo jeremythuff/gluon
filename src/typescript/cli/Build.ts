@@ -77,7 +77,11 @@ export default class Build extends AbstractCliCommand implements CliCommand {
 							const modifiedLine = line.replace(upDirPattern, replacement);
 
 							shell.sed("-i", line.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), modifiedLine, absolutePath);
+						} else if (line.indexOf("require(\"." + nodePath.sep) !== -1 || line.indexOf("require('." + nodePath.sep) !== -1) {
+							shell.sed("-i", /\brequire\(".\/\b/, 'require(".'+nodePath.sep+'typescript'+nodePath.sep+'game'+nodePath.sep, absolutePath);
+							shell.sed("-i", /\brequire\('.\/\b/, 'require(".'+nodePath.sep+'typescript'+nodePath.sep+'game'+nodePath.sep, absolutePath);
 						}
+						
 					});
 
 				}

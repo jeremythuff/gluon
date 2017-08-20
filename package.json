@@ -60,7 +60,7 @@
     "@types/three": "^0.83.3",
     "colors": "^1.1.2",
     "concurrently": "^3.2.0",
-    "electron": "^1.6.5",
+    "electron": "^1.6.10",
     "electron-mocha": "^3.4.0",
     "install": "^0.8.8",
     "mocha": "^3.2.0",
