@@ -2,7 +2,7 @@ import "reflect-metadata";
 
 import State from "../model/State"
 import Mode from "../model/Mode"
-import ControlProfile from "../util/io/ControlProfile";
+import { ControlProfile } from "../util/io/ControlProfile";
 
 import * as GameMainRegistry from "../registries/GameMainRegistry";
 import * as GameStateRegistry from "../registries/GameStateRegistry";

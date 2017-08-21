@@ -1,4 +1,4 @@
-import ControlProfile from "../util/io/ControlProfile";
+import { ControlProfile } from "../util/io/ControlProfile";
 
 import * as GameControllereRegistry from "../registries/GameControllerRegistry";
 

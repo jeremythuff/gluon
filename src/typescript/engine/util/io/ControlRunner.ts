@@ -3,7 +3,7 @@ import { Mouse } from "./Mouse";
 import { ControlCB } from "./ControlCB";
 import KeyboardListener from "./KeyboardListener";
 import MouseListener from "./MouseListener";
-import ControlProfile from "./ControlProfile";
+import { ControlProfile } from "./ControlProfile";
 
 import { Controllable, } from "../../model/interface/Controllable";
 

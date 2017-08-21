@@ -5,9 +5,9 @@ import { ControlCB } from "./ControlCB";
 import { Keyboard } from "./Keyboard";
 import { Mouse } from "./Mouse";
 
-export default class ControlProfile<C extends Controllable> {
+export class ControlProfile<C extends Controllable> {
 
-    protected controlee: C;
+    public controlee: C;
 
     private whileCBs: Map<(Keyboard | Mouse)[], ControlCB[]>;
     private whenCBs: Map<(Keyboard | Mouse)[], ControlCB[]>;

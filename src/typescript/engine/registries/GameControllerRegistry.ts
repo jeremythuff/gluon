@@ -1,4 +1,4 @@
-import ControlProfile from "../util/io/ControlProfile";
+import {ControlProfile} from "../util/io/ControlProfile";
 import { ReplaySubject, Observable } from "@reactivex/rxjs/dist/cjs/Rx";
 
 import { Keyboard } from "../util/io/Keyboard";

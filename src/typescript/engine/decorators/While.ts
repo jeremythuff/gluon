@@ -1,6 +1,6 @@
 import { Keyboard } from "../util/io/Keyboard";
 import { Mouse } from "../util/io/Mouse";
-import ControlProfile from "../util/io/ControlProfile";
+import { ControlProfile } from "../util/io/ControlProfile";
 
 import * as GameControllereRegistry from "../registries/GameControllerRegistry";
 

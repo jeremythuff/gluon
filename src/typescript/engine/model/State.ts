@@ -5,7 +5,7 @@ import { AbstractRenderCycle } from "./abstracts/AbstractRenderCycle";
 
 import Mode from "./Mode";
 
-import ControlProfile from "../util/io/ControlProfile";
+import { ControlProfile } from "../util/io/ControlProfile";
 import ControlRunner from "../util/io/ControlRunner";
 
 import { Controllable } from "../model/interface/Controllable";

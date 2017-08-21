@@ -3,7 +3,7 @@ import { Observable } from "@reactivex/rxjs/dist/cjs/Rx";
 
 import { AbstractRenderCycle } from "./abstracts/AbstractRenderCycle";
 import ControlRunner from "../util/io/ControlRunner";
-import ControlProfile from "../util/io/ControlProfile";
+import { ControlProfile } from "../util/io/ControlProfile";
 import State from "./State";
 
 import { RenderPhase } from "../enum/RenderPhase";

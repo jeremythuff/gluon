@@ -7,7 +7,7 @@ import * as RunningGameRegistry from "../registries/GameMainRegistry";
 import * as GameStateRegistry from "../registries/GameStateRegistry";
 import * as GameControllereRegistry from "../registries/GameControllerRegistry";
 
-import ControlProfile from "../util/io/ControlProfile";
+import { ControlProfile } from "../util/io/ControlProfile";
 import { Controllable } from "../model/interface/Controllable";
 import { GameOptions } from "../model/interface/GameOptions";
 

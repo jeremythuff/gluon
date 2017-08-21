@@ -11,7 +11,7 @@ import Engine from "./model/Engine";
 import Game from "./model/Game";
 import State from "./model/State";
 import Mode from "./model/Mode";
-import ControlProfile from "./util/io/ControlProfile";
+import { ControlProfile } from "./util/io/ControlProfile";
 
 //Interface
 import { PhaseCB } from "./model/interface/PhaseCB";

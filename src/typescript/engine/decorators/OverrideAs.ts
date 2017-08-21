@@ -1,6 +1,6 @@
 import "reflect-metadata";
 
-import ControlProfile from "../util/io/ControlProfile";
+import { ControlProfile } from "../util/io/ControlProfile";
 
 import { Controllable } from "../model/interface/Controllable";
 

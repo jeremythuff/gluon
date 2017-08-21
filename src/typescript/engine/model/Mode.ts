@@ -1,7 +1,7 @@
 import { Observable } from "@reactivex/rxjs/dist/cjs/Rx";
 
 import { AbstractRenderCycle } from "./abstracts/AbstractRenderCycle";
-import ControlProfile from "../util/io/ControlProfile";
+import { ControlProfile } from "../util/io/ControlProfile";
 
 import { Controllable } from "../model/interface/Controllable";
 
