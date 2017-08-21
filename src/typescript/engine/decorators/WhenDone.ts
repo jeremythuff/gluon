@@ -2,10 +2,10 @@ import ControlProfile from "../util/io/ControlProfile";
 
 import * as GameControllereRegistry from "../registries/GameControllerRegistry";
 
-import { AbstractControllable } from "../model/abstracts/AbstractControllable";
+import { Controllable } from "../model/interface/Controllable";
 
 export default function WhenDone(cbName: string, time?: number, ...cbArgs: any[]) {
-	return function (targetClass: ControlProfile<AbstractControllable>, methodName: string, descriptor: PropertyDescriptor) {
+	return function (targetClass: ControlProfile<Controllable>, methodName: string, descriptor: PropertyDescriptor) {
 
 		const finishedCB = targetClass[cbName];
 		const originalMethod = descriptor.value; 

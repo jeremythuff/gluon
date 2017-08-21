@@ -8,7 +8,7 @@ import * as GameStateRegistry from "../registries/GameStateRegistry";
 import * as GameControllereRegistry from "../registries/GameControllerRegistry";
 
 import ControlProfile from "../util/io/ControlProfile";
-import { AbstractControllable } from "../model/abstracts/AbstractControllable";
+import { Controllable } from "../model/interface/Controllable";
 import { GameOptions } from "../model/interface/GameOptions";
 
 /**
@@ -41,7 +41,7 @@ export default function GameMain(options?: GameOptions) {
 				return controlProfile.name === ControlProfile.name;
 			})) {
 
-				const newControllerProfile: ControlProfile<AbstractControllable> = new ControlProfile<AbstractControllable>(game);
+				const newControllerProfile: ControlProfile<Controllable> = new ControlProfile<Controllable>(game);
 				const whileMap = GameControllereRegistry.getWhileCBMapByName(ControlProfile.name);
 				const whenMap = GameControllereRegistry.getWhenCBMapByName(ControlProfile.name);
 

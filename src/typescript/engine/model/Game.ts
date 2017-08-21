@@ -8,7 +8,7 @@ import State from "./State";
 
 import { RenderPhase } from "../enum/RenderPhase";
 
-import { AbstractControllable } from "../model/abstracts/AbstractControllable";
+import { Controllable } from "../model/interface/Controllable";
 
 import FileLoader from "../util/loaders/FileLoader"
 
@@ -17,7 +17,7 @@ import FileLoader from "../util/loaders/FileLoader"
  * this class into you game main glass, and decorating it with the [[GameMain]]
  * decorator, it will be the main entry point for your game.
  */
-export default class Game extends AbstractRenderCycle {
+export default class Game extends AbstractRenderCycle implements Controllable {
 
 	private name: string;
 
@@ -29,7 +29,7 @@ export default class Game extends AbstractRenderCycle {
 	private states: State[];
 	private controlRunner: ControlRunner;
 
-	private controlProfiles: ControlProfile<AbstractControllable>[];
+	private controlProfiles: ControlProfile<Controllable>[];
 
 	constructor(name?: string) {
 		super();
@@ -171,19 +171,19 @@ export default class Game extends AbstractRenderCycle {
 		return state;
 	}
 
-	setControlProfiles(controlProfiles: ControlProfile<AbstractControllable>[]): void {
+	setControlProfiles(controlProfiles: ControlProfile<Controllable>[]): void {
 		this.controlProfiles = controlProfiles;
 	}
 
-	getControlProfiles(): ControlProfile<AbstractControllable>[] {
+	getControlProfiles(): ControlProfile<Controllable>[] {
 		return this.controlProfiles;
 	}
 
-	addControlProfile(controlProfile: ControlProfile<AbstractControllable>): void {
+	addControlProfile(controlProfile: ControlProfile<Controllable>): void {
 		this.getControlProfiles().push(controlProfile);
 	}
 
-	removeControlProfile(controlProfile: ControlProfile<AbstractControllable>): void {
+	removeControlProfile(controlProfile: ControlProfile<Controllable>): void {
 		const controlProfiles = this.getControlProfiles();
 		controlProfiles.splice(controlProfiles.indexOf(controlProfile), 1);
 	}

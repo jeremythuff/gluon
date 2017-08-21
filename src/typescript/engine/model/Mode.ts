@@ -3,18 +3,18 @@ import { Observable } from "@reactivex/rxjs/dist/cjs/Rx";
 import { AbstractRenderCycle } from "./abstracts/AbstractRenderCycle";
 import ControlProfile from "../util/io/ControlProfile";
 
-import { AbstractControllable } from "../model/abstracts/AbstractControllable";
+import { Controllable } from "../model/interface/Controllable";
 
 /**
  *  The Mode class represents a grouping of control definition and
  *  displayable elements. Modes are registered in a [[State]] and many can be
  *  active at any given time.
  */
-export default class Mode extends AbstractRenderCycle {
+export default class Mode extends AbstractRenderCycle implements Controllable {
 
 	private name: string;
 
-	private controlProfiles: ControlProfile<AbstractControllable>[];
+	private controlProfiles: ControlProfile<Controllable>[];
 
 	constructor() {
 		super();
@@ -53,19 +53,19 @@ export default class Mode extends AbstractRenderCycle {
 		return this.name;
 	}
 
-	setControlProfiles(controlProfiles: ControlProfile<AbstractControllable>[]): void {
+	setControlProfiles(controlProfiles: ControlProfile<Controllable>[]): void {
 		this.controlProfiles = controlProfiles;
 	}
 
-	getControlProfiles(): ControlProfile<AbstractControllable>[] {
+	getControlProfiles(): ControlProfile<Controllable>[] {
 		return this.controlProfiles;
 	}
 
-	addControlProfile(controlProfile: ControlProfile<AbstractControllable>): void {
+	addControlProfile(controlProfile: ControlProfile<Controllable>): void {
 		this.getControlProfiles().push(controlProfile);
 	}
 
-	removeControlProfile(controlProfile: ControlProfile<AbstractControllable>): void {
+	removeControlProfile(controlProfile: ControlProfile<Controllable>): void {
 		const controlProfiles = this.getControlProfiles();
 		controlProfiles.splice(controlProfiles.indexOf(controlProfile), 1);
 	}

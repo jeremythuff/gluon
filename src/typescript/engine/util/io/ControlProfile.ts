@@ -1,11 +1,11 @@
 import "reflect-metadata";
 
-import { AbstractControllable } from "../../model/abstracts/AbstractControllable";
+import { Controllable } from "../../model/interface/Controllable";
 import { ControlCB } from "./ControlCB";
 import { Keyboard } from "./Keyboard";
 import { Mouse } from "./Mouse";
 
-export default class ControlProfile<C extends AbstractControllable> {
+export default class ControlProfile<C extends Controllable> {
 
     protected controlee: C;
 
@@ -16,13 +16,6 @@ export default class ControlProfile<C extends AbstractControllable> {
         this.controlee = controlee;
         this.whileCBs = new Map<(Keyboard | Mouse)[], ControlCB[]>();
         this.whenCBs = new Map<(Keyboard | Mouse)[], ControlCB[]>();
-
-        let prototype = Reflect.getPrototypeOf(this);
-
-        Object.keys(prototype).forEach(key=>{
-            console.log(Reflect.getMetadataKeys(prototype[key]));
-        });
-
     }
 
     setWhileCBs(whileCBs: Map<(Keyboard | Mouse)[], ControlCB[]>): void {

@@ -5,7 +5,7 @@ import KeyboardListener from "./KeyboardListener";
 import MouseListener from "./MouseListener";
 import ControlProfile from "./ControlProfile";
 
-import { AbstractControllable } from "../../model/abstracts/AbstractControllable";
+import { Controllable, } from "../../model/interface/Controllable";
 
 export default class ControlRunner {
 
@@ -34,7 +34,7 @@ export default class ControlRunner {
 
 	}
 
-	_runCBs(profiles: ControlProfile<AbstractControllable>[], delta?: number): void {
+	_runCBs(profiles: ControlProfile<Controllable>[], delta?: number): void {
 		this.runWhileCBs(profiles, delta);
 		this.runWhenCBs(profiles, delta);
 
@@ -50,7 +50,7 @@ export default class ControlRunner {
 		this.cbsToCall.clear();
 	}
 
-	private runWhenCBs(profiles: ControlProfile<AbstractControllable>[], delta?: number): void {
+	private runWhenCBs(profiles: ControlProfile<Controllable>[], delta?: number): void {
 
 		profiles.forEach(profile => {
 
@@ -89,7 +89,7 @@ export default class ControlRunner {
 		});
 	}
 
-	private runWhileCBs(profiles: ControlProfile<AbstractControllable>[], delta?: number): void {
+	private runWhileCBs(profiles: ControlProfile<Controllable>[], delta?: number): void {
 
 		profiles.forEach(profile => {
 

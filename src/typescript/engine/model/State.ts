@@ -8,7 +8,7 @@ import Mode from "./Mode";
 import ControlProfile from "../util/io/ControlProfile";
 import ControlRunner from "../util/io/ControlRunner";
 
-import { AbstractControllable } from "../model/abstracts/AbstractControllable";
+import { Controllable } from "../model/interface/Controllable";
 
 /**
  * The State class acts as the primary organizing entiry for your game. 
@@ -16,7 +16,7 @@ import { AbstractControllable } from "../model/abstracts/AbstractControllable";
  * use of the [[GameState]] decorator. Any class which both extends State and is decorated
  * with [[GameState]] will automatically be available for you in your game instance.
  * */
-export default class State extends AbstractRenderCycle {
+export default class State extends AbstractRenderCycle implements Controllable {
 
 	private name: string;
 	private framesPerSecond: number;
@@ -31,7 +31,7 @@ export default class State extends AbstractRenderCycle {
 	private sceneCamera: THREE.Camera;
 
 	private controlRunner: ControlRunner;
-	private controlProfiles: ControlProfile<AbstractControllable>[];
+	private controlProfiles: ControlProfile<Controllable>[];
 
 	constructor() {
 		super();
@@ -174,19 +174,19 @@ export default class State extends AbstractRenderCycle {
 		return Observable.merge(...obsArr);
 	}
 
-	setControlProfiles(controlProfiles: ControlProfile<AbstractControllable>[]): void {
+	setControlProfiles(controlProfiles: ControlProfile<Controllable>[]): void {
 		this.controlProfiles = controlProfiles;
 	}
 
-	getControlProfiles(): ControlProfile<AbstractControllable>[] {
+	getControlProfiles(): ControlProfile<Controllable>[] {
 		return this.controlProfiles;
 	}
 
-	addControlProfile(controlProfile: ControlProfile<AbstractControllable>): void {
+	addControlProfile(controlProfile: ControlProfile<Controllable>): void {
 		this.getControlProfiles().push(controlProfile);
 	}
 
-	removeControlProfile(controlProfile: ControlProfile<AbstractControllable>): void {
+	removeControlProfile(controlProfile: ControlProfile<Controllable>): void {
 		const controlProfiles = this.getControlProfiles();
 		controlProfiles.splice(controlProfiles.indexOf(controlProfile), 1);
 	}

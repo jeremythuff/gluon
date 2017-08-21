@@ -4,9 +4,7 @@ import { RenderPhase } from "../../enum/RenderPhase";
 
 import { Observable } from "@reactivex/rxjs/dist/cjs/Rx";
 
-import { AbstractControllable } from "./AbstractControllable";
-
-export abstract class AbstractRenderCycle extends AbstractControllable implements RenderCycle {
+export abstract class AbstractRenderCycle implements RenderCycle {
 
 	protected phase: RenderPhase = RenderPhase.OFF;
 
@@ -20,7 +18,6 @@ export abstract class AbstractRenderCycle extends AbstractControllable implement
 	protected destroyCBs: PhaseCB[];
 
 	constructor() {
-		super();
 		this.initCBs = [];
 		this.loadCBs = [];
 		this.updateCBs = [];

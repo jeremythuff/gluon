@@ -5,7 +5,6 @@ import { Keyboard } from "../util/io/Keyboard";
 import { Mouse } from "../util/io/Mouse";
 
 import { ControlCB } from "../util/io/ControlCB";
-import { AbstractControllable } from "../model/abstracts/AbstractControllable";
 
 /**
  * 

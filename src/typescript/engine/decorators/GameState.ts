@@ -9,7 +9,7 @@ import * as GameStateRegistry from "../registries/GameStateRegistry";
 import * as GameModeRegistry from "../registries/GameModeRegistry";
 import * as GameControllereRegistry from "../registries/GameControllerRegistry";
 
-import { AbstractControllable } from "../model/abstracts/AbstractControllable";
+import { Controllable } from "../model/interface/Controllable";
 
 import { StateOptions } from "../model/interface/StateOptions"
 
@@ -43,7 +43,7 @@ export default function GameState(options?: StateOptions) {
 						return controlProfileName === ControlProfile.name;
 					})) {
 
-						const newControllerProfile: ControlProfile<AbstractControllable> = new ControlProfile<AbstractControllable>(mode);
+						const newControllerProfile: ControlProfile<Controllable> = new ControlProfile<Controllable>(mode);
 						const whileMap = GameControllereRegistry.getWhileCBMapByName(ControlProfile.name);
 						const whenMap = GameControllereRegistry.getWhenCBMapByName(ControlProfile.name);
 
@@ -66,7 +66,7 @@ export default function GameState(options?: StateOptions) {
 			if (controlProfiles && controlProfiles.some(controlProfile => {
 				return controlProfile.name === ControlProfile.name;
 			})) {
-				const newControllerProfile: ControlProfile<AbstractControllable> = new ControlProfile<AbstractControllable>(state);
+				const newControllerProfile: ControlProfile<Controllable> = new ControlProfile<Controllable>(state);
 				const whileMap = GameControllereRegistry.getWhileCBMapByName(ControlProfile.name);
 				const whenMap = GameControllereRegistry.getWhenCBMapByName(ControlProfile.name);
 				newControllerProfile.setWhileCBs(whileMap);
