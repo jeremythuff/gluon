@@ -9,6 +9,7 @@ import * as GameControllereRegistry from "../registries/GameControllerRegistry";
 
 import ControlProfile from "../util/io/ControlProfile";
 import { AbstractControllable } from "../model/abstracts/AbstractControllable";
+import { GameOptions } from "../model/interface/GameOptions";
 
 /**
  * This function is used to decorate classes which extend [[Game]]. It registers such
@@ -18,7 +19,7 @@ import { AbstractControllable } from "../model/abstracts/AbstractControllable";
  *
  * @decorator Class<typeof Game>
  */
-export default function GameMain(options?: { [name: string]: any[] | string }) {
+export default function GameMain(options?: GameOptions) {
 	return function (decorated: typeof Game): void {
 
 		Reflect.defineMetadata("options", options, decorated);
@@ -28,17 +29,16 @@ export default function GameMain(options?: { [name: string]: any[] | string }) {
 		if (!game.getName())
 			game.setName(decorated.name);
 
-		if ((<string>options["initialState"]))
-			game.setInitialStateName((<string>options["initialState"]));
+		if(options.initialState)
+			game.setInitialStateName(options.initialState.name);
 
 
 		GameControllereRegistry.getControlProfileObservable().subscribe(ControlProfile => {
 
+			const controlProfileNames = options.controlProfiles;
 
-			const controlProfileNames = (<string[]>options["controlProfiles"]);
-
-			if (controlProfileNames && controlProfileNames.some(controlProfileName => {
-				return controlProfileName === ControlProfile.name;
+			if (controlProfileNames && controlProfileNames.some(controlProfile => {
+				return controlProfile.name === ControlProfile.name;
 			})) {
 
 				const newControllerProfile: ControlProfile<AbstractControllable> = new ControlProfile<AbstractControllable>(game);

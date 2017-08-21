@@ -11,13 +11,15 @@ import * as GameControllereRegistry from "../registries/GameControllerRegistry";
 
 import { AbstractControllable } from "../model/abstracts/AbstractControllable";
 
+import { StateOptions } from "../model/interface/StateOptions"
+
 /**
  * This function is used to decorate classes which extend [[State]]. It registers and 
  * instantiates such classes within your main game instance.
  *
  * @decorator Class<typeof State>
  */
-export default function GameState(options?: { [name: string]: any[] | string }) {
+export default function GameState(options?: StateOptions) {
 
 	return function (decorated: typeof State): void {
 
@@ -27,8 +29,8 @@ export default function GameState(options?: { [name: string]: any[] | string }) 
 		if (!state.getName()) state.setName(decorated.name);
 
 		GameModeRegistry.getGameModeObservable().subscribe(Mode => {
-			if ((<string[]>options["modes"]).some(modeName => {
-				return modeName === Mode.name;
+			if ((options.modes).some(mode => {
+				return mode.name === Mode.name;
 			})) {
 
 				const mode = new Mode();
@@ -59,10 +61,10 @@ export default function GameState(options?: { [name: string]: any[] | string }) 
 
 		GameControllereRegistry.getControlProfileObservable().subscribe(ControlProfile => {
 
-			const controlProfileNames = options?(<string[]>options["controlProfiles"]):null;
+			const controlProfiles = options?(options.controlProfiles):null;
 
-			if (controlProfileNames && controlProfileNames.some(controlProfileName => {
-				return controlProfileName === ControlProfile.name;
+			if (controlProfiles && controlProfiles.some(controlProfile => {
+				return controlProfile.name === ControlProfile.name;
 			})) {
 				const newControllerProfile: ControlProfile<AbstractControllable> = new ControlProfile<AbstractControllable>(state);
 				const whileMap = GameControllereRegistry.getWhileCBMapByName(ControlProfile.name);
