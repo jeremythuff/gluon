@@ -14,11 +14,11 @@ export default class MouseListener extends AbstractControlListener {
 		super(runWhenCBS, activatedInput);
 
 		this.mouseObs = Observable
-			.merge(
-			Observable.fromEvent(window, "mousedown"),
-			Observable.fromEvent(window, "mouseup"),
-			Observable.fromEvent(window, "mousemove"),
-			Observable.fromEvent(window, "wheel")
+			.merge<MouseEvent | WheelEvent>(
+				Observable.fromEvent(window, "mousedown"),
+				Observable.fromEvent(window, "mouseup"),
+				Observable.fromEvent(window, "mousemove"),
+				Observable.fromEvent(window, "wheel")
 			)
 			.distinctUntilChanged()
 

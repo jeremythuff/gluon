@@ -75,9 +75,10 @@
     "text-table": "^0.2.0",
     "three": "^0.84.0",
     "tsc-watch": "^1.0.5",
-    "typescript": "*"
+    "typescript": "^2.4.2"
   },
   "devDependencies": {
-    "typedoc": "^0.5.7"
+    "typedoc": "^0.8.0",
+    "typescript": "^2.4.2"
   }
 }

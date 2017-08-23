@@ -11,11 +11,11 @@ export default class KeyboardListener extends AbstractControlListener {
 		super(runWhenCBS, activatedInput);
 
 		this.keyBoardObs = Observable
-			.merge(
-			Observable.fromEvent(window, "keyup"),
-			Observable.fromEvent(window, "keydown")
+			.merge<KeyboardEvent>(
+				Observable.fromEvent(window, "keyup"),
+				Observable.fromEvent(window, "keydown")
 			)
-			.distinctUntilChanged()
+			.distinctUntilChanged();
 
 		this.keyBoardObs
 			.subscribe(e => {
