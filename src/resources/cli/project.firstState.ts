@@ -1,4 +1,10 @@
-import {GameState, State} from "gluon-engine";
+import { GameState, State } from "gluon-engine";
 
-@GameState()
+import { FirstMode } from "./mode/FirstMode";
+
+@GameState({
+    modes: [
+        FirstMode
+    ]
+})
 class FirstState extends State {};

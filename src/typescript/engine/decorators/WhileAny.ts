@@ -7,7 +7,7 @@ import * as GameControllereRegistry from "../registries/GameControllerRegistry";
 import { Controllable } from "../model/interface/Controllable";
 
 export default function While(...inputs: (Keyboard | Mouse | (Keyboard | Mouse)[])[]) {
-	return function (targetClass: ControlProfile<Controllable>, methodName: string, descriptor: PropertyDescriptor) {
+	return function decorator(targetClass: ControlProfile<Controllable>, methodName: string, descriptor: PropertyDescriptor) {
 		const rbMap = GameControllereRegistry.getWhileCBMapByName(targetClass.constructor.name);
 		inputs.forEach(input => {
 			input = input instanceof Array ? input : [input];

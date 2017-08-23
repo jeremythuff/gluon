@@ -20,7 +20,7 @@ import { GameOptions } from "../model/interface/GameOptions";
  * @decorator Class<typeof Game>
  */
 export default function GameMain(options?: GameOptions) {
-	return function (decorated: typeof Game): void {
+	return function decorator(decorated: typeof Game): void {
 
 		Reflect.defineMetadata("options", options, decorated);
 

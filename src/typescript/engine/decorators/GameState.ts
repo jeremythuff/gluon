@@ -21,7 +21,7 @@ import { StateOptions } from "../model/interface/StateOptions"
  */
 export default function GameState(options?: StateOptions) {
 
-	return function (decorated: typeof State): void {
+	return function decorator(decorated: typeof State): void {
 
 		Reflect.defineMetadata("options", options, decorated);
 

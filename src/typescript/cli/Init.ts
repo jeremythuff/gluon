@@ -50,7 +50,7 @@ export default class Init extends AbstractCliCommand implements CliCommand {
 		if (!shell.test('-d', "src/typescript")) shell.mkdir("src/typescript");
 		if (!shell.test('-d', "src/typescript/game")) shell.mkdir("src/typescript/game");
 
-
+		console.log(table([[new Date().toString(), "Writing sample files."]]));
 		shell.cp(`${cliDir}/project.main.ts`, 'src/typescript/game/Main.ts');
 		shell.sed('-i', '{GAME_NAME}', classSafeGameName, 'src/typescript/game/main.ts');
 
@@ -59,6 +59,9 @@ export default class Init extends AbstractCliCommand implements CliCommand {
 
 		if (!shell.test('-d', "src/typescript/game/state")) shell.mkdir("src/typescript/game/state");
 		shell.cp(`${cliDir}/project.firstState.ts`, 'src/typescript/game/state/FirstState.ts');
+
+		if (!shell.test('-d', "src/typescript/game/mode")) shell.mkdir("src/typescript/game/mode");
+		shell.cp(`${cliDir}/project.firstMode.ts`, 'src/typescript/game/mode/FirstMode.ts');
 
 		console.log(table([[new Date().toString(), "Copying styles."]]));
 		if (!shell.test('-d', "src/resources")) shell.mkdir("src/resources");

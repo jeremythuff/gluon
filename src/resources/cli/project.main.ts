@@ -1,8 +1,12 @@
-import {GameMain} from "gluon-engine";
-import {Game} from "gluon-engine";
+import { GameMain, Game, DevelopmentControlls } from "gluon-engine";
+
+import { FirstState } from "./state/FirstState";
 
 @GameMain({
-	initialState: "FirstState"
+	initialState: FirstState,
+	controllProfiles: [
+		DevelopmentControlls
+	]
 })
 class {GAME_NAME} extends Game {
 	init() :void {

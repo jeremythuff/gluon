@@ -5,7 +5,7 @@ import * as GameControllereRegistry from "../registries/GameControllerRegistry";
 import { Controllable } from "../model/interface/Controllable";
 
 export default function WhenDone(cbName: string, time?: number, ...cbArgs: any[]) {
-	return function (targetClass: ControlProfile<Controllable>, methodName: string, descriptor: PropertyDescriptor) {
+	return function decorator(targetClass: ControlProfile<Controllable>, methodName: string, descriptor: PropertyDescriptor) {
 
 		const finishedCB = targetClass[cbName];
 		const originalMethod = descriptor.value; 
