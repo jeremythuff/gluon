@@ -5,7 +5,6 @@ import When from "../../decorators/When"
 import OverrideAs from "../../decorators/OverrideAs"
 import {Keyboard} from "./Keyboard"
 
-import {Controllable} from "../../model/interface/Controllable";
 import Game from "../../model/Game";
 
 import * as Electron from "electron"; 

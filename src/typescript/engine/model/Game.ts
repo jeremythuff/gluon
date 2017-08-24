@@ -10,7 +10,7 @@ import { RenderPhase } from "../enum/RenderPhase";
 
 import { Controllable } from "../model/interface/Controllable";
 
-import FileLoader from "../util/loaders/FileLoader"
+//import FileLoader from "../util/loaders/FileLoader"
 
 /**
  * The Game class is the central class to all Gluon games. By extending
@@ -125,7 +125,7 @@ export default class Game extends AbstractRenderCycle implements Controllable {
 		if (this.activeState) {
 			this.activeState.startUnload()
 				.take(1)
-				.subscribe(null, null, () => {
+				.subscribe(()=>{}, ()=>{}, () => {
 					this.activeState = state;
 					this.activeState.startInit();
 				});
@@ -151,7 +151,7 @@ export default class Game extends AbstractRenderCycle implements Controllable {
 	}
 
 	getState(name: string): State {
-		let foundState = null;
+		let foundState;
 
 		this.states.some((state: State) => {
 			let pred = state.getName() === name;

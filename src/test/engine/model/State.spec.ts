@@ -1,10 +1,11 @@
-import { suite, test, slow, timeout, skip, only } from "mocha-typescript";
+import { suite, test, /*slow, timeout, skip, only*/ } from "mocha-typescript";
 import * as assert from "assert";
 
 import State from "../../../typescript/engine/model/State";
 import Mode from "../../../typescript/engine/model/Mode";
 
-@suite class StateSpec {
+@suite 
+export class StateSpec {
 
     private STATE: State;
     private readonly STATE_NAME: string = "Test State";
@@ -113,7 +114,7 @@ import Mode from "../../../typescript/engine/model/Mode";
         assert.equal(this.STATE.getActiveModes().length, 2);
 
         this.STATE.deActivateAllModes()
-            .subscribe(null,null,()=>{
+            .subscribe(()=>{},()=>{},()=>{
                 assert.equal(this.STATE.getActiveModes().length, 0);
                 done();
             });

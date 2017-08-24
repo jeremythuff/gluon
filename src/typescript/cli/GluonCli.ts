@@ -27,7 +27,7 @@ class GluonCli {
 	processCommand(arg: string): void {
 		let command: CliCommand;
 
-		npm.load({}, function () {
+		npm.load({}, ()=>{
 			const globalModuleRoot = path.resolve(npm.globalDir, "gluon-engine");
 
 			switch (arg) {
@@ -69,7 +69,7 @@ class GluonCli {
 
 			command.execute(this.args);
 
-		}.bind(this));
+		});
 
 	}
 

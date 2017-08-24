@@ -18,7 +18,7 @@ export default class Help extends AbstractCliCommand implements CliCommand {
 	static shortKey: string = "h";
 	static help: [string, string] = ["help, h: ", colors.green("Displays this dialog.")];
 
-	execute(args: Array<string>) {
+	execute(/*args: Array<string>*/) {
 
 		console.log("\n" + colors.yellow.underline("Gluon CLI Usage:") + "\n");
 

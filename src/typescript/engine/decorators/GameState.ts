@@ -1,7 +1,6 @@
 import "reflect-metadata";
 
 import State from "../model/State"
-import Mode from "../model/Mode"
 import { ControlProfile } from "../util/io/ControlProfile";
 
 import * as GameMainRegistry from "../registries/GameMainRegistry";
@@ -29,7 +28,7 @@ export default function GameState(options?: StateOptions) {
 		if (!state.getName()) state.setName(decorated.name);
 
 		GameModeRegistry.getGameModeObservable().subscribe(Mode => {
-			if ((options.modes).some(mode => {
+			if (options && options.modes && (options.modes).some(mode => {
 				return mode.name === Mode.name;
 			})) {
 

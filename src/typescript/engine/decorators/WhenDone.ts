@@ -1,7 +1,4 @@
 import { ControlProfile } from "../util/io/ControlProfile";
-
-import * as GameControllereRegistry from "../registries/GameControllerRegistry";
-
 import { Controllable } from "../model/interface/Controllable";
 
 export default function WhenDone(cbName: string, time?: number, ...cbArgs: any[]) {

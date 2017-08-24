@@ -2,8 +2,6 @@ import State from "../model/State";
 import { ReplaySubject, Observable } from "@reactivex/rxjs/dist/cjs/Rx";
 
 import * as GameMainRegistry from "./GameMainRegistry";
-import * as GameControllereRegistry from "../registries/GameControllerRegistry";
-
 
 /**
  * The GameStateRegistry namespace is a global registry for classes

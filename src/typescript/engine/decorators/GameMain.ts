@@ -29,13 +29,13 @@ export default function GameMain(options?: GameOptions) {
 		if (!game.getName())
 			game.setName(decorated.name);
 
-		if(options.initialState)
+		if(options && options.initialState)
 			game.setInitialStateName(options.initialState.name);
 
 
 		GameControllereRegistry.getControlProfileObservable().subscribe(ControlProfile => {
 
-			const controlProfileNames = options.controlProfiles;
+			const controlProfileNames = options && options.controlProfiles ? options.controlProfiles : [];
 
 			if (controlProfileNames && controlProfileNames.some(controlProfile => {
 				return controlProfile.name === ControlProfile.name;

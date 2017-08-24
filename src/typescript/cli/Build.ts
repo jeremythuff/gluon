@@ -8,7 +8,7 @@ import * as fs from "fs";
 import * as readline from "readline";
 
 const colors = require('colors/safe');
-const nodecli = require("shelljs-nodecli");
+//const nodecli = require("shelljs-nodecli");
 var table = require('text-table');
 
 
@@ -26,7 +26,7 @@ export default class Build extends AbstractCliCommand implements CliCommand {
 		const localResourceDir = "src/resources";
 		const mainHtmlPath = "dist/main.html";
 		const mainCssPath = "resources/css/main.css";
-		const mainJsPath = "Main.js";
+		//const mainJsPath = "Main.js";
 
 		console.log(table([[new Date().toString(), "Transpiling typescript."]]));
 

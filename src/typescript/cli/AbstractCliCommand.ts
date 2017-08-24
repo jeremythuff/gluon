@@ -1,5 +1,5 @@
-import {CliCommand} from "./CliCommand";
-const colors = require('colors/safe');
+//import {CliCommand} from "./CliCommand";
+//const colors = require('colors/safe');
 
 export default class AbstractCliCommand {
 

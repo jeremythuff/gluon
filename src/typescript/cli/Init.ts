@@ -1,4 +1,3 @@
-import * as path from 'path';
 import * as shell from "shelljs";
 
 import { CliCommand } from "./CliCommand";
@@ -22,7 +21,7 @@ export default class Init extends AbstractCliCommand implements CliCommand {
 		const engineDir = this.getGlobalModuleRoot();
 		const resourcesDir = `${engineDir}/dist/resources`;
 		const cliDir = `${resourcesDir}/cli`;
-		const tmpDir = shell.tempdir();
+		//const tmpDir = shell.tempdir();
 
 		console.log(table([[new Date().toString(), `Creating project directory: ${gameName}.`]]));
 		if (!shell.test('-d', gameName)) {

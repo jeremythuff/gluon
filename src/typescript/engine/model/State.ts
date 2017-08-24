@@ -6,7 +6,7 @@ import { AbstractRenderCycle } from "./abstracts/AbstractRenderCycle";
 import Mode from "./Mode";
 
 import { ControlProfile } from "../util/io/ControlProfile";
-import ControlRunner from "../util/io/ControlRunner";
+//import ControlRunner from "../util/io/ControlRunner";
 
 import { Controllable } from "../model/interface/Controllable";
 
@@ -30,7 +30,7 @@ export default class State extends AbstractRenderCycle implements Controllable {
 	private sceneMesh: THREE.Object3D;
 	private sceneCamera: THREE.Camera;
 
-	private controlRunner: ControlRunner;
+	//private controlRunner: ControlRunner;
 	private controlProfiles: ControlProfile<Controllable>[];
 
 	constructor() {
@@ -122,7 +122,7 @@ export default class State extends AbstractRenderCycle implements Controllable {
 	}
 
 	getModeByName(name: string): Mode {
-		let foundMode = null;
+		let foundMode;
 		this.modes.some(mode => {
 			const p = mode.getName() === name;
 			if (p) foundMode = mode;
@@ -137,7 +137,7 @@ export default class State extends AbstractRenderCycle implements Controllable {
 
 	activateMode(mode: Mode): void {
 		mode.startInit()
-			.subscribe(null, null, () => {
+			.subscribe(()=>{}, ()=>{}, () => {
 				mode.getControlProfiles().forEach(cp => {
 					this.addControlProfile(cp);
 				});
@@ -154,7 +154,7 @@ export default class State extends AbstractRenderCycle implements Controllable {
 	deActivateMode(mode: Mode): Observable<{}[]> {
 		const deactivateObs: Observable<{}[]> = mode.startUnload()
 		deactivateObs
-			.subscribe(null, null, () => {
+			.subscribe(()=>{}, ()=>{}, () => {
 				mode.getControlProfiles().forEach(cp => {
 					this.removeControlProfile(cp);
 				});

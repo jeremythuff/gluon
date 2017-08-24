@@ -4,7 +4,6 @@ import { CliCommand } from "./CliCommand"
 import AbstractCliCommand from "./AbstractCliCommand"
 
 import * as shelljs from "shelljs";
-import * as path from 'path';
 
 import * as process from 'process';
 
@@ -17,10 +16,10 @@ export default class Start extends AbstractCliCommand implements CliCommand {
 	static shortKey: string = "s";
 	static help: [string, string] = [`${Start.key}, ${Start.shortKey} [Main.js]`, colors.green("Launches the Gluon project.")];
 
-	execute(args: Array<string>) {
+	execute(/*args: Array<string>*/) {
 
 		const engineDir = this.getGlobalModuleRoot();
-		const resourcesDir = `${engineDir}/dist/engine/resources`;
+		//const resourcesDir = `${engineDir}/dist/engine/resources`;
 		const mainHtmlPath = `${shelljs.pwd()}/dist/main.html`;
 		console.log(process.cwd());
 		const execustionPath = `${engineDir}/dist/typescript/launcher/Launcher.js`;

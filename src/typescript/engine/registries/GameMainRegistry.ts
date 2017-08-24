@@ -1,5 +1,5 @@
 import Game from "../model/Game";
-import { ReplaySubject, Observable } from "@reactivex/rxjs/dist/cjs/Rx";
+import { ReplaySubject } from "@reactivex/rxjs/dist/cjs/Rx";
 
 /**
  * The GameMainRegistry namespace is a global registry for classes

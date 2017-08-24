@@ -1,9 +1,10 @@
-import { suite, test, slow, timeout, skip, only } from "mocha-typescript";
+import { suite, test, /*slow, timeout, skip, only*/ } from "mocha-typescript";
 import * as assert from "assert";
 
 import Game from "../../../typescript/engine/model/Game";
 
-@suite class GameSpec {
+@suite 
+export class GameSpec {
 
     private GAME: Game;
     private readonly GAME_NAME: string = "Test Game";

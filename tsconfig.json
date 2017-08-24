@@ -2,6 +2,7 @@
     "compilerOptions": {
         "module": "commonjs",
         "target": "es5",
+        "moduleResolution": "node",
         "noImplicitAny": false,
         "sourceMap": true,
     	"outDir": "dist",
@@ -17,20 +18,18 @@
         "strictNullChecks": true,
         "noUnusedLocals": true,
         "noImplicitThis": true,
-        "noUnusedParameters": true,
-        "importHelpers": true,
         "noEmitHelpers": true,
         "pretty": true,
         "lib": ["es2015", "dom"],
-        "moduleResolution": "node",
         "baseUrl": "./src/typescript/",
-        "types": [ "node", "mocha"]
+        "types": [ "node", "mocha", "three"]
     },
     "include": [
         "src/typescript/**/*.ts",
         "src/test/**/*.ts"       
     ],
     "exclude": [
-        "node_modules"
+        "node_modules",
+        "dist"
     ]
 }
