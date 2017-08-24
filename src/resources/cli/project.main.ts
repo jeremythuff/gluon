@@ -1,11 +1,11 @@
-import { GameMain, Game, DevelopmentControlls } from "gluon-engine";
+import { GameMain, Game, DevelopmentControls } from "gluon-engine";
 
 import { FirstState } from "./state/FirstState";
 
 @GameMain({
 	initialState: FirstState,
-	controllProfiles: [
-		DevelopmentControlls
+	controlProfiles: [
+		DevelopmentControls
 	]
 })
 class {GAME_NAME} extends Game {

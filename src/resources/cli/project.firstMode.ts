@@ -1,4 +1,4 @@
-import {GameState, State} from "gluon-engine";
+import {GameMode, Mode} from "gluon-engine";
 
-@GameState()
-class FirstState extends State {};
+@GameMode()
+export class FirstMode extends Mode {};

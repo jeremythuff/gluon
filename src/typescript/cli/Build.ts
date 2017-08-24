@@ -32,7 +32,7 @@ export default class Build extends AbstractCliCommand implements CliCommand {
 
 		if (shell.test('-d', "dist")) shell.rm("-rf", "dist");
 
-		nodecli.exec("tsc", (code: any, out: string) => {
+		shell.exec("$(npm bin)/tsc", (code: any, out: string) => {
 
 			const paths: Array<string> = new Array<string>();
 
