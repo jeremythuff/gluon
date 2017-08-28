@@ -9,8 +9,8 @@ import Game from "../../model/Game";
 
 import * as Electron from "electron"; 
 
-@GameController<Game>()
-export default class DevelopmentControls extends ControlProfile<Game> {
+@GameController<C>()
+export default class DevelopmentControls<C extends Game> extends ControlProfile<C> {
 
     @When(Keyboard.CTRL, Keyboard.SHIFT, Keyboard.I)
     @OverrideAs("Toggle Devtools")

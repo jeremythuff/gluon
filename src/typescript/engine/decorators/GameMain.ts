@@ -19,7 +19,7 @@ import { GameOptions } from "../model/interface/GameOptions";
  *
  * @decorator Class<typeof Game>
  */
-export default function GameMain(options?: GameOptions) {
+export default function GameMain<C extends Game>(options?: GameOptions<C,ControlProfile<C>>) {
 	return function decorator(decorated: typeof Game): void {
 
 		Reflect.defineMetadata("options", options, decorated);
@@ -38,7 +38,7 @@ export default function GameMain(options?: GameOptions) {
 			const controlProfileNames = options && options.controlProfiles ? options.controlProfiles : [];
 
 			if (controlProfileNames && controlProfileNames.some(controlProfile => {
-				return controlProfile.name === ControlProfile.name;
+				return controlProfile.constructor.name === ControlProfile.name;
 			})) {
 
 				const newControllerProfile: ControlProfile<Controllable> = new ControlProfile<Controllable>(game);

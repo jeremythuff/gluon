@@ -38,7 +38,7 @@ export default function GameState(options?: StateOptions) {
 				const modeOption: { [name: string]: any[] | string } = Reflect.getMetadata("options", Mode);
 
 				GameControllereRegistry.getControlProfileObservable().subscribe(ControlProfile => {
-					if ((<string[]>modeOption["controlProfiles"]).some(controlProfileName => {
+					if (modeOption && (<string[]>modeOption["controlProfiles"]).some(controlProfileName => {
 						return controlProfileName === ControlProfile.name;
 					})) {
 

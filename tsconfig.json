@@ -18,7 +18,6 @@
         "strictNullChecks": true,
         "noUnusedLocals": true,
         "noImplicitThis": true,
-        "noEmitHelpers": true,
         "pretty": true,
         "lib": ["es2015", "dom"],
         "baseUrl": "./src/typescript/",
