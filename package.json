@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "WebGL Game Framework in electron",
   "scripts": {
-
+    "start": "electron-forge"
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,8 @@
     "gluon"
   ],
   "author": "Jeremy Huff",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "electron-forge": "^4.0.0"
+  }
 }
