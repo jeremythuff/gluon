@@ -1,0 +1,23 @@
+{
+  "name": "gluon",
+  "version": "1.0.0",
+  "description": "WebGL Game Framework in electron",
+  "scripts": {
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeremythuff/gluon.git"
+  },
+  "keywords": [
+    "angular",
+    "electron",
+    "three.js",
+    "webgl",
+    "game",
+    "engine",
+    "gluon"
+  ],
+  "author": "Jeremy Huff",
+  "license": "MIT"
+}
