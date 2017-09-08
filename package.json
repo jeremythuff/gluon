@@ -1,8 +1,9 @@
 {
   "name": "gluon",
   "version": "1.0.0",
-  "description": "WebGL Game Framework in electron",
+  "description": "WebGL Game Framework in Electron",
   "scripts": {
+    "build": "NODE_ENV=dev webpack || set NODE_ENV=dev webpack",
     "start": "electron-forge"
   },
   "repository": {
@@ -21,6 +22,10 @@
   "author": "Jeremy Huff",
   "license": "MIT",
   "dependencies": {
-    "electron-forge": "^4.0.0"
+    "electron-forge": "4.0.0",
+    "webpack": "3.5.6"
+  },
+  "devDependencies": {
+    "ts-loader": "^2.3.6"
   }
 }
