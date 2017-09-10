@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "WebGL Game Framework in electron",
   "scripts": {
+    "build": "webpack",
     "start": "electron-forge"
   },
   "repository": {
@@ -22,6 +23,7 @@
   "license": "MIT",
   "dependencies": {
     "electron-forge": "^4.0.0",
-    "webpack": "^3.5.6"
+    "webpack": "^3.5.6",
+    "webpack-merge": "^4.1.0"
   }
 }
