@@ -21,6 +21,7 @@
   "author": "Jeremy Huff",
   "license": "MIT",
   "dependencies": {
-    "electron-forge": "^4.0.0"
+    "electron-forge": "^4.0.0",
+    "webpack": "^3.5.6"
   }
 }
