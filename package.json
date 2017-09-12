@@ -22,8 +22,10 @@
   "author": "Jeremy Huff",
   "license": "MIT",
   "dependencies": {
-    "electron-forge": "^4.0.0",
-    "webpack": "^3.5.6",
-    "webpack-merge": "^4.1.0"
+    "electron-forge": "4.0.0",
+    "typescript": "2.5.2",
+    "webpack": "3.5.6",
+    "webpack-merge": "4.1.0",
+    "ts-loader": "2.3.7"
   }
 }

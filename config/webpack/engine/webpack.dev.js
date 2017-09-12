@@ -1,6 +1,16 @@
+const process = require("process");
 
 module.exports = {
-    output: {
-      filename: './dist/engine/bundle.js'
-    },
+  devtool: 'cheap-module-eval-source-map',
+  module: {
+    loaders: [ 
+        { 
+            test: /\.ts$/, 
+            loader: 'ts-loader',
+            options: {
+              configFile: process.cwd()+'/config/tsconfig/tsconfig.dev.json'
+            }
+        }
+    ]
+  }
 }
