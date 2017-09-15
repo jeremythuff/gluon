@@ -1,2 +1,2 @@
 # gluon-engine
-WebGL Game Framework in electron
+WebGL Game Framework in Electron
