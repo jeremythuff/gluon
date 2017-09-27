@@ -1,14 +1,14 @@
 const process = require("process");
 
 module.exports = {
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'inline-source-map',
   module: {
     loaders: [ 
         { 
             test: /\.ts$/, 
             loader: 'ts-loader',
             options: {
-              configFile: process.cwd()+'/config/tsconfig/tsconfig.dev.json'
+              configFile: process.cwd()+'/config/tsconfig/tsconfig.test.json' 
             }
         }
     ]

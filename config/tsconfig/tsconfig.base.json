@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        
+        "module": "es2015",
+        "target": "es5",
+        "lib": [
+            "es2016",
+            "dom"
+        ],
+        "baseUrl": "../../src",
+        "paths": {
+            "@engine/*": ["./engine/*"],
+            "@cli/*": ["./glu-cli/*"]
+        }
+    },
+    "include": [
+        "../../src/engine/index.ts"
+    ]
+}
