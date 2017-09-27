@@ -15,5 +15,8 @@
             "@engine/*": ["./engine/*"],
             "@cli/*": ["./glu-cli/*"]
         }
-    }
+    },
+    "include": [
+        "../../src/engine/index.ts"
+    ]
 }
