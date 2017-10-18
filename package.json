@@ -1,9 +1,9 @@
 {
-  "name": "gluon",
+  "name": "gluon-engine",
   "version": "1.0.0",
-  "description": "WebGL Game Framework in electron",
+  "description": "WebGL Game Framework in Electron",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --env.engine",
     "start": "electron-forge"
   },
   "repository": {
@@ -22,10 +22,16 @@
   "author": "Jeremy Huff",
   "license": "MIT",
   "dependencies": {
+    "@gluon-engine/ai": "file:./dist/modules/ai/",
+    "@gluon-engine/audio": "file:./dist/modules/audio/",
+    "@gluon-engine/core": "file:./dist/modules/core/",
+    "@gluon-engine/networking": "file:./dist/modules/networking/",
+    "@gluon-engine/physics": "file:./dist/modules/physics/",
+    "@gluon-engine/ui": "file:./dist/modules/ui/",
     "electron-forge": "4.0.0",
+    "ts-loader": "2.3.7",
     "typescript": "2.5.2",
     "webpack": "3.5.6",
-    "webpack-merge": "4.1.0",
-    "ts-loader": "2.3.7"
+    "webpack-merge": "4.1.0"
   }
 }
