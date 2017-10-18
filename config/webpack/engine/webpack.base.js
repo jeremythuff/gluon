@@ -24,28 +24,8 @@ module.exports = {
     plugins: [
         new CopyWebpackPlugin([
             { 
-                from: 'modules/ai/package.json',
-                to: 'dist/modules/ai/package.json'
-            },
-            { 
-                from: 'modules/audio/package.json',
-                to: 'dist/modules/audio/package.json'
-            },
-            { 
-                from: 'modules/core/package.json',
-                to: 'dist/modules/core/package.json'
-            },
-            { 
-                from: 'modules/networking/package.json',
-                to: 'dist/modules/networking/package.json'
-            },
-            { 
-                from: 'modules/physics/package.json',
-                to: 'dist/modules/physics/package.json'
-            },
-            { 
-                from: 'modules/ui/package.json',
-                to: 'dist/modules/ui/package.json'
+                from: 'modules/**/package.json',
+                to: 'dist/[path]package.json'
             }
         ])
     ] 
