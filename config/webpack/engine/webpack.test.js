@@ -8,7 +8,7 @@ module.exports = {
             test: /\.ts$/, 
             loader: 'ts-loader',
             options: {
-              configFile: process.cwd()+'/config/tsconfig/tsconfig.test.json' 
+              configFile: process.cwd()+'/config/tsconfig/engine/tsconfig.test.json' 
             }
         }
     ]

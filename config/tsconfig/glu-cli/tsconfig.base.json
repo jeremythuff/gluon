@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "module": "es2015",
+        "target": "es5",
+        "declaration": false,
+        "lib": [
+            "es2016",
+            "dom"
+        ],
+        "baseUrl": "../../../utils",
+        "paths": {
+            "@engine/*": ["./engine/*"],
+            "@cli/*": ["./glu-cli/*"]
+        }
+    }
+}

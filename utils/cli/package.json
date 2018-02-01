@@ -1,0 +1,21 @@
+{
+    "name": "@gluon-engine/cli",
+    "version": "0.0.0-PLACEHOLDER",
+    "description": "Gluon CLI -- command line interface for Gluon Engine",
+    "author": "Jeremy Huff",
+    "license": "MIT",
+    "main": "./bin/glu.js",
+    "typings": "./src/index.d.ts",
+    "bin": {
+      "glu": "./bin/glu.js",
+      "glu-console": "./bin/glu-console.js"
+    },
+    "dependencies": {},
+    "peerDependencies": {
+      "@gluon-engine/core": "0.0.0-PLACEHOLDER"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/jeremythuff/gluon.git"
+    }
+  }

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "WebGL Game Framework in Electron",
   "scripts": {
-    "build": "webpack --env.engine",
+    "build": "webpack",
     "start": "electron-forge"
   },
   "repository": {
@@ -28,6 +28,7 @@
     "@gluon-engine/networking": "file:./dist/modules/networking/",
     "@gluon-engine/physics": "file:./dist/modules/physics/",
     "@gluon-engine/ui": "file:./dist/modules/ui/",
+    "@gluon-engine/cli": "file:./dist/utils/cli/",
     "electron-forge": "4.0.0",
     "ts-loader": "2.3.7",
     "typescript": "2.5.2",

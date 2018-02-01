@@ -1,6 +1,16 @@
+const process = require("process");
 
 module.exports = {
-    output: {
-      filename: './dist/glu-cli/bundle.js'
-    },
+  devtool: 'cheap-module-eval-source-map',
+  module: {
+    loaders: [ 
+      { 
+        test: /\.ts$/, 
+        loader: 'ts-loader',
+        options: {
+          configFile: process.cwd()+'/config/tsconfig/glu-cli/tsconfig.dev.json'
+        }
+      }
+    ]
+  }
 }

@@ -1,8 +1,6 @@
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var path = require('path');
 
-console.log(__dirname);
-
 module.exports = {
     context: path.join(__dirname, '../../../'),
     entry: {
@@ -24,7 +22,7 @@ module.exports = {
     plugins: [
         new CopyWebpackPlugin([
             { 
-                from: 'modules/**/package.json',
+                from: 'utils/**/package.json',
                 to: 'dist/[path]package.json'
             }
         ])
