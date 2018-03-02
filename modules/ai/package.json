@@ -1,0 +1,17 @@
+{
+  "name": "@gluon-engine/ai",
+  "version": "0.0.0-PLACEHOLDER",
+  "description": "Gluon Engine -- ai module",
+  "author": "Jeremy Huff",
+  "license": "MIT",
+  "main": "./bundle/ai.js",  
+  "typings": "./index.d.ts",
+  "dependencies": {},
+  "peerDependencies": {
+    "@gluon-engine/core": "0.0.0-PLACEHOLDER"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeremythuff/gluon.git"
+  }
+}
