@@ -28,6 +28,7 @@
     "@gluon-engine/networking": "file:./dist/modules/networking/",
     "@gluon-engine/physics": "file:./dist/modules/physics/",
     "@gluon-engine/ui": "file:./dist/modules/ui/",
+    "copy-webpack-plugin": "^4.5.0",
     "electron-forge": "4.0.0",
     "ts-loader": "2.3.7",
     "typescript": "2.5.2",
